@@ -1,6 +1,6 @@
-import { initialCollaboratorStatus, mobileRoutes, routes } from "./data.js";
+import { initialCollaboratorStatus, routes } from "../core/data.js";
 import { logo } from "./components.js";
-import { esc } from "./utils.js";
+import { esc } from "../core/utils.js";
 
 export function shell({ id, state, screen }) {
   return `

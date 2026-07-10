@@ -1,6 +1,6 @@
-import { initialInstallerStatus, initialOkfStatus } from "../data.js";
-import { state } from "../state.js";
-import { esc } from "../utils.js";
+import { initialInstallerStatus, initialOkfStatus } from "../../core/data.js";
+import { state } from "../../core/state.js";
+import { esc } from "../../core/utils.js";
 
 const steps = [
   { title: "Instalação", caption: "pasta e FTP local" },

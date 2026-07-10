@@ -1,7 +1,7 @@
-import { availableWorks, items } from "../data.js";
-import { card, formStep, mobileHeader } from "../components.js";
-import { state, selectedWork } from "../state.js";
-import { esc } from "../utils.js";
+import { availableWorks, items } from "../../core/data.js";
+import { state, selectedWork } from "../../core/state.js";
+import { esc } from "../../core/utils.js";
+import { card, formStep, mobileHeader } from "../../ui/components.js";
 
 function workSelector() {
   return card("Selecionar obra", `

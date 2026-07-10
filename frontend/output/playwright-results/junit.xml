@@ -1,41 +1,41 @@
-<testsuites id="" name="" tests="16" failures="0" skipped="0" errors="0" time="2.9367550000000002">
-<testsuite name="admin.spec.js" timestamp="2026-07-09T23:59:41.527Z" hostname="desktop-admin-installer" tests="6" failures="0" skipped="0" time="5.947" errors="0">
-<testcase name="[admin-add-work] cadastra obra" classname="admin.spec.js" time="0.621">
+<testsuites id="" name="" tests="16" failures="0" skipped="0" errors="0" time="2.780684">
+<testsuite name="admin.spec.js" timestamp="2026-07-10T01:14:07.910Z" hostname="desktop-admin-installer" tests="6" failures="0" skipped="0" time="7.493" errors="0">
+<testcase name="[admin-add-work] cadastra obra" classname="admin.spec.js" time="0.491">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|admin--admin-add-work-cadastra-obra-desktop-admin-installer/attachments/print-final-c0b3a09113a1c01780d67c2df239ccfb7951a182.png]]
 ]]>
 </system-out>
 </testcase>
-<testcase name="[admin-calendar] cria agendamento no cronograma" classname="admin.spec.js" time="1.536">
+<testcase name="[admin-calendar] cria agendamento no cronograma" classname="admin.spec.js" time="1.535">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|admin--admin-calendar-cria-agendamento-no-cronograma-desktop-admin-installer/attachments/print-final-b8ac887d133b348a76f2c835b2da143bfd3a8479.png]]
 ]]>
 </system-out>
 </testcase>
-<testcase name="[admin-elements] adiciona elemento de obra com dependencias e liberacoes" classname="admin.spec.js" time="0.767">
+<testcase name="[admin-elements] adiciona elemento de obra com dependencias e liberacoes" classname="admin.spec.js" time="1.679">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|admin--admin-elements-adic-9cf76-m-dependencias-e-liberacoes-desktop-admin-installer/attachments/print-final-746c5a8aadbff9609184cc1cc850517c81e9aded.png]]
 ]]>
 </system-out>
 </testcase>
-<testcase name="[admin-mobile-access] cadastra login do app de medição vinculado a obra" classname="admin.spec.js" time="0.599">
+<testcase name="[admin-mobile-access] cadastra login do app de medição vinculado a obra" classname="admin.spec.js" time="0.634">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|admin--admin-mobile-access-fae07-de-medição-vinculado-a-obra-desktop-admin-installer/attachments/print-final-7068f4005cb20b6b24dce9e4104137655e2ffa27.png]]
 ]]>
 </system-out>
 </testcase>
-<testcase name="[admin-measurement] altera percentual da medição administrativa" classname="admin.spec.js" time="1.63">
+<testcase name="[admin-measurement] altera percentual da medição administrativa" classname="admin.spec.js" time="1.575">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|admin--admin-measurement-a-c6e19-l-da-medição-administrativa-desktop-admin-installer/attachments/print-final-3a5f1f7fe3337e019e28d59fb9e4beab58d9aaa2.png]]
 ]]>
 </system-out>
 </testcase>
-<testcase name="[admin-measurement-comparison] gera comparacao da medição com planilha importada" classname="admin.spec.js" time="0.794">
+<testcase name="[admin-measurement-comparison] gera comparacao da medição com planilha importada" classname="admin.spec.js" time="1.579">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|admin--admin-measurement-c-c9992-ição-com-planilha-importada-desktop-admin-installer/attachments/print-final-c77b80c7f199e0c3189f44962a19398cd3f3a7ee.png]]
@@ -43,68 +43,68 @@
 </system-out>
 </testcase>
 </testsuite>
-<testsuite name="installer.spec.js" timestamp="2026-07-09T23:59:41.527Z" hostname="desktop-admin-installer" tests="4" failures="0" skipped="0" time="1.635" errors="0">
-<testcase name="[installer-install-folder] valida pasta de instalacao e FTP local" classname="installer.spec.js" time="0.499">
+<testsuite name="installer.spec.js" timestamp="2026-07-10T01:14:07.910Z" hostname="desktop-admin-installer" tests="4" failures="0" skipped="0" time="1.734" errors="0">
+<testcase name="[installer-install-folder] valida pasta de instalacao e FTP local" classname="installer.spec.js" time="0.56">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|installer--installer-insta-58571-a-de-instalacao-e-FTP-local-desktop-admin-installer/attachments/print-final-f464338eb49a959b210e2a4320685c6ee05a19f1.png]]
 ]]>
 </system-out>
 </testcase>
-<testcase name="[installer-collaborator-endpoint] apresenta endpoint de colaboradores" classname="installer.spec.js" time="0.499">
+<testcase name="[installer-collaborator-endpoint] apresenta endpoint de colaboradores" classname="installer.spec.js" time="0.591">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|installer--installer-colla-225e4-a-endpoint-de-colaboradores-desktop-admin-installer/attachments/print-final-b9d96f9613831adca1c4c9a672201f0faaac430c.png]]
 ]]>
 </system-out>
 </testcase>
-<testcase name="[installer-archive-okf-llama] apresenta Archive, OKF e servidor Llama" classname="installer.spec.js" time="0.298">
+<testcase name="[installer-archive-okf-llama] apresenta Archive, OKF e servidor Llama" classname="installer.spec.js" time="0.248">
+</testcase>
+<testcase name="[installer-admin-mobile-intro] introduz admin e app de medição" classname="installer.spec.js" time="0.335">
 <system-out>
 <![CDATA[
-[[ATTACHMENT|installer--installer-archi-094fa-rchive-OKF-e-servidor-Llama-desktop-admin-installer/attachments/print-final-f29e17e12b983eaf6f9f7faff3496b27c1547de2.png]]
+[[ATTACHMENT|installer--installer-admin-41db9-oduz-admin-e-app-de-medição-desktop-admin-installer/attachments/print-final-c3b10599a8f09d421ea4e8f5b9e4abffbedb9f31.png]]
 ]]>
 </system-out>
 </testcase>
-<testcase name="[installer-admin-mobile-intro] introduz admin e app de medição" classname="installer.spec.js" time="0.339">
-</testcase>
 </testsuite>
-<testsuite name="mobile.spec.js" timestamp="2026-07-09T23:59:41.527Z" hostname="mobile-twa" tests="6" failures="0" skipped="0" time="2.939" errors="0">
-<testcase name="[mobile-login-gate] exige email e CPF autorizados" classname="mobile.spec.js" time="0.376">
+<testsuite name="mobile.spec.js" timestamp="2026-07-10T01:14:07.910Z" hostname="mobile-twa" tests="6" failures="0" skipped="0" time="2.665" errors="0">
+<testcase name="[mobile-login-gate] exige email e CPF autorizados" classname="mobile.spec.js" time="0.293">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|mobile--mobile-login-gate-exige-email-e-CPF-autorizados-mobile-twa/attachments/print-final-6397ad17495f339b2b7631e421a108244adf3eb9.png]]
 ]]>
 </system-out>
 </testcase>
-<testcase name="[mobile-work-lock] bloqueia fluxos ate selecionar uma obra" classname="mobile.spec.js" time="0.425">
+<testcase name="[mobile-work-lock] bloqueia fluxos ate selecionar uma obra" classname="mobile.spec.js" time="0.324">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|mobile--mobile-work-lock-b-4aa26-xos-ate-selecionar-uma-obra-mobile-twa/attachments/print-final-762e00ad536f0cbb6ab5aa3cc78dcb3f51d2ddeb.png]]
 ]]>
 </system-out>
 </testcase>
-<testcase name="[mobile-select-work] seleciona obra e libera rotinas" classname="mobile.spec.js" time="0.462">
+<testcase name="[mobile-select-work] seleciona obra e libera rotinas" classname="mobile.spec.js" time="0.4">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|mobile--mobile-select-work-seleciona-obra-e-libera-rotinas-mobile-twa/attachments/print-final-9564e4906aab385377b3293c0dc0bde57cdfb000.png]]
 ]]>
 </system-out>
 </testcase>
-<testcase name="[mobile-routine] cria rotina do mestre" classname="mobile.spec.js" time="0.511">
+<testcase name="[mobile-routine] cria rotina do mestre" classname="mobile.spec.js" time="0.499">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|mobile--mobile-routine-cria-rotina-do-mestre-mobile-twa/attachments/print-final-0aaf496ca8c270d7289a8d625e1e642e447e4ea4.png]]
 ]]>
 </system-out>
 </testcase>
-<testcase name="[mobile-day] adiciona item ao cronograma do dia" classname="mobile.spec.js" time="0.636">
+<testcase name="[mobile-day] adiciona item ao cronograma do dia" classname="mobile.spec.js" time="0.612">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|mobile--mobile-day-adiciona-item-ao-cronograma-do-dia-mobile-twa/attachments/print-final-17ad0b9e0536de82fe205ff24dba8dfccbc40011.png]]
 ]]>
 </system-out>
 </testcase>
-<testcase name="[mobile-diary] completa diario de obra" classname="mobile.spec.js" time="0.529">
+<testcase name="[mobile-diary] completa diario de obra" classname="mobile.spec.js" time="0.537">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|mobile--mobile-diary-completa-diario-de-obra-mobile-twa/attachments/print-final-a9d2f6d92a0f24727c05b8d0554431a6b1779acd.png]]

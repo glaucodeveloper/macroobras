@@ -1,6 +1,6 @@
 import { mobileRoutes } from "./data.js";
-import { adminAddWork, adminCalendar, adminElements, adminMeasurement, adminMobileAccess } from "./screens/admin.js";
-import { mobileDay, mobileDiary, mobileHome, mobileRoutine } from "./screens/mobile.js";
+import { adminAddWork, adminCalendar, adminElements, adminMeasurement, adminMobileAccess } from "../screens/admin/index.js";
+import { mobileDay, mobileDiary, mobileHome, mobileRoutine } from "../screens/mobile/index.js";
 
 const routeMap = {
   "admin-add-work": adminAddWork,

@@ -1,6 +1,6 @@
 # Relatorio de testes UI MacroObras
 
-Gerado em: 2026-07-09T23:59:44.092Z
+Gerado em: 2026-07-10T01:14:10.354Z
 
 ## Artefatos
 

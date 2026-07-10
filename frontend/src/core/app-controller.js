@@ -1,8 +1,8 @@
 import { initialCollaboratorStatus, initialOkfStatus } from "./data.js";
 import { callRpc } from "./api.js";
 import { renderRoute, normalizedMobileRoute } from "./router.js";
-import { shell, twaShell } from "./shell.js";
-import { installerScreen } from "./screens/installer.js";
+import { installerScreen } from "../screens/installer/index.js";
+import { shell, twaShell } from "../ui/shells.js";
 import { configureStateRenderer, dependencyMessage, isInstallerSurface, isTwaSurface, selectedWork, state, updateState } from "./state.js";
 
 export function initApp() {

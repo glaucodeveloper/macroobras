@@ -1,4 +1,4 @@
-import { esc } from "./utils.js";
+import { esc } from "../core/utils.js";
 
 export function logo() {
   return `<img class="logo-mark" src="./brand/logo_macroobras_ref.png" alt="MacroObras" />`;

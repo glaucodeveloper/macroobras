@@ -1,7 +1,7 @@
-import { availableWorks, items, mobileUsers } from "../data.js";
-import { card, formStep, metric, pageHeader, sidePanel } from "../components.js";
-import { state } from "../state.js";
-import { esc } from "../utils.js";
+import { availableWorks, items, mobileUsers } from "../../core/data.js";
+import { state } from "../../core/state.js";
+import { esc } from "../../core/utils.js";
+import { card, formStep, metric, pageHeader, sidePanel } from "../../ui/components.js";
 
 export function adminAddWork() {
   return `

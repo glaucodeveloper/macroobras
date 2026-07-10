@@ -1,3 +1,3 @@
-import { initApp } from "./app.js";
+import { initApp } from "./core/app-controller.js";
 
 initApp();

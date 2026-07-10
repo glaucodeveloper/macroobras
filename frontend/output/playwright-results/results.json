@@ -120,12 +120,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 621,
+                  "duration": 491,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-07-09T23:59:41.865Z",
+                  "startTime": "2026-07-10T01:14:08.258Z",
                   "annotations": [],
                   "attachments": [
                     {
@@ -160,12 +160,12 @@
                   "workerIndex": 1,
                   "parallelIndex": 1,
                   "status": "passed",
-                  "duration": 1536,
+                  "duration": 1535,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-07-09T23:59:41.883Z",
+                  "startTime": "2026-07-10T01:14:08.280Z",
                   "annotations": [],
                   "attachments": [
                     {
@@ -200,12 +200,12 @@
                   "workerIndex": 2,
                   "parallelIndex": 2,
                   "status": "passed",
-                  "duration": 767,
+                  "duration": 1679,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-07-09T23:59:41.902Z",
+                  "startTime": "2026-07-10T01:14:08.305Z",
                   "annotations": [],
                   "attachments": [
                     {
@@ -240,12 +240,12 @@
                   "workerIndex": 3,
                   "parallelIndex": 3,
                   "status": "passed",
-                  "duration": 599,
+                  "duration": 634,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-07-09T23:59:41.937Z",
+                  "startTime": "2026-07-10T01:14:08.289Z",
                   "annotations": [],
                   "attachments": [
                     {
@@ -280,12 +280,12 @@
                   "workerIndex": 4,
                   "parallelIndex": 4,
                   "status": "passed",
-                  "duration": 1630,
+                  "duration": 1575,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-07-09T23:59:41.905Z",
+                  "startTime": "2026-07-10T01:14:08.323Z",
                   "annotations": [],
                   "attachments": [
                     {
@@ -320,12 +320,12 @@
                   "workerIndex": 5,
                   "parallelIndex": 5,
                   "status": "passed",
-                  "duration": 794,
+                  "duration": 1579,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-07-09T23:59:41.900Z",
+                  "startTime": "2026-07-10T01:14:08.292Z",
                   "annotations": [],
                   "attachments": [
                     {
@@ -368,12 +368,12 @@
                   "workerIndex": 6,
                   "parallelIndex": 6,
                   "status": "passed",
-                  "duration": 499,
+                  "duration": 560,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-07-09T23:59:41.969Z",
+                  "startTime": "2026-07-10T01:14:08.265Z",
                   "annotations": [],
                   "attachments": [
                     {
@@ -408,12 +408,12 @@
                   "workerIndex": 7,
                   "parallelIndex": 7,
                   "status": "passed",
-                  "duration": 499,
+                  "duration": 591,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-07-09T23:59:41.900Z",
+                  "startTime": "2026-07-10T01:14:08.262Z",
                   "annotations": [],
                   "attachments": [
                     {
@@ -445,23 +445,17 @@
               "projectName": "desktop-admin-installer",
               "results": [
                 {
-                  "workerIndex": 7,
-                  "parallelIndex": 7,
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 298,
+                  "duration": 248,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-07-09T23:59:42.539Z",
+                  "startTime": "2026-07-10T01:14:08.835Z",
                   "annotations": [],
-                  "attachments": [
-                    {
-                      "name": "print-final",
-                      "contentType": "image/png",
-                      "path": "/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/output/playwright-results/installer--installer-archi-094fa-rchive-OKF-e-servidor-Llama-desktop-admin-installer/attachments/print-final-f29e17e12b983eaf6f9f7faff3496b27c1547de2.png"
-                    }
-                  ]
+                  "attachments": []
                 }
               ],
               "status": "expected"
@@ -485,17 +479,23 @@
               "projectName": "desktop-admin-installer",
               "results": [
                 {
-                  "workerIndex": 0,
-                  "parallelIndex": 0,
+                  "workerIndex": 6,
+                  "parallelIndex": 6,
                   "status": "passed",
-                  "duration": 339,
+                  "duration": 335,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-07-09T23:59:42.574Z",
+                  "startTime": "2026-07-10T01:14:08.920Z",
                   "annotations": [],
-                  "attachments": []
+                  "attachments": [
+                    {
+                      "name": "print-final",
+                      "contentType": "image/png",
+                      "path": "/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/output/playwright-results/installer--installer-admin-41db9-oduz-admin-e-app-de-medição-desktop-admin-installer/attachments/print-final-c3b10599a8f09d421ea4e8f5b9e4abffbedb9f31.png"
+                    }
+                  ]
                 }
               ],
               "status": "expected"
@@ -528,14 +528,14 @@
               "results": [
                 {
                   "workerIndex": 8,
-                  "parallelIndex": 6,
+                  "parallelIndex": 7,
                   "status": "passed",
-                  "duration": 376,
+                  "duration": 293,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-07-09T23:59:42.982Z",
+                  "startTime": "2026-07-10T01:14:09.276Z",
                   "annotations": [],
                   "attachments": [
                     {
@@ -570,12 +570,12 @@
                   "workerIndex": 9,
                   "parallelIndex": 3,
                   "status": "passed",
-                  "duration": 425,
+                  "duration": 324,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-07-09T23:59:43.034Z",
+                  "startTime": "2026-07-10T01:14:09.332Z",
                   "annotations": [],
                   "attachments": [
                     {
@@ -608,14 +608,14 @@
               "results": [
                 {
                   "workerIndex": 10,
-                  "parallelIndex": 2,
+                  "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 462,
+                  "duration": 400,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-07-09T23:59:43.118Z",
+                  "startTime": "2026-07-10T01:14:09.414Z",
                   "annotations": [],
                   "attachments": [
                     {
@@ -648,14 +648,14 @@
               "results": [
                 {
                   "workerIndex": 11,
-                  "parallelIndex": 5,
+                  "parallelIndex": 6,
                   "status": "passed",
-                  "duration": 511,
+                  "duration": 499,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-07-09T23:59:43.174Z",
+                  "startTime": "2026-07-10T01:14:09.635Z",
                   "annotations": [],
                   "attachments": [
                     {
@@ -687,15 +687,15 @@
               "projectName": "mobile-twa",
               "results": [
                 {
-                  "workerIndex": 12,
+                  "workerIndex": 8,
                   "parallelIndex": 7,
                   "status": "passed",
-                  "duration": 636,
+                  "duration": 612,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-07-09T23:59:43.251Z",
+                  "startTime": "2026-07-10T01:14:09.644Z",
                   "annotations": [],
                   "attachments": [
                     {
@@ -727,15 +727,15 @@
               "projectName": "mobile-twa",
               "results": [
                 {
-                  "workerIndex": 13,
-                  "parallelIndex": 0,
+                  "workerIndex": 9,
+                  "parallelIndex": 3,
                   "status": "passed",
-                  "duration": 529,
+                  "duration": 537,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-07-09T23:59:43.406Z",
+                  "startTime": "2026-07-10T01:14:09.727Z",
                   "annotations": [],
                   "attachments": [
                     {
@@ -759,8 +759,8 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-07-09T23:59:41.106Z",
-    "duration": 2936.755,
+    "startTime": "2026-07-10T01:14:07.521Z",
+    "duration": 2780.6839999999997,
     "expected": 16,
     "skipped": 0,
     "unexpected": 0,
