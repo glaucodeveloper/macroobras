@@ -1,0 +1,20 @@
+{
+  "produto": "MacroObras",
+  "tipo": "okf-local",
+  "origem": "scaffold-inicial",
+  "dominios": [
+    "obras",
+    "elementos-de-obra",
+    "dependencias",
+    "requisitos",
+    "servicos",
+    "rotinas",
+    "cronogramas",
+    "diarios",
+    "medicoes",
+    "colaboradores",
+    "archive",
+    "llama-local"
+  ],
+  "operacionalBloqueante": false
+}

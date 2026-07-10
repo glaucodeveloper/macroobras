@@ -1,0 +1,37 @@
+flowchart LR
+  Obra[Obra]
+  Elemento[Elemento de obra]
+  Item[Item de medição]
+  Servico[Serviço]
+  Rotina[Rotina]
+  Cronograma[Cronograma]
+  Diario[Diário de obra]
+  Confirmacao[Confirmação por câmera]
+  Medicao[Medição]
+  Comparacao[Comparação da medição]
+  Colaborador[Colaborador do app de medição]
+  Archive[Archive local]
+  Llama[Llama local / gemma4eb]
+
+  Obra -->|possui| Elemento
+  Obra -->|possui| Item
+  Obra -->|autoriza| Colaborador
+  Elemento -->|depende de / libera| Elemento
+  Elemento -->|gera| Servico
+  Elemento -->|mapeia| Item
+  Servico -->|compõe| Rotina
+  Rotina -->|alocada em| Cronograma
+  Servico -->|alocado em| Cronograma
+  Diario -->|registra| Servico
+  Diario -->|contém| Confirmacao
+  Confirmacao -->|prova execução| Servico
+  Confirmacao -->|comprova progresso| Medicao
+  Diario -->|alimenta| Medicao
+  Medicao -->|mede| Item
+  Comparacao -->|compara| Medicao
+  Archive -->|guarda evidências| Diario
+  Archive -->|guarda provas| Confirmacao
+  Archive -->|guarda importações| Comparacao
+  Llama -->|consulta| Archive
+  Llama -->|consulta| Elemento
+  Llama -->|sugere| Rotina

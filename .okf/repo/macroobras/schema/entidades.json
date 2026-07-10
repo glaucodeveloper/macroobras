@@ -1,0 +1,83 @@
+{
+  "version": 1,
+  "entities": [
+    {
+      "id": "obra",
+      "label": "Obra",
+      "description": "Unidade operacional administrada.",
+      "keyFields": ["id", "nome", "codigo", "cliente"]
+    },
+    {
+      "id": "elemento_obra",
+      "label": "Elemento de obra",
+      "description": "Parte construtiva ou atividade predisposta, com requisitos, materiais, dependências e liberações.",
+      "keyFields": ["id", "nome", "descricao", "materiais", "dependencias", "liberacoes"]
+    },
+    {
+      "id": "item_medicao",
+      "label": "Item de medição",
+      "description": "Linha importada de tabela de medição ou criada a partir de elementos de obra.",
+      "keyFields": ["id", "obraId", "descricao", "nivel", "percentualAdministrativo"]
+    },
+    {
+      "id": "servico",
+      "label": "Serviço",
+      "description": "Trabalho executável vinculado a obra, elemento de obra e item de medição.",
+      "keyFields": ["id", "obraId", "elementoObraId", "descricao", "tempoNecessario"]
+    },
+    {
+      "id": "rotina",
+      "label": "Rotina",
+      "description": "Agrupamento recorrente de serviços do mestre.",
+      "keyFields": ["id", "obraId", "nome", "servicos", "rotativa"]
+    },
+    {
+      "id": "cronograma",
+      "label": "Cronograma",
+      "description": "Alocação temporal de rotinas, serviços e apoios pontuais.",
+      "keyFields": ["id", "obraId", "data", "turno", "alocacoes"]
+    },
+    {
+      "id": "diario_obra",
+      "label": "Diário de obra",
+      "description": "Registro de execução, ocorrências, serviços realizados, anexos e evidências por câmera.",
+      "keyFields": ["id", "obraId", "data", "descricao", "servicosExecutados", "confirmacoesServico", "evidencias", "completo"]
+    },
+    {
+      "id": "confirmacao_servico",
+      "label": "Confirmação de serviço",
+      "description": "Apontamento de serviço feito com foto de câmera, anexado ao diário e usado como prova de progresso na medição.",
+      "keyFields": ["id", "obraId", "servicoId", "diarioObraId", "foto", "capturadaEm", "statusConfirmacao"]
+    },
+    {
+      "id": "medicao",
+      "label": "Medição",
+      "description": "Percentual administrativo por item, derivado de diários, confirmações por câmera e ajustes administrativos.",
+      "keyFields": ["id", "obraId", "itens", "totalPercentual", "diariosRelacionados", "provasAplicadas"]
+    },
+    {
+      "id": "comparacao_medicao",
+      "label": "Comparação da medição",
+      "description": "Contraste entre percentuais administrativos e planilha externa.",
+      "keyFields": ["id", "obraId", "arquivo", "linhas", "diferencas"]
+    },
+    {
+      "id": "colaborador",
+      "label": "Colaborador",
+      "description": "Usuário do app de medição autorizado por email e CPF.",
+      "keyFields": ["id", "nome", "email", "cpf", "obrasPermitidas"]
+    },
+    {
+      "id": "archive",
+      "label": "Archive",
+      "description": "Repositório local de evidências, prints, anexos, tabelas, diários e medições.",
+      "keyFields": ["id", "path", "tipo", "entidadeOrigem", "entidadeOrigemId"]
+    },
+    {
+      "id": "llama_local",
+      "label": "Servidor Llama local",
+      "description": "Servidor local com modelo gemma4eb para leitura do Archive e sugestões baseadas no OKF.",
+      "keyFields": ["endpoint", "model", "scope"]
+    }
+  ]
+}

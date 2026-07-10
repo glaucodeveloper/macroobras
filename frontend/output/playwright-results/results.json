@@ -1,0 +1,769 @@
+{
+  "config": {
+    "argv": [
+      "/usr/bin/node",
+      "/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/node_modules/.bin/playwright",
+      "test"
+    ],
+    "configFile": "/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/playwright.config.js",
+    "rootDir": "/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/tests/ui",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 8
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/output/playwright-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 8
+        },
+        "id": "desktop-admin-installer",
+        "name": "desktop-admin-installer",
+        "testDir": "/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/tests/ui",
+        "testIgnore": [],
+        "testMatch": [
+          "/.*(admin|installer)\\.spec\\.js/"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/output/playwright-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 8
+        },
+        "id": "mobile-twa",
+        "name": "mobile-twa",
+        "testDir": "/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/tests/ui",
+        "testIgnore": [],
+        "testMatch": [
+          "/.*mobile\\.spec\\.js/"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "html",
+        {
+          "open": "never",
+          "outputFolder": "output/playwright-report"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "output/playwright-results/results.json"
+        }
+      ],
+      [
+        "junit",
+        {
+          "outputFile": "output/playwright-results/junit.xml"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.61.1",
+    "workers": 8,
+    "webServer": {
+      "command": "npm run build && python3 -m http.server 4183 --directory dist",
+      "url": "http://127.0.0.1:4183",
+      "reuseExistingServer": false,
+      "timeout": 30000
+    }
+  },
+  "suites": [
+    {
+      "title": "admin.spec.js",
+      "file": "admin.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "[admin-add-work] cadastra obra",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-admin-installer",
+              "projectName": "desktop-admin-installer",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 621,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-07-09T23:59:41.865Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "print-final",
+                      "contentType": "image/png",
+                      "path": "/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/output/playwright-results/admin--admin-add-work-cadastra-obra-desktop-admin-installer/attachments/print-final-c0b3a09113a1c01780d67c2df239ccfb7951a182.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "73482573f1568b679d78-3ed663608708c6340998",
+          "file": "admin.spec.js",
+          "line": 9,
+          "column": 1
+        },
+        {
+          "title": "[admin-calendar] cria agendamento no cronograma",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-admin-installer",
+              "projectName": "desktop-admin-installer",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1536,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-07-09T23:59:41.883Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "print-final",
+                      "contentType": "image/png",
+                      "path": "/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/output/playwright-results/admin--admin-calendar-cria-agendamento-no-cronograma-desktop-admin-installer/attachments/print-final-b8ac887d133b348a76f2c835b2da143bfd3a8479.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "73482573f1568b679d78-983aa6c0586ec61b3fb0",
+          "file": "admin.spec.js",
+          "line": 20,
+          "column": 1
+        },
+        {
+          "title": "[admin-elements] adiciona elemento de obra com dependencias e liberacoes",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-admin-installer",
+              "projectName": "desktop-admin-installer",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 767,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-07-09T23:59:41.902Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "print-final",
+                      "contentType": "image/png",
+                      "path": "/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/output/playwright-results/admin--admin-elements-adic-9cf76-m-dependencias-e-liberacoes-desktop-admin-installer/attachments/print-final-746c5a8aadbff9609184cc1cc850517c81e9aded.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "73482573f1568b679d78-9acd6d6007ba8eaef895",
+          "file": "admin.spec.js",
+          "line": 30,
+          "column": 1
+        },
+        {
+          "title": "[admin-mobile-access] cadastra login do app de medição vinculado a obra",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-admin-installer",
+              "projectName": "desktop-admin-installer",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 599,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-07-09T23:59:41.937Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "print-final",
+                      "contentType": "image/png",
+                      "path": "/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/output/playwright-results/admin--admin-mobile-access-fae07-de-medição-vinculado-a-obra-desktop-admin-installer/attachments/print-final-7068f4005cb20b6b24dce9e4104137655e2ffa27.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "73482573f1568b679d78-00152dd0f0e9a86dab60",
+          "file": "admin.spec.js",
+          "line": 45,
+          "column": 1
+        },
+        {
+          "title": "[admin-measurement] altera percentual da medição administrativa",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-admin-installer",
+              "projectName": "desktop-admin-installer",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 4,
+                  "status": "passed",
+                  "duration": 1630,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-07-09T23:59:41.905Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "print-final",
+                      "contentType": "image/png",
+                      "path": "/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/output/playwright-results/admin--admin-measurement-a-c6e19-l-da-medição-administrativa-desktop-admin-installer/attachments/print-final-3a5f1f7fe3337e019e28d59fb9e4beab58d9aaa2.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "73482573f1568b679d78-0fc5b6379f14af0a8d05",
+          "file": "admin.spec.js",
+          "line": 57,
+          "column": 1
+        },
+        {
+          "title": "[admin-measurement-comparison] gera comparacao da medição com planilha importada",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-admin-installer",
+              "projectName": "desktop-admin-installer",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 5,
+                  "status": "passed",
+                  "duration": 794,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-07-09T23:59:41.900Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "print-final",
+                      "contentType": "image/png",
+                      "path": "/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/output/playwright-results/admin--admin-measurement-c-c9992-ição-com-planilha-importada-desktop-admin-installer/attachments/print-final-c77b80c7f199e0c3189f44962a19398cd3f3a7ee.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "73482573f1568b679d78-a12f480c394d169c59d8",
+          "file": "admin.spec.js",
+          "line": 73,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "installer.spec.js",
+      "file": "installer.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "[installer-install-folder] valida pasta de instalacao e FTP local",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-admin-installer",
+              "projectName": "desktop-admin-installer",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 6,
+                  "status": "passed",
+                  "duration": 499,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-07-09T23:59:41.969Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "print-final",
+                      "contentType": "image/png",
+                      "path": "/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/output/playwright-results/installer--installer-insta-58571-a-de-instalacao-e-FTP-local-desktop-admin-installer/attachments/print-final-f464338eb49a959b210e2a4320685c6ee05a19f1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5cdfb3928cd1ff775bb8-ae0f4acd65ecc1ef09af",
+          "file": "installer.spec.js",
+          "line": 9,
+          "column": 1
+        },
+        {
+          "title": "[installer-collaborator-endpoint] apresenta endpoint de colaboradores",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-admin-installer",
+              "projectName": "desktop-admin-installer",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 7,
+                  "status": "passed",
+                  "duration": 499,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-07-09T23:59:41.900Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "print-final",
+                      "contentType": "image/png",
+                      "path": "/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/output/playwright-results/installer--installer-colla-225e4-a-endpoint-de-colaboradores-desktop-admin-installer/attachments/print-final-b9d96f9613831adca1c4c9a672201f0faaac430c.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5cdfb3928cd1ff775bb8-79eb4559197fb7eaec01",
+          "file": "installer.spec.js",
+          "line": 18,
+          "column": 1
+        },
+        {
+          "title": "[installer-archive-okf-llama] apresenta Archive, OKF e servidor Llama",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-admin-installer",
+              "projectName": "desktop-admin-installer",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 7,
+                  "status": "passed",
+                  "duration": 298,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-07-09T23:59:42.539Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "print-final",
+                      "contentType": "image/png",
+                      "path": "/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/output/playwright-results/installer--installer-archi-094fa-rchive-OKF-e-servidor-Llama-desktop-admin-installer/attachments/print-final-f29e17e12b983eaf6f9f7faff3496b27c1547de2.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5cdfb3928cd1ff775bb8-6b9647091aa0fcc7c842",
+          "file": "installer.spec.js",
+          "line": 26,
+          "column": 1
+        },
+        {
+          "title": "[installer-admin-mobile-intro] introduz admin e app de medição",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-admin-installer",
+              "projectName": "desktop-admin-installer",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 339,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-07-09T23:59:42.574Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5cdfb3928cd1ff775bb8-62d07120ca1d928cd744",
+          "file": "installer.spec.js",
+          "line": 37,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "mobile.spec.js",
+      "file": "mobile.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "[mobile-login-gate] exige email e CPF autorizados",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-twa",
+              "projectName": "mobile-twa",
+              "results": [
+                {
+                  "workerIndex": 8,
+                  "parallelIndex": 6,
+                  "status": "passed",
+                  "duration": 376,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-07-09T23:59:42.982Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "print-final",
+                      "contentType": "image/png",
+                      "path": "/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/output/playwright-results/mobile--mobile-login-gate-exige-email-e-CPF-autorizados-mobile-twa/attachments/print-final-6397ad17495f339b2b7631e421a108244adf3eb9.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "abb07b11bbd7ad334584-cfe1e0fdae7300b3c1d8",
+          "file": "mobile.spec.js",
+          "line": 19,
+          "column": 1
+        },
+        {
+          "title": "[mobile-work-lock] bloqueia fluxos ate selecionar uma obra",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-twa",
+              "projectName": "mobile-twa",
+              "results": [
+                {
+                  "workerIndex": 9,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 425,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-07-09T23:59:43.034Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "print-final",
+                      "contentType": "image/png",
+                      "path": "/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/output/playwright-results/mobile--mobile-work-lock-b-4aa26-xos-ate-selecionar-uma-obra-mobile-twa/attachments/print-final-762e00ad536f0cbb6ab5aa3cc78dcb3f51d2ddeb.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "abb07b11bbd7ad334584-0001278796b129c7fe96",
+          "file": "mobile.spec.js",
+          "line": 29,
+          "column": 1
+        },
+        {
+          "title": "[mobile-select-work] seleciona obra e libera rotinas",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-twa",
+              "projectName": "mobile-twa",
+              "results": [
+                {
+                  "workerIndex": 10,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 462,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-07-09T23:59:43.118Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "print-final",
+                      "contentType": "image/png",
+                      "path": "/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/output/playwright-results/mobile--mobile-select-work-seleciona-obra-e-libera-rotinas-mobile-twa/attachments/print-final-9564e4906aab385377b3293c0dc0bde57cdfb000.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "abb07b11bbd7ad334584-65f0cb6cab1084258bb0",
+          "file": "mobile.spec.js",
+          "line": 41,
+          "column": 1
+        },
+        {
+          "title": "[mobile-routine] cria rotina do mestre",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-twa",
+              "projectName": "mobile-twa",
+              "results": [
+                {
+                  "workerIndex": 11,
+                  "parallelIndex": 5,
+                  "status": "passed",
+                  "duration": 511,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-07-09T23:59:43.174Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "print-final",
+                      "contentType": "image/png",
+                      "path": "/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/output/playwright-results/mobile--mobile-routine-cria-rotina-do-mestre-mobile-twa/attachments/print-final-0aaf496ca8c270d7289a8d625e1e642e447e4ea4.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "abb07b11bbd7ad334584-a1db3f79c74edfca8e18",
+          "file": "mobile.spec.js",
+          "line": 48,
+          "column": 1
+        },
+        {
+          "title": "[mobile-day] adiciona item ao cronograma do dia",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-twa",
+              "projectName": "mobile-twa",
+              "results": [
+                {
+                  "workerIndex": 12,
+                  "parallelIndex": 7,
+                  "status": "passed",
+                  "duration": 636,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-07-09T23:59:43.251Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "print-final",
+                      "contentType": "image/png",
+                      "path": "/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/output/playwright-results/mobile--mobile-day-adiciona-item-ao-cronograma-do-dia-mobile-twa/attachments/print-final-17ad0b9e0536de82fe205ff24dba8dfccbc40011.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "abb07b11bbd7ad334584-ae010f438ceb489109f6",
+          "file": "mobile.spec.js",
+          "line": 59,
+          "column": 1
+        },
+        {
+          "title": "[mobile-diary] completa diario de obra",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-twa",
+              "projectName": "mobile-twa",
+              "results": [
+                {
+                  "workerIndex": 13,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 529,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-07-09T23:59:43.406Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "print-final",
+                      "contentType": "image/png",
+                      "path": "/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/output/playwright-results/mobile--mobile-diary-completa-diario-de-obra-mobile-twa/attachments/print-final-a9d2f6d92a0f24727c05b8d0554431a6b1779acd.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "abb07b11bbd7ad334584-a56fa1f8b7d2933edabf",
+          "file": "mobile.spec.js",
+          "line": 77,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-07-09T23:59:41.106Z",
+    "duration": 2936.755,
+    "expected": 16,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}
