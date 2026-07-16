@@ -1,323 +1,91 @@
-# MacroObras - Especificação de Tipos e Gramática Formal (EBNF)
+# MacroObras - Especificação Técnica de Tipos e Gramática Formal
 
-Este documento descreve formalmente o modelo de conhecimento (OKF), as entidades operacionais locais e as assinaturas de funções de serviços do projeto **MacroObras**. 
-
-A especificação está escrita em **EBNF (Extended Backus-Naur Form)**, acompanhada de notas explicativas simplificadas e exemplos estruturados em formato JSON para garantir facilidade de leitura para desenvolvedores e leigos.
+Este documento descreve as especificações técnicas de dados, o modelo de conhecimento e as assinaturas lógicas de processamento da estação de trabalho **MacroObras**. A especificação utiliza a notação **EBNF (Extended Backus-Naur Form)** para formalizar as entidades de domínio e as interfaces funcionais.
 
 ---
 
-## Como ler esta gramática (Guia para Leigos)
-* `=` define os componentes de uma estrutura.
-* `,` (vírgula) representa a sequência direta dos campos.
-* `|` (barra vertical) significa "OU" (alternativas).
-* `[` e `]` (colchetes) marcam campos **opcionais**.
-* `{` e `}` (chaves) representam repetições ou listas (coleções de elementos).
-* `(* ... *)` são anotações de comentários explicativos.
+## 1. Descrição do Sistema
+
+A estação de trabalho MacroObras é um sistema desktop e web baseado em Nim (usando Jazzy Framework) com suporte a banco de dados SQLite local, comunicação assíncrona baseada em Git/SSH e integração de modelos locais de Inteligência Artificial. Seus componentes operam sob a seguinte arquitetura:
+1. **Gravação Local Resiliente**: Operações de canteiro (serviços, diários de obra, alocações, compras) gravadas localmente no banco de dados SQLite, eliminando dependência direta de redes externas para operação em campo.
+2. **Base de Conhecimento OKF**: Sincronização em segundo plano dos registros locais consolidados em formato Markdown com cabeçalhos estruturados para repositórios GitHub via conexões SSH.
+3. **Módulo de Comprovação por Câmera**: Registro físico de andamento de obras através de fotos anexadas aos diários diários de obra, servindo como auditoria para medições administrativas.
+4. **Assistente de Leitura Local**: Integração com servidor Llama local executando modelo focado na leitura do histórico de evidências arquivadas para sugestão automática de rotinas.
 
 ---
 
-## 1. Gramática das Entidades de Domínio (OKF & SQLite)
+## 2. Gramática de Estruturação (Modelagem de Dados)
 
-### A. Obra
-Representa a unidade operacional administrada (projeto ou canteiro).
+Esta seção especifica a estrutura formal de dados das entidades de domínio utilizadas na persistência e no ecossistema OKF do sistema.
+
+### A. Definição Formal em EBNF
 
 ```ebnf
-Obra = "{" , IdProperty , "," , NomeProperty , "," , CodigoProperty , "," , ClienteProperty , "}" ;
+(* Conjunto de Entidades de Domínio *)
+DomainModel = Obra | ElementoObra | ItemMedicao | Servico | Rotina | Cronograma | DiarioObra | ConfirmacaoServico | Colaborador ;
 
-IdProperty      = '"id"' , ":" , StringOrInteger ;   (* Identificador único da obra *)
-NomeProperty    = '"nome"' , ":" , String ;          (* Nome do canteiro de obras ou projeto *)
-CodigoProperty  = '"codigo"' , ":" , String ;        (* Código de registro técnico (ex: "OBRA-ABC") *)
-ClienteProperty = '"cliente"' , ":" , String ;       (* Nome do cliente contratante *)
+(* Estrutura de Obra *)
+Obra = "{" , IdProp , "," , NomeProp , "," , CodigoProp , "," , ClienteProp , "}" ;
+IdProp      = '"id"' , ":" , StringOrInteger ;   (* Identificador exclusivo da obra *)
+NomeProp    = '"nome"' , ":" , String ;          (* Nome descritivo da obra ou canteiro *)
+CodigoProp  = '"codigo"' , ":" , String ;        (* Código de controle do canteiro (ex: "OBRA-402") *)
+ClienteProp = '"cliente"' , ":" , String ;       (* Nome do cliente contratante *)
+
+(* Estrutura de Elemento de Obra *)
+ElementoObra = "{" , IdProp , "," , NomeProp , "," , DescricaoProp , "," , MateriaisProp , "," , DependenciasProp , "," , LiberacoesProp , "}" ;
+DescricaoProp    = '"descricao"' , ":" , String ;
+MateriaisProp    = '"materiais"' , ":" , "[" , { String , [ "," ] } , "]" ;    (* Lista de insumos vinculados *)
+DependenciasProp = '"dependencias"' , ":" , "[" , { String , [ "," ] } , "]" ; (* IDs de elementos de obra antecedentes *)
+LiberacoesProp   = '"liberacoes"' , ":" , "[" , { String , [ "," ] } , "]" ;   (* IDs de elementos de obra liberados *)
+
+(* Estrutura de Item de Medição *)
+ItemMedicao = "{" , IdProp , "," , ObraIdProp , "," , DescricaoProp , "," , NivelProp , "," , PercentualAdminProp , "}" ;
+ObraIdProp          = '"obraId"' , ":" , StringOrInteger ;
+NivelProp           = '"nivel"' , ":" , String ;             (* Nível estrutural da planilha (ex: "1.2.3") *)
+PercentualAdminProp = '"percentualAdministrativo"' , ":" , Decimal ; (* Progresso acumulado homologado *)
+
+(* Estrutura de Serviço *)
+Servico = "{" , IdProp , "," , ObraIdProp , "," , ElementoObraIdProp , "," , DescricaoProp , "," , TempoNecessarioProp , "}" ;
+ElementoObraIdProp  = '"elementoObraId"' , ":" , String ;
+TempoNecessarioProp = '"tempoNecessario"' , ":" , ( Integer | "null" ) ; (* Tempo estimado em horas *)
+
+(* Estrutura de Rotina *)
+Rotina = "{" , IdProp , "," , ObraIdProp , "," , NomeProp , "," , ServicosProp , "," , RotativaProp , "}" ;
+ServicosProp = '"servicos"' , ":" , "[" , { String , [ "," ] } , "]" ; (* Coleção de IDs de serviços associados *)
+RotativaProp = '"rotativa"' , ":" , Boolean ;                          (* Indicador de repetição periódica *)
+
+(* Estrutura de Cronograma *)
+Cronograma = "{" , IdProp , "," , ObraIdProp , "," , DataProp , "," , TurnoProp , "," , AlocacoesProp , "}" ;
+DataProp         = '"data"' , ":" , String ;          (* Data no formato AAAA-MM-DD *)
+TurnoProp        = '"turno"' , ":" , TurnoValue ;     (* Período de execução programado *)
+AlocacoesProp    = '"alocacoes"' , ":" , "[" , { AlocacaoItem , [ "," ] } , "]" ;
+TurnoValue       = '"manha"' | '"tarde"' | '"integral"' ;
+AlocacaoItem     = "{" , '"tipo"' , ":" , ( '"servico"' | '"rotina"' ) , "," , '"idTarget"' , ":" , String , "}" ;
+
+(* Estrutura de Diário de Obra *)
+DiarioObra = "{" , IdProp , "," , ObraIdProp , "," , DataProp , "," , DescricaoProp , "," , ServicosExecutadosProp , "," , ConfirmacoesProp , "," , EvidenciasProp , "," , CompletoProp , "}" ;
+ServicosExecutadosProp = '"servicosExecutados"' , ":" , "[" , { String , [ "," ] } , "]" ; (* IDs de serviços realizados *)
+ConfirmacoesProp       = '"confirmacoesServico"' , ":" , "[" , { String , [ "," ] } , "]" ; (* IDs de fotos de confirmação *)
+EvidenciasProp         = '"evidencias"' , ":" , "[" , { String , [ "," ] } , "]" ;          (* Imagens extras de canteiro *)
+CompletoProp           = '"completo"' , ":" , Boolean ;                                     (* Status de fechamento do diário *)
+
+(* Estrutura de Confirmação de Serviço *)
+ConfirmacaoServico = "{" , IdProp , "," , ObraIdProp , "," , ServicoIdProp , "," , DiarioObraIdProp , "," , FotoProp , "," , CapturadaEmProp , "," , StatusConfirmacaoProp , "}" ;
+ServicoIdProp          = '"servicoId"' , ":" , String ;
+DiarioObraIdProp       = '"diarioObraId"' , ":" , String ;
+FotoProp               = '"foto"' , ":" , String ;                  (* Caminho lógico do arquivo de imagem *)
+CapturadaEmProp        = '"capturadaEm"' , ":" , Date ;             (* Data e hora de captura *)
+StatusConfirmacaoProp  = '"statusConfirmacao"' , ":" , StatusValue ;(* Estado da homologação pela fiscalização *)
+StatusValue            = '"pendente"' | '"aprovado"' | '"rejeitado"' ;
+
+(* Estrutura de Colaborador *)
+Colaborador = "{" , IdProp , "," , NomeProp , "," , EmailProp , "," , CpfProp , "," , ObrasPermitidasProp , "}" ;
+EmailProp           = '"email"' , ":" , String ;
+CpfProp             = '"cpf"' , ":" , String ;
+ObrasPermitidasProp = '"obrasPermitidas"' , ":" , "[" , { String , [ "," ] } , "]" ; (* IDs de obras autorizadas *)
 ```
 
-#### Exemplo Prático (JSON)
-```json
-{
-  "id": "obra_402",
-  "nome": "Residencial Viver Bem - Torre A",
-  "codigo": "RVB-TA",
-  "cliente": "Construtora Vida Nova"
-}
-```
-
----
-
-### B. Elemento de Obra (ElementoObra)
-Representa uma parte física da estrutura ou uma etapa construtiva, com dependências de outros elementos e materiais vinculados.
-
-```ebnf
-ElementoObra = "{" , IdProperty , "," , NomeProperty , "," , DescricaoProperty , "," , MateriaisProperty , "," , DependenciasProperty , "," , LiberacoesProperty , "}" ;
-
-DescricaoProperty    = '"descricao"' , ":" , String ;
-MateriaisProperty    = '"materiais"' , ":" , "[" , { String , [ "," ] } , "]" ;    (* Lista de insumos requeridos *)
-DependenciasProperty = '"dependencias"' , ":" , "[" , { String , [ "," ] } , "]" ; (* IDs de outros elementos que devem terminar antes *)
-LiberacoesProperty   = '"liberacoes"' , ":" , "[" , { String , [ "," ] } , "]" ;   (* IDs de elementos liberados após a conclusão deste *)
-```
-
-#### Exemplo Prático (JSON)
-```json
-{
-  "id": "elem_fundacao_01",
-  "nome": "Concretagem de Sapatas - Setor Norte",
-  "descricao": "Etapa de preenchimento estrutural de sapatas com concreto usinado.",
-  "materiais": ["Concreto Fck 30MPa", "Aço CA-50 10mm"],
-  "dependencias": ["elem_escavacao_01"],
-  "liberacoes": ["elem_alvenaria_subsolo"]
-}
-```
-
----
-
-### C. Item de Medição (ItemMedicao)
-Uma linha importada da planilha de orçamento e medição, vinculada à evolução física e financeira da obra.
-
-```ebnf
-ItemMedicao = "{" , IdProperty , "," , ObraIdProperty , "," , DescricaoProperty , "," , NivelProperty , "," , PercentualAdminProperty , "}" ;
-
-ObraIdProperty        = '"obraId"' , ":" , StringOrInteger ;
-NivelProperty         = '"nivel"' , ":" , String ;        (* Nível hierárquico na planilha (ex: "1.1.2") *)
-PercentualAdminProperty= '"percentualAdministrativo"' , ":" , Decimal ; (* Progresso acumulado homologado pela fiscalização *)
-```
-
-#### Exemplo Prático (JSON)
-```json
-{
-  "id": "item_120",
-  "obraId": "obra_402",
-  "descricao": "Superestrutura de concreto armado",
-  "nivel": "2.1",
-  "percentualAdministrativo": 45.5
-}
-```
-
----
-
-### D. Serviço
-Trabalho individual e executável no canteiro de obras, com estimativa de tempo de alocação.
-
-```ebnf
-Servico = "{" , IdProperty , "," , ObraIdProperty , "," , ElementoObraIdProperty , "," , DescricaoProperty , "," , TempoNecessarioProperty , "}" ;
-
-ElementoObraIdProperty  = '"elementoObraId"' , ":" , String ;
-TempoNecessarioProperty = '"tempoNecessario"' , ":" , ( Integer | "null" ) ; (* Tempo estimado em horas *)
-```
-
-#### Exemplo Prático (JSON)
-```json
-{
-  "id": "serv_armação_05",
-  "obraId": "obra_402",
-  "elementoObraId": "elem_fundacao_01",
-  "descricao": "Corte e dobra de armações para estribos",
-  "tempoNecessario": 8
-}
-```
-
----
-
-### E. Rotina
-Agrupamento recorrente de serviços atribuídos às equipes do mestre de obras.
-
-```ebnf
-Rotina = "{" , IdProperty , "," , ObraIdProperty , "," , NomeProperty , "," , ServicosProperty , "," , RotativaProperty , "}" ;
-
-ServicosProperty = '"servicos"' , ":" , "[" , { String , [ "," ] } , "]" ; (* Lista de IDs de serviços associados *)
-RotativaProperty = '"rotativa"' , ":" , Boolean ;                          (* Se reinicia periodicamente *)
-```
-
-#### Exemplo Prático (JSON)
-```json
-{
-  "id": "rot_manutencao_diaria",
-  "obraId": "obra_402",
-  "nome": "Rotina de Organização e Segurança Matinal",
-  "servicos": ["serv_limpeza_ferramentas", "serv_dds_seguranca"],
-  "rotativa": true
-}
-```
-
----
-
-### F. Cronograma
-Alocação temporal e turnos de trabalho definidos para serviços e rotinas.
-
-```ebnf
-Cronograma = "{" , IdProperty , "," , ObraIdProperty , "," , DataProperty , "," , TurnoProperty , "," , AlocacoesProperty , "}" ;
-
-DataProperty       = '"data"' , ":" , String ;         (* Data agendada (ex: "YYYY-MM-DD") *)
-TurnoProperty      = '"turno"' , ":" , TurnoValue ;    (* Turno da alocação *)
-AlocacoesProperty  = '"alocacoes"' , ":" , "[" , { AlocacaoItem , [ "," ] } , "]" ;
-
-TurnoValue         = '"manha"' | '"tarde"' | '"integral"' ;
-AlocacaoItem       = "{" , '"tipo"' , ":" , ( '"servico"' | '"rotina"' ) , "," , '"idTarget"' , ":" , String , "}" ;
-```
-
-#### Exemplo Prático (JSON)
-```json
-{
-  "id": "cron_2026_07_16",
-  "obraId": "obra_402",
-  "data": "2026-07-16",
-  "turno": "manha",
-  "alocacoes": [
-    { "tipo": "rotina", "idTarget": "rot_manutencao_diaria" },
-    { "tipo": "servico", "idTarget": "serv_armação_05" }
-  ]
-}
-```
-
----
-
-### G. Diário de Obra (DiarioObra)
-Registro diário de progresso, ocorrências e confirmações feito pela equipe de campo.
-
-```ebnf
-DiarioObra = "{" , IdProperty , "," , ObraIdProperty , "," , DataProperty , "," , DescricaoProperty , "," , ServicosExecutadosProperty , "," , ConfirmacoesProperty , "," , EvidenciasProperty , "," , CompletoProperty , "}" ;
-
-ServicosExecutadosProperty = '"servicosExecutados"' , ":" , "[" , { String , [ "," ] } , "]" ; (* IDs de serviços feitos *)
-ConfirmacoesProperty       = '"confirmacoesServico"' , ":" , "[" , { String , [ "," ] } , "]" ; (* IDs das confirmações por foto *)
-EvidenciasProperty         = '"evidencias"' , ":" , "[" , { String , [ "," ] } , "]" ;          (* Caminhos de imagens extras *)
-CompletoProperty           = '"completo"' , ":" , Boolean ;                                     (* Diário concluído e fechado *)
-```
-
-#### Exemplo Prático (JSON)
-```json
-{
-  "id": "diario_2026_07_16",
-  "obraId": "obra_402",
-  "data": "2026-07-16",
-  "descricao": "Fundação concluída no setor norte. Chuva rápida no final do turno sem prejuízos.",
-  "servicosExecutados": ["serv_armação_05"],
-  "confirmacoesServico": ["conf_sapata_01"],
-  "evidencias": ["evidence-sapata-concluida.jpg"],
-  "completo": true
-}
-```
-
----
-
-### H. Confirmação de Serviço (ConfirmacaoServico)
-Evidência fotográfica capturada via aplicativo mobile para comprovar a conclusão de um serviço específico.
-
-```ebnf
-ConfirmacaoServico = "{" , IdProperty , "," , ObraIdProperty , "," , ServicoIdProperty , "," , DiarioObraIdProperty , "," , FotoProperty , "," , CapturadaEmProperty , "," , StatusConfirmacaoProperty , "}" ;
-
-ServicoIdProperty          = '"servicoId"' , ":" , String ;
-DiarioObraIdProperty       = '"diarioObraId"' , ":" , String ;
-FotoProperty               = '"foto"' , ":" , String ;                  (* Caminho ou hash da foto salva *)
-CapturadaEmProperty        = '"capturadaEm"' , ":" , Date ;             (* Data e hora da captura *)
-StatusConfirmacaoProperty  = '"statusConfirmacao"' , ":" , StatusValue ;(* Aprovação da fiscalização *)
-
-StatusValue                = '"pendente"' | '"aprovado"' | '"rejeitado"' ;
-```
-
-#### Exemplo Prático (JSON)
-```json
-{
-  "id": "conf_sapata_01",
-  "obraId": "obra_402",
-  "servicoId": "serv_armação_05",
-  "diarioObraId": "diario_2026_07_16",
-  "foto": "archive/evidence-sapata-concluida.jpg",
-  "capturadaEm": "2026-07-16T11:45:00.000Z",
-  "statusConfirmacao": "aprovado"
-}
-```
-
----
-
-### I. Colaborador
-Usuário habilitado a utilizar o aplicativo de medição de campo.
-
-```ebnf
-Colaborador = "{" , IdProperty , "," , NomeProperty , "," , EmailProperty , "," , CpfProperty , "," , ObrasPermitidasProperty , "}" ;
-
-EmailProperty           = '"email"' , ":" , String ;
-CpfProperty             = '"cpf"' , ":" , String ;
-ObrasPermitidasProperty = '"obrasPermitidas"' , ":" , "[" , { String , [ "," ] } , "]" ; (* IDs de obras que pode acessar *)
-```
-
-#### Exemplo Prático (JSON)
-```json
-{
-  "id": "colab_001",
-  "nome": "João Mestre",
-  "email": "joao.mestre@macroobras.com",
-  "cpf": "123.456.789-00",
-  "obrasPermitidas": ["obra_402"]
-}
-```
-
----
-
-## 2. Funções de Serviços do Sistema (Lógica em Nim)
-
-Abaixo estão especificadas as assinaturas formais das funções expostas nos principais módulos de serviço da estação MacroObras.
-
-```ebnf
-(* Assinatura dos serviços do módulo okf_service.nim *)
-OkfService = OkfEnvFileFn | OkfConfigFn | OkfAbsoluteDirFn | SeedOkfKnowledgeFn | WriteFileIfChangedFn | PrepareOkfPayloadFn ;
-
-OkfEnvFileFn         = "okfEnvFile() -> String" ;
-OkfConfigFn          = "okfConfig() -> JsonNode" ;                  (* Retorna chaves e branch configurados *)
-OkfAbsoluteDirFn     = "okfAbsoluteDir(config: JsonNode) -> String" ;
-SeedOkfKnowledgeFn   = "seedOkfKnowledge(repoDir: String) -> void" ; (* Inicializa arquivos padrão do OKF *)
-WriteFileIfChangedFn = "writeFileIfChanged(path: String, content: String) -> void" ;
-PrepareOkfPayloadFn  = "prepareOkfPayload() -> JsonNode" ;          (* Sincroniza e prepara repositório de conhecimento *)
-
-(* Assinatura dos serviços do módulo collaborator_service.nim *)
-CollaboratorService = StartNgrokFn | StopNgrokFn | PublicUrlFn | ColaboradorLoginFn | ColaboradorStatusFn ;
-
-StartNgrokFn         = "startCollaboratorNgrok() -> void" ;
-StopNgrokFn          = "stopCollaboratorNgrok() -> void" ;
-PublicUrlFn          = "collaboratorPublicBaseUrl() -> String" ;     (* Retorna endereço público HTTPS do Ngrok *)
-ColaboradorLoginFn   = "colaboradorLogin(ctx: Context) -> void" ;    (* Retorna token e perfil de login *)
-ColaboradorStatusFn  = "colaboradorStatus(ctx: Context) -> void" ;   (* Lista endpoints HTTP públicos ativos *)
-
-(* Assinatura dos serviços do módulo admin_service.nim *)
-AdminService = CriarServicoFn | AdicionarCronogramaFn | SobrescreverCronogramaFn | AlterarMedicaoFn | GerarComparacaoFn ;
-
-CriarServicoFn         = "criarServicoAdministrativoPayload(payload: JsonNode) -> JsonNode" ;
-AdicionarCronogramaFn  = "adicionarLinhaCronogramaPayload(payload: JsonNode) -> JsonNode" ;
-SobrescreverCronogramaFn= "sobrescreverCronogramaPayload(payload: JsonNode) -> JsonNode" ;
-AlterarMedicaoFn       = "alterarPercentualItemMedicaoPayload(payload: JsonNode) -> JsonNode" ;
-GerarComparacaoFn      = "gerarComparacaoPercentuaisMedicaoPayload(payload: JsonNode) -> JsonNode" ;
-
-(* Assinatura dos serviços do módulo installer_service.nim *)
-InstallerService = DefaultInstallDirFn | ArchiveDirFn | InstallerStatusFn | ExecuteInstallerFn ;
-
-DefaultInstallDirFn  = "defaultInstallAppDir() -> String" ;
-ArchiveDirFn         = "archiveDir() -> String" ;
-InstallerStatusFn    = "installerStatusPayload() -> JsonNode" ;     (* Verifica se caminhos de rede e FTP estão prontos *)
-ExecuteInstallerFn   = "executeInstallerPayload() -> JsonNode" ;    (* Realiza a instalação local de pastas, FTP e Llama *)
-```
-
----
-
-## 3. Endpoints da API Externa de Colaboradores
-
-O aplicativo mobile e sistemas autorizados interagem através do endpoint de API externa configurado:
-
-```ebnf
-(* Endpoints acessíveis via tunelamento público Ngrok ou rede local *)
-CollaboratorAPI = LoginEndpoint | ServicesEndpoint | RoutinesEndpoint | AllocateCalendarEndpoint
-                 | RegisterDiaryEndpoint | CompleteDiaryEndpoint | RequestPurchaseEndpoint | AttachReceiptEndpoint ;
-
-LoginEndpoint            = "POST /api/colaboradores/login -> { token: String, nome: String, perfil: String }" ;
-ServicesEndpoint         = "POST /api/colaboradores/servicos -> JsonNode" ;
-RoutinesEndpoint         = "POST /api/colaboradores/rotinas -> JsonNode" ;
-AllocateCalendarEndpoint = "POST /api/colaboradores/cronogramas/alocar -> JsonNode" ;
-RegisterDiaryEndpoint    = "POST /api/colaboradores/diarios/registrar -> JsonNode" ;
-CompleteDiaryEndpoint    = "POST /api/colaboradores/diarios/completar -> JsonNode" ;
-RequestPurchaseEndpoint  = "POST /api/colaboradores/compras/solicitar -> JsonNode" ;
-AttachReceiptEndpoint    = "POST /api/colaboradores/compras/anexar-recibo -> JsonNode" ;
-```
-
----
-
-## 4. Tipos Primitivos Comuns
-
-Definições dos tipos fundamentais utilizados no sistema:
+### B. Especificação de Tipos Primitivos
 
 ```ebnf
 Digit           = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" ;
@@ -329,7 +97,6 @@ StringOrInteger = String | Integer ;
 Boolean         = "true" | "false" ;
 String          = '"' , { Character } , '"' ;
 Date            = '"' , Year , "-" , Month , "-" , Day , "T" , Hour , ":" , Minute , ":" , Second , "." , Millisecond , "Z" , '"' ;
-
 Year            = Digit , Digit , Digit , Digit ;
 Month           = Digit , Digit ;
 Day             = Digit , Digit ;
@@ -337,4 +104,62 @@ Hour            = Digit , Digit ;
 Minute          = Digit , Digit ;
 Second          = Digit , Digit ;
 Millisecond     = Digit , Digit , Digit ;
+```
+
+---
+
+## 3. Gramática de Funcionamento (Módulos & APIs)
+
+Esta seção especifica o comportamento operacional e interfaces de rede descritos através das funções do sistema em Nim e contratos HTTP da API de integração.
+
+### A. Assinaturas de Funções dos Serviços (Estação Local)
+
+```ebnf
+(* Operações do Módulo okf_service.nim *)
+OkfMethods = OkfEnvFile | OkfConfig | OkfAbsoluteDir | SeedOkfKnowledge | WriteFileIfChanged | PrepareOkfPayload ;
+OkfEnvFile         = "okfEnvFile() -> String" ;
+OkfConfig          = "okfConfig() -> JsonNode" ;
+OkfAbsoluteDir     = "okfAbsoluteDir(config: JsonNode) -> String" ;
+SeedOkfKnowledge   = "seedOkfKnowledge(repoDir: String) -> void" ;
+WriteFileIfChanged = "writeFileIfChanged(path: String, content: String) -> void" ;
+PrepareOkfPayload  = "prepareOkfPayload() -> JsonNode" ;
+
+(* Operações do Módulo collaborator_service.nim *)
+CollaboratorMethods = StartNgrok | StopNgrok | PublicUrl | ColaboradorLogin | ColaboradorStatus ;
+StartNgrok         = "startCollaboratorNgrok() -> void" ;
+StopNgrok          = "stopCollaboratorNgrok() -> void" ;
+PublicUrl          = "collaboratorPublicBaseUrl() -> String" ;
+ColaboradorLogin   = "colaboradorLogin(ctx: Context) -> void" ;
+ColaboradorStatus  = "colaboradorStatus(ctx: Context) -> void" ;
+
+(* Operações do Módulo admin_service.nim *)
+AdminMethods = CriarServico | AdicionarCronograma | SobrescreverCronograma | AlterarMedicao | GerarComparacao ;
+CriarServico         = "criarServicoAdministrativoPayload(payload: JsonNode) -> JsonNode" ;
+AdicionarCronograma  = "adicionarLinhaCronogramaPayload(payload: JsonNode) -> JsonNode" ;
+SobrescreverCronograma = "sobrescreverCronogramaPayload(payload: JsonNode) -> JsonNode" ;
+AlterarMedicao       = "alterarPercentualItemMedicaoPayload(payload: JsonNode) -> JsonNode" ;
+GerarComparacao      = "gerarComparacaoPercentuaisMedicaoPayload(payload: JsonNode) -> JsonNode" ;
+
+(* Operações do Módulo installer_service.nim *)
+InstallerMethods = DefaultInstallDir | ArchiveDir | InstallerStatus | ExecuteInstaller ;
+DefaultInstallDir  = "defaultInstallAppDir() -> String" ;
+ArchiveDir         = "archiveDir() -> String" ;
+InstallerStatus    = "installerStatusPayload() -> JsonNode" ;
+ExecuteInstaller   = "executeInstallerPayload() -> JsonNode" ;
+```
+
+### B. Contratos da API de Integração Externa
+
+```ebnf
+(* Contratos de Entrada/Saída da API REST de Colaboradores *)
+CollaboratorAPI = Login | GetServices | GetRoutines | AllocateCalendar | RegisterDiary | CompleteDiary | RequestPurchase | AttachReceipt ;
+
+Login            = "POST /api/colaboradores/login -> { token: String, nome: String, perfil: String }" ;
+GetServices      = "POST /api/colaboradores/servicos -> JsonNode" ;
+GetRoutines      = "POST /api/colaboradores/rotinas -> JsonNode" ;
+AllocateCalendar = "POST /api/colaboradores/cronogramas/alocar -> JsonNode" ;
+RegisterDiary    = "POST /api/colaboradores/diarios/registrar -> JsonNode" ;
+CompleteDiary    = "POST /api/colaboradores/diarios/completar -> JsonNode" ;
+RequestPurchase  = "POST /api/colaboradores/compras/solicitar -> JsonNode" ;
+AttachReceipt    = "POST /api/colaboradores/compras/anexar-recibo -> JsonNode" ;
 ```
