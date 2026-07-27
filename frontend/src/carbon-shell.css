@@ -1,0 +1,226 @@
+html,
+body,
+#app {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at top left, rgba(15, 98, 254, 0.12), transparent 32%),
+    radial-gradient(circle at top right, rgba(20, 94, 252, 0.08), transparent 28%),
+    linear-gradient(180deg, #f4f7fb 0%, #eef3f9 100%);
+}
+
+.macroobras-carbon-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: #161616;
+}
+
+.macroobras-carbon-shell__hero {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem 1rem;
+  border-bottom: 1px solid rgba(22, 22, 22, 0.08);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(244, 247, 251, 0.9));
+  box-shadow: 0 8px 30px rgba(15, 31, 63, 0.06);
+}
+
+.macroobras-carbon-shell__brand {
+  display: grid;
+  gap: 0.25rem;
+  max-width: 58rem;
+}
+
+.macroobras-carbon-shell__brand h1 {
+  margin: 0;
+  font-size: clamp(1.35rem, 1.1rem + 1vw, 2rem);
+  line-height: 1.1;
+  color: #0f2f5e;
+}
+
+.macroobras-carbon-shell__brand p,
+.macroobras-carbon-shell__brand small {
+  margin: 0;
+  color: #525252;
+}
+
+.macroobras-carbon-shell__status {
+  display: grid;
+  justify-items: end;
+  gap: 0.35rem;
+  padding-top: 0.15rem;
+}
+
+.macroobras-carbon-shell__status-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #6f6f6f;
+  font-weight: 700;
+}
+
+.macroobras-carbon-shell__status-button {
+  border-radius: 999px;
+  max-width: 22rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.macroobras-carbon-kicker {
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #0f62fe;
+  font-weight: 700;
+}
+
+.macroobras-carbon-shell__body {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 18rem minmax(0, 1fr);
+}
+
+.macroobras-carbon-shell .cds--side-nav {
+  position: relative;
+  inset: auto;
+  width: auto;
+  min-width: 0;
+  max-width: none;
+  height: auto;
+  border-right: 1px solid rgba(22, 22, 22, 0.08);
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+}
+
+.macroobras-carbon-shell .macroobras-carbon-side-nav {
+  box-shadow: none;
+}
+
+.macroobras-carbon-shell .cds--side-nav__navigation {
+  padding-top: 0.75rem;
+}
+
+.macroobras-carbon-shell .cds--side-nav__items {
+  display: grid;
+  gap: 0.25rem;
+  padding: 0.5rem 0.5rem 1rem;
+  margin: 0;
+  list-style: none;
+}
+
+.macroobras-carbon-shell .cds--side-nav__link {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  justify-content: flex-start;
+  min-height: 2.5rem;
+  padding: 0 0.85rem;
+  border: 0;
+  color: #393939;
+  text-decoration: none;
+  white-space: nowrap;
+  border-radius: 0;
+}
+
+.macroobras-carbon-shell .cds--side-nav__link:hover {
+  background: #e8eef8;
+  color: #0f62fe;
+}
+
+.macroobras-carbon-shell .cds--side-nav__link--current {
+  background: #edf5ff;
+  color: #0f62fe;
+  font-weight: 700;
+}
+
+.macroobras-carbon-nav-icon {
+  display: inline-grid;
+  width: 1.25rem;
+  place-items: center;
+  color: inherit;
+  font-weight: 700;
+}
+
+.macroobras-carbon-stage {
+  padding: 1rem;
+  min-width: 0;
+}
+
+.macroobras-carbon-stage__frame {
+  min-height: calc(100vh - 10rem);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 18px 48px rgba(15, 31, 63, 0.08);
+  overflow: hidden;
+}
+
+.macroobras-carbon-stage__frame #macroobras-legacy-root {
+  min-height: 100%;
+}
+
+.macroobras-carbon-shell .cds--content {
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+
+.macroobras-carbon-shell--fullscreen .macroobras-carbon-shell__hero,
+.macroobras-carbon-shell--fullscreen .macroobras-carbon-side-nav {
+  display: none;
+}
+
+.macroobras-carbon-shell--fullscreen .macroobras-carbon-shell__body {
+  display: block;
+  min-height: 100vh;
+}
+
+.macroobras-carbon-shell--fullscreen .macroobras-carbon-stage {
+  padding: 0;
+}
+
+.macroobras-carbon-shell--fullscreen .macroobras-carbon-stage__frame {
+  min-height: 100vh;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;
+}
+
+@media (max-width: 1100px) {
+  .macroobras-carbon-shell__hero {
+    flex-direction: column;
+  }
+
+  .macroobras-carbon-shell__status {
+    justify-items: start;
+  }
+
+  .macroobras-carbon-shell__body {
+    grid-template-columns: 1fr;
+  }
+
+  .macroobras-carbon-shell .cds--side-nav {
+    border-right: 0;
+    border-bottom: 1px solid rgba(22, 22, 22, 0.08);
+  }
+}
+
+@media (max-width: 720px) {
+  .macroobras-carbon-shell__hero,
+  .macroobras-carbon-shell .cds--side-nav__items,
+  .macroobras-carbon-stage {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .macroobras-carbon-shell__status-button {
+    max-width: 100%;
+  }
+}

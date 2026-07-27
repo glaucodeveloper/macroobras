@@ -1,51 +1,27 @@
-import {
-  availableWorks,
-  budgetImportPreview,
-  mobileUsers,
-} from "../../core/data.js";
-import {
-  selectedPurchaseFlow,
-  selectedVisitPlan,
-  selectedWork,
-  state,
-} from "../../core/state.js";
+import { availableWorks } from "../../core/data.js";
+import { state } from "../../core/state.js";
 import { esc } from "../../core/utils.js";
-import { card, formStep, pageHeader } from "../../ui/components.js";
+import { card, pageHeader } from "../../ui/components.js";
 
-const money = (value) => Number(value || 0).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+const money = (value) => Number(value || 0).toLocaleString("pt-BR", {
+  style: "currency",
+  currency: "BRL",
+});
+
 const percent = (value) => `${Math.round(Number(value || 0))}%`;
-const workById = (id) => availableWorks.find((work) => work.id === id);
-const activeWork = () => selectedWork() || availableWorks[0];
-const flowWork = (flow) => workById(flow?.workId);
-const flowItem = (flow) => flowWork(flow)?.items.find((item) => item.id === flow?.itemId);
-const accessesForWork = (workId) => (state.encarregadoAccesses || []).filter((access) => access.workId === workId);
-
-function encarregadoAccessUrl(access) {
-  const base = state.collaboratorStatus?.publicAppUrl
-    || state.collaboratorStatus?.lanAppUrl
-    || state.collaboratorStatus?.localAppUrl
-    || `${window.location.origin}/?surface=twa`;
-  const url = new URL(base, window.location.origin);
-  url.searchParams.set("surface", "twa");
-  url.searchParams.set("access", access.id);
-  url.searchParams.set("work", access.workId);
-  return url.toString();
-}
-
-
-function authStatusMarkup() {
-  const message = String(state.toast || "").trim();
-  return `<div class="auth-form-status" data-auth-status data-tone="info" ${message ? "" : "hidden"} role="status" aria-live="polite">${esc(message)}</div>`;
-}
-
-function status(value) {
-  const css = String(value || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-");
-  return `<span class="status-pill ${css}">${esc(value)}</span>`;
-}
 
 function progress(value) {
   const safe = Math.max(0, Math.min(100, Number(value || 0)));
   return `<div class="progress-track"><span style="width:${safe}%"></span></div>`;
+}
+
+function status(value) {
+  const css = String(value || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-");
+  return `<span class="status-pill ${css}">${esc(value)}</span>`;
 }
 
 function map(type = "works", options = {}) {
@@ -58,49 +34,103 @@ function map(type = "works", options = {}) {
   return `<div class="google-map ${options.compact ? "compact" : ""}" ${attributes}><div class="map-loading"><span></span><strong>Carregando Google Maps</strong><small>Mapa, marcadores e rotas</small></div></div>`;
 }
 
-function kpi(label, value, detail, tone = "blue") {
-  return `<article class="metric-card ${tone}"><small>${esc(label)}</small><strong>${esc(value)}</strong><span>${esc(detail)}</span></article>`;
+function filterWorks(query) {
+  const normalized = String(query || "").trim().toLowerCase();
+  if (!normalized) return availableWorks;
+  return availableWorks.filter((work) => [
+    work.name,
+    work.code,
+    work.client,
+    work.address,
+    work.status,
+    work.nextMilestone,
+  ].some((value) => String(value || "").toLowerCase().includes(normalized)));
 }
 
-function workContext(work) {
-  return `<div class="work-context"><div><small>Obra ativa</small><strong>${esc(work.name)}</strong><span>${esc(work.address)}</span></div><div>${status(work.status)}<strong>${percent(work.progress)}</strong></div></div>`;
+function workHeader(work) {
+  return `<div class="work-overview-hero">
+    <div>
+      <small>${esc(work.code)}</small>
+      <h2>${esc(work.name)}</h2>
+      <p>${esc(work.client)} • ${esc(work.address)}</p>
+    </div>
+    <div class="work-overview-status">
+      ${status(work.status)}
+      <strong>${percent(work.progress)}</strong>
+    </div>
+  </div>`;
 }
 
-function workHeader(work, title, subtitle, actions = "") {
-  return `${pageHeader(title, subtitle, actions)}${workContext(work)}`;
+function workActions(work) {
+  return `<nav class="work-horizontal-actions" aria-label="Ações da obra">
+    <button class="btn" data-message="open-work-section" data-work-id="${esc(work.id)}" data-route="admin-work-overview">Visão geral</button>
+    <button class="btn ghost" data-message="open-work-section" data-work-id="${esc(work.id)}" data-route="admin-work-access">Encarregados</button>
+    <button class="btn ghost" data-message="open-work-section" data-work-id="${esc(work.id)}" data-route="admin-work-diary">Diário</button>
+  </nav>`;
 }
 
-function diagramSeed(work) {
-  const columns = work.items.length > 8 ? 4 : 3;
-  const nodes = work.items.map((item, index) => ({
-    id: item.id,
-    kind: "Item da obra",
-    title: item.description,
-    description: money(item.budget),
-    observations: "",
-    fields: [{ name: "Data", value: `2026-${String(8 + Math.floor(index / 6)).padStart(2, "0")}-${String(3 + (index * 3) % 25).padStart(2, "0")}` }],
-    x: 54 + (index % columns) * 315,
-    y: 54 + Math.floor(index / columns) * 225,
-  }));
-  const edges = nodes.slice(0, -1).filter((_, index) => index < 4).map((node, index) => ({
-    id: `seed-${index}`,
-    from: node.id,
-    to: nodes[index + 1].id,
-    label: index % 2 ? "libera atividade" : "precede",
-  }));
-  return { nodes, edges };
+function workPicker(work) {
+  return `<button class="work-picker ${work.id === state.selectedWorkId ? "active" : ""}" data-message="open-work-section" data-work-id="${esc(work.id)}" data-route="admin-works">
+    <strong>${esc(work.name)}</strong>
+    <small>${esc(work.code)} · ${esc(work.status)}</small>
+  </button>`;
+}
+
+function selectedCardBody(work) {
+  return `${workHeader(work)}${workActions(work)}<div class="work-focus-body"><div class="focus-stat"><small>Cliente</small><strong>${esc(work.client)}</strong></div><div class="focus-stat"><small>Orçamento</small><strong>${money(work.budget)}</strong></div><div class="focus-stat"><small>Pago</small><strong>${money(work.paid)}</strong></div><div class="focus-stat"><small>Próximo marco</small><strong>${esc(work.nextMilestone)}</strong></div></div>`;
+}
+
+function selectionPrompt() {
+  return `<div class="empty-state work-selection-empty"><b>⌖</b><h3>Selecione uma obra no mapa</h3><p>Clique em um marcador ou em uma obra da lista ao lado. Clique fora para limpar a seleção.</p></div>`;
 }
 
 export function adminWorks() {
+  const selected = state.selectedWorkId ? availableWorks.find((work) => work.id === state.selectedWorkId) : null;
+  const featuredWork = selected || availableWorks[0];
+  const visibleWorks = filterWorks(state.workFilter);
+
+  if (!featuredWork) {
+    return `${pageHeader("Obras", "Nenhuma obra cadastrada.")}<section class="empty-state"><b>＋</b><h3>Cadastre a primeira obra</h3><p>Use o cadastro de obras para começar.</p></section>`;
+  }
+
   return `
-    ${pageHeader("Obras", "Mapa geral seguido por uma sessão horizontal para cada obra cadastrada.", `<button class="btn" data-message="navigate" data-route="admin-add-work">Adicionar obra</button>`)}
-    ${card("Localização das obras", map("works"), "map-card works-map-card")}
-    <div class="section-heading"><div><h2>Obras cadastradas</h2><p>Cada obra ocupa uma faixa completa com acessos diretos às suas subseções.</p></div><div class="inline-filter"><input placeholder="Buscar obra, cliente ou endereço"><button class="btn ghost">Filtrar</button></div></div>
-    <section class="work-horizontal-list">
-      ${availableWorks.map((work) => `<article class="work-horizontal-section">
-        <div class="work-horizontal-main"><header><div><small>${esc(work.code)}</small><h2>${esc(work.name)}</h2></div>${status(work.status)}</header><p class="address">⌖ ${esc(work.address)}</p><p class="client-line"><b>Cliente</b><span>${esc(work.client)}</span></p></div>
-        <div class="work-horizontal-progress"><div><small>Execução</small><strong>${percent(work.progress)}</strong></div>${progress(work.progress)}<div class="work-horizontal-values"><span><small>Orçamento</small><b>${money(work.budget)}</b></span><span><small>Próximo marco</small><b>${esc(work.nextMilestone)}</b></span></div></div>
-        <nav class="work-horizontal-actions" aria-label="Acessos da obra"><button class="btn" data-message="open-work-section" data-work-id="${esc(work.id)}" data-route="admin-work-overview">Visão geral</button><button class="btn ghost" data-message="open-work-section" data-work-id="${esc(work.id)}" data-route="admin-work-access">Encarregados</button><button class="btn ghost" data-message="open-work-section" data-work-id="${esc(work.id)}" data-route="admin-work-diary">Diário</button><button class="btn ghost" data-message="open-work-section" data-work-id="${esc(work.id)}" data-route="admin-work-purchases">Compras</button></nav>
-      </article>`).join("")}
+    ${pageHeader(
+      "Obras",
+      `O filtro fica no conteúdo da página. Clique no mapa para selecionar uma obra e abrir o card flutuante à direita. ${visibleWorks.length} obra(s) visível(is).`,
+      `<button class="btn" data-message="navigate" data-route="admin-add-work">Adicionar obra</button>`,
+    )}
+    <section class="works-layout-grid">
+      ${card("Mapa e filtros", `<div class="works-map-layout">
+        <aside class="works-filter-column">
+          <label class="works-filter-input">
+            <span>Filtrar obras</span>
+            <input data-work-filter value="${esc(state.workFilter || "")}" placeholder="Obra, cliente, código ou endereço">
+          </label>
+          <small class="works-filter-count">${visibleWorks.length} obra(s) encontrada(s)</small>
+          <div class="work-picker-list">${visibleWorks.map((candidate) => workPicker(candidate)).join("")}</div>
+        </aside>
+        <div class="works-map-column">
+          ${map("works")}
+          <div class="work-selection-float ${selected ? "is-visible" : "is-empty"}">
+            ${selected ? selectedCardBody(selected) : selectionPrompt()}
+          </div>
+        </div>
+      </div>`, "works-filter-card")}
+    </section>
+    <section class="metric-grid compact">
+      ${featuredWork.items.slice(0, 4).map((item) => `
+        <article class="metric-card blue">
+          <small>${esc(item.description)}</small>
+          <strong>${money(item.budget)}</strong>
+          <span>${item.progress ? `Execução ${percent(item.progress)}` : "Item da obra"}</span>
+        </article>
+      `).join("")}
+    </section>
+    <section class="overview-grid">
+      ${card(
+        "Itens de execução",
+        `<div class="table-scroll"><table><thead><tr><th>Descrição</th><th>Orçamento</th><th>Execução</th></tr></thead><tbody>${featuredWork.items.map((item) => `<tr><td>${esc(item.description)}</td><td>${money(item.budget)}</td><td>${progress(item.progress)}</td></tr>`).join("")}</tbody></table></div>`,
+      )}
+      ${card("Mapa da obra", map("work", { workId: featuredWork.id }), "map-card single-map")}
     </section>`;
 }

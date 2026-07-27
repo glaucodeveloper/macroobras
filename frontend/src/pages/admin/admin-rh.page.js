@@ -91,14 +91,27 @@ function diagramSeed(work) {
   return { nodes, edges };
 }
 
-export function adminRh() {
-  const seed = state.rhModel || {
+function initialRhModel() {
+  return {
     nodes: [
-      { id: "rh-admin", kind: "Entidade", title: "Administração", description: "Autoriza compras", observations: "", fields: [], x: 390, y: 42 },
+      { id: "rh-admin", kind: "Entidade", title: "Administração", description: "Autoriza compras e governa a operação", observations: "", fields: [], x: 390, y: 42 },
       { id: "rh-eng", kind: "Equipe", title: "Engenharia", description: "Responsabilidade técnica", observations: "", fields: [], x: 70, y: 300 },
       { id: "rh-field", kind: "Equipe", title: "Encarregados", description: "Operação de campo", observations: "", fields: [], x: 390, y: 310 },
       { id: "rh-buy", kind: "Função", title: "Compras", description: "Cotação e pedidos", observations: "", fields: [], x: 710, y: 300 },
-      ...mobileUsers.map((user, index) => ({ id: `rh-person-${index + 1}`, kind: "Pessoa", title: user.name, description: "Encarregado de obra", observations: "", fields: [{ name: "Email", value: user.email }, { name: "CPF", value: user.cpf }, { name: "Obra", value: workById(user.workId)?.name || "" }], x: 390 + index * 310, y: 585 })),
+      ...mobileUsers.map((user, index) => ({
+        id: `rh-person-${index + 1}`,
+        kind: "Pessoa",
+        title: user.name,
+        description: "Encarregado de obra",
+        observations: "",
+        fields: [
+          { name: "Email", value: user.email },
+          { name: "CPF", value: user.cpf },
+          { name: "Obra", value: workById(user.workId)?.name || "" },
+        ],
+        x: 390 + index * 310,
+        y: 585,
+      })),
     ],
     edges: [
       { id: "rh-e1", from: "rh-admin", to: "rh-eng", label: "supervisiona" },
@@ -107,7 +120,51 @@ export function adminRh() {
       ...mobileUsers.map((user, index) => ({ id: `rh-access-${index + 1}`, from: "rh-field", to: `rh-person-${index + 1}`, label: "identifica encarregado" })),
     ],
   };
-  return `${pageHeader("RH", "Equipes, funções e relações operacionais em um organograma editável.", `<button class="btn" data-message="add-rh-entity">Adicionar entidade</button>`)}
-    ${card("Organograma operacional", `<div class="interactive-diagram rh-diagram" data-interactive-diagram="rh-main"><svg data-diagram-svg></svg><div data-node-layer></div><script type="application/json">${JSON.stringify(seed)}</script></div>`, "interactive-diagram-card")}
-    ${card("Cadastros", `<table><thead><tr><th>Nome</th><th>Função</th><th>Obra</th><th>Acesso</th></tr></thead><tbody>${mobileUsers.map((user, index) => `<tr><td>${esc(user.name)}</td><td>${index ? "Encarregada" : "Encarregado"}</td><td>${esc(workById(user.workId)?.name || "")}</td><td>${esc(user.email)}</td></tr>`).join("")}</tbody></table>`)}`;
+}
+
+function rhModel() {
+  const model = state.rhModel || state.diagramModels?.["rh-main"] || initialRhModel();
+  return {
+    nodes: (model.nodes || []).map((node) => ({ ...node, compact: true, summaryOnly: true })),
+    edges: Array.isArray(model.edges) ? model.edges : [],
+  };
+}
+
+function fieldValue(node, name) {
+  return node?.fields?.find((field) => field.name === name)?.value || "";
+}
+
+function rhRecordForm(node) {
+  if (!node) {
+    return `<div class="rh-record-empty"><strong>Selecione um card do organograma</strong><p>O formulário completo do registro aparecerá aqui para edição administrativa.</p></div>`;
+  }
+  const workOptions = [`<option value="">Sem obra vinculada</option>`, ...availableWorks.map((work) => `<option value="${esc(work.name)}" ${fieldValue(node, "Obra") === work.name ? "selected" : ""}>${esc(work.name)}</option>`)].join("");
+  return `<form class="rh-record-form diagram-record-form" data-diagram-record-form data-diagram-id="rh-main" data-diagram-node-id="${esc(node.id)}">
+    <div class="rh-record-heading"><div><small>Registro selecionado</small><strong>${esc(node.title || "Sem nome")}</strong></div><span>${esc(node.kind || "Registro")}</span></div>
+    <div class="rh-record-grid">
+      <label><span>Tipo de registro</span><select data-diagram-record-field="kind">${["Entidade", "Equipe", "Função", "Pessoa"].map((kind) => `<option ${node.kind === kind ? "selected" : ""}>${kind}</option>`).join("")}</select></label>
+      <label><span>Nome</span><input data-diagram-record-field="title" value="${esc(node.title || "")}"></label>
+      <label><span>Função operacional</span><input data-diagram-record-field="description" value="${esc(node.description || "")}"></label>
+      <label><span>Email</span><input type="email" data-diagram-field-value="Email" value="${esc(fieldValue(node, "Email"))}"></label>
+      <label><span>CPF</span><input inputmode="numeric" data-diagram-field-value="CPF" value="${esc(fieldValue(node, "CPF"))}"></label>
+      <label><span>Obra vinculada</span><select data-diagram-field-value="Obra">${workOptions}</select></label>
+      <label class="rh-record-notes"><span>Observações administrativas</span><textarea data-diagram-record-field="observations">${esc(node.observations || "")}</textarea></label>
+    </div>
+    <footer><button class="btn" type="button" data-message="save-diagram-record">Salvar registro</button><button class="btn ghost danger" type="button" data-message="delete-diagram-record">Excluir registro</button></footer>
+  </form>`;
+}
+
+export function adminRh() {
+  const seed = rhModel();
+  const selectedNodeId = state.selectedDiagramNode?.diagramId === "rh-main"
+    ? state.selectedDiagramNode.nodeId
+    : "";
+  const selectedNode = seed.nodes.find((node) => node.id === selectedNodeId) || null;
+  const people = seed.nodes.filter((node) => node.kind === "Pessoa");
+
+  return `${pageHeader("RH", "Equipes, funções e relações operacionais em um organograma editável.")}
+    <div class="rh-canvas-intro"><span>Arraste os cards para reorganizar</span><span>Arraste o “+” para criar ou conectar</span><span>Edite a relação diretamente sobre a linha</span></div>
+    ${card("Organograma operacional", `<div class="interactive-diagram rh-diagram" data-interactive-diagram="rh-main" data-selected-node-id="${esc(selectedNodeId)}" data-empty-drop-kind="Pessoa" data-default-edge-label="reporta a" data-summary-nodes="true" data-fit-on-load="true" data-wheel-zoom="true"><svg data-diagram-svg></svg><div data-node-layer></div><script type="application/json">${JSON.stringify(seed)}</script></div>`, "interactive-diagram-card")}
+    ${card("Ficha do registro", rhRecordForm(selectedNode), "rh-record-panel")}
+    ${card("Pessoas cadastradas", people.length ? `<div class="table-scroll"><table class="rh-record-table"><thead><tr><th>Nome</th><th>Função</th><th>Obra</th><th>Acesso</th></tr></thead><tbody>${people.map((person) => `<tr><td><strong>${esc(person.title)}</strong></td><td>${esc(person.description || "—")}</td><td>${esc(fieldValue(person, "Obra") || "—")}</td><td>${esc(fieldValue(person, "Email") || "—")}</td></tr>`).join("")}</tbody></table></div>` : `<div class="empty-state"><h3>Nenhuma pessoa cadastrada</h3><p>Use o “+” de uma equipe para criar o primeiro registro.</p></div>`)}`;
 }

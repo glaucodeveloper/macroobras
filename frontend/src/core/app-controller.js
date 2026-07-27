@@ -9,7 +9,14 @@ import { normalizedMobileRoute, renderRoute } from "./router.js";
 import { installerScreen } from "../pages/installer/installer.page.js";
 import { shell, twaShell } from "../ui/shells.js";
 import { geocodeWorkAddress, hydrateGoogleMaps } from "../ui/google-maps.js";
-import { addNodeToDiagram, getDiagramModel, hydrateDiagramCanvases } from "../ui/diagram-canvas.js";
+import {
+  addNodeToDiagram,
+  focusDiagramNode,
+  getDiagramModel,
+  hydrateDiagramCanvases,
+  removeNodeFromDiagram,
+  updateDiagramNode,
+} from "../ui/diagram-canvas.js";
 import { signInWithFirebase, signOutFirebase } from "./firebase-auth.js";
 import {
   authDemoMode,
@@ -24,8 +31,49 @@ import {
   updateState,
 } from "./state.js";
 
+const GITHUB_REPOSITORY = "glaucodeveloper/erp-da-construcao-maximus-empreendimentos";
+let diagramPersistenceTimer = 0;
+
+function legacyRoot() {
+  return document.querySelector("#macroobras-legacy-root") || document.querySelector("#app");
+}
+
+function normalizedHexColor(value, fallback = "#0a61d8") {
+  const candidate = String(value || "").trim();
+  return /^#[0-9a-f]{6}$/i.test(candidate) ? candidate.toLowerCase() : fallback;
+}
+
+function mixHexColor(color, target, amount) {
+  const source = normalizedHexColor(color).slice(1).match(/.{2}/g).map((part) => Number.parseInt(part, 16));
+  const destination = normalizedHexColor(target).slice(1).match(/.{2}/g).map((part) => Number.parseInt(part, 16));
+  return `#${source.map((channel, index) => Math.round(channel + (destination[index] - channel) * amount).toString(16).padStart(2, "0")).join("")}`;
+}
+
+function applyCustomization() {
+  const customization = state.customization || {};
+  const primary = normalizedHexColor(customization.primaryColor);
+  const themePreference = ["light", "dark", "system"].includes(customization.theme)
+    ? customization.theme
+    : "system";
+  const systemDark = window.matchMedia?.("(prefers-color-scheme: dark)")?.matches;
+  const effectiveTheme = themePreference === "system" ? (systemDark ? "dark" : "light") : themePreference;
+  const density = customization.density === "compact" ? "compact" : "comfortable";
+  const root = document.documentElement;
+  const rgb = primary.slice(1).match(/.{2}/g).map((part) => Number.parseInt(part, 16)).join(", ");
+
+  root.dataset.theme = effectiveTheme;
+  root.dataset.themePreference = themePreference;
+  root.dataset.density = density;
+  root.style.setProperty("--mo-blue", primary);
+  root.style.setProperty("--mo-blue-dark", mixHexColor(primary, "#000000", 0.46));
+  root.style.setProperty("--mo-blue-soft", mixHexColor(primary, "#ffffff", 0.9));
+  root.style.setProperty("--mo-primary-rgb", rgb);
+  document.title = customization.stationName || "ERP da construção Maximus Empreendimentos";
+  document.querySelector('meta[name="theme-color"]')?.setAttribute("content", effectiveTheme === "dark" ? "#111820" : primary);
+}
+
 export function initApp() {
-  const root = document.querySelector("#app");
+  const root = legacyRoot();
   if (!root) return;
 
   configureStateRenderer(render);
@@ -36,24 +84,28 @@ export function initApp() {
   root.addEventListener("input", handleInput);
   document.addEventListener("macroobras:open-work", (event) => openWorkSection(event.detail?.workId, "admin-work-overview"));
   document.addEventListener("macroobras:open-work-section", (event) => openWorkSection(event.detail?.workId, event.detail?.route));
+  document.addEventListener("macroobras:select-work", (event) => selectWorkOnWorksPage(event.detail?.workId));
+  document.addEventListener("macroobras:navigate", handleReactNavigate);
   document.addEventListener("macroobras:visit-route-change", handleVisitRouteChange);
   document.addEventListener("macroobras:visit-route-toast", (event) => updateState({ toast: event.detail?.toast || "" }));
   document.addEventListener("macroobras:diagram-change", handleDiagramChange);
+  document.addEventListener("macroobras:diagram-node-selected", handleDiagramNodeSelected);
   document.addEventListener("pointerdown", closeUserMenuOutside);
 
   render();
   void bootstrapApplication();
   window.setInterval(() => {
-    if (state.bootstrapChecked && !state.installationRequired) void pollCollaboratorStatus();
+    if (state.bootstrapChecked && !state.installationRequired && state.authenticated) void pollCollaboratorStatus();
   }, 7000);
   window.setInterval(() => {
-    if (state.bootstrapChecked && !state.installationRequired) void pollOkfStatus();
+    if (state.bootstrapChecked && !state.installationRequired && state.authenticated) void pollOkfStatus();
   }, 20000);
 }
 
 function render() {
-  const root = document.querySelector("#app");
+  const root = legacyRoot();
   if (!root) return;
+  applyCustomization();
   const route = isTwaSurface() ? normalizedMobileRoute(state.route) : state.route;
 
   if (!isTwaSurface() && !state.bootstrapChecked) {
@@ -90,6 +142,7 @@ function render() {
 function handleClick(event) {
   const target = event.target.closest("[data-message], button");
   if (!target || target.matches("[data-map-only]")) return;
+  if (target.closest("[data-interactive-diagram]") && !target.dataset.message) return;
   if (target.type === "submit") {
     const authForm = target.closest("[data-auth-form]");
     if (authForm) {
@@ -99,6 +152,10 @@ function handleClick(event) {
     }
   }
   const message = normalizeMessage(target, event);
+
+  if (state.route === "admin-works" && shouldClearWorkSelection(target)) {
+    clearWorkSelection();
+  }
 
   if (message.type === "toggle-user-menu") {
     event.stopPropagation();
@@ -141,8 +198,8 @@ function handleClick(event) {
     return;
   }
 
-  if (message.type === "add-rh-entity") {
-    addRhEntity();
+  if (message.type === "open-installer-surface") {
+    window.location.href = "?surface=installer";
     return;
   }
 
@@ -192,6 +249,16 @@ function handleClick(event) {
     return;
   }
 
+  if (message.type === "save-customization") {
+    saveCustomization();
+    return;
+  }
+
+  if (message.type === "save-login-config") {
+    void saveLoginConfig();
+    return;
+  }
+
   if (message.type === "select-work") {
     updateState({ selectedWorkId: message.workId, route: "mobile-home", toast: "Obra selecionada." });
     return;
@@ -209,16 +276,22 @@ function handleClick(event) {
   }
 
   if (message.type === "navigate") {
-    if (isTwaSurface() && message.route !== "mobile-home" && !selectedWork()) {
-      updateState({ route: "mobile-home", toast: dependencyMessage() });
-      return;
-    }
-    updateState({ route: message.route, userMenuOpen: false, toast: "" });
+    navigateTo(message.route);
     return;
   }
 
   if (message.type === "toggle-sidebar") {
-    updateState({ sidebarCollapsed: !state.sidebarCollapsed, toast: "" });
+    const currentBehavior = state.customization?.sidebarBehavior || "hover";
+    const nextBehavior = currentBehavior === "hover" ? "pinned" : "hover";
+    updateState({
+      customization: {
+        ...(state.customization || {}),
+        sidebarBehavior: nextBehavior,
+        savedAt: new Date().toISOString(),
+      },
+      sidebarCollapsed: nextBehavior === "hover",
+      toast: nextBehavior === "pinned" ? "Subnavegação fixada." : "Subnavegação configurada para abrir ao passar o mouse.",
+    });
     return;
   }
 
@@ -235,6 +308,31 @@ function handleClick(event) {
 
   if (message.type === "open-work-section") {
     openWorkSection(message.workId, message.route);
+    return;
+  }
+
+  if (message.type === "select-diary-entry") {
+    if (!canRunMessage(message)) return;
+    updateState({
+      selectedDiaryEntryId: message.entryId || "",
+      selectedDiaryDetailId: "",
+      toast: "",
+    });
+    return;
+  }
+
+  if (message.type === "open-diary-detail") {
+    updateState({ selectedDiaryDetailId: message.detailId || "", toast: "" });
+    return;
+  }
+
+  if (message.type === "save-diagram-record") {
+    saveDiagramRecord(target);
+    return;
+  }
+
+  if (message.type === "delete-diagram-record") {
+    deleteDiagramRecord(target);
     return;
   }
 
@@ -370,6 +468,7 @@ function openWorkSection(workId, route = "admin-work-overview") {
     return;
   }
   const allowed = new Set([
+    "admin-works",
     "admin-work-overview",
     "admin-work-access",
     "admin-work-items",
@@ -385,6 +484,23 @@ function openWorkSection(workId, route = "admin-work-overview") {
     patch.selectedPurchaseFlowId = state.purchaseFlows.find((item) => item.workId === work.id)?.id || "";
   }
   updateState(patch);
+}
+
+function selectWorkOnWorksPage(workId) {
+  const work = availableWorks.find((item) => item.id === workId);
+  if (!work) return;
+  updateState({ selectedWorkId: work.id, route: "admin-works", toast: "" });
+}
+
+function clearWorkSelection() {
+  if (!state.selectedWorkId) return;
+  updateState({ selectedWorkId: "", toast: "" });
+}
+
+function shouldClearWorkSelection(target) {
+  const workspace = target.closest(".workspace");
+  if (!workspace) return false;
+  return !target.closest("button, input, textarea, select, a, [data-google-map], .gm-style, .gm-info, [data-diagram-node], [data-interactive-diagram]");
 }
 
 function dispatchAuthForm(form) {
@@ -448,6 +564,17 @@ function handleChange(event) {
 
 function handleInput(event) {
   const target = event.target;
+  if (target.matches("[data-diary-note]")) {
+    const detailId = target.dataset.diaryNote;
+    if (!detailId) return;
+    state.diaryNotes[detailId] = target.value;
+    localStorage.setItem("macroobras.diaryNotes", JSON.stringify(state.diaryNotes || {}));
+    return;
+  }
+  if (target.matches("[data-work-filter]")) {
+    updateState({ workFilter: target.value });
+    return;
+  }
   if (target.matches("[data-visit-duration]")) {
     const stopId = target.dataset.visitDuration;
     const durationMinutes = Math.max(0, Number(target.value || 0));
@@ -670,6 +797,7 @@ function applyCollaboratorStatus(data, toast = "") {
 }
 
 async function pollCollaboratorStatus(forceToast = false) {
+  if (authDemoMode()) return;
   try {
     let response;
     try {
@@ -707,6 +835,7 @@ function saveAction(message) {
 }
 
 async function pollOkfStatus() {
+  if (authDemoMode()) return;
   if (isTwaSurface()) return;
   try {
     const response = await callRpc("obterStatusOkf");
@@ -730,6 +859,18 @@ async function pollInstallerStatus() {
 
 async function prepareOkfFromWizard() {
   updateState({ toast: "Preparando OKF…" });
+  if (authDemoMode()) {
+    updateState({
+      okfStatus: {
+        ...initialOkfStatus,
+        configurado: true,
+        pronto: true,
+        mensagem: "OKF preparado no modo frontend-only.",
+      },
+      toast: "OKF preparado no modo frontend-only.",
+    });
+    return;
+  }
   try {
     const response = await callRpc("prepararOkf");
     const data = response?.data || {};
@@ -742,16 +883,16 @@ async function prepareOkfFromWizard() {
 async function runInstaller() {
   const adminName = document.querySelector("[data-installer-admin-name]")?.value?.trim() || state.installerStatus?.githubLogin || "Administrador";
   const adminEmail = document.querySelector("[data-installer-admin-email]")?.value?.trim() || "";
-  const adminPhone = document.querySelector("[data-installer-admin-phone]")?.value?.trim() || "";
+  const adminCpf = document.querySelector("[data-installer-admin-cpf]")?.value?.trim() || "";
 
-  if (!adminEmail || !adminPhone) {
-    updateState({ toast: "Informe o email e o telefone do primeiro administrador." });
+  if (!adminEmail || !adminCpf) {
+    updateState({ toast: "Informe o email e o CPF do primeiro administrador." });
     return;
   }
 
   updateState({ toast: "Criando o primeiro administrador…" });
   try {
-    const response = await callRpc("executarInstalador", [JSON.stringify({ adminName, adminEmail, adminPhone })]);
+    const response = await callRpc("executarInstalador", [JSON.stringify({ adminName, adminEmail, adminCpf })]);
     const data = response?.data || response || {};
 
     if (data.instalado !== true) {
@@ -788,15 +929,53 @@ async function runInstaller() {
 }
 
 function addTemporaryWorkElement() {
-  const root = document.querySelector("#app");
+  const root = legacyRoot();
   const valueOf = (name) => root?.querySelector(`[data-element-field="${name}"]`)?.value?.trim() || "";
   const listOf = (name) => valueOf(name).split(/\n|,/).map((item) => item.trim()).filter(Boolean);
   const name = valueOf("name") || "Elemento de obra";
   updateState({ temporaryWorkElements: [...(state.temporaryWorkElements || []), { name, description: valueOf("description") || "Elemento adicionado pela administração.", materials: valueOf("materials") || "materiais a definir", dependencies: listOf("dependencies"), unlocks: listOf("unlocks") }], toast: `Elemento de obra adicionado: ${name}` });
 }
 
+function handleReactNavigate(event) {
+  navigateTo(event.detail?.route);
+}
+
+function navigateTo(route) {
+  if (!route) return;
+  if (isTwaSurface() && route !== "mobile-home" && !selectedWork()) {
+    updateState({ route: "mobile-home", toast: dependencyMessage() });
+    return;
+  }
+  updateState({ route, userMenuOpen: false, toast: "" });
+}
+
 
 async function bootstrapApplication() {
+  if (authDemoMode()) {
+    updateState({
+      bootstrapChecked: true,
+      installationRequired: false,
+      installationCompleted: true,
+      machineAuthorized: true,
+      authenticated: true,
+      collaboratorStatus: {
+        ...initialCollaboratorStatus,
+        available: true,
+        enabled: true,
+        running: false,
+        localActive: true,
+        message: "Modo frontend-only ativo.",
+      },
+      okfStatus: {
+        ...initialOkfStatus,
+        configurado: true,
+        pronto: true,
+        localDir: "frontend-demo",
+        mensagem: "OKF preparado no modo frontend-only.",
+      },
+    });
+    return;
+  }
   if (isTwaSurface()) {
     updateState({ bootstrapChecked: true, installationRequired: false });
     await loadEncarregadoAccesses();
@@ -808,26 +987,39 @@ async function bootstrapApplication() {
     const data = response?.data || response || {};
     const installationRequired = Boolean(data.primeiroAcesso ?? data.firstAccess ?? !data.instalacaoConcluida);
     if (data.statusInstalador) state.installerStatus = data.statusInstalador;
+    const machineAuthorized = Boolean(
+      data.statusInstalador?.githubAuthorized
+        || data.statusInstalador?.machineAuthorized
+        || data.statusInstalador?.autorizado
+    );
     updateState({
       bootstrapChecked: true,
       installationRequired,
       installationCompleted: !installationRequired,
       authenticated: installationRequired ? false : state.authenticated,
-      machineAuthorized: Boolean(data.statusInstalador?.githubAuthorized || data.statusInstalador?.machineAuthorized || data.statusInstalador?.autorizado),
+      machineAuthorized,
       machineTokenConfigured: Boolean(data.statusInstalador?.githubAuthorized),
+      route: installationRequired ? "installer" : state.route,
     });
     if (installationRequired) {
       void pollInstallerStatus();
       return;
     }
-    void ensureMobilePlatform();
-    void loadEncarregadoAccesses();
-    void pollCollaboratorStatus();
-    void pollOkfStatus();
+    if (state.authenticated) {
+      void ensureMobilePlatform();
+      void loadEncarregadoAccesses();
+      void pollCollaboratorStatus();
+      void pollOkfStatus();
+    }
   } catch (error) {
     const completed = localStorage.getItem("macroobras.installationCompleted") === "true" || new URLSearchParams(location.search).get("surface") === "admin";
-    updateState({ bootstrapChecked: true, installationRequired: !completed, installationCompleted: completed, toast: completed ? "" : "Backend da configuração inicial ainda não respondeu." });
-    if (completed) {
+    updateState({
+      bootstrapChecked: true,
+      installationRequired: !completed,
+      installationCompleted: completed,
+      toast: completed ? "" : "Backend da configuração inicial ainda não respondeu.",
+    });
+    if (completed && state.authenticated) {
       void loadEncarregadoAccesses();
       void pollCollaboratorStatus();
       void pollOkfStatus();
@@ -912,34 +1104,37 @@ async function authorizeAdminMachine() {
 async function loginAdminWithContact() {
   const form = document.querySelector('[data-auth-form="contact"]');
   const emailInput = form?.querySelector("[data-admin-email]");
-  const phoneInput = form?.querySelector("[data-admin-phone]");
+  const cpfInput = form?.querySelector("[data-admin-cpf]");
   const email = emailInput?.value?.trim() || "";
-  const phone = phoneInput?.value?.trim() || "";
-  if (!email || !phone) {
-    setAuthStatus(form, "Informe o email e o telefone cadastrados.", "error");
-    (!email ? emailInput : phoneInput)?.focus();
+  const cpf = cpfInput?.value?.trim() || "";
+  if (!email || !cpf) {
+    setAuthStatus(form, "Informe o email e o CPF cadastrados.", "error");
+    (!email ? emailInput : cpfInput)?.focus();
     return;
   }
   if (!state.machineAuthorized) {
     setAuthStatus(form, "Autorize a máquina antes de identificar o usuário.", "error");
     return;
   }
-
-  setAuthStatus(form, "Verificando email e telefone…", "info");
+  setAuthStatus(form, "Verificando email e CPF…", "info");
   setAuthBusy(form, true, "Verificando acesso…");
   try {
-    const response = await callRpc("autenticarAdministradorContato", [JSON.stringify({ email, telefone: phone })]);
+    const response = await callRpc("autenticarAdministradorContato", [JSON.stringify({ email, cpf })]);
     const data = response?.data || response || {};
-    if (data.autorizado !== true) throw new Error(data.mensagem || "Email ou telefone não autorizado.");
-    const user = {
-      name: data.nome || "Administrador",
-      email: data.email || email,
-      phone: data.telefone || phone,
-      provider: "email-phone",
-    };
-    updateState({ authenticated: true, authUser: user, route: "admin-dashboard", toast: data.mensagem || "Acesso autorizado." });
+    if (data.autorizado !== true) throw new Error(data.mensagem || "Email ou CPF não autorizado.");
+    updateState({
+      authenticated: true,
+      authUser: {
+        name: data.nome || "Administrador",
+        email: data.email || email,
+        cpf: data.cpf || cpf,
+        provider: "email-cpf",
+      },
+      route: "admin-dashboard",
+      toast: "Acesso autorizado.",
+    });
   } catch (error) {
-    setAuthStatus(form, error.message || "Email ou telefone não autorizado.", "error");
+    setAuthStatus(form, error.message || "Email ou CPF não autorizado.", "error");
   } finally {
     setAuthBusy(form, false);
   }
@@ -964,7 +1159,7 @@ async function authorizeInstallerGithub() {
   setAuthStatus(form, "Verificando o token no GitHub…", "info");
   setAuthBusy(form, true, "Verificando token…");
   try {
-    const response = await callRpc("autorizarInstalacaoGithub", [JSON.stringify({ token, repository: "glaucodeveloper/macroobras" })]);
+    const response = await callRpc("autorizarInstalacaoGithub", [JSON.stringify({ token, repository: GITHUB_REPOSITORY })]);
     const data = response?.data || response || {};
     if (data.autorizado !== true) throw new Error(data.mensagem || "Token não autorizado.");
     if (input) input.value = "";
@@ -1012,22 +1207,6 @@ async function startAndVerifyFtp() {
   } catch (error) {
     updateState({ toast: error.message || "A transmissão FTP não pôde ser verificada." });
   }
-}
-
-function addRhEntity() {
-  const id = `rh-${Date.now().toString(36)}`;
-  const added = addNodeToDiagram("rh-main", {
-    id,
-    kind: "Pessoa",
-    editableTitle: true,
-    title: "Nova pessoa",
-    description: "Função operacional",
-    observations: "",
-    fields: [{ name: "Perfil", value: "Encarregado" }, { name: "Obra", value: "" }],
-    x: 120 + Math.round(Math.random() * 420),
-    y: 180 + Math.round(Math.random() * 300),
-  });
-  updateState({ toast: added ? "Entidade adicionada ao organograma." : "Abra o organograma para adicionar a entidade." });
 }
 
 async function loadEncarregadoAccesses(workId = "") {
@@ -1164,6 +1343,98 @@ function handleDiagramChange(event) {
   if (!id || !model) return;
   state.diagramModels[id] = model;
   if (id === "rh-main") state.rhModel = model;
+  localStorage.setItem("macroobras.diagramModels", JSON.stringify(state.diagramModels || {}));
+  window.clearTimeout(diagramPersistenceTimer);
+  diagramPersistenceTimer = window.setTimeout(() => {
+    void persistDiagramModel(id, model);
+  }, 650);
+}
+
+function handleDiagramNodeSelected(event) {
+  const diagramId = event.detail?.id;
+  const node = event.detail?.node;
+  if (!diagramId || !node) return;
+  updateState({
+    selectedDiagramNode: { diagramId, nodeId: node.id, node },
+    toast: `${node.title || "Quadro"} selecionado.`,
+  });
+  queueMicrotask(() => focusDiagramNode(diagramId, node.id));
+}
+
+async function persistDiagramModel(id, model) {
+  const descriptors = {
+    "all-work-elements": {
+      obraId: "glossario-servicos",
+      obra: "Glossário de serviços e requisitos",
+    },
+    "rh-main": {
+      obraId: "sistema-rh",
+      obra: "Organograma operacional de RH",
+    },
+  };
+  const descriptor = descriptors[id];
+  if (!descriptor || authDemoMode()) return;
+  try {
+    await callRpc("salvarOkfElementosObra", [
+      JSON.stringify({ ...descriptor, diagrama: model }),
+    ]);
+  } catch {
+    // O armazenamento local recupera a edição quando o repositório OKF está offline.
+  }
+}
+
+function saveDiagramRecord(trigger) {
+  const form = trigger.closest("[data-diagram-record-form]")
+    || document.querySelector("[data-diagram-record-form]");
+  const diagramId = form?.dataset.diagramId;
+  const nodeId = form?.dataset.diagramNodeId;
+  if (!form || !diagramId || !nodeId) return;
+
+  const model = getDiagramModel(diagramId) || state.diagramModels?.[diagramId];
+  const current = model?.nodes?.find((node) => node.id === nodeId);
+  if (!current) {
+    updateState({ toast: "O registro selecionado não está mais disponível." });
+    return;
+  }
+
+  const patch = {};
+  form.querySelectorAll("[data-diagram-record-field]").forEach((field) => {
+    patch[field.dataset.diagramRecordField] = field.value?.trim?.() ?? field.value;
+  });
+  const fields = Array.from(form.querySelectorAll("[data-diagram-field-value]")).map((field) => ({
+    name: field.dataset.diagramFieldValue || "Campo",
+    value: field.value?.trim?.() ?? field.value,
+  }));
+  if (fields.length) patch.fields = fields;
+
+  if (!updateDiagramNode(diagramId, nodeId, patch)) {
+    updateState({ toast: "Não foi possível atualizar o registro no canvas." });
+    return;
+  }
+  updateState({
+    selectedDiagramNode: {
+      diagramId,
+      nodeId,
+      node: { ...current, ...patch },
+    },
+    toast: "Registro salvo; sincronização com o OKF agendada.",
+  });
+}
+
+function deleteDiagramRecord(trigger) {
+  const form = trigger.closest("[data-diagram-record-form]")
+    || document.querySelector("[data-diagram-record-form]");
+  const diagramId = form?.dataset.diagramId;
+  const nodeId = form?.dataset.diagramNodeId;
+  if (!diagramId || !nodeId) return;
+  if (!removeNodeFromDiagram(diagramId, nodeId)) {
+    updateState({ toast: "Não foi possível excluir o registro." });
+    return;
+  }
+  updateState({
+    selectedDiagramNode: null,
+    toast: "Registro e relações removidos do modelo.",
+  });
 }
 
 async function savePlanningGraph() {
@@ -1246,6 +1517,56 @@ function saveFirebaseConfig() {
     updateState({ toast: "Configuração Firebase salva nesta estação." });
   } catch {
     updateState({ toast: "Informe um JSON válido da configuração Firebase." });
+  }
+}
+
+function saveCustomization() {
+  const form = document.querySelector("[data-settings-form]");
+  if (!form) return;
+  const primaryColor = normalizedHexColor(
+    form.querySelector('[data-setting-field="primaryColor"]')?.value,
+  );
+  const customization = {
+    ...(state.customization || {}),
+    stationName: form.querySelector('[data-setting-field="stationName"]')?.value?.trim() || "ERP da construção Maximus Empreendimentos",
+    stationSubtitle: form.querySelector('[data-setting-field="stationSubtitle"]')?.value?.trim() || "Gestão operacional da construção",
+    primaryColor,
+    theme: form.querySelector('[data-setting-field="theme"]')?.value || "system",
+    density: form.querySelector('[data-setting-field="density"]')?.value || "comfortable",
+    sidebarBehavior: form.querySelector('[data-setting-field="sidebarBehavior"]')?.value || "hover",
+    savedAt: new Date().toISOString(),
+  };
+  updateState({
+    customization,
+    sidebarCollapsed: customization.sidebarBehavior === "hover",
+    toast: "Aparência e comportamento salvos nesta estação.",
+  });
+}
+
+async function saveLoginConfig() {
+  const form = document.querySelector("[data-login-config-form]");
+  if (!form) return;
+  const email = form.querySelector('[data-login-field="email"]')?.value?.trim() || "";
+  const cpf = form.querySelector('[data-login-field="cpf"]')?.value?.trim() || "";
+  const name = form.querySelector('[data-login-field="name"]')?.value?.trim() || state.authUser?.name || "Administrador";
+  if (!email || !cpf) {
+    updateState({ toast: "Informe email e CPF para salvar o login administrativo." });
+    return;
+  }
+  try {
+    const response = await callRpc("salvarConfiguracaoLogin", [JSON.stringify({ email, cpf, name })]);
+    const data = response?.data || response || {};
+    updateState({
+      customization: {
+        ...(state.customization || {}),
+        adminLoginEmail: data.email || email,
+        adminLoginCpf: data.cpf || cpf,
+        savedAt: new Date().toISOString(),
+      },
+      toast: data.mensagem || "Login administrativo atualizado.",
+    });
+  } catch (error) {
+    updateState({ toast: error?.message || "Não foi possível salvar o login administrativo." });
   }
 }
 

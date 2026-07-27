@@ -50,7 +50,13 @@ function mapOptions(center, zoom, compact = false) {
 }
 
 function infoContent(work) {
-  return `<div class="gm-info gm-static-context"><small>${esc(work.code)}</small><strong>${esc(work.name)}</strong><span>${esc(work.address)}</span><div><b>${esc(work.status)}</b><b>${Number(work.progress || 0)}% executado</b></div><nav><button type="button" data-map-work-route="admin-work-overview" data-map-work-id="${esc(work.id)}">Visão geral</button><button type="button" data-map-work-route="admin-work-diary" data-map-work-id="${esc(work.id)}">Diário</button><button type="button" data-map-work-route="admin-work-purchases" data-map-work-id="${esc(work.id)}">Compras</button></nav></div>`;
+  return `<div class="gm-info gm-static-context"><small>${esc(work.code)}</small><strong>${esc(work.name)}</strong><span>${esc(work.address)}</span><div><b>${esc(work.status)}</b><b>${Number(work.progress || 0)}% executado</b></div><nav><button type="button" data-map-work-route="admin-work-overview" data-map-work-id="${esc(work.id)}">Visão geral</button><button type="button" data-map-work-route="admin-work-diary" data-map-work-id="${esc(work.id)}">Diário</button></nav></div>`;
+}
+
+function dispatchWorkSelection(workId) {
+  document.dispatchEvent(new CustomEvent("macroobras:select-work", {
+    detail: { workId },
+  }));
 }
 
 function bindStaticInfoActions(info) {
@@ -96,6 +102,7 @@ async function renderWorksMap(element) {
       gmpClickable: true,
     });
     marker.addEventListener("gmp-click", () => {
+      dispatchWorkSelection(work.id);
       info.setContent(infoContent(work));
       info.open({ map, anchor: marker });
       bindStaticInfoActions(info);
@@ -116,6 +123,7 @@ async function renderSingleWorkMap(element) {
   const info = new google.maps.InfoWindow();
   const marker = new AdvancedMarkerElement({ map, position: work.coordinates, title: work.name, content: markerContent(work), gmpClickable: true });
   marker.addEventListener("gmp-click", () => {
+    dispatchWorkSelection(work.id);
     info.setContent(infoContent(work));
     info.open({ map, anchor: marker });
     bindStaticInfoActions(info);
@@ -406,6 +414,8 @@ async function renderVisitsMap(element) {
   let previewLastStartedAt = 0;
   let drawing = null;
   const markerViews = new globalThis.Map();
+  const routeHoldDurationMs = 560;
+  const routeMoveThreshold = 6;
 
   const clearPendingInfo = (persist = true) => {
     const hadPending = Boolean(route.pendingStopId);
@@ -425,24 +435,12 @@ async function renderVisitsMap(element) {
   setRouteMetrics(route);
   refreshRouteOrder(wrap, route);
   setDrawStatus(wrap, route.stops.length
-    ? `Continue segurando a última parada: ${route.stops.at(-1)?.name || ""}`
-    : "Segure um ponto de obra e mova o mouse para desenhar pelas estradas.");
-
-  const flattenPreviewPath = () => {
-    if (!drawing) return [];
-    const combined = [cloneCoordinates(drawing.origin.coordinates)];
-    drawing.previewSegments.forEach((segment) => {
-      segment.path.forEach((point, index) => {
-        if (index === 0 && combined.length && sameCoordinate(combined.at(-1), point)) return;
-        combined.push(cloneCoordinates(point));
-      });
-    });
-    return combined.filter(Boolean);
-  };
+    ? `Mantenha pressionada a última parada: ${route.stops.at(-1)?.name || ""}`
+    : "Pressione um ponto por 0,6 s e mova o cursor para calcular a melhor rota.");
 
   const refreshPreviewLayer = () => {
     if (!drawing) return;
-    const path = flattenPreviewPath();
+    const path = drawing.previewSegment?.path || [];
     previewLayer?.setMap(null);
     previewLayer = path.length > 1 ? new google.maps.Polyline({
       map,
@@ -454,10 +452,10 @@ async function renderVisitsMap(element) {
     }) : null;
     const roadEnd = path.at(-1) || drawing.origin.coordinates;
     cursorGuide?.setPath([roadEnd, drawing.currentCoordinates || roadEnd]);
-    const distance = drawing.previewSegments.reduce((sum, item) => sum + Number(item.distanceMeters || 0), 0);
-    const duration = drawing.previewSegments.reduce((sum, item) => sum + Number(item.durationMillis || 0), 0);
+    const distance = Number(drawing.previewSegment?.distanceMeters || 0);
+    const duration = Number(drawing.previewSegment?.durationMillis || 0);
     const detail = distance > 0 ? ` · ${(distance / 1000).toFixed(1)} km · ${durationText(duration)}` : "";
-    setDrawStatus(wrap, `Traçando pelas estradas${detail}. Retorne o mouse sobre o traço para recolher.`, "drawing");
+    setDrawStatus(wrap, `Melhor rota até o cursor${detail}. Solte para fixar a parada.`, "drawing");
   };
 
   const clearPreview = (resetDrawingPreview = false) => {
@@ -469,75 +467,25 @@ async function renderVisitsMap(element) {
     previewLayer = null;
     cursorGuide = null;
     if (resetDrawingPreview && drawing) {
-      drawing.previewSegments = [];
-      drawing.anchorCoordinates = cloneCoordinates(drawing.origin.coordinates);
+      drawing.previewSegment = null;
+      drawing.previewDestination = null;
     }
   };
 
   const restoreMapGesture = () => map.setOptions({ draggable: true, gestureHandling: "greedy" });
 
   const cancelDrawing = (message = "Traçado cancelado.") => {
-    markerViews.forEach(({ content }) => content.classList.remove("is-origin"));
+    markerViews.forEach(({ content }) => content.classList.remove("is-origin", "is-hold-ready"));
+    window.clearTimeout(drawing?.holdTimer);
     clearPreview(true);
     drawing = null;
     restoreMapGesture();
     setDrawStatus(wrap, message);
   };
 
-  const sameCoordinate = (left, right, tolerance = 1e-7) => Boolean(left && right)
-    && Math.abs(Number(left.lat) - Number(right.lat)) <= tolerance
-    && Math.abs(Number(left.lng) - Number(right.lng)) <= tolerance;
-
-  const truncatePreviewAt = (segmentIndex, pathIndex) => {
-    if (!drawing || segmentIndex < 0) return false;
-    const nextSegments = [];
-    drawing.previewSegments.forEach((segment, index) => {
-      if (index < segmentIndex) nextSegments.push(segment);
-      if (index === segmentIndex) {
-        const path = segment.path.slice(0, Math.max(1, pathIndex + 1));
-        const ratio = segment.path.length > 1 ? Math.max(0, Math.min(1, (path.length - 1) / (segment.path.length - 1))) : 0;
-        if (path.length > 1) nextSegments.push({
-          ...segment,
-          path,
-          distanceMeters: Number(segment.distanceMeters || 0) * ratio,
-          durationMillis: Number(segment.durationMillis || 0) * ratio,
-        });
-      }
-    });
-    drawing.previewSegments = nextSegments;
-    const path = flattenPreviewPath();
-    drawing.anchorCoordinates = cloneCoordinates(path.at(-1) || drawing.origin.coordinates);
-    previewGeneration += 1;
-    previewQueued = null;
-    refreshPreviewLayer();
-    return true;
-  };
-
-  const retractPreviewUnderCursor = (clientX, clientY) => {
-    if (!drawing?.previewSegments?.length) return false;
-    const rect = element.getBoundingClientRect();
-    const cursorPoint = { x: clientX - rect.left, y: clientY - rect.top };
-    let best = null;
-    let globalIndex = 0;
-    const totalPath = flattenPreviewPath();
-    drawing.previewSegments.forEach((segment, segmentIndex) => {
-      segment.path.forEach((coordinate, pathIndex) => {
-        const point = projectionAdapter.toContainerPoint(coordinate);
-        if (!point) return;
-        const distance = Math.hypot(point.x - cursorPoint.x, point.y - cursorPoint.y);
-        if (distance <= 28 && (!best || distance < best.distance)) {
-          best = { distance, segmentIndex, pathIndex, globalIndex };
-        }
-        globalIndex += 1;
-      });
-    });
-    if (!best || best.globalIndex >= Math.max(0, totalPath.length - 5)) return false;
-    return truncatePreviewAt(best.segmentIndex, best.pathIndex);
-  };
-
   const flushRoadPreview = async () => {
     if (!drawing || previewInFlight || !previewQueued) return;
-    const minimumInterval = 165;
+    const minimumInterval = 220;
     const elapsed = performance.now() - previewLastStartedAt;
     if (elapsed < minimumInterval) {
       window.clearTimeout(previewTimer);
@@ -552,16 +500,9 @@ async function renderVisitsMap(element) {
     try {
       const result = await computeRoadSegment(request.origin, request.destination, true);
       if (!drawing || generation !== previewGeneration) return;
-      const lastPath = drawing.previewSegments.at(-1)?.path || [];
-      const path = result.path.filter((point, index) => !(index === 0 && lastPath.length && sameCoordinate(lastPath.at(-1), point)));
-      if (path.length > 1) {
-        drawing.previewSegments.push({
-          path: result.path.map(cloneCoordinates).filter(Boolean),
-          distanceMeters: result.distanceMeters,
-          durationMillis: result.durationMillis,
-        });
-        drawing.anchorCoordinates = cloneCoordinates(result.path.at(-1) || request.destination);
-      }
+      if (request.sequence < drawing.previewSequence) return;
+      drawing.previewSegment = result;
+      drawing.previewDestination = cloneCoordinates(request.destination);
       refreshPreviewLayer();
     } catch (error) {
       if (drawing && generation === previewGeneration) setDrawStatus(wrap, "Mova o cursor para uma via alcançável.", "warning");
@@ -572,16 +513,22 @@ async function renderVisitsMap(element) {
   };
 
   const scheduleRoadPreview = (destination) => {
-    if (!drawing) return;
-    const origin = drawing.anchorCoordinates || drawing.origin.coordinates;
+    if (!drawing?.holdReady) return;
+    const origin = drawing.origin.coordinates;
     const originPoint = projectionAdapter.toContainerPoint(origin);
     const destinationPoint = projectionAdapter.toContainerPoint(destination);
     if (originPoint && destinationPoint && Math.hypot(destinationPoint.x - originPoint.x, destinationPoint.y - originPoint.y) < 22) {
       cursorGuide?.setPath([origin, destination]);
       return;
     }
-    previewQueued = { origin, destination };
-    void flushRoadPreview();
+    drawing.previewSequence += 1;
+    previewQueued = {
+      origin,
+      destination: cloneCoordinates(destination),
+      sequence: drawing.previewSequence,
+    };
+    window.clearTimeout(previewTimer);
+    previewTimer = window.setTimeout(() => void flushRoadPreview(), 110);
   };
 
   const recalculateRouteTotals = (nextRoute) => ({
@@ -669,6 +616,14 @@ async function renderVisitsMap(element) {
     bindInfoActions(stop, null, true);
   };
 
+  const activateDrawingHold = () => {
+    if (!drawing || drawing.holdReady) return;
+    drawing.holdReady = true;
+    drawing.content?.classList.add("is-hold-ready");
+    setDrawStatus(wrap, `Rota ativa a partir de ${drawing.origin.name}. Mova o cursor para recalcular.`, "drawing");
+    if (drawing.currentCoordinates) scheduleRoadPreview(drawing.currentCoordinates);
+  };
+
   const beginDrawing = (stop, content, event) => {
     if (event.button !== 0) return;
     event.preventDefault();
@@ -687,23 +642,28 @@ async function renderVisitsMap(element) {
       lastX: event.clientX,
       lastY: event.clientY,
       moved: false,
+      startedAt: performance.now(),
+      holdReady: false,
+      holdTimer: 0,
+      content,
       currentCoordinates: cloneCoordinates(stop.coordinates),
-      anchorCoordinates: cloneCoordinates(stop.coordinates),
-      previewSegments: [],
+      previewSegment: null,
+      previewDestination: null,
+      previewSequence: 0,
     };
+    drawing.holdTimer = window.setTimeout(activateDrawingHold, routeHoldDurationMs);
     map.setOptions({ draggable: false, gestureHandling: "none" });
-    markerViews.forEach(({ content: item }) => item.classList.remove("is-origin"));
+    markerViews.forEach(({ content: item }) => item.classList.remove("is-origin", "is-hold-ready"));
     content.classList.add("is-origin");
     cursorGuide = new google.maps.Polyline({
       map,
       path: [stop.coordinates, stop.coordinates],
       strokeColor: "#0a61d8",
-      strokeOpacity: 0.38,
-      strokeWeight: 3,
-      strokeDashArray: [8, 7],
+      strokeOpacity: 0.32,
+      strokeWeight: 2,
       zIndex: 70,
     });
-    setDrawStatus(wrap, `Segurando ${stop.name}. Mova o mouse para traçar pelas estradas.`, "drawing");
+    setDrawStatus(wrap, `Mantenha pressionado para iniciar em ${stop.name}.`, "drawing");
   };
 
   const bindPointMarker = (stop, marker, content) => {
@@ -750,20 +710,7 @@ async function renderVisitsMap(element) {
     previewQueued = null;
     setDrawStatus(wrap, "Fixando o trecho na malha rodoviária…", "drawing");
     try {
-      const previewSegments = [...(current.previewSegments || [])];
-      const anchor = current.anchorCoordinates || current.origin.coordinates;
-      let finalResult = null;
-      const anchorPoint = projectionAdapter.toContainerPoint(anchor);
-      const destinationPoint = projectionAdapter.toContainerPoint(destinationCoordinates);
-      const needsFinalSegment = !anchorPoint || !destinationPoint || Math.hypot(destinationPoint.x - anchorPoint.x, destinationPoint.y - anchorPoint.y) > 10;
-      if (needsFinalSegment) finalResult = await computeRoadSegment(anchor, destinationCoordinates, false);
-      const pieces = finalResult ? [...previewSegments, finalResult] : previewSegments;
-      if (!pieces.length) pieces.push(await computeRoadSegment(current.origin.coordinates, destinationCoordinates, false));
-      const result = {
-        path: pieces.flatMap((piece, pieceIndex) => piece.path.filter((point, pointIndex) => !(pieceIndex > 0 && pointIndex === 0))),
-        distanceMeters: pieces.reduce((sum, piece) => sum + Number(piece.distanceMeters || 0), 0),
-        durationMillis: pieces.reduce((sum, piece) => sum + Number(piece.durationMillis || 0), 0),
-      };
+      const result = await computeRoadSegment(current.origin.coordinates, destinationCoordinates, false);
       const snappedCoordinates = result.path.at(-1) || destinationCoordinates;
       let destination = targetStop;
       if (!destination) {
@@ -793,6 +740,7 @@ async function renderVisitsMap(element) {
         totalDurationMillis: route.totalDurationMillis + result.durationMillis,
         pendingStopId: destination.id,
       };
+      window.clearTimeout(current.holdTimer);
       clearPreview(false);
       drawing = null;
       restoreMapGesture();
@@ -808,16 +756,17 @@ async function renderVisitsMap(element) {
     drawing.lastX = event.clientX;
     drawing.lastY = event.clientY;
     const distance = Math.hypot(event.clientX - drawing.startX, event.clientY - drawing.startY);
-    if (distance < 2) return;
+    if (distance < routeMoveThreshold) return;
     drawing.moved = true;
     const cursor = projectionAdapter.fromClientPoint(event.clientX, event.clientY, element);
     if (!cursor) return;
     drawing.currentCoordinates = cursor;
-    if (retractPreviewUnderCursor(event.clientX, event.clientY)) {
-      drawing.currentCoordinates = cloneCoordinates(drawing.anchorCoordinates);
+    cursorGuide?.setPath([drawing.origin.coordinates, cursor]);
+    if (!drawing.holdReady) {
+      const remaining = Math.max(0, routeHoldDurationMs - (performance.now() - drawing.startedAt));
+      setDrawStatus(wrap, `Continue pressionando por ${Math.ceil(remaining / 100) / 10}s para calcular a rota.`, "drawing");
       return;
     }
-    cursorGuide?.setPath([drawing.anchorCoordinates || drawing.origin.coordinates, cursor]);
     scheduleRoadPreview(cursor);
   };
 
@@ -828,6 +777,12 @@ async function renderVisitsMap(element) {
       const record = markerViews.get(current.origin.id);
       cancelDrawing("Clique reconhecido. Use o cartão para as ações do ponto.");
       if (record) openContext(current.origin, record.marker);
+      return;
+    }
+    const heldFor = performance.now() - current.startedAt;
+    if (!current.holdReady || heldFor < routeHoldDurationMs) {
+      cancelDrawing("Gesto curto cancelado. A rota não foi alterada.");
+      dispatchRouteToast("Mantenha o ponto pressionado por um pouco mais de meio segundo antes de soltar.");
       return;
     }
     const cursor = projectionAdapter.fromClientPoint(event.clientX, event.clientY, element);
@@ -888,6 +843,7 @@ async function renderVisitsMap(element) {
 
   cleanupActiveVisitsMap = () => {
     window.clearTimeout(previewTimer);
+    window.clearTimeout(drawing?.holdTimer);
     document.removeEventListener("pointermove", pointerMove);
     document.removeEventListener("pointerup", pointerUp);
     document.removeEventListener("pointercancel", pointerCancel);

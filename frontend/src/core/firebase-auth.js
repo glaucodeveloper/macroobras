@@ -3,7 +3,7 @@ let modulesPromise;
 
 function firebaseConfig() {
   const raw = localStorage.getItem("macroobras.firebaseConfig") || "";
-  if (!raw.trim()) throw new Error("Configure o projeto Firebase em Administração > Configuração de acesso.");
+  if (!raw.trim()) throw new Error("Configure o projeto Firebase em Administração > Configuração de login.");
   try {
     return JSON.parse(raw);
   } catch {
@@ -14,8 +14,8 @@ function firebaseConfig() {
 async function modules() {
   if (!modulesPromise) {
     modulesPromise = Promise.all([
-      import(`https://www.gstatic.com/firebasejs/${SDK_VERSION}/firebase-app.js`),
-      import(`https://www.gstatic.com/firebasejs/${SDK_VERSION}/firebase-auth.js`),
+      Function("moduleUrl", "return import(moduleUrl);")(`https://www.gstatic.com/firebasejs/${SDK_VERSION}/firebase-app.js`),
+      Function("moduleUrl", "return import(moduleUrl);")(`https://www.gstatic.com/firebasejs/${SDK_VERSION}/firebase-auth.js`),
     ]).then(([app, auth]) => ({ ...app, ...auth }));
   }
   return modulesPromise;

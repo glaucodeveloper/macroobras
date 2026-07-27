@@ -1,73 +1,19 @@
-import {
-  availableWorks,
-  budgetImportPreview,
-  mobileUsers,
-} from "../../core/data.js";
-import {
-  selectedPurchaseFlow,
-  selectedVisitPlan,
-  selectedWork,
-  state,
-} from "../../core/state.js";
+import { availableWorks } from "../../core/data.js";
+import { selectedWork, state } from "../../core/state.js";
 import { esc } from "../../core/utils.js";
-import { card, formStep, pageHeader } from "../../ui/components.js";
+import { card, pageHeader } from "../../ui/components.js";
 
 const money = (value) => Number(value || 0).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 const percent = (value) => `${Math.round(Number(value || 0))}%`;
 const workById = (id) => availableWorks.find((work) => work.id === id);
 const activeWork = () => selectedWork() || availableWorks[0];
-const flowWork = (flow) => workById(flow?.workId);
-const flowItem = (flow) => flowWork(flow)?.items.find((item) => item.id === flow?.itemId);
-const accessesForWork = (workId) => (state.encarregadoAccesses || []).filter((access) => access.workId === workId);
-
-function encarregadoAccessUrl(access) {
-  const base = state.collaboratorStatus?.publicAppUrl
-    || state.collaboratorStatus?.lanAppUrl
-    || state.collaboratorStatus?.localAppUrl
-    || `${window.location.origin}/?surface=twa`;
-  const url = new URL(base, window.location.origin);
-  url.searchParams.set("surface", "twa");
-  url.searchParams.set("access", access.id);
-  url.searchParams.set("work", access.workId);
-  return url.toString();
-}
-
-
-function authStatusMarkup() {
-  const message = String(state.toast || "").trim();
-  return `<div class="auth-form-status" data-auth-status data-tone="info" ${message ? "" : "hidden"} role="status" aria-live="polite">${esc(message)}</div>`;
-}
-
-function status(value) {
-  const css = String(value || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-");
-  return `<span class="status-pill ${css}">${esc(value)}</span>`;
-}
-
-function progress(value) {
-  const safe = Math.max(0, Math.min(100, Number(value || 0)));
-  return `<div class="progress-track"><span style="width:${safe}%"></span></div>`;
-}
-
-function map(type = "works", options = {}) {
-  const attributes = [
-    `data-google-map="${esc(type)}"`,
-    options.workId ? `data-work-id="${esc(options.workId)}"` : "",
-    options.address ? `data-address="${esc(options.address)}"` : "",
-    options.compact ? `data-compact="true"` : "",
-  ].filter(Boolean).join(" ");
-  return `<div class="google-map ${options.compact ? "compact" : ""}" ${attributes}><div class="map-loading"><span></span><strong>Carregando Google Maps</strong><small>Mapa, marcadores e rotas</small></div></div>`;
-}
-
-function kpi(label, value, detail, tone = "blue") {
-  return `<article class="metric-card ${tone}"><small>${esc(label)}</small><strong>${esc(value)}</strong><span>${esc(detail)}</span></article>`;
-}
 
 function workContext(work) {
-  return `<div class="work-context"><div><small>Obra ativa</small><strong>${esc(work.name)}</strong><span>${esc(work.address)}</span></div><div>${status(work.status)}<strong>${percent(work.progress)}</strong></div></div>`;
+  return `<div class="work-context"><div><small>Obra ativa</small><strong>${esc(work.name)}</strong><span>${esc(work.address)}</span></div><div><span class="status-pill ${esc(String(work.status || "").toLowerCase().replace(/[^a-z0-9]+/g, "-"))}">${esc(work.status)}</span><strong>${percent(work.progress)}</strong></div></div>`;
 }
 
-function workHeader(work, title, subtitle, actions = "") {
-  return `${pageHeader(title, subtitle, actions)}${workContext(work)}`;
+function serviceItem(item) {
+  return !/administra[cç][aã]o/i.test(String(item.description || ""));
 }
 
 function diagramSeed(work) {
@@ -91,30 +37,112 @@ function diagramSeed(work) {
   return { nodes, edges };
 }
 
-export function adminDiagramLibrary() {
-  const allWorkElements = {
-    nodes: availableWorks.flatMap((work, workIndex) => {
-      const baseX = 70 + workIndex * 620;
-      const workNode = { id: `library-work-${work.id}`, kind: "Obra", title: work.name, description: work.address, observations: "", fields: [{ name: "Código", value: work.code }], x: baseX, y: 55 };
-      const itemNodes = work.items.map((item, itemIndex) => ({
-        id: `library-item-${work.id}-${item.id}`,
-        kind: "Item de execução",
-        title: item.description,
-        description: `Orçamento alocado: ${money(item.budget)}`,
-        observations: "",
-        fields: [{ name: "Obra", value: work.name }, { name: "Orçamento", value: money(item.budget) }],
-        x: baseX + (itemIndex % 2) * 290,
-        y: 255 + Math.floor(itemIndex / 2) * 245,
-      }));
-      return [workNode, ...itemNodes];
-    }),
-    edges: availableWorks.flatMap((work) => work.items.map((item) => ({
-      id: `library-edge-${work.id}-${item.id}`,
-      from: `library-work-${work.id}`,
-      to: `library-item-${work.id}-${item.id}`,
-      label: "possui item",
-    }))),
+function serviceLibrary() {
+  return availableWorks.flatMap((work, workIndex) => {
+    const baseX = 70 + workIndex * 620;
+    const services = work.items.filter(serviceItem);
+    return services.map((item, itemIndex) => ({
+      id: `library-service-${work.id}-${item.id}`,
+      kind: "Serviço",
+      compact: true,
+      summaryOnly: true,
+      title: item.description,
+      description: `Obra: ${work.name}`,
+      observations: "",
+      fields: [
+        { name: "Obra", value: work.name },
+        { name: "Código", value: work.code },
+        { name: "Cliente", value: work.client },
+        { name: "Orçamento", value: money(item.budget) },
+      ],
+      x: baseX + (itemIndex % 2) * 290,
+      y: 85 + Math.floor(itemIndex / 2) * 245,
+      workId: work.id,
+      workName: work.name,
+      workCode: work.code,
+      workClient: work.client,
+      workAddress: work.address,
+      itemId: item.id,
+      budget: item.budget,
+    }));
+  });
+}
+
+function mergedServiceLibrary() {
+  const generated = { nodes: serviceLibrary(), edges: [] };
+  const saved = state.diagramModels?.["all-work-elements"];
+  if (!saved?.nodes?.length) return generated;
+  const savedById = new Map(saved.nodes.map((node) => [node.id, node]));
+  const canonicalIds = new Set(generated.nodes.map((node) => node.id));
+  return {
+    nodes: [
+      ...generated.nodes.map((node) => ({ ...node, ...(savedById.get(node.id) || {}), summaryOnly: true })),
+      ...saved.nodes.filter((node) => !canonicalIds.has(node.id)).map((node) => ({ ...node, summaryOnly: true })),
+    ],
+    edges: Array.isArray(saved.edges) ? saved.edges : [],
   };
+}
+
+function relationDetails(node, model) {
+  const relations = (model?.edges || []).filter((edge) => edge.from === node.id || edge.to === node.id);
+  if (!relations.length) {
+    return `<div class="diagram-relations-empty">Nenhuma relação registrada. Arraste o “+” lateral para criar o primeiro requisito.</div>`;
+  }
+  return `<div class="diagram-relation-list">${relations.map((edge) => {
+    const outgoing = edge.from === node.id;
+    const relatedId = outgoing ? edge.to : edge.from;
+    const related = model.nodes.find((item) => item.id === relatedId);
+    return `<article><span>${outgoing ? "Saída" : "Entrada"}</span><strong>${esc(edge.label || "relação")}</strong><small>${esc(related?.title || relatedId)}</small></article>`;
+  }).join("")}</div>`;
+}
+
+function nodeEditor(node) {
+  const fields = (node.fields || []).map((field) => `<label><span>${esc(field.name || "Campo")}</span><input data-diagram-field-value="${esc(field.name || "Campo")}" value="${esc(field.value || "")}"></label>`).join("");
+  return `<form class="diagram-record-form" data-diagram-record-form data-diagram-id="all-work-elements" data-diagram-node-id="${esc(node.id)}">
+    <label><span>Nome do registro</span><input data-diagram-record-field="title" value="${esc(node.title || "")}"></label>
+    <label><span>Descrição</span><textarea data-diagram-record-field="description">${esc(node.description || "")}</textarea></label>
+    <label><span>Observações operacionais</span><textarea data-diagram-record-field="observations">${esc(node.observations || "")}</textarea></label>
+    ${fields ? `<fieldset><legend>Identificação e requisitos</legend>${fields}</fieldset>` : ""}
+    <button class="btn full" type="button" data-message="save-diagram-record">Salvar no modelo e no OKF</button>
+  </form>`;
+}
+
+function serviceDetails(node, model) {
+  if (!node) {
+    return `<div class="diagram-details-empty"><b>Selecione um serviço ou requisito</b><p>Clique em um card para centralizar o registro e abrir seus dados, relações e edição.</p></div>`;
+  }
+
+  const work = workById(node.workId);
+  const isRequirement = String(node.kind || "").toLowerCase() === "requisito";
+  return `
+    <div class="diagram-details-hero">
+      <small>${isRequirement ? "Requisito selecionado" : "Serviço selecionado"}</small>
+      <strong>${esc(node.title || "")}</strong>
+      <span>${esc(work?.name || node.workName || "Registro transversal do sistema")}</span>
+    </div>
+    <dl class="diagram-details-list">
+      <div><dt>Tipo</dt><dd>${esc(node.kind || "Registro")}</dd></div>
+      <div><dt>Obra</dt><dd>${esc(work?.name || node.workName || "")}</dd></div>
+      <div><dt>Código</dt><dd>${esc(work?.code || node.workCode || "")}</dd></div>
+      <div><dt>Cliente</dt><dd>${esc(work?.client || node.workClient || "")}</dd></div>
+      <div><dt>Endereço</dt><dd>${esc(work?.address || node.workAddress || "")}</dd></div>
+      <div><dt>Item</dt><dd>${esc(node.itemId || "")}</dd></div>
+      <div><dt>Orçamento</dt><dd>${money(node.budget || 0)}</dd></div>
+    </dl>
+    <section class="diagram-details-section"><h3>Relações 1:N</h3>${relationDetails(node, model)}</section>
+    ${nodeEditor(node)}
+    ${work ? `<div class="diagram-details-actions">
+      <button class="btn" data-message="open-work-section" data-work-id="${esc(node.workId || work?.id || "")}" data-route="admin-work-overview">Abrir obra</button>
+      <button class="btn ghost" data-message="open-work-section" data-work-id="${esc(node.workId || work?.id || "")}" data-route="admin-work-items">Ver itens</button>
+    </div>` : ""}`;
+}
+
+export function adminDiagramLibrary() {
+  const allWorkElements = mergedServiceLibrary();
+  const selectedNodeId = state.selectedDiagramNode?.diagramId === "all-work-elements"
+    ? state.selectedDiagramNode.nodeId
+    : "";
+  const selectedNode = allWorkElements.nodes.find((node) => node.id === selectedNodeId) || null;
   const operational = {
     nodes: [
       { id: "sys-login", kind: "Acesso", title: "Login administrativo", description: "Abre a estação e inicia o ngrok automaticamente", x: 70, y: 70 },
@@ -147,8 +175,13 @@ export function adminDiagramLibrary() {
       { id: "buy-e4", from: "buy-delivery", to: "buy-complete", label: "comprova com foto" },
     ],
   };
+
   return `${pageHeader("Modelos de diagramas", "Itens importados, materiais e fluxos visuais de funcionamento da estação.")}
-    ${card("Elementos de todas as obras", `<div class="diagram-help"><span><b>1</b> Todos os itens importados aparecem como quadros</span><span><b>2</b> Conecte quadros para estabelecer relações</span><span><b>3</b> Solte uma nova linha na área vazia para criar um material</span></div><div class="interactive-diagram library-elements-diagram" data-interactive-diagram="all-work-elements" data-allow-material-drop="true" data-wheel-zoom="true"><svg data-diagram-svg></svg><div data-node-layer></div><script type="application/json">${JSON.stringify(allWorkElements)}</script></div>`, "interactive-diagram-card")}
+    <div class="diagram-sync-note">Edições neste canvas e no organograma alteram os mesmos dados de OKF do sistema.</div>
+    <section class="diagram-library-layout">
+      ${card("Serviços de todas as obras", `<div class="diagram-help"><span><b>1</b> O mapa abre enquadrado com todos os serviços</span><span><b>2</b> Clique no “+” para criar um requisito conectado</span><span><b>3</b> Arraste o “+” para posicionar ou conectar outro serviço</span><span><b>4</b> Edite relações e detalhes no painel lateral</span></div><div class="interactive-diagram library-elements-diagram" data-interactive-diagram="all-work-elements" data-selected-node-id="${esc(selectedNode?.id || "")}" data-empty-drop-kind="Requisito" data-default-edge-label="requer" data-summary-nodes="true" data-fit-on-load="true" data-wheel-zoom="true"><svg data-diagram-svg></svg><div data-node-layer></div><script type="application/json">${JSON.stringify(allWorkElements)}</script></div>`, "interactive-diagram-card")}
+      ${card("Detalhes do registro", serviceDetails(selectedNode, allWorkElements), "diagram-details-card")}
+    </section>
     ${card("Fluxo operacional do sistema", `<div class="interactive-diagram system-flow-diagram" data-interactive-diagram="system-operational" data-fixed-edges="true" data-hide-node-dates="true" data-wheel-zoom="true"><svg data-diagram-svg></svg><div data-node-layer></div><script type="application/json">${JSON.stringify(operational)}</script></div>`, "interactive-diagram-card diagram-section-gap")}
     ${card("Fluxo de compra e comprovação", `<div class="interactive-diagram system-flow-diagram" data-interactive-diagram="system-purchases" data-fixed-edges="true" data-hide-node-dates="true" data-wheel-zoom="true"><svg data-diagram-svg></svg><div data-node-layer></div><script type="application/json">${JSON.stringify(purchases)}</script></div>`, "interactive-diagram-card diagram-section-gap")}`;
 }

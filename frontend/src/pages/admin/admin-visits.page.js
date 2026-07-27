@@ -107,12 +107,12 @@ export function adminVisits() {
     ? selected.schedule.map((entry, index) => `<article><b>${String(index + 1).padStart(2, "0")}</b><span><strong>${esc(entry.name || workById(entry.workId)?.name || "Parada")}</strong><small>${esc(entry.address || workById(entry.workId)?.address || "")}</small></span><time>${esc(entry.start)} — ${esc(entry.end)}</time></article>`).join("")
     : selectedStops.map((stop, index) => `<article><b>${String(index + 1).padStart(2, "0")}</b><span><strong>${esc(stop.name)}</strong><small>${esc(stop.address || "")}</small></span><time>${8 + index * 2}:00 — ${9 + index * 2}:00</time></article>`).join("");
 
-  return `${pageHeader("Visitas", "Segure um ponto de obra, mova o mouse e solte em qualquer cidade ou ponto da estrada para criar uma parada.", `<button class="btn" data-message="generate-visit-plan">Gerar calendário</button>`)}
+  return `${pageHeader("Visitas", "Mantenha pressionado um ponto de obra; a melhor rota é recalculada até o cursor e fixada somente ao soltar.", `<button class="btn" data-message="generate-visit-plan">Gerar calendário</button>`)}
     <div class="visit-layout">
       <section>
         <div class="visit-map-wrap">
           <div class="route-map-toolbar">
-            <div><strong>Traçado por estradas</strong><span class="route-draw-status" data-route-draw-status>Segure um ponto e mova o mouse.</span></div>
+            <div><strong>Rota inteligente por estradas</strong><span class="route-draw-status" data-route-draw-status>Pressione por 0,6 s para iniciar o cálculo.</span></div>
             <div><button type="button" data-map-only="true" data-visit-map-command="undo">↶ Desfazer</button><button type="button" data-map-only="true" data-visit-map-command="clear">Novo traçado</button></div>
           </div>
           ${map("visits")}
@@ -122,6 +122,6 @@ export function adminVisits() {
       </section>
       <aside class="saved-routes"><h3>Calendários gerados</h3>${state.visitPlans.map((plan) => { const count = plan.stops?.length || plan.workIds?.length || 0; return `<button class="${selected?.id === plan.id ? "active" : ""}" data-message="select-visit-plan" data-plan-id="${esc(plan.id)}"><strong>${esc(plan.name)}</strong><small>${esc(plan.date)} · ${count} paradas</small><span>${Math.floor((plan.travelMinutes + plan.visitMinutes) / 60)}h ${(plan.travelMinutes + plan.visitMinutes) % 60}min</span></button>`; }).join("")}</aside>
     </div>
-    ${card("Paradas do traçado", stops.length ? `<div class="current-route-list">${stops.map((stop, index) => `<article><b>${index + 1}</b><span><strong>${esc(stop.name)}</strong><small>${esc(stop.address || "")}</small></span><label>Parada<input type="number" min="0" step="15" value="${Number(stop.durationMinutes || 60)}" data-visit-duration="${esc(stop.id)}"><small>min</small></label><button class="route-stop-remove" data-message="remove-visit-stop" data-stop-id="${esc(stop.id)}" aria-label="Remover parada">Remover</button></article>`).join("")}</div>` : `<div class="route-empty-state"><b>●</b><strong>Inicie em um ponto de obra</strong><span>Segure o ponto, mova o mouse e acompanhe o caminho pelas estradas. Ao soltar, informe o tempo da nova parada.</span></div>`)}
+    ${card("Paradas do traçado", stops.length ? `<div class="current-route-list">${stops.map((stop, index) => `<article><b>${index + 1}</b><span><strong>${esc(stop.name)}</strong><small>${esc(stop.address || "")}</small></span><label>Parada<input type="number" min="0" step="15" value="${Number(stop.durationMinutes || 60)}" data-visit-duration="${esc(stop.id)}"><small>min</small></label><button class="route-stop-remove" data-message="remove-visit-stop" data-stop-id="${esc(stop.id)}" aria-label="Remover parada">Remover</button></article>`).join("")}</div>` : `<div class="route-empty-state"><b>●</b><strong>Inicie em um ponto de obra</strong><span>Mantenha o botão pressionado por 0,6 s e mova o cursor. A rota viária mais curta acompanha o destino; solte para confirmar a parada.</span></div>`)}
     ${selected ? card("Calendário da rota", `<div class="route-calendar pan-surface" data-pan-surface>${calendarRows}</div>`) : ""}`;
 }

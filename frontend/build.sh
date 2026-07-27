@@ -10,4 +10,5 @@ cp index.html dist/index.html
 cp -R src/. dist/src/
 cp public/brand/* dist/brand/
 cp public/screens/* dist/screens/
+cp node_modules/@carbon/styles/css/styles.css dist/carbon.css
 echo "Frontend built at frontend/dist"

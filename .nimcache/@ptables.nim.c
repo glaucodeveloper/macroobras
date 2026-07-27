@@ -829,7 +829,7 @@ N_LIB_PRIVATE N_NIMCALL(void, reset__system_u5615)(NimStringV2* obj_p0);
 N_LIB_PRIVATE N_NIMCALL(void, reset__pureZhttpcore_u2935)(tySequence__sM4lkSb7zS6F7OVMvW9cffQ* obj_p0);
 N_LIB_PRIVATE N_NIMCALL(void, eqsink___pureZhttpcore_u264)(tyTuple__g1w83cyyBYiVU9c8WEJWnjQ* dest_p0, tyTuple__g1w83cyyBYiVU9c8WEJWnjQ* src_p1);
 N_LIB_PRIVATE N_NIMCALL(void, eqwasMoved___pureZhttpcore_u252)(tyTuple__g1w83cyyBYiVU9c8WEJWnjQ* dest_p0);
-N_LIB_PRIVATE N_NIMCALL(void, eqdestroy___app_u10782)(tyObject_Table__NZJ29bKsNkpKOymJNw10EvA* dest_p0);
+N_LIB_PRIVATE N_NIMCALL(void, eqdestroy___app_u11012)(tyObject_Table__NZJ29bKsNkpKOymJNw10EvA* dest_p0);
 N_LIB_PRIVATE N_NIMCALL(void, eqdestroy___pkgZjazzyZcoreZconfig_u167)(tyObject_Table__NZJ29bKsNkpKOymJNw10EvA* dest_p0);
 N_LIB_PRIVATE N_NIMCALL(void, eqsink___pkgZjazzyZcoreZconfig_u176)(tyObject_Table__NZJ29bKsNkpKOymJNw10EvA* dest_p0, tyObject_Table__NZJ29bKsNkpKOymJNw10EvA src_p1);
 N_LIB_PRIVATE N_NIMCALL(tyObject_Table__NZJ29bKsNkpKOymJNw10EvA, initTable__pkgZjazzyZcoreZconfig_u28)(NI initialSize_p0);
@@ -6662,7 +6662,7 @@ NIM_BOOL* nimErr_;
 	}BeforeRet_: ;
 	popFrame();
 }
-N_LIB_PRIVATE N_NIMCALL(void, eqdestroy___app_u10782)(tyObject_Table__NZJ29bKsNkpKOymJNw10EvA* dest_p0) {
+N_LIB_PRIVATE N_NIMCALL(void, eqdestroy___app_u11012)(tyObject_Table__NZJ29bKsNkpKOymJNw10EvA* dest_p0) {
 	{
 		NIM_BOOL T3_;
 		T3_ = (NIM_BOOL)0;
@@ -6673,14 +6673,14 @@ N_LIB_PRIVATE N_NIMCALL(void, eqdestroy___app_u10782)(tyObject_Table__NZJ29bKsNk
 	}
 LA4_: ;
 }
-N_LIB_PRIVATE N_NIMCALL(tyObject_Table__NZJ29bKsNkpKOymJNw10EvA*, newTable__app_u10719)(NI initialSize_p0) {
+N_LIB_PRIVATE N_NIMCALL(tyObject_Table__NZJ29bKsNkpKOymJNw10EvA*, newTable__app_u10949)(NI initialSize_p0) {
 	tyObject_Table__NZJ29bKsNkpKOymJNw10EvA* result;
 	tyObject_Table__NZJ29bKsNkpKOymJNw10EvA T1_;
 NIM_BOOL* nimErr_;
 	nimfr_("newTable", "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/pure/collections/tables.nim");
 {nimErr_ = nimErrorFlag();
 	result = NIM_NIL;
-	nimln_(900);	eqdestroy___app_u10782(result);
+	nimln_(900);	eqdestroy___app_u11012(result);
 	result = (tyObject_Table__NZJ29bKsNkpKOymJNw10EvA*) nimNewObj(sizeof(tyObject_Table__NZJ29bKsNkpKOymJNw10EvA), NIM_ALIGNOF(tyObject_Table__NZJ29bKsNkpKOymJNw10EvA));
 	nimln_(281);	nimln_(902);	T1_ = initTable__pkgZjazzyZcoreZconfig_u28(initialSize_p0);
 	if (NIM_UNLIKELY(*nimErr_)) {eqdestroy___pkgZjazzyZcoreZconfig_u167(&T1_); goto BeforeRet_;}
@@ -6689,7 +6689,7 @@ NIM_BOOL* nimErr_;
 	popFrame();
 	return result;
 }
-N_LIB_PRIVATE N_NIMCALL(void, X5BX5Deq___app_u10841)(tyObject_Table__NZJ29bKsNkpKOymJNw10EvA* t_p0, NimStringV2 key_p1, NimStringV2 val_p2) {
+N_LIB_PRIVATE N_NIMCALL(void, X5BX5Deq___app_u11071)(tyObject_Table__NZJ29bKsNkpKOymJNw10EvA* t_p0, NimStringV2 key_p1, NimStringV2 val_p2) {
 	NimStringV2 blitTmp_1;
 NIM_BOOL* nimErr_;
 	nimfr_("[]=", "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/pure/collections/tables.nim");
@@ -6700,7 +6700,7 @@ NIM_BOOL* nimErr_;
 	}BeforeRet_: ;
 	popFrame();
 }
-N_LIB_PRIVATE N_NIMCALL(void, eqcopy___app_u10785)(tyObject_Table__NZJ29bKsNkpKOymJNw10EvA** dest_p0, tyObject_Table__NZJ29bKsNkpKOymJNw10EvA* src_p1) {
+N_LIB_PRIVATE N_NIMCALL(void, eqcopy___app_u11015)(tyObject_Table__NZJ29bKsNkpKOymJNw10EvA** dest_p0, tyObject_Table__NZJ29bKsNkpKOymJNw10EvA* src_p1) {
 	{
 		if (!src_p1) goto LA3_;
 		nimIncRef(src_p1);
@@ -6717,7 +6717,7 @@ LA3_: ;
 LA8_: ;
 	(*dest_p0) = src_p1;
 }
-N_LIB_PRIVATE N_NIMCALL(NIM_BOOL, hasKey__app_u13767)(tyObject_Table__NZJ29bKsNkpKOymJNw10EvA* t_p0, NimStringV2 key_p1) {
+N_LIB_PRIVATE N_NIMCALL(NIM_BOOL, hasKey__app_u13955)(tyObject_Table__NZJ29bKsNkpKOymJNw10EvA* t_p0, NimStringV2 key_p1) {
 	NIM_BOOL result;
 NIM_BOOL* nimErr_;
 	nimfr_("hasKey", "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/pure/collections/tables.nim");
@@ -6818,7 +6818,7 @@ LA3_: ;
 	popFrame();
 	return result;
 }
-N_LIB_PRIVATE N_NIMCALL(NimStringV2*, X5BX5D___app_u13914)(tyObject_Table__NZJ29bKsNkpKOymJNw10EvA* t_p0, NimStringV2 key_p1) {
+N_LIB_PRIVATE N_NIMCALL(NimStringV2*, X5BX5D___app_u14102)(tyObject_Table__NZJ29bKsNkpKOymJNw10EvA* t_p0, NimStringV2 key_p1) {
 	NimStringV2* result;
 NIM_BOOL* nimErr_;
 	nimfr_("[]", "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/pure/collections/tables.nim");

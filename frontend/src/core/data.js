@@ -1,15 +1,14 @@
 export const topNavigation = [
-  { route: "admin-dashboard", label: "Painel", icon: "▦" },
-  { route: "admin-works", label: "Obras", icon: "▤" },
-  { route: "admin-purchases", label: "Compras", icon: "▣" },
-  { route: "admin-visits", label: "Visitas", icon: "⌖" },
-  { route: "admin-finance", label: "Financeiro", icon: "R$" },
-  { route: "admin-rh", label: "RH", icon: "◇" },
-  { route: "admin-settings", label: "Administração", icon: "⚙" },
+  { route: "admin-dashboard", label: "Painel", icon: "dashboard" },
+  { route: "admin-works", label: "Obras", icon: "works" },
+  { route: "admin-purchases", label: "Compras", icon: "purchases" },
+  { route: "admin-visits", label: "Visitas", icon: "visits" },
+  { route: "admin-rh", label: "RH", icon: "people" },
 ];
 
 export const routes = [
   ...topNavigation.map((item) => ({ ...item, mode: "admin", parent: item.route })),
+  { route: "admin-settings", label: "Configurações", mode: "admin", parent: "admin-settings" },
   { route: "admin-add-work", label: "Adicionar obra", mode: "admin", parent: "admin-works" },
   { route: "admin-work-overview", label: "Visão geral", mode: "admin", parent: "admin-works", workRoute: true },
   { route: "admin-work-access", label: "Acessos do encarregado", mode: "admin", parent: "admin-works", workRoute: true },
@@ -24,11 +23,14 @@ export const routes = [
   { route: "admin-diagram-library", label: "Modelos de diagramas", mode: "admin", parent: "admin-settings" },
   { route: "admin-help", label: "Manual", mode: "admin", parent: "admin-settings" },
   { route: "admin-data-transfer", label: "Importar e exportar", mode: "admin", parent: "admin-settings" },
-  { route: "admin-access-config", label: "Configuração de acesso", mode: "admin", parent: "admin-settings" },
+  { route: "admin-access-config", label: "Configuração de login", mode: "admin", parent: "admin-settings" },
   { route: "admin-login", label: "Acesso", mode: "admin", parent: "admin-login" },
 ];
 
 export const subNavigation = {
+  "admin-dashboard": [
+    { route: "admin-dashboard", label: "Painel executivo" },
+  ],
   "admin-works": [
     { route: "admin-works", label: "Mapa e obras" },
     { route: "admin-add-work", label: "Adicionar obra" },
@@ -44,11 +46,22 @@ export const subNavigation = {
     { route: "admin-work-measurement", label: "Medição" },
   ],
   "admin-settings": [
-    { route: "admin-settings", label: "Visão administrativa" },
+    { route: "admin-settings", label: "Central administrativa" },
+    { route: "admin-mobile-platform", label: "Plataforma mobile" },
+    { route: "admin-access", label: "Acessos de campo" },
     { route: "admin-diagram-library", label: "Modelos de diagramas" },
     { route: "admin-help", label: "Manual" },
     { route: "admin-data-transfer", label: "Importar e exportar" },
-    { route: "admin-access-config", label: "Configuração de acesso" },
+    { route: "admin-access-config", label: "Configuração de login" },
+  ],
+  "admin-purchases": [
+    { route: "admin-purchases", label: "Fluxo de compras" },
+  ],
+  "admin-visits": [
+    { route: "admin-visits", label: "Rotas e visitas" },
+  ],
+  "admin-rh": [
+    { route: "admin-rh", label: "Organograma" },
   ],
 };
 

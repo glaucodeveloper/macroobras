@@ -30,7 +30,7 @@ export function installerScreen() {
   return `<main class="installer-shell first-access-installer">
     <header class="installer-header">
       <div>
-        <strong>MacroObras</strong>
+        <strong>ERP da construção Maximus Empreendimentos</strong>
         <span>Configuração inicial da estação</span>
       </div>
       <small>Executada somente quando ainda não existe usuário administrador</small>
@@ -146,7 +146,7 @@ function finishStep(status) {
   return installerCard("Criar o primeiro administrador", "A instalação será marcada como concluída. Nos próximos acessos a estação abrirá a página de login.", `
     <label class="installer-field"><span>Nome do administrador</span><input data-installer-admin-name value="${esc(status.githubLogin || "Administrador")}"></label>
     <label class="installer-field"><span>Email administrativo</span><input type="email" autocomplete="email" data-installer-admin-email placeholder="admin@empresa.com"></label>
-    <label class="installer-field"><span>Telefone administrativo</span><input type="tel" autocomplete="tel" inputmode="tel" data-installer-admin-phone placeholder="(77) 99999-9999"></label>
+    <label class="installer-field"><span>CPF administrativo</span><input type="text" autocomplete="off" inputmode="numeric" data-installer-admin-cpf placeholder="000.000.000-00"></label>
     <div class="endpoint-card wide"><strong>OKF operacional</strong><p>O OKF será produzido pelo gráfico de elementos de cada obra. Itens, materiais, observações, campos e relações do Cronograma formam a memória operacional.</p></div>
   `);
 }

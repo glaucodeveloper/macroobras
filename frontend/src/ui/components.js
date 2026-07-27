@@ -1,11 +1,14 @@
 import { esc } from "../core/utils.js";
 
+const BRAND_NAME = "ERP da construção Maximus Empreendimentos";
+const BRAND_SHORT = "Maximus Empreendimentos";
+
 export function logo() {
-  return `<span class="brand-symbol"><img class="logo-mark" src="./brand/logo_macroobras_ref.png" alt="MacroObras" /></span>`;
+  return `<span class="brand-symbol"><img class="logo-mark" src="./brand/logo_macroobras_ref.png" alt="${esc(BRAND_SHORT)}" /></span>`;
 }
 
 export function pageHeader(title, subtitle, action = "") {
-  return `<div class="page-header"><div class="page-heading"><span class="page-kicker">MacroObras · Controle operacional</span><h1>${esc(title)}</h1><p>${esc(subtitle)}</p></div>${action ? `<div class="page-actions">${action}</div>` : ""}</div>`;
+  return `<div class="page-header"><div class="page-heading"><span class="page-kicker">${esc(BRAND_NAME)} · Controle operacional</span><h1>${esc(title)}</h1><p>${esc(subtitle)}</p></div>${action ? `<div class="page-actions">${action}</div>` : ""}</div>`;
 }
 
 export function card(title, body, extra = "") {
@@ -25,5 +28,6 @@ export function sidePanel(title, rows) {
 }
 
 export function mobileHeader(title, subtitle = "") {
-  return `<header class="mobile-header">${logo()}<div><span class="mobile-kicker">Operação em campo</span><h1>${esc(title)}</h1>${subtitle ? `<p>${esc(subtitle)}</p>` : ""}</div><b>AF</b></header>`;
+  const heading = title === "MacroObras" ? BRAND_NAME : title;
+  return `<header class="mobile-header">${logo()}<div><span class="mobile-kicker">Operação em campo</span><h1>${esc(heading)}</h1>${subtitle ? `<p>${esc(subtitle)}</p>` : ""}</div><b>ME</b></header>`;
 }

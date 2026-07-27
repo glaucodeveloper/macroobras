@@ -97,12 +97,12 @@ export function adminWorkOverview() {
   return `${workHeader(work, "Visão geral", "Resumo operacional da obra selecionada.", `<button class="btn ghost" data-message="navigate" data-route="admin-work-access">Acessos do encarregado</button><button class="btn ghost" data-message="navigate" data-route="admin-work-diary">Diário de obras</button><button class="btn" data-message="navigate" data-route="admin-work-items">Ver itens</button>`)}
     <section class="overview-grid">
       ${card("Localização", map("work", { workId: work.id }), "map-card single-map")}
-      ${card("Dados da planilha", `<dl class="facts"><div><dt>Cliente</dt><dd>${esc(work.client)}</dd></div><div><dt>Orçamento</dt><dd>${money(work.budget)}</dd></div><div><dt>Pago</dt><dd>${money(work.paid)}</dd></div><div><dt>Origem</dt><dd>${esc(work.source || "Planilha orçamentária")}</dd></div></dl><div class="quick-actions three"><button data-message="navigate" data-route="admin-work-access"><b>Encarregados</b><span>${accessCount} acesso(s) vinculado(s)</span></button><button data-message="navigate" data-route="admin-work-purchases"><b>Compras</b><span>Fluxos por stickers</span></button><button data-message="navigate" data-route="admin-work-diary"><b>Diário de obras</b><span>Registros e evidências</span></button></div>`)}
+      ${card("Dados da planilha", `<dl class="facts"><div><dt>Cliente</dt><dd>${esc(work.client)}</dd></div><div><dt>Orçamento</dt><dd>${money(work.budget)}</dd></div><div><dt>Pago</dt><dd>${money(work.paid)}</dd></div><div><dt>Origem</dt><dd>${esc(work.source || "Planilha orçamentária")}</dd></div></dl><div class="quick-actions three"><button data-message="navigate" data-route="admin-work-access"><b>Encarregados</b><span>${accessCount} acesso(s) vinculado(s)</span></button><button data-message="navigate" data-route="admin-work-diary"><b>Diário de obras</b><span>Registros e evidências</span></button><button data-message="navigate" data-route="admin-work-items"><b>Itens</b><span>Detalhamento da planilha</span></button></div>`)}
     </section>
     <section class="metric-grid compact">
       ${kpi("Itens de execução", String(work.items.length), "descrição + orçamento")}
       ${kpi("Execução", percent(work.progress), work.nextMilestone, "green")}
       ${kpi("Acessos de campo", String(accessCount), "encarregados vinculados", "cyan")}
-      ${kpi("Compras", String(state.purchaseFlows.filter((flow) => flow.workId === work.id).length), "fluxos vinculados", "orange")}
+      ${kpi("Saldo estimado", money(Math.max(0, work.budget - work.paid)), "diferença entre orçamento e pago", "orange")}
     </section>`;
 }

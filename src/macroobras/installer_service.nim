@@ -36,6 +36,9 @@ proc installationCompleted*(): bool =
 proc machineAuthorized(): bool =
   machineAccess(){"GITHUB_MACHINE_TOKEN"}.getStr("").len > 0
 
+proc githubRepositorySlug(): string =
+  getEnv("MACROOBRAS_GITHUB_REPOSITORY", "glaucodeveloper/erp-da-construcao-maximus-empreendimentos")
+
 proc selectedInstallDir(): string =
   let state = jsonOr(installationStatePath(), %*{})
   state{"installDir"}.getStr(getEnv("MACROOBRAS_INSTALL_DIR", appRootDir()))
@@ -111,6 +114,8 @@ proc verifyFtpTransfer(folder, password: string; port: int): bool =
       removeFile(markerPath)
 
 proc startFtp(folder: string): JsonNode =
+  if not envEnabled("MACROOBRAS_ENABLE_FTP", true):
+    return %*{"ftpReady": false, "ftpVerified": false, "mensagem": "FTP desativado nesta estação."}
   if folder.len == 0 or not dirExists(folder):
     return %*{"ftpReady": false, "ftpVerified": false, "mensagem": "A pasta selecionada não existe."}
   stopFtpProcess()
@@ -160,7 +165,7 @@ proc verifyGithubToken(token: string): JsonNode =
   client.headers["User-Agent"] = "MacroObras-Installer"
   try:
     let user = parseJson(client.getContent("https://api.github.com/user"))
-    discard client.getContent("https://api.github.com/repos/glaucodeveloper/macroobras")
+    discard client.getContent("https://api.github.com/repos/" & githubRepositorySlug())
     let login = user{"login"}.getStr("")
     if login.len == 0:
       return %*{"autorizado": false, "mensagem": "O GitHub não retornou a identidade do token."}
@@ -209,6 +214,8 @@ proc ftpStatus(): JsonNode =
   result["ftpVerified"] = %portReachable("127.0.0.1", portInt)
 
 proc restoreConfiguredFtp*() =
+  if not envEnabled("MACROOBRAS_ENABLE_FTP", true):
+    return
   if installationCompleted() and ftpProcess == nil:
     let folder = selectedInstallDir()
     if dirExists(folder):
@@ -272,9 +279,9 @@ proc somenteDigitos(value: string): string =
 
 proc authenticateAdminContactPayload*(payload: JsonNode): JsonNode =
   let email = payload{"email"}.getStr("").strip().toLowerAscii()
-  let telefone = somenteDigitos(payload{"telefone"}.getStr(""))
-  if email.len == 0 or telefone.len < 8:
-    return %*{"autorizado": false, "mensagem": "Informe email e telefone válidos."}
+  let cpf = somenteDigitos(payload{"cpf"}.getStr(payload{"telefone"}.getStr("")))
+  if email.len == 0 or cpf.len < 11:
+    return %*{"autorizado": false, "mensagem": "Informe email e CPF válidos."}
 
   var users = jsonOr(usersPath(), %*[])
   if users.kind != JArray:
@@ -285,21 +292,79 @@ proc authenticateAdminContactPayload*(payload: JsonNode): JsonNode =
     let userEmail = user{"email"}.getStr("").strip().toLowerAscii()
     if userEmail != email:
       continue
-    let storedPhone = somenteDigitos(user{"telefone"}.getStr(""))
-    if storedPhone.len > 0 and storedPhone != telefone:
-      return %*{"autorizado": false, "mensagem": "Telefone diferente do cadastro administrativo."}
-    if storedPhone.len == 0:
-      user["telefone"] = %payload{"telefone"}.getStr("").strip()
+    let storedCpf = somenteDigitos(user{"cpf"}.getStr(user{"telefone"}.getStr("")))
+    if storedCpf.len > 0 and storedCpf != cpf:
+      return %*{"autorizado": false, "mensagem": "CPF diferente do cadastro administrativo."}
+    if storedCpf.len == 0:
+      user["cpf"] = %payload{"cpf"}.getStr(payload{"telefone"}.getStr("")).strip()
       writeJson(usersPath(), users)
     return %*{
       "autorizado": true,
       "nome": user{"nome"}.getStr("Administrador"),
       "email": user{"email"}.getStr(email),
+      "cpf": user{"cpf"}.getStr(payload{"cpf"}.getStr(payload{"telefone"}.getStr(""))),
       "telefone": user{"telefone"}.getStr(payload{"telefone"}.getStr("")),
-      "mensagem": "Acesso autorizado por email e telefone."
+      "mensagem": "Acesso autorizado por email e CPF."
     }
 
   %*{"autorizado": false, "mensagem": "Email não cadastrado para acesso administrativo."}
+
+proc salvarConfiguracaoLoginPayload*(payload: JsonNode): JsonNode =
+  let email = payload{"email"}.getStr("").strip().toLowerAscii()
+  let cpf = payload{"cpf"}.getStr("").strip()
+  let name = payload{"name"}.getStr("Administrador").strip()
+  if email.len == 0 or somenteDigitos(cpf).len < 11:
+    return %*{"salvo": false, "mensagem": "Informe email e CPF válidos para salvar o login administrativo."}
+
+  var users = jsonOr(usersPath(), %*[])
+  if users.kind != JArray:
+    users = newJArray()
+
+  var updated = false
+  if users.len == 0:
+    users.add(%*{
+      "id": "admin-1",
+      "nome": name,
+      "email": email,
+      "cpf": cpf,
+      "telefone": "",
+      "githubLogin": "Administrador",
+      "papel": "administrador",
+      "criadoEm": now().format("yyyy-MM-dd'T'HH:mm:sszzz")
+    })
+    updated = true
+  else:
+    for index in 0 ..< users.len:
+      let user = users[index]
+      if user{"papel"}.getStr("administrador") == "administrador" or index == 0:
+        user["nome"] = %name
+        user["email"] = %email
+        user["cpf"] = %cpf
+        if user{"telefone"}.getStr("").len == 0:
+          user["telefone"] = %payload{"telefone"}.getStr("").strip()
+        user["updatedAt"] = %now().format("yyyy-MM-dd'T'HH:mm:sszzz")
+        updated = true
+        break
+
+  if not updated:
+    users.add(%*{
+      "id": "admin-1",
+      "nome": name,
+      "email": email,
+      "cpf": cpf,
+      "telefone": payload{"telefone"}.getStr("").strip(),
+      "githubLogin": "Administrador",
+      "papel": "administrador",
+      "criadoEm": now().format("yyyy-MM-dd'T'HH:mm:sszzz")
+    })
+
+  writeJson(usersPath(), users)
+  %*{
+    "salvo": true,
+    "email": email,
+    "cpf": cpf,
+    "mensagem": "Login administrativo atualizado."
+  }
 
 proc selectInstallFolderPayload*(): JsonNode =
   let folder = chooseFolder()
@@ -336,6 +401,7 @@ proc executeInstallerPayload*(payload: JsonNode): JsonNode =
     "id": "admin-1",
     "nome": payload{"adminName"}.getStr(access{"GITHUB_MACHINE_LOGIN"}.getStr("Administrador")),
     "email": payload{"adminEmail"}.getStr(""),
+    "cpf": payload{"adminCpf"}.getStr(""),
     "telefone": payload{"adminPhone"}.getStr(""),
     "githubLogin": access{"GITHUB_MACHINE_LOGIN"}.getStr(""),
     "papel": "administrador",

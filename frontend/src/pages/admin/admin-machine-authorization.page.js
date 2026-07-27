@@ -95,7 +95,7 @@ export function adminMachineAuthorization() {
   return `<main class="admin-login-page machine-authorization-page">
     <form class="admin-login-card machine-authorization-card" data-auth-form="machine">
       <input class="credential-username-proxy" type="text" name="username" autocomplete="username" value="macroobras-machine" aria-label="Identificador da máquina" tabindex="-1" readonly>
-      <div class="login-brand"><strong>MacroObras</strong><span>Autorização inicial da máquina</span></div>
+      <div class="login-brand"><strong>ERP da construção Maximus Empreendimentos</strong><span>Autorização inicial da máquina</span></div>
       <h1>Autorizar esta estação</h1>
       <p>Informe o token GitHub uma única vez na primeira inicialização desta máquina. Depois disso, o app abre direto na tela normal de acesso.</p>
       <label class="login-field"><span>Token GitHub da máquina</span><input type="password" name="github-machine-token" autocomplete="current-password" data-admin-github-token placeholder="github_pat_… ou ghp_…" required></label>

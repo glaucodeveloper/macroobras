@@ -1,4 +1,17 @@
+export async function clearMacroObrasSession(page) {
+  await page.addInitScript(() => {
+    localStorage.clear();
+    sessionStorage.clear();
+  });
+}
+
+function shouldMockBackend() {
+  return ["1", "true", "yes"].includes(String(process.env.MOCK_MACROOBRAS_BACKEND || "").toLowerCase());
+}
+
 export async function mockBackend(page) {
+  if (!shouldMockBackend()) return;
+
   await page.route("http://127.0.0.1:7654/rpc/**", async (route) => {
     const method = new URL(route.request().url()).pathname.split("/").pop();
     const responses = {
@@ -67,15 +80,17 @@ export async function mockBackend(page) {
       },
     };
 
+    if (responses[method]) {
+      await route.fulfill({
+        contentType: "application/json",
+        body: JSON.stringify(responses[method]),
+      });
+      return;
+    }
+
     await route.fulfill({
       contentType: "application/json",
-      body: JSON.stringify({ result: responses[method] || { data: {} } }),
+      body: JSON.stringify({ data: { message: `mock sem resposta para ${method}` } }),
     });
-  });
-}
-
-export async function clearMacroObrasSession(page) {
-  await page.addInitScript(() => {
-    sessionStorage.clear();
   });
 }

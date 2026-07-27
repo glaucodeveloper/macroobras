@@ -102,6 +102,9 @@ proc autenticarAdministradorToken(payloadJson: string): string {.expose.} =
 proc autenticarAdministradorContato(payloadJson: string): string {.expose.} =
   ok(authenticateAdminContactPayload(parseJson(payloadJson)))
 
+proc salvarConfiguracaoLogin(payloadJson: string): string {.expose.} =
+  ok(salvarConfiguracaoLoginPayload(parseJson(payloadJson)))
+
 proc atualizarTokenMaquina(payloadJson: string): string {.expose.} =
   ok(updateMachineTokenPayload(parseJson(payloadJson)))
 
@@ -160,15 +163,17 @@ proc carregarConfiguracaoMobileLocal() =
 
 carregarConfiguracaoMobileLocal()
 configureLinuxWebviewEnvironment()
-startCollaboratorNgrok()
-restoreConfiguredFtp()
-restoreRequestedCollaboratorLan()
+if envEnabled("MACROOBRAS_ENABLE_NGROK", true):
+  startCollaboratorNgrok()
+if envEnabled("MACROOBRAS_ENABLE_FTP", true):
+  restoreConfiguredFtp()
+if envEnabled("MACROOBRAS_ENABLE_LAN_PROXY", true):
+  restoreRequestedCollaboratorLan()
 
 startDesktopApp(
-  title = "MacroObras",
+  title = "ERP da construção Maximus Empreendimentos",
   width = 1448,
   height = 1086,
-  devUrl = "http://localhost:5173",
   prodDir = "../frontend/dist",
   corsOrigins = "*",
   port = AppPort,

@@ -99,6 +99,55 @@ function initialEncarregadoAccesses() {
   return clone(mobileUsers);
 }
 
+function initialCustomization() {
+  const defaults = {
+    stationName: "ERP da construção Maximus Empreendimentos",
+    stationSubtitle: "Gestão operacional da construção",
+    primaryColor: "#0a61d8",
+    theme: "system",
+    density: "comfortable",
+    sidebarBehavior: "hover",
+    adminLoginEmail: "icaroglaucooliveira@gmail.com",
+    adminLoginCpf: "123.456.789-09",
+  };
+
+  try {
+    const saved = JSON.parse(localStorage.getItem("macroobras.customization") || "null");
+    if (saved && typeof saved === "object") {
+      return { ...defaults, ...saved };
+    }
+  } catch {
+    // Mantém os padrões quando a personalização salva estiver inválida.
+  }
+
+  return defaults;
+}
+
+function initialDiagramModels() {
+  try {
+    const saved = JSON.parse(localStorage.getItem("macroobras.diagramModels") || "null");
+    return saved && typeof saved === "object" ? saved : {};
+  } catch {
+    return {};
+  }
+}
+
+function initialDiaryNotes() {
+  try {
+    const saved = JSON.parse(localStorage.getItem("macroobras.diaryNotes") || "null");
+    return saved && typeof saved === "object" ? saved : {};
+  } catch {
+    return {};
+  }
+}
+
+function initialSidebarCollapsed() {
+  const saved = sessionStorage.getItem("macroobras.sidebarCollapsed");
+  return saved == null ? true : saved === "true";
+}
+
+const persistedDiagramModels = initialDiagramModels();
+
 export const state = {
   route: initialRoute(),
   toast: "",
@@ -116,7 +165,10 @@ export const state = {
   authUser: null,
   userMenuOpen: false,
   selectedWorkId: initialSelectedWorkId(),
+  workFilter: sessionStorage.getItem("macroobras.workFilter") || "",
   selectedBudgetItemId: "",
+  selectedDiaryEntryId: sessionStorage.getItem("macroobras.selectedDiaryEntryId") || "",
+  selectedDiaryDetailId: sessionStorage.getItem("macroobras.selectedDiaryDetailId") || "",
   selectedPurchaseFlowId: purchaseFlows[0]?.id || "",
   selectedVisitPlanId: visitPlans[0]?.id || "",
   mobileAuthenticated: initialMobileAuthenticated(),
@@ -129,14 +181,17 @@ export const state = {
   importFileName: "",
   importPreviewReady: false,
   deliveryPhotoName: "",
+  diaryNotes: initialDiaryNotes(),
   visitDurations: {},
-  sidebarCollapsed: sessionStorage.getItem("macroobras.sidebarCollapsed") === "true",
+  sidebarCollapsed: initialSidebarCollapsed(),
   workAddress: "",
   workCoordinates: null,
   selectedInstallFolder: "",
   ftpStatus: null,
-  diagramModels: {},
-  rhModel: null,
+  diagramModels: persistedDiagramModels,
+  selectedDiagramNode: null,
+  rhModel: persistedDiagramModels["rh-main"] || null,
+  customization: initialCustomization(),
   visitRoute: {
     stops: [],
     segments: [],
@@ -182,13 +237,20 @@ export function updateState(patch) {
   } else {
     sessionStorage.setItem("macroobras.route", state.route);
     sessionStorage.setItem("macroobras.selectedWorkId", state.selectedWorkId || "");
+    sessionStorage.setItem("macroobras.selectedDiaryEntryId", state.selectedDiaryEntryId || "");
+    sessionStorage.setItem("macroobras.selectedDiaryDetailId", state.selectedDiaryDetailId || "");
+    sessionStorage.setItem("macroobras.workFilter", state.workFilter || "");
     sessionStorage.setItem("macroobras.sidebarCollapsed", String(Boolean(state.sidebarCollapsed)));
     localStorage.setItem("macroobras.machineAuthorized", String(Boolean(state.machineAuthorized)));
     sessionStorage.setItem("macroobras.machineAuthorized", String(Boolean(state.machineAuthorized)));
     sessionStorage.setItem("macroobras.adminAuthenticated", String(Boolean(state.authenticated)));
   }
   localStorage.setItem("macroobras.encarregadoAccesses", JSON.stringify(state.encarregadoAccesses || []));
+  localStorage.setItem("macroobras.customization", JSON.stringify(state.customization || {}));
+  localStorage.setItem("macroobras.diagramModels", JSON.stringify(state.diagramModels || {}));
+  localStorage.setItem("macroobras.diaryNotes", JSON.stringify(state.diaryNotes || {}));
   renderCallback();
+  document.dispatchEvent(new CustomEvent("macroobras:state-change", { detail: { state } }));
 }
 
 export function dependencyMessage() {

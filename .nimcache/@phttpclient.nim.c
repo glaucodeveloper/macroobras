@@ -377,8 +377,8 @@ N_LIB_PRIVATE N_NIMCALL(void, eqsink___pureZnet_u1643)(tyObject_SslContextcolonO
 N_LIB_PRIVATE N_NIMCALL(tyObject_SslContextcolonObjectType___pd9bO6tUAtcKKT9aMuFhESuA*, newContext__pureZnet_u1483)(tyEnum_SslProtVersion__ff1D2UVTWDyPPErk3tnxBw protVersion_p0, tyEnum_SslCVerifyMode__EckjZXDIcbxFAfBlr6il2w verifyMode_p1, NimStringV2 certFile_p2, NimStringV2 keyFile_p3, NimStringV2 cipherList_p4, NimStringV2 caDir_p5, NimStringV2 caFile_p6, NimStringV2 ciphersuites_p7);
 N_LIB_PRIVATE N_NIMCALL(void, eqdestroy___pureZnet_u1632)(tyObject_SslContextcolonObjectType___pd9bO6tUAtcKKT9aMuFhESuA* dest_p0);
 N_LIB_PRIVATE N_NIMCALL(void, failedAssertImpl__stdZassertions_u95)(NimStringV2 msg_p0);
-N_LIB_PRIVATE N_NIMCALL(tyObject_ResponsecolonObjectType___FjFAp9c9b0HtvOqbUknF686A*, get__macroobrasZinstaller95service_u251)(tyObject_HttpClientBasecolonObjectType___iLFc8quHZ1O3PTmsKy9bTSg* client_p0, NimStringV2 url_p1);
-N_LIB_PRIVATE N_NIMCALL(tyObject_ResponsecolonObjectType___FjFAp9c9b0HtvOqbUknF686A*, request__macroobrasZinstaller95service_u258)(tyObject_HttpClientBasecolonObjectType___iLFc8quHZ1O3PTmsKy9bTSg* client_p0, NimStringV2 url_p1, tyEnum_HttpMethod__8E0cnqA4t7LOGc109a8NMBg httpMethod_p2, NimStringV2 body_p3, tyObject_HttpHeaderscolonObjectType___q5RmldX8ngqdFdLFcD77Rw* headers_p4, tyObject_MultipartDatacolonObjectType___SwQmLgnFnBAQyk2bVUyVCw* multipart_p5);
+N_LIB_PRIVATE N_NIMCALL(tyObject_ResponsecolonObjectType___FjFAp9c9b0HtvOqbUknF686A*, get__macroobrasZinstaller95service_u269)(tyObject_HttpClientBasecolonObjectType___iLFc8quHZ1O3PTmsKy9bTSg* client_p0, NimStringV2 url_p1);
+N_LIB_PRIVATE N_NIMCALL(tyObject_ResponsecolonObjectType___FjFAp9c9b0HtvOqbUknF686A*, request__macroobrasZinstaller95service_u276)(tyObject_HttpClientBasecolonObjectType___iLFc8quHZ1O3PTmsKy9bTSg* client_p0, NimStringV2 url_p1, tyEnum_HttpMethod__8E0cnqA4t7LOGc109a8NMBg httpMethod_p2, NimStringV2 body_p3, tyObject_HttpHeaderscolonObjectType___q5RmldX8ngqdFdLFcD77Rw* headers_p4, tyObject_MultipartDatacolonObjectType___SwQmLgnFnBAQyk2bVUyVCw* multipart_p5);
 static N_INLINE(void, nimZeroMem)(void* p_p0, NI size_p1);
 static N_INLINE(void, nimSetMem__system_u2188)(void* a_p0, int v_p1, NI size_p2);
 N_LIB_PRIVATE N_NIMCALL(NIM_BOOL, contains__pureZstrutils_u1904)(NimStringV2 s_p0, tySet_tyChar__nmiMWKVIe46vacnhAFrQvw chars_p1);
@@ -4428,7 +4428,7 @@ N_LIB_PRIVATE N_NIMCALL(void, eqsink___pureZhttpclient_u3769)(tyObject_Responsec
 	}
 LA4_: ;
 }
-N_LIB_PRIVATE N_NIMCALL(tyObject_ResponsecolonObjectType___FjFAp9c9b0HtvOqbUknF686A*, request__macroobrasZinstaller95service_u258)(tyObject_HttpClientBasecolonObjectType___iLFc8quHZ1O3PTmsKy9bTSg* client_p0, NimStringV2 url_p1, tyEnum_HttpMethod__8E0cnqA4t7LOGc109a8NMBg httpMethod_p2, NimStringV2 body_p3, tyObject_HttpHeaderscolonObjectType___q5RmldX8ngqdFdLFcD77Rw* headers_p4, tyObject_MultipartDatacolonObjectType___SwQmLgnFnBAQyk2bVUyVCw* multipart_p5) {
+N_LIB_PRIVATE N_NIMCALL(tyObject_ResponsecolonObjectType___FjFAp9c9b0HtvOqbUknF686A*, request__macroobrasZinstaller95service_u276)(tyObject_HttpClientBasecolonObjectType___iLFc8quHZ1O3PTmsKy9bTSg* client_p0, NimStringV2 url_p1, tyEnum_HttpMethod__8E0cnqA4t7LOGc109a8NMBg httpMethod_p2, NimStringV2 body_p3, tyObject_HttpHeaderscolonObjectType___q5RmldX8ngqdFdLFcD77Rw* headers_p4, tyObject_MultipartDatacolonObjectType___SwQmLgnFnBAQyk2bVUyVCw* multipart_p5) {
 	tyObject_ResponsecolonObjectType___FjFAp9c9b0HtvOqbUknF686A* result;
 	tyObject_Uri__isNuKToAewCVNI5gCr1q5Q url_2;
 	tyObject_Uri__isNuKToAewCVNI5gCr1q5Q lastURL_1;
@@ -4602,13 +4602,13 @@ LA37_: ;
 	popFrame();
 	return result;
 }
-N_LIB_PRIVATE N_NIMCALL(tyObject_ResponsecolonObjectType___FjFAp9c9b0HtvOqbUknF686A*, get__macroobrasZinstaller95service_u251)(tyObject_HttpClientBasecolonObjectType___iLFc8quHZ1O3PTmsKy9bTSg* client_p0, NimStringV2 url_p1) {
+N_LIB_PRIVATE N_NIMCALL(tyObject_ResponsecolonObjectType___FjFAp9c9b0HtvOqbUknF686A*, get__macroobrasZinstaller95service_u269)(tyObject_HttpClientBasecolonObjectType___iLFc8quHZ1O3PTmsKy9bTSg* client_p0, NimStringV2 url_p1) {
 	tyObject_ResponsecolonObjectType___FjFAp9c9b0HtvOqbUknF686A* result;
 NIM_BOOL* nimErr_;
 	nimfr_("get", "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/pure/httpclient.nim");
 {nimErr_ = nimErrorFlag();
 	result = NIM_NIL;
-	nimlf_(1334, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/pure/httpclient.nim");	result = request__macroobrasZinstaller95service_u258(client_p0, url_p1, ((tyEnum_HttpMethod__8E0cnqA4t7LOGc109a8NMBg)1), TM__9brjMmGFaIx4wBkLyxxXZxw_268, ((tyObject_HttpHeaderscolonObjectType___q5RmldX8ngqdFdLFcD77Rw*) NIM_NIL), ((tyObject_MultipartDatacolonObjectType___SwQmLgnFnBAQyk2bVUyVCw*) NIM_NIL));
+	nimlf_(1334, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/pure/httpclient.nim");	result = request__macroobrasZinstaller95service_u276(client_p0, url_p1, ((tyEnum_HttpMethod__8E0cnqA4t7LOGc109a8NMBg)1), TM__9brjMmGFaIx4wBkLyxxXZxw_268, ((tyObject_HttpHeaderscolonObjectType___q5RmldX8ngqdFdLFcD77Rw*) NIM_NIL), ((tyObject_MultipartDatacolonObjectType___SwQmLgnFnBAQyk2bVUyVCw*) NIM_NIL));
 	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}BeforeRet_: ;
 	popFrame();
@@ -4692,7 +4692,7 @@ LA1_: ;
 	popFrame();
 	return result;
 }
-N_LIB_PRIVATE N_NIMCALL(NimStringV2, getContent__macroobrasZinstaller95service_u244)(tyObject_HttpClientBasecolonObjectType___iLFc8quHZ1O3PTmsKy9bTSg* client_p0, NimStringV2 url_p1) {
+N_LIB_PRIVATE N_NIMCALL(NimStringV2, getContent__macroobrasZinstaller95service_u262)(tyObject_HttpClientBasecolonObjectType___iLFc8quHZ1O3PTmsKy9bTSg* client_p0, NimStringV2 url_p1) {
 	NimStringV2 result;
 	tyObject_ResponsecolonObjectType___FjFAp9c9b0HtvOqbUknF686A* resp_1;
 NIM_BOOL* nimErr_;
@@ -4700,7 +4700,7 @@ NIM_BOOL* nimErr_;
 {nimErr_ = nimErrorFlag();
 	result.len = 0; result.p = NIM_NIL;
 	resp_1 = NIM_NIL;
-	nimln_(1339);	resp_1 = get__macroobrasZinstaller95service_u251(client_p0, url_p1);
+	nimln_(1339);	resp_1 = get__macroobrasZinstaller95service_u269(client_p0, url_p1);
 	if (NIM_UNLIKELY(*nimErr_)) goto LA1_;
 	nimln_(1340);	nimln_(1337);	nimln_(1340);	result = responseContent__pureZhttpclient_u6118(resp_1);
 	if (NIM_UNLIKELY(*nimErr_)) goto LA1_;
