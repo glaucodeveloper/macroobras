@@ -19,7 +19,7 @@ if current_ngrok_missing; then
 fi
 
 sh frontend/build.sh
-nim c -d:release -d:macroobrasEmbedNgrok --path:../../obra_macroobras_design_types_tests_bundle/src src/app.nim
+nim c -d:ssl -d:release -d:macroobrasEmbedNgrok src/app.nim
 
 echo "Single build complete: $ROOT_DIR/src/app"
 

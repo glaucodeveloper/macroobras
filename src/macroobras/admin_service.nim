@@ -1,7 +1,6 @@
 import std/[json, options]
 
-import obra_core
-
+import ./obra_core
 import ./config
 
 proc criarServicoAdministrativoPayload*(payload: JsonNode): JsonNode =

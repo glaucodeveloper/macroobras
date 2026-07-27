@@ -1,23 +1,12 @@
 import { mobileRoutes } from "./data.js";
-import { adminAddWork, adminCalendar, adminElements, adminMeasurement, adminMobileAccess } from "../screens/admin/index.js";
-import { mobileDay, mobileDiary, mobileHome, mobileRoutine } from "../screens/mobile/index.js";
-
-const routeMap = {
-  "admin-add-work": adminAddWork,
-  "admin-elements": adminElements,
-  "admin-mobile-access": adminMobileAccess,
-  "admin-calendar": adminCalendar,
-  "admin-measurement": adminMeasurement,
-  "mobile-home": mobileHome,
-  "mobile-routine": mobileRoutine,
-  "mobile-day": mobileDay,
-  "mobile-diary": mobileDiary,
-};
+import { renderRegisteredPage } from "../pages/route-registry.js";
 
 export function renderRoute(route) {
-  return (routeMap[route] || adminAddWork)();
+  return renderRegisteredPage(route);
 }
 
 export function normalizedMobileRoute(route) {
-  return mobileRoutes.some((item) => item.route === route) ? route : "mobile-home";
+  return mobileRoutes.some((item) => item.route === route)
+    ? route
+    : "mobile-home";
 }

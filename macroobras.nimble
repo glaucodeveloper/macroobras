@@ -25,10 +25,10 @@ task build, "Single production build with frontend and embedded current-platform
   exec "sh scripts/build.sh"
 
 task test, "Compile backend without opening desktop window":
-  exec "nim check --path:../../obra_macroobras_design_types_tests_bundle/src src/app.nim"
+ exec "nim c -d:sslheck src/app.nim"
 
 task testEmbedNgrok, "Compile-check backend with embedded ngrok for the current platform":
-  exec "nim check -d:macroobrasEmbedNgrok --path:../../obra_macroobras_design_types_tests_bundle/src src/app.nim"
+ exec "nim c -d:sslheck -d:macroobrasEmbedNgrok src/app.nim"
 
 task dev, "Build frontend and start the Jazzy Desktop backend":
   exec "sh scripts/run_app.sh"

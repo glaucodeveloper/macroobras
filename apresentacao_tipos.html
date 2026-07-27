@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="macroobras">
+<head>
+  <meta charset="UTF-8">
+  <title>Apresentação Executiva - Estação MacroObras</title>
+  <style>
+    :root {
+      --blue: #0074BD;
+      --blue-dark: #03588C;
+      --blue-soft: #E7F2FA;
+      --bg: #F5F7FA;
+      --card: #FFFFFF;
+      --card-soft: #FAFBFC;
+      --text: #1F2937;
+      --muted: #6B7280;
+      --border: #D7DFE8;
+      --success: #1E9E66;
+      --alert: #E67E22;
+    }
+
+    @page {
+      size: A4 landscape;
+      margin: 10mm;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+      font-size: 13px;
+      line-height: 1.5;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .print-toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+      background: #1e293b;
+      color: white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+
+    .print-toolbar span {
+      font-weight: 600;
+    }
+
+    .print-toolbar button {
+      background: var(--blue);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .print-toolbar button:hover {
+      background: #025d96;
+    }
+
+    .document {
+      max-width: 275mm;
+      margin: 0 auto;
+      padding: 10mm 0;
+    }
+
+    .sheet {
+      background: var(--card);
+      border: 1px solid var(--border);
+      margin-bottom: 12mm;
+      padding: 12mm;
+      border-radius: 12px;
+      position: relative;
+      height: 190mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      page-break-inside: avoid;
+      break-inside: avoid;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    }
+
+    .sheet.cover {
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(135deg, #ffffff 0%, #edf7ff 100%);
+    }
+
+    .print-safe {
+      position: absolute;
+      inset: 6mm;
+      border: 1px dashed #E2E8F0;
+      border-radius: 8px;
+      pointer-events: none;
+    }
+
+    /* Cabeçalho de Slide */
+    .slide-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid var(--blue-soft);
+      padding-bottom: 4mm;
+      margin-bottom: 6mm;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-fallback {
+      background: var(--blue);
+      color: white;
+      font-weight: 900;
+      font-size: 20px;
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 4px rgba(0,116,189,0.3);
+    }
+
+    .kicker {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--blue);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    h2 {
+      color: var(--blue-dark);
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .slide-number {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+      background: var(--blue-soft);
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+
+    /* Conteúdo dos Slides */
+    .slide-body {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* Grid Layouts */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8mm;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6mm;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 5mm;
+    }
+
+    /* Componentes Visuais */
+    .card-visual {
+      background: #fafbfc;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 6mm;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+    }
+
+    .card-visual:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      border-color: var(--blue);
+    }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--blue-dark);
+      margin-bottom: 3mm;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      background: var(--blue-soft);
+      color: var(--blue);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+    }
+
+    .card-desc {
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 4mm;
+    }
+
+    .badge-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .badge {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: #e2e8f0;
+      color: #475569;
+      text-transform: uppercase;
+    }
+
+    .badge.primary {
+      background: var(--blue-soft);
+      color: var(--blue);
+    }
+
+    .badge.success {
+      background: #e6f4ea;
+      color: var(--success);
+    }
+
+    .badge.alert {
+      background: #ffebd9;
+      color: var(--alert);
+    }
+
+    /* Fluxos e Setas Visuais */
+    .flow-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 4mm;
+    }
+
+    .flow-step {
+      flex: 1;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 5mm;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+
+    .flow-arrow {
+      font-size: 24px;
+      color: var(--blue);
+      font-weight: bold;
+    }
+
+    /* Rodapé do Slide */
+    .slide-footer {
+      border-top: 1px solid var(--border);
+      padding-top: 4mm;
+      margin-top: 6mm;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .footer-right {
+      font-weight: 700;
+      color: var(--blue-dark);
+    }
+
+    /* Capa Personalizada */
+    .cover h1 {
+      font-size: 36px;
+      color: var(--blue-dark);
+      font-weight: 800;
+      margin-bottom: 4mm;
+      letter-spacing: -0.5px;
+    }
+
+    .cover p {
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 160mm;
+      margin: 0 auto 8mm;
+    }
+
+    .cover-badge {
+      display: inline-block;
+      background: var(--blue-soft);
+      color: var(--blue);
+      font-weight: 700;
+      padding: 6px 16px;
+      border-radius: 30px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 6mm;
+    }
+
+    /* Visualização do Fluxo de Evidências por Câmera */
+    .camera-flux {
+      display: grid;
+      grid-template-columns: 2fr 1fr 2fr;
+      gap: 15px;
+      align-items: center;
+      background: #fafbfc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 6mm;
+    }
+
+    .camera-frame {
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      background: #ffffff;
+      padding: 4mm;
+      text-align: center;
+    }
+
+    .camera-lens {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #f1f5f9;
+      border: 3px solid var(--blue);
+      margin: 0 auto 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    @media print {
+      .print-toolbar {
+        display: none;
+      }
+      body {
+        background: #fff;
+      }
+      .sheet {
+        border: none;
+        box-shadow: none;
+        padding: 0;
+        margin: 0;
+        page-break-after: always;
+        break-after: page;
+        height: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Barra de Ferramentas de Impressão -->
+  <div class="print-toolbar">
+    <span>Visualização de Apresentação A4 (Modo Paisagem)</span>
+    <button onclick="window.print()">Imprimir / Salvar PDF</button>
+  </div>
+
+  <div class="document">
+
+    <!-- SLIDE 1: CAPA -->
+    <div class="sheet cover">
+      <div class="print-safe"></div>
+      <div class="cover-badge" style="background: var(--blue-soft); color: var(--blue);">Plataforma de Medição de Campo</div>
+      <h1>Estação MacroObras</h1>
+      <p>Gerenciamento integrado de diários de obras, controle de elementos construtivos, rastreamento fotográfico de progresso e sincronização inteligente para mestres de obras.</p>
+      <div style="font-size: 11px; color: var(--muted); margin-top: 10px;">
+        MacroObras Tecnologia &bull; Documento de Diretrizes Operacionais
+      </div>
+    </div>
+
+    <!-- SLIDE 2: OBRAS E ELEMENTOS CONSTRUTIVOS -->
+    <div class="sheet">
+      <div class="print-safe"></div>
+      <div class="slide-header">
+        <div class="brand">
+          <div class="logo-fallback" style="background: var(--blue);">O</div>
+          <div>
+            <span class="kicker">Estruturação Física</span>
+            <h2>Obras & Elementos Construtivos</h2>
+          </div>
+        </div>
+        <div class="slide-number">01 / 04</div>
+      </div>
+
+      <div class="slide-body">
+        <p style="margin-bottom: 6mm; color: var(--muted); font-size: 13px;">
+          Cada obra administrada no sistema é detalhada como um conjunto de elementos construtivos materiais, estabelecendo regras claras de execução e dependência.
+        </p>
+        <div class="grid-3">
+          <div class="card-visual">
+            <div class="card-title">
+              <span class="card-icon" style="background: var(--blue-soft); color: var(--blue);">🏗️</span>
+              Ficha do Canteiro
+            </div>
+            <div class="card-desc">Cadastro consolidado de cada obra em andamento, agrupando código de registro técnico, nome da obra e dados do cliente contratante.</div>
+            <div class="badge-group">
+              <span class="badge primary">Nome & Código</span>
+              <span class="badge">Registro Geral</span>
+            </div>
+          </div>
+
+          <div class="card-visual">
+            <div class="card-title">
+              <span class="card-icon" style="background: var(--blue-soft); color: var(--blue);">🧱</span>
+              Elementos Construtivos
+            </div>
+            <div class="card-desc">Partes físicas ou etapas que exigem materiais específicos, possuindo descrições de engenharia e listas de insumos vinculadas.</div>
+            <div class="badge-group">
+              <span class="badge primary">Lista de Materiais</span>
+              <span class="badge">Partes Construtivas</span>
+            </div>
+          </div>
+
+          <div class="card-visual">
+            <div class="card-title">
+              <span class="card-icon" style="background: var(--blue-soft); color: var(--blue);">⛓️</span>
+              Regra de Dependências
+            </div>
+            <div class="card-desc">Relações técnicas que definem o que deve ser finalizado para liberar o início das etapas seguintes (ex: escavação libera sapatas).</div>
+            <div class="badge-group">
+              <span class="badge success">Liberações Automáticas</span>
+              <span class="badge">Etapas Travadas</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>MacroObras &bull; Gestão de Elementos de Canteiro</span>
+        <span class="footer-right">MACROOBRAS</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 3: PLANEJAMENTO E ROTINAS -->
+    <div class="sheet">
+      <div class="print-safe"></div>
+      <div class="slide-header">
+        <div class="brand">
+          <div class="logo-fallback" style="background: var(--blue);">P</div>
+          <div>
+            <span class="kicker">Rotina Diária do Mestre</span>
+            <h2>Planejamento de Serviços, Rotinas & Cronogramas</h2>
+          </div>
+        </div>
+        <div class="slide-number">02 / 04</div>
+      </div>
+
+      <div class="slide-body">
+        <p style="margin-bottom: 6mm; color: var(--muted); font-size: 13px;">
+          Otimização do dia de trabalho das equipes de campo por meio do agendamento estruturado de atividades executáveis e rotinas recorrentes.
+        </p>
+
+        <div class="grid-3">
+          <div class="card-visual" style="border-top: 4px solid var(--blue);">
+            <div class="card-title">🛠️ Serviços Executáveis</div>
+            <div class="card-desc">Atividades específicas do dia a dia da obra vinculadas a um elemento construtivo, contendo estimativas de tempo de execução.</div>
+            <div class="badge-group">
+              <span class="badge primary">Alocação de Tempo</span>
+            </div>
+          </div>
+
+          <div class="card-visual" style="border-top: 4px solid var(--success);">
+            <div class="card-title">🔄 Rotinas de Campo</div>
+            <div class="card-desc">Conjuntos de serviços de segurança ou organização repetidos de forma recorrente (ex: DDS matinal, limpeza do canteiro).</div>
+            <div class="badge-group">
+              <span class="badge success">Serviços Recorrentes</span>
+            </div>
+          </div>
+
+          <div class="card-visual" style="border-top: 4px solid var(--alert);">
+            <div class="card-title">📅 Cronograma Semanal</div>
+            <div class="card-desc">Distribuição inteligente das rotinas e serviços em turnos específicos (manhã, tarde ou integral) no calendário do mestre.</div>
+            <div class="badge-group">
+              <span class="badge alert">Alocação por Turnos</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>MacroObras &bull; Organização Operacional</span>
+        <span class="footer-right">MACROOBRAS</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 4: DIÁRIOS DE OBRA E MEDIÇÃO POR FOTO -->
+    <div class="sheet">
+      <div class="print-safe"></div>
+      <div class="slide-header">
+        <div class="brand">
+          <div class="logo-fallback" style="background: var(--blue);">C</div>
+          <div>
+            <span class="kicker">Comprovação Técnica</span>
+            <h2>Diários de Obra & Validação por Câmera</h2>
+          </div>
+        </div>
+        <div class="slide-number">03 / 04</div>
+      </div>
+
+      <div class="slide-body">
+        <p style="margin-bottom: 4mm; color: var(--muted); font-size: 13px;">
+          O progresso da obra é validado mediante o fechamento do diário de campo acompanhado de fotos reais dos serviços concluídos, servindo como prova física de avanço.
+        </p>
+
+        <div class="camera-flux">
+          <div class="camera-frame">
+            <div class="camera-lens">📷</div>
+            <h4 style="color: var(--blue-dark); font-size: 12px; margin-bottom: 2px;">Apontamento de Campo</h4>
+            <p style="font-size: 11px; color: var(--muted);">O mestre fotografa o serviço pronto direto pelo aplicativo de medição.</p>
+          </div>
+
+          <div style="text-align: center;">
+            <div style="font-size: 24px; color: var(--blue);">➔</div>
+            <span style="font-size: 9px; font-weight: 700; text-transform: uppercase; color: var(--muted);">Anexado ao Diário</span>
+          </div>
+
+          <div class="camera-frame" style="border-color: var(--success); background: var(--blue-soft);">
+            <div style="font-size: 24px; margin-bottom: 6px;">📈</div>
+            <h4 style="color: var(--blue-dark); font-size: 12px; margin-bottom: 2px;">Homologação da Medição</h4>
+            <p style="font-size: 11px; color: var(--muted);">A foto atua como prova digital para homologar e liberar o percentual financeiro.</p>
+          </div>
+        </div>
+
+        <div class="grid-2" style="margin-top: 4mm;">
+          <div class="card-visual">
+            <div class="card-title">Diário de Obra Fechado</div>
+            <div class="card-desc">Agrupa o relato das ocorrências do dia, a lista de serviços executados e as fotos de confirmação capturadas pelas equipes autorizadas.</div>
+          </div>
+          <div class="card-visual">
+            <div class="card-title">Comparação de Medição</div>
+            <div class="card-desc">Contraste visual que compara os percentuais físicos aprovados no canteiro com planilhas de orçamentos externos para auditorias.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>MacroObras &bull; Diário e Prova Digital de Progresso</span>
+        <span class="footer-right">MACROOBRAS</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 5: ESTAÇÃO LOCAL E CONECTIVIDADE -->
+    <div class="sheet">
+      <div class="print-safe"></div>
+      <div class="slide-header">
+        <div class="brand">
+          <div class="logo-fallback" style="background: var(--blue);">E</div>
+          <div>
+            <span class="kicker">Conectividade & Inteligência</span>
+            <h2>Estação Local, Sincronização & Llama Local</h2>
+          </div>
+        </div>
+        <div class="slide-number">04 / 04</div>
+      </div>
+
+      <div class="slide-body">
+        <p style="margin-bottom: 6mm; color: var(--muted); font-size: 13px;">
+          Garante a resiliência operacional da estação: a gravação local nunca é bloqueada por queda de internet, enquanto a sincronização ocorre de forma assíncrona.
+        </p>
+
+        <div class="grid-3">
+          <div class="card-visual" style="border-left: 4px solid var(--blue);">
+            <div class="card-title">🔄 Sincronização de Conhecimento</div>
+            <div class="card-desc">
+              O conhecimento consolidado é sincronizado com segurança através de redes dedicadas em segundo plano. Quedas de rede não bloqueiam os registros de campo.
+            </div>
+            <div class="badge-group">
+              <span class="badge primary">Sincronia Assíncrona</span>
+            </div>
+          </div>
+
+          <div class="card-visual" style="border-left: 4px solid var(--success);">
+            <div class="card-title">📂 Repositório de Evidências</div>
+            <div class="card-desc">
+              Área de arquivamento local que armazena de forma estruturada as tabelas de medição, fotos de campo, relatórios diários e notas fiscais de compras de insumos.
+            </div>
+            <div class="badge-group">
+              <span class="badge success">Biblioteca de Mídia</span>
+            </div>
+          </div>
+
+          <div class="card-visual" style="border-left: 4px solid var(--alert);">
+            <div class="card-title">🧠 Assistente Llama Local</div>
+            <div class="card-desc">
+              Um modelo de Inteligência Artificial que roda de forma 100% offline na estação de trabalho para sugerir rotinas ao mestre e analisar documentos de evidências.
+            </div>
+            <div class="badge-group">
+              <span class="badge alert">IA 100% Offline</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>MacroObras &bull; Conectividade e Inteligência Local</span>
+        <span class="footer-right">MACROOBRAS</span>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

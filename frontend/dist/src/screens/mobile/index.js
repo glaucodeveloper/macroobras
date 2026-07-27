@@ -1,205 +1,91 @@
-import { availableWorks, items } from "../../core/data.js";
-import { state, selectedWork } from "../../core/state.js";
+import { items } from "../../core/data.js";
+import { selectedMobileAccess, selectedWork, state } from "../../core/state.js";
 import { esc } from "../../core/utils.js";
 import { card, formStep, mobileHeader } from "../../ui/components.js";
 
-function workSelector() {
-  return card("Selecionar obra", `
-    <div class="work-list">
-      ${availableWorks.map((work) => `<button data-message="select-work" data-work-id="${esc(work.id)}"><strong>${esc(work.name)}</strong><small>${esc(work.code)}</small></button>`).join("")}
-    </div>
-    <div class="info">ⓘ <p>Os fluxos do mestre só ficam disponíveis depois que uma obra estiver selecionada.</p></div>
-  `);
+function accessContext() {
+  const access = selectedMobileAccess();
+  const work = selectedWork();
+  return { access, work };
+}
+
+function invalidAccessGate() {
+  return `${mobileHeader("MacroObras", "Acesso do encarregado")}<section class="mobile-page">
+    ${card("Acesso não identificado", `<p>Esta versão de campo precisa ser aberta pelo botão <b>Abrir como encarregado</b> dentro da página administrativa da obra.</p><div class="info">O endereço deve conter a identificação do acesso e da obra permitida.</div>`)}
+  </section>`;
 }
 
 function loginGate() {
-  return `
-    ${mobileHeader("MacroObras", "Acesso autorizado")}
-    <section class="mobile-page">
-      ${card("Cadastro do colaborador", `
-        <label>Email autorizado</label><input placeholder="email@empresa.com" />
-        <label>CPF autorizado</label><input placeholder="000.000.000-00" />
-        <div class="info">ⓘ <p>O acesso precisa ter sido cadastrado na administração e vinculado a uma obra.</p></div>
-      `)}
-      <button class="mobile-cta" data-message="mobile-login">Entrar</button>
-      ${mobileNav("Painel")}
-    </section>
-  `;
+  const { access, work } = accessContext();
+  if (!access || !work || access.workId !== work.id) return invalidAccessGate();
+  return `${mobileHeader("MacroObras", "Acesso do encarregado de obra")}<section class="mobile-page">
+    <div class="mobile-online-note"><i></i><span>Acesso individual emitido pela administração da obra.</span></div>
+    ${card("Obra autorizada", `<strong>${esc(work.name)}</strong><small>${esc(work.address)}</small><div class="mobile-access-person"><span>Encarregado</span><b>${esc(access.name)}</b></div>`)}
+    ${card("Entrar", `<label>Email autorizado</label><input data-mobile-email type="email" autocomplete="username" placeholder="email@empresa.com"><label>CPF autorizado</label><input data-mobile-cpf inputmode="numeric" autocomplete="off" placeholder="000.000.000-00"><div class="info">Use a identificação cadastrada no organograma de RH e vinculada a esta obra.</div>`)}
+    <button class="mobile-cta" data-message="mobile-login">Entrar nesta obra</button>
+  </section>`;
 }
 
 function dependencyNotice() {
-  return `
-    ${mobileHeader("MacroObras", "Selecione uma obra")}
-    <section class="mobile-page">
-      ${workSelector()}
-      ${mobileNav("Painel")}
-    </section>
-  `;
+  return `${mobileHeader("MacroObras", "Acesso inválido")}<section class="mobile-page">${card("Obra não disponível", `<p>O vínculo administrativo deste acesso não aponta para uma obra ativa.</p>`)}<button class="mobile-cta" data-message="mobile-logout">Voltar ao login</button></section>`;
 }
 
 export function mobileHome() {
   if (!state.mobileAuthenticated) return loginGate();
-
-  const work = selectedWork();
-  if (!work) {
-    return `
-      ${mobileHeader("MacroObras", "Selecione uma obra vinculada")}
-      <section class="mobile-page">
-        ${workSelector()}
-        ${card("Fluxos bloqueados", `<p>Serviços, rotinas, cronograma, diário, compras e recibos dependem de uma obra ativa.</p>`)}
-        ${mobileNav("Painel")}
-      </section>
-    `;
-  }
-
-  const actions = [
-    { label: "Criar rotina", icon: "R", type: "navigate", route: "mobile-routine" },
-    { label: "Cronograma do dia", icon: "C", type: "navigate", route: "mobile-day" },
-    { label: "Registrar diário", icon: "D", type: "navigate", route: "mobile-diary" },
-  ];
-
-  return `
-    ${mobileHeader("MacroObras", work.name)}
-    <section class="mobile-page">
-      ${card("", `<div class="sync"><strong>Hoje, 24 de maio</strong><span>Sincronizado há 2 min</span></div>`)}
-      <div class="action-grid">${actions.map((action) => `<button data-message="${esc(action.type)}" data-route="${esc(action.route || "")}" data-entity="colaborador" data-value="${esc(`${action.label} aberto`)}" data-requires="work"><b>${esc(action.icon)}</b><span>${esc(action.label)}</span></button>`).join("")}</div>
-      ${card("Alertas", `<p>Administração alterou o cronograma da semana.</p><p>Diário de 22/05 enviado para medição.</p><p>3 serviços aguardam evidências.</p>`)}
-      ${mobileNav("Painel")}
-    </section>
-  `;
+  const { access, work } = accessContext();
+  if (!access || !work || access.workId !== work.id) return dependencyNotice();
+  const pendingDeliveries = state.purchaseFlows.filter((flow) => flow.workId === work.id && !flow.delivered).length;
+  return `${mobileHeader("MacroObras", work.name)}<section class="mobile-page">
+    ${card("Acesso ativo", `<div class="mobile-access-summary"><span>Encarregado</span><strong>${esc(access.name)}</strong><small>${esc(access.email)}</small></div><button class="btn ghost full" data-message="mobile-logout">Sair deste acesso</button>`)}
+    ${card("Hoje", `<div class="sync"><strong>23 de julho de 2026</strong><span><i></i> Sincronizado agora</span></div>`)}
+    <div class="action-grid"><button data-message="navigate" data-route="mobile-routine"><b>R</b><span>Criar rotina</span></button><button data-message="navigate" data-route="mobile-day"><b>C</b><span>Cronograma</span></button><button data-message="navigate" data-route="mobile-deliveries"><b>E</b><span>Entregas <em>${pendingDeliveries}</em></span></button><button data-message="navigate" data-route="mobile-diary"><b>D</b><span>Diário</span></button></div>
+    ${card("Alertas", `<p><b>${pendingDeliveries}</b> entrega(s) aguardando foto de comprovação.</p><p>A administração atualizou o cronograma desta obra.</p>`)}
+    ${mobileNav("Painel")}
+  </section>`;
 }
 
 export function mobileRoutine() {
-  const work = selectedWork();
-  if (!work) return dependencyNotice();
-
-  return `
-    ${mobileHeader("Criar rotina")}
-    <section class="mobile-page">
-      ${card("", `${formStep(1, "Nome da rotina", `<input placeholder="Ex.: Rotina de estrutura e alvenaria" />`)}${formStep(2, "Obra", `<div class="select">▦ ${esc(work.name)}</div>`)}${formStep(3, "Rotativa", `<p>A rotina se repetirá automaticamente conforme o período definido.</p><label class="toggle"><input checked type="checkbox" /><span></span></label>`)}`)}
-      ${card("", `${formStep(4, "Serviços da rotina", `<div class="service-line">Concretar sapatas da frente norte ×</div><div class="service-line">Levantar alvenaria do térreo ×</div><div class="add-line">＋ Buscar e adicionar serviços</div>`)}${formStep(5, "Observações", `<textarea placeholder="Ex.: Observações, detalhes importantes, restrições, etc."></textarea>`)}`)}
-      <button class="mobile-cta" data-message="save" data-entity="rotina" data-value="Rotina cadastrada" data-requires="work">Salvar rotina</button>
-      ${mobileNav("Rotina")}
-    </section>
-  `;
+  const { access, work } = accessContext();
+  if (!state.mobileAuthenticated) return loginGate();
+  if (!access || !work) return dependencyNotice();
+  return `${mobileHeader("Criar rotina", work.name)}<section class="mobile-page">${card("", `${formStep(1, "Nome da rotina", `<input placeholder="Ex.: Rotina de estrutura">`)}${formStep(2, "Obra", `<div class="select">${esc(work.name)}</div>`)}${formStep(3, "Serviços", `<div class="chips">${work.items.slice(0, 4).map((item) => `<span>${esc(item.description)}</span>`).join("")}<button>＋ Selecionar serviços</button></div>`)}`)}<button class="mobile-cta" data-message="save" data-entity="rotina" data-value="Rotina cadastrada" data-requires="work">Salvar rotina</button>${mobileNav("Rotina")}</section>`;
 }
 
 export function mobileDay() {
-  const work = selectedWork();
-  if (!work) return dependencyNotice();
-  const entries = [
-    {
-      id: "manha-fundacao",
-      title: "Rotina de fundação",
-      tag: "Turno da manhã",
-      place: "Bloco A - Pavimento Térreo",
-      time: "07:00 - 12:00",
-      tone: "blue",
-      routines: [
-        { name: "Concretar sapatas da frente norte", team: "Equipe 1", status: "Aplicada" },
-        { name: "Conferir ferragem das vigas baldrames", team: "Equipe 2", status: "Aplicada" },
-      ],
-    },
-    {
-      id: "tarde-reboco",
-      title: "Reboco corredor térreo",
-      tag: "Turno da tarde",
-      place: "Bloco A - Pavimento Térreo",
-      time: "13:00 - 17:00",
-      tone: "orange",
-      routines: [
-        { name: "Chapisco do corredor principal", team: "Equipe 3", status: "Aplicada" },
-        { name: "Revisão de prumo e acabamento", team: "Equipe 3", status: "Planejada" },
-      ],
-    },
-    {
-      id: "apoio-impermeabilizacao",
-      title: "Impermeabilização banheiro 101",
-      tag: "Apoio pontual",
-      place: "Bloco B - 1º Pavimento - Sala 101",
-      time: "09:00 - 11:00",
-      tone: "green",
-      routines: [
-        { name: "Preparar base do box", team: "Equipe 4", status: "Aplicada" },
-      ],
-    },
-  ];
-
-  return `
-    ${mobileHeader("Cronograma do dia", "24 de maio de 2024")}
-    <section class="mobile-page">
-      <div class="info">ⓘ Alterações nas alocações do dia serão comunicadas à administração.</div>
-      ${entries.map((entry) => timeline(entry)).join("")}
-      <button class="mobile-cta" data-message="save" data-entity="cronograma" data-value="Item de cronograma cadastrado" data-requires="work">Adicionar item ao cronograma</button>
-      ${mobileNav("Hoje")}
-    </section>
-  `;
+  const { access, work } = accessContext();
+  if (!state.mobileAuthenticated) return loginGate();
+  if (!access || !work) return dependencyNotice();
+  const entries = work.items.slice(0, 4).map((item, index) => ({ id: item.id, title: item.description, time: index < 2 ? "07:00 — 12:00" : "13:00 — 17:00", tone: ["blue", "orange", "green", "blue"][index] }));
+  return `${mobileHeader("Cronograma do dia", "Gerado pelo Cronograma da obra")}<section class="mobile-page"><div class="info">As atividades abaixo pertencem exclusivamente a ${esc(work.name)}.</div>${entries.map((entry) => `<button class="timeline ${entry.tone}" data-message="toggle-day-entry" data-entry-id="${esc(entry.id)}"><span>${entry.time}</span><h2>${esc(entry.title)}</h2><p>${esc(work.name)}</p><b>›</b></button>`).join("")}${mobileNav("Hoje")}</section>`;
 }
 
-function timeline(entry) {
-  const expanded = state.mobileDayExpandedId === entry.id;
-  return `
-    <button class="timeline ${esc(entry.tone)} ${expanded ? "expanded" : ""}" data-message="toggle-day-entry" data-entry-id="${esc(entry.id)}" data-requires="work">
-      <span>${esc(entry.tag)}</span>
-      <h2>${esc(entry.title)}</h2>
-      <p>${esc(entry.place)}</p>
-      <p>Equipe vinculada</p>
-      <p>${expanded ? "Rotinas aplicadas expandidas" : "Execução planejada"}</p>
-      <b>${esc(entry.time)}</b>
-    </button>
-    ${expanded ? expandedDayEntry(entry) : ""}
-  `;
-}
-
-function expandedDayEntry(entry) {
-  return card("Rotinas aplicadas neste período", `
-    <div class="info">ⓘ <p>O clique no card do cronograma abre as rotinas aplicadas do período para criação, edição e remoção.</p></div>
-    <div class="day-crud-actions">
-      <button class="btn" data-message="save" data-entity="rotina-aplicada" data-value="Rotina aplicada criada" data-requires="work">Nova rotina aplicada</button>
-      <button class="btn ghost" data-message="toggle-day-entry" data-entry-id="${esc(entry.id)}" data-requires="work">Fechar expansão</button>
-    </div>
-    <table class="day-routines-table">
-      <thead><tr><th>Rotina aplicada</th><th>Equipe</th><th>Status</th><th>CRUD</th></tr></thead>
-      <tbody>
-        ${entry.routines.map((routine) => `<tr><td>${esc(routine.name)}</td><td>${esc(routine.team)}</td><td><span class="badge">${esc(routine.status)}</span></td><td><div class="table-actions"><button class="btn ghost" data-message="save" data-entity="rotina-aplicada" data-value="Rotina aplicada atualizada" data-requires="work">Editar rotina aplicada</button><button class="btn ghost" data-message="save" data-entity="rotina-aplicada" data-value="Rotina aplicada removida" data-requires="work">Remover rotina aplicada</button></div></td></tr>`).join("")}
-      </tbody>
-    </table>
-  `, "day-routines-expanded");
+export function mobileDeliveries() {
+  const { access, work } = accessContext();
+  if (!state.mobileAuthenticated) return loginGate();
+  if (!access || !work) return dependencyNotice();
+  const flows = state.purchaseFlows.filter((flow) => flow.workId === work.id);
+  const pending = flows.filter((flow) => !flow.delivered);
+  return `${mobileHeader("Entregas de compras", work.name)}<section class="mobile-page">
+    ${pending.length ? pending.map((flow) => card(flow.title, `<span class="mobile-purchase-status">${esc(flow.status)}</span><p><strong>${esc(flow.material || "Material ainda não detalhado")}</strong></p><p>${esc(flow.quantity || "Quantidade pendente")} ${esc(flow.unit || "")} · necessário em ${esc(flow.neededAt || "data a definir")}</p><div class="delivery-gap"><b>Foto obrigatória</b><small>O sticker de entrega no desktop permanece lacunado até esta comprovação.</small></div><label class="mobile-file">Foto da entrega<input type="file" accept="image/*" capture="environment" data-message="delivery-photo"><span>Usar câmera</span></label>${state.deliveryPhotoName ? `<div class="selected-photo">${esc(state.deliveryPhotoName)}</div>` : ""}<button class="btn full" data-message="confirm-delivery">Confirmar entrega com foto</button>`)).join("") : card("Entregas concluídas", `<p>Não há stickers aguardando comprovação nesta obra.</p>`)}
+    ${flows.filter((flow) => flow.delivered).map((flow) => card(flow.title, `<div class="delivery-complete"><b>✓ Entrega comprovada</b><small>${esc(flow.deliveryEvidence)}</small></div>`)).join("")}
+    ${mobileNav("Entregas")}
+  </section>`;
 }
 
 export function mobileDiary() {
-  const work = selectedWork();
-  if (!work) return dependencyNotice();
-
-  return `
-    ${mobileHeader("Diário de obra", `22 de maio de 2025 - ${work.name}`)}
-    <section class="mobile-page">
-      ${card("Descrição do dia", `<textarea placeholder="Descreva as atividades realizadas hoje, ocorrências e condições gerais da obra..."></textarea>`)}
-      ${card("Serviços executados hoje", `<div class="chips">${items.slice(0, 4).map((item) => `<span>${esc(item.description)}</span>`).join("")}<button>Selecionar serviços</button></div>`)}
-      ${card("Confirmação do serviço feito", `
-        <p>Use a câmera para apontar o serviço realizado. A confirmação entra no diário e fica disponível como prova na medição.</p>
-        <label>Serviço confirmado</label><div class="select">▦ Fundação executada parcialmente</div>
-        <label>Foto de confirmação</label><input type="file" accept="image/*" capture="environment" aria-label="Foto de confirmação do serviço" />
-        <button class="btn ghost" data-message="save" data-entity="confirmacao-servico" data-value="Confirmação com câmera anexada ao diário" data-requires="work">Anexar foto de confirmação</button>
-      `)}
-      ${card("Registros do dia", `<button class="btn ghost">Novo registro</button>${["Fundação executada parcialmente no turno da manhã", "Banheiro 101 liberado para impermeabilização", "Recebimento de materiais: tubos e conexões hidráulicas"].map((r) => `<p class="record"><strong>${esc(r)}</strong><small>22/05/2025</small></p>`).join("")}`)}
-      ${card("Anexos e evidências", `<div class="photos">${Array.from({ length: 5 }, () => `<button><span>Adicionar foto</span></button>`).join("")}</div>`)}
-      <div class="dual"><button class="btn ghost" data-message="save" data-entity="diario" data-value="Registro salvo" data-requires="work">Salvar registro</button><button class="btn" data-message="save" data-entity="diario" data-value="Diário completado com prova para medição" data-requires="work">Completar diário</button></div>
-      <div class="info">ⓘ Ao completar o diário, a confirmação por câmera segue como prova para aplicação do progresso da medição.</div>
-      ${mobileNav("Diário")}
-    </section>
-  `;
+  const { access, work } = accessContext();
+  if (!state.mobileAuthenticated) return loginGate();
+  if (!access || !work) return dependencyNotice();
+  return `${mobileHeader("Diário da obra", work.name)}<section class="mobile-page">${card("Descrição do dia", `<textarea placeholder="Atividades realizadas, ocorrências e condições da obra"></textarea>`)}${card("Serviços executados", `<div class="chips">${items.slice(0, 5).map((item) => `<span>${esc(item.description)}</span>`).join("")}<button>＋ Selecionar serviços</button></div>`)}${card("Evidências", `<label class="mobile-file">Foto de confirmação<input type="file" accept="image/*" capture="environment"><span>Usar câmera</span></label><button class="btn ghost full" data-message="save" data-entity="diario" data-value="Foto anexada">Anexar foto</button>`)}<button class="mobile-cta" data-message="save" data-entity="diario" data-value="Diário completado">Completar diário</button>${mobileNav("Diário")}</section>`;
 }
 
 function mobileNav(active) {
-  const targets = selectedWork() ? [
+  const targets = [
     { label: "Painel", icon: "P", route: "mobile-home" },
     { label: "Rotina", icon: "R", route: "mobile-routine" },
     { label: "Hoje", icon: "C", route: "mobile-day" },
+    { label: "Entregas", icon: "E", route: "mobile-deliveries" },
     { label: "Diário", icon: "D", route: "mobile-diary" },
-  ] : [
-    { label: "Painel", icon: "P", route: "mobile-home" },
   ];
-
-  return `<nav class="bottom-nav">${targets.map((item) => `<button class="${item.label === active ? "active" : ""}" data-message="navigate" data-route="${esc(item.route)}"><b>${esc(item.icon)}</b><small>${esc(item.label)}</small></button>`).join("")}</nav>`;
+  return `<nav class="bottom-nav five">${targets.map((item) => `<button class="${item.label === active ? "active" : ""}" data-message="navigate" data-route="${esc(item.route)}"><b>${item.icon}</b><small>${item.label}</small></button>`).join("")}</nav>`;
 }

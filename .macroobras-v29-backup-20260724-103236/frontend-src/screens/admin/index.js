@@ -1,0 +1,25 @@
+// MacroObras page architecture v27
+export { adminDashboard } from "../../pages/admin/admin-dashboard.page.js";
+export { adminWorks } from "../../pages/admin/admin-works.page.js";
+export { adminPurchases } from "../../pages/admin/admin-purchases.page.js";
+export { adminAddWork } from "../../pages/admin/admin-add-work.page.js";
+export { adminWorkOverview } from "../../pages/admin/admin-work-overview.page.js";
+export { adminWorkAccess } from "../../pages/admin/admin-work-access.page.js";
+export { adminWorkItems } from "../../pages/admin/admin-work-items.page.js";
+export { adminWorkPlanning } from "../../pages/admin/admin-work-planning.page.js";
+export { adminWorkCalendar } from "../../pages/admin/admin-work-calendar.page.js";
+export { adminWorkPurchases } from "../../pages/admin/admin-work-purchases.page.js";
+export { adminWorkDiary } from "../../pages/admin/admin-work-diary.page.js";
+export { adminWorkMeasurement } from "../../pages/admin/admin-work-measurement.page.js";
+export { adminVisits } from "../../pages/admin/admin-visits.page.js";
+export { adminFinance } from "../../pages/admin/admin-finance.page.js";
+export { adminRh } from "../../pages/admin/admin-rh.page.js";
+export { adminSettings } from "../../pages/admin/admin-settings.page.js";
+export { adminMobilePlatform } from "../../pages/admin/admin-mobile-platform.page.js";
+export { adminAccess } from "../../pages/admin/admin-access.page.js";
+export { adminDiagramLibrary } from "../../pages/admin/admin-diagram-library.page.js";
+export { adminHelp } from "../../pages/admin/admin-help.page.js";
+export { adminDataTransfer } from "../../pages/admin/admin-data-transfer.page.js";
+export { adminAccessConfig } from "../../pages/admin/admin-access-config.page.js";
+export { adminMachineAuthorization } from "../../pages/admin/admin-machine-authorization.page.js";
+export { adminLogin } from "../../pages/admin/admin-login.page.js";

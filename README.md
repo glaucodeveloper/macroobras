@@ -112,7 +112,7 @@ Artefatos:
 Validação reprodutível usada neste ciclo:
 
 ```bash
-nim check --path:../../obra_macroobras_design_types_tests_bundle/src src/app.nim
+nim check src/app.nim
 ```
 
 Esse check compilou com sucesso após o desacoplamento dos módulos.

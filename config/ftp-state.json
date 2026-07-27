@@ -1,0 +1,11 @@
+{
+  "installDir": "/home/icarogdo/Documentos",
+  "ftpHost": "10.207.223.238",
+  "ftpPort": "2121",
+  "ftpEndpoint": "ftp://10.207.223.238:2121/",
+  "ftpUser": "macroobras",
+  "ftpPassword": "macroobras-local",
+  "ftpReady": false,
+  "ftpVerified": false,
+  "verifiedAt": "2026-07-27 02:09:55"
+}

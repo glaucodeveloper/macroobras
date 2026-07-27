@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="macroobras">
+<head>
+  <meta charset="UTF-8">
+  <title>Especificação Técnica de Tipos - Estação MacroObras</title>
+  <style>
+    :root {
+      --blue: #0074BD;
+      --blue-dark: #03588C;
+      --blue-soft: #E7F2FA;
+      --bg: #F5F7FA;
+      --card: #FFFFFF;
+      --text: #1F2937;
+      --muted: #6B7280;
+      --border: #D7DFE8;
+      --code-bg: #FAFBFC;
+    }
+
+    @page {
+      size: A4 portrait;
+      margin: 12mm;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 11.5px;
+      line-height: 1.45;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .print-toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+      background: #1e293b;
+      color: white;
+    }
+
+    .print-toolbar span {
+      font-weight: 700;
+    }
+
+    .print-toolbar button {
+      background: var(--blue);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .print-toolbar button:hover {
+      background: #025d96;
+    }
+
+    .document {
+      max-width: 190mm;
+      margin: 0 auto;
+      padding: 8mm 0 14mm;
+    }
+
+    .sheet {
+      background: #fff;
+      border: 1px solid var(--border);
+      margin: 0 0 6mm;
+      padding: 10mm 10mm 9mm;
+      border-radius: 10px;
+      position: relative;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    .sheet.cover {
+      min-height: 265mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      page-break-after: always;
+      break-after: page;
+    }
+
+    .print-safe {
+      position: absolute;
+      inset: 6mm;
+      border: 1px dashed #E2E8F0;
+      border-radius: 6px;
+      pointer-events: none;
+    }
+
+    /* Cabeçalho */
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 6mm;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 4mm;
+    }
+
+    .logo-fallback {
+      background: var(--blue);
+      color: white;
+      font-weight: 900;
+      font-size: 16px;
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .kicker {
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--blue);
+      display: block;
+      margin-bottom: 1.5px;
+    }
+
+    h1 {
+      color: var(--blue-dark);
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    h2 {
+      color: var(--blue-dark);
+      font-size: 14px;
+      font-weight: 700;
+      margin-top: 4mm;
+      margin-bottom: 2mm;
+      border-left: 3px solid var(--blue);
+      padding-left: 6px;
+    }
+
+    h3 {
+      color: var(--blue-dark);
+      font-size: 11px;
+      font-weight: 700;
+      margin-top: 3mm;
+      margin-bottom: 1.5mm;
+    }
+
+    p, li {
+      color: var(--text);
+      margin-bottom: 2mm;
+    }
+
+    ul {
+      margin-left: 5mm;
+      margin-bottom: 3mm;
+    }
+
+    /* Código Monospaçado */
+    pre, code {
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 9px;
+    }
+
+    pre {
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 3mm;
+      overflow-x: auto;
+      margin-bottom: 4mm;
+      line-height: 1.35;
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border);
+      padding-top: 3mm;
+      margin-top: 6mm;
+      font-size: 9px;
+      color: var(--muted);
+    }
+
+    @media print {
+      .print-toolbar {
+        display: none;
+      }
+      body, html {
+        background: #fff;
+      }
+      .sheet {
+        border: none;
+        padding: 0;
+        margin: 0;
+        box-shadow: none;
+        page-break-after: always;
+        break-after: page;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="print-toolbar">
+    <span>Visualização de Relatório Técnico (A4 Portrait)</span>
+    <button onclick="window.print()">Imprimir / Salvar PDF</button>
+  </div>
+
+  <div class="document">
+
+    <!-- SHEET 1: CAPA E DESCRIÇÃO -->
+    <div class="sheet cover">
+      <div class="print-safe"></div>
+      
+      <div class="brand">
+        <div class="logo-fallback">O</div>
+        <div>
+          <span class="kicker">Especificação Técnica de Software</span>
+          <h1>Estação MacroObras</h1>
+        </div>
+      </div>
+
+      <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center;">
+        <h2 style="border: none; padding-left: 0; font-size: 16px; margin-bottom: 4mm;">Descrição Geral do Sistema</h2>
+        <p>Este documento formaliza as especificações técnicas de tipos de dados, contratos de endpoints da API de colaboradores e assinaturas das rotinas de serviços locais que estruturam a estação de trabalho de campo **MacroObras**.</p>
+        <p>Os componentes arquiteturais e lógicos do sistema operam sob o seguinte fluxo de persistência:</p>
+        <ul>
+          <li><strong>Persistência Local Resiliente</strong>: Gravação direta de todas as movimentações operacionais do mestre (diários, cronogramas, rotinas, serviços, despesas de compras) em banco de dados SQLite local na estação de trabalho do canteiro.</li>
+          <li><strong>Sincronização OKF</strong>: Geração em segundo plano de arquivos estruturados em Markdown e diagramas de relações no catálogo OKF local (`.okf/repo`) e sua sincronização de conhecimento para servidores do GitHub usando SSH.</li>
+          <li><strong>Modulo de Provas Fotográficas</strong>: Coleta de imagens de progresso e de conclusão de serviços que alimentam diretamente os diários de obra e respaldam as medições técnicas.</li>
+          <li><strong>Mapeador Llama Local</strong>: Motor de IA local offline que auxilia na leitura e auditoria das evidências armazenadas no arquivo físico da obra.</li>
+        </ul>
+      </div>
+
+      <div class="footer">
+        <span>MacroObras &bull; Especificação de Software</span>
+        <span>ID: MO-TYPES-2026</span>
+      </div>
+    </div>
+
+    <!-- SHEET 2: GRAMÁTICA DE ESTRUTURAÇÃO (DADOS) -->
+    <div class="sheet">
+      <div class="print-safe"></div>
+      
+      <div class="brand">
+        <div class="logo-fallback">O</div>
+        <div>
+          <span class="kicker">Modelagem de Dados</span>
+          <h1>Gramática de Estruturação - EBNF</h1>
+        </div>
+      </div>
+
+      <h2>Entidades de Domínio Operacional</h2>
+      <p>A definição formal abaixo em EBNF formaliza as entidades persistidas localmente e integradas no modelo de sincronização OKF:</p>
+
+      <pre><code>(* Conjunto de Entidades de Domínio *)
+DomainModel = Obra | ElementoObra | ItemMedicao | Servico | Rotina | Cronograma | DiarioObra | ConfirmacaoServico | Colaborador ;
+
+(* Estrutura de Obra *)
+Obra = "{" , IdProp , "," , NomeProp , "," , CodigoProp , "," , ClienteProp , "}" ;
+IdProp      = '"id"' , ":" , StringOrInteger ;   (* Identificador exclusivo da obra *)
+NomeProp    = '"nome"' , ":" , String ;          (* Nome descritivo da obra ou canteiro *)
+CodigoProp  = '"codigo"' , ":" , String ;        (* Código de controle do canteiro (ex: "OBRA-402") *)
+ClienteProp = '"cliente"' , ":" , String ;       (* Nome do cliente contratante *)
+
+(* Estrutura de Elemento de Obra *)
+ElementoObra = "{" , IdProp , "," , NomeProp , "," , DescricaoProp , "," , MateriaisProp , "," , DependenciasProp , "," , LiberacoesProp , "}" ;
+DescricaoProp    = '"descricao"' , ":" , String ;
+MateriaisProp    = '"materiais"' , ":" , "[" , { String , [ "," ] } , "]" ;    (* Lista de insumos vinculados *)
+DependenciasProp = '"dependencias"' , ":" , "[" , { String , [ "," ] } , "]" ; (* IDs de elementos de obra antecedentes *)
+LiberacoesProp   = '"liberacoes"' , ":" , "[" , { String , [ "," ] } , "]" ;   (* IDs de elementos de obra liberados *)
+
+(* Estrutura de Item de Medição *)
+ItemMedicao = "{" , IdProp , "," , ObraIdProp , "," , DescricaoProp , "," , NivelProp , "," , PercentualAdminProp , "}" ;
+ObraIdProp          = '"obraId"' , ":" , StringOrInteger ;
+NivelProp           = '"nivel"' , ":" , String ;             (* Nível estrutural da planilha *)
+PercentualAdminProp = '"percentualAdministrativo"' , ":" , Decimal ; (* Progresso acumulado homologado *)
+
+(* Estrutura de Serviço *)
+Servico = "{" , IdProp , "," , ObraIdProp , "," , ElementoObraIdProp , "," , DescricaoProp , "," , TempoNecessarioProp , "}" ;
+ElementoObraIdProp  = '"elementoObraId"' , ":" , String ;
+TempoNecessarioProp = '"tempoNecessario"' , ":" , ( Integer | "null" ) ; (* Tempo estimado em horas *)
+
+(* Estrutura de Rotina *)
+Rotina = "{" , IdProp , "," , ObraIdProp , "," , NomeProp , "," , ServicosProp , "," , RotativaProp , "}" ;
+ServicosProp = '"servicos"' , ":" , "[" , { String , [ "," ] } , "]" ; (* Coleção de IDs de serviços associados *)
+RotativaProp = '"rotativa"' , ":" , Boolean ;                          (* Indicador de repetição periódica *)
+
+(* Estrutura de Cronograma *)
+Cronograma = "{" , IdProp , "," , ObraIdProp , "," , DataProp , "," , TurnoProp , "," , AlocacoesProp , "}" ;
+DataProp         = '"data"' , ":" , String ;          (* Data no formato AAAA-MM-DD *)
+TurnoProp        = '"turno"' , ":" , TurnoValue ;     (* Período de execução programado *)
+AlocacoesProp    = '"alocacoes"' , ":" , "[" , { AlocacaoItem , [ "," ] } , "]" ;
+TurnoValue       = '"manha"' | '"tarde"' | '"integral"' ;
+AlocacaoItem     = "{" , '"tipo"' , ":" , ( '"servico"' | '"rotina"' ) , "," , '"idTarget"' , ":" , String , "}" ;
+
+(* Estrutura de Diário de Obra *)
+DiarioObra = "{" , IdProp , "," , ObraIdProp , "," , DataProp , "," , DescricaoProp , "," , ServicosExecutadosProp , "," , ConfirmacoesProp , "," , EvidenciasProp , "," , CompletoProp , "}" ;
+ServicosExecutadosProp = '"servicosExecutados"' , ":" , "[" , { String , [ "," ] } , "]" ; (* IDs de serviços realizados *)
+ConfirmacoesProp       = '"confirmacoesServico"' , ":" , "[" , { String , [ "," ] } , "]" ; (* IDs de fotos de confirmação *)
+EvidenciasProp         = '"evidencias"' , ":" , "[" , { String , [ "," ] } , "]" ;          (* Imagens extras de canteiro *)
+CompletoProp           = '"completo"' , ":" , Boolean ;                                     (* Status de fechamento do diário *)
+
+(* Estrutura de Confirmação de Serviço *)
+ConfirmacaoServico = "{" , IdProp , "," , ObraIdProp , "," , ServicoIdProp , "," , DiarioObraIdProp , "," , FotoProp , "," , CapturadaEmProp , "," , StatusConfirmacaoProp , "}" ;
+ServicoIdProp          = '"servicoId"' , ":" , String ;
+DiarioObraIdProp       = '"diarioObraId"' , ":" , String ;
+FotoProp               = '"foto"' , ":" , String ;                  (* Caminho lógico do arquivo de imagem *)
+CapturadaEmProp        = '"capturadaEm"' , ":" , Date ;             (* Data e hora de captura *)
+StatusConfirmacaoProp  = '"statusConfirmacao"' , ":" , StatusValue ;(* Estado da homologação pela fiscalização *)
+StatusValue            = '"pendente"' | '"aprovado"' | '"rejeitado"' ;
+
+(* Estrutura de Colaborador *)
+Colaborador = "{" , IdProp , "," , NomeProp , "," , EmailProp , "," , CpfProp , "," , ObrasPermitidasProp , "}" ;
+EmailProp           = '"email"' , ":" , String ;
+CpfProp             = '"cpf"' , ":" , String ;
+ObrasPermitidasProp = '"obrasPermitidas"' , ":" , "[" , { String , [ "," ] } , "]" ; (* IDs de obras autorizadas *)</code></pre>
+
+      <div class="footer">
+        <span>MacroObras &bull; Estrutura de Dados</span>
+        <span>Folha 02</span>
+      </div>
+    </div>
+
+    <!-- SHEET 3: GRAMÁTICA DE FUNCIONAMENTO (MÓDULOS E API) -->
+    <div class="sheet">
+      <div class="print-safe"></div>
+      
+      <div class="brand">
+        <div class="logo-fallback">O</div>
+        <div>
+          <span class="kicker">Rotinas & Interfaces</span>
+          <h1>Gramática de Funcionamento - EBNF</h1>
+        </div>
+      </div>
+
+      <h2>Módulos de Serviços & API do Colaborador</h2>
+      <p>As rotinas dos módulos em Nim e os endpoints expostos para o aplicativo mobile são definidos abaixo:</p>
+
+      <h3>Módulos de Serviços em Nim (Lógica Interna)</h3>
+      <pre><code>(* Módulo okf_service.nim *)
+OkfEnvFile         = "okfEnvFile() -> String" ;
+OkfConfig          = "okfConfig() -> JsonNode" ;
+OkfAbsoluteDir     = "okfAbsoluteDir(config: JsonNode) -> String" ;
+SeedOkfKnowledge   = "seedOkfKnowledge(repoDir: String) -> void" ;
+WriteFileIfChanged = "writeFileIfChanged(path: String, content: String) -> void" ;
+PrepareOkfPayload  = "prepareOkfPayload() -> JsonNode" ;
+
+(* Módulo collaborator_service.nim *)
+StartNgrok         = "startCollaboratorNgrok() -> void" ;
+StopNgrok          = "stopCollaboratorNgrok() -> void" ;
+PublicUrl          = "collaboratorPublicBaseUrl() -> String" ;
+ColaboradorLogin   = "colaboradorLogin(ctx: Context) -> void" ;
+ColaboradorStatus  = "colaboradorStatus(ctx: Context) -> void" ;
+
+(* Módulo admin_service.nim *)
+CriarServico         = "criarServicoAdministrativoPayload(payload: JsonNode) -> JsonNode" ;
+AdicionarCronograma  = "adicionarLinhaCronogramaPayload(payload: JsonNode) -> JsonNode" ;
+SobrescreverCronograma = "sobrescreverCronogramaPayload(payload: JsonNode) -> JsonNode" ;
+AlterarMedicao       = "alterarPercentualItemMedicaoPayload(payload: JsonNode) -> JsonNode" ;
+GerarComparacao      = "gerarComparacaoPercentuaisMedicaoPayload(payload: JsonNode) -> JsonNode" ;
+
+(* Módulo installer_service.nim *)
+DefaultInstallDir  = "defaultInstallAppDir() -> String" ;
+ArchiveDir         = "archiveDir() -> String" ;
+InstallerStatus    = "installerStatusPayload() -> JsonNode" ;
+ExecuteInstaller   = "executeInstallerPayload() -> JsonNode" ;</code></pre>
+
+      <h3>API de Integração Externa (Mobile / Colaboradores)</h3>
+      <pre><code>(* Endpoints da API REST de Colaboradores *)
+Login            = "POST /api/colaboradores/login -> { token: String, nome: String, perfil: String }" ;
+GetServices      = "POST /api/colaboradores/servicos -> JsonNode" ;
+GetRoutines      = "POST /api/colaboradores/rotinas -> JsonNode" ;
+AllocateCalendar = "POST /api/colaboradores/cronogramas/alocar -> JsonNode" ;
+RegisterDiary    = "POST /api/colaboradores/diarios/registrar -> JsonNode" ;
+CompleteDiary    = "POST /api/colaboradores/diarios/completar -> JsonNode" ;
+RequestPurchase  = "POST /api/colaboradores/compras/solicitar -> JsonNode" ;
+AttachReceipt    = "POST /api/colaboradores/compras/anexar-recibo -> JsonNode" ;</code></pre>
+
+      <div class="footer">
+        <span>MacroObras &bull; Comportamento Lógico</span>
+        <span>Folha 03</span>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

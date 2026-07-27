@@ -1,0 +1,17 @@
+{
+  "name": "macroobras-frontend",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "python3 -m http.server 5173 --directory dist",
+    "build": "sh build.sh",
+    "preview": "python3 -m http.server 4173 --directory dist",
+    "test:ui": "playwright test",
+    "test:ui:headed": "playwright test --headed",
+    "test:ui:report": "playwright test && node tests/ui/report.js"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.55.0"
+  }
+}

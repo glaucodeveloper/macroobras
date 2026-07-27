@@ -1,140 +1,156 @@
-import { initialInstallerStatus, initialOkfStatus } from "../../core/data.js";
+import { initialInstallerStatus } from "../../core/data.js";
 import { state } from "../../core/state.js";
 import { esc } from "../../core/utils.js";
 
 const steps = [
-  { title: "Instalação", caption: "pasta e FTP local" },
-  { title: "Colaboradores", caption: "endpoint e acesso" },
-  { title: "Archive/OKF", caption: "memória operacional" },
-  { title: "Admin", caption: "obras e elementos" },
-  { title: "App de medição", caption: "permissões por obra" },
+  {
+    title: "Autorização",
+    caption: "token GitHub da máquina",
+  },
+  {
+    title: "Pasta e FTP",
+    caption: "transmissão na rede local",
+  },
+  {
+    title: "Concluir",
+    caption: "primeiro administrador",
+  },
 ];
 
 export function installerScreen() {
-  const step = Math.max(0, Math.min(state.installerStep || 0, steps.length - 1));
   const status = state.installerStatus || initialInstallerStatus;
-  const okf = state.okfStatus || initialOkfStatus;
+  const step = Math.max(
+    0,
+    Math.min(
+      Number(state.installerStep || 0),
+      steps.length - 1
+    )
+  );
 
-  return `
-    <main class="installer-shell">
-      <header class="installer-header">
-        <div>
-          <strong>MacroObras Installer</strong>
-          <span>Instalação da estação administrativa</span>
-        </div>
-        <a href="?surface=admin">Abrir aplicação</a>
-      </header>
-      <section class="installer-panel">
-        <nav class="installer-steps" aria-label="Etapas de instalação">
-          ${steps.map((item, index) => `<button class="${index === step ? "active" : index < step ? "done" : ""}" data-message="installer-step" data-step="${index}"><b>${index + 1}</b><span>${esc(item.title)}</span><small>${esc(item.caption)}</small></button>`).join("")}
-        </nav>
-        <div class="installer-stage">${renderStep(step, status, okf)}</div>
-        <footer class="installer-actions">
-          <button class="btn ghost" data-message="installer-prev">Voltar</button>
-          <button class="btn ghost" data-message="installer-status">Verificar</button>
-          <button class="btn" data-message="${step === steps.length - 1 ? "installer-run" : "installer-next"}">${step === steps.length - 1 ? "Concluir" : "Continuar"}</button>
-        </footer>
-      </section>
-    </main>
-  `;
+  return `<main class="installer-shell first-access-installer">
+    <header class="installer-header">
+      <div>
+        <strong>MacroObras</strong>
+        <span>Configuração inicial da estação</span>
+      </div>
+      <small>Executada somente quando ainda não existe usuário administrador</small>
+    </header>
+
+    <section class="installer-panel">
+      <nav class="installer-steps" aria-label="Etapas de configuração">
+        ${steps.map((item, index) => `
+          <button
+            class="${index === step ? "active" : index < step ? "done" : ""}"
+            data-message="installer-step"
+            data-step="${index}"
+            ${index > step && !status.githubAuthorized ? "disabled" : ""}
+          >
+            <b>${index + 1}</b>
+            <span>${esc(item.title)}</span>
+            <small>${esc(item.caption)}</small>
+          </button>
+        `).join("")}
+      </nav>
+
+      <div class="installer-stage">
+        ${renderStep(step, status)}
+      </div>
+
+      <footer class="installer-actions">
+        <button
+          class="btn ghost"
+          data-message="installer-prev"
+          ${step === 0 ? "disabled" : ""}
+        >
+          Voltar
+        </button>
+
+        <button
+          class="btn ghost"
+          data-message="installer-status"
+        >
+          Verificar
+        </button>
+
+        ${step < steps.length - 1
+          ? `<button
+              class="btn"
+              data-message="installer-next"
+              ${!canContinue(step, status) ? "disabled" : ""}
+            >
+              Continuar
+            </button>`
+          : `<button
+              class="btn"
+              data-message="installer-run"
+              ${!canContinue(step, status) ? "disabled" : ""}
+            >
+              Criar administrador e abrir
+            </button>`}
+      </footer>
+    </section>
+  </main>`;
 }
 
-function renderStep(step, status, okf) {
-  const views = [
-    installFolderStep(status),
-    collaboratorEndpointStep(status),
-    archiveOkfStep(status, okf),
-    adminIntroStep(okf),
-    mobileIntroStep(status),
-  ];
-  return views[step] || views[0];
+function canContinue(step, status) {
+  if (step === 0) {
+    return Boolean(status.githubAuthorized);
+  }
+
+  if (step === 1) {
+    return Boolean(
+      status.pathReady
+      && status.ftpVerified
+    );
+  }
+
+  return Boolean(
+    status.githubAuthorized
+    && status.pathReady
+    && status.ftpVerified
+  );
 }
 
-function installFolderStep(status) {
-  return installerCard("Pasta de instalação e FTP local", "Escolha apenas a pasta onde a estação MacroObras será instalada e disponibilize essa pasta para transmissão na rede local.", `
-    ${inputRow("Pasta de instalação", "installDir", status.installDir || "/opt/macroobras")}
+function renderStep(step, status) {
+  return [
+    authorizationStep(status),
+    folderFtpStep(status),
+    finishStep(status),
+  ][step];
+}
+
+function authorizationStep(status) {
+  return installerCard("Autorizar esta máquina", "O token é verificado pelo GitHub e identifica a estação antes da criação do primeiro administrador.", `
+    <form class="installer-token-form" data-auth-form="installer-machine">
+      <input class="credential-username-proxy" type="text" name="username" autocomplete="username" value="macroobras-installer-machine" aria-label="Identificador da máquina" tabindex="-1" readonly>
+      <label class="installer-field"><span>Token de autorização GitHub</span><input type="password" name="installer-github-token" autocomplete="current-password" data-installer-github-token placeholder="github_pat_… ou ghp_…" required></label>
+      <div class="auth-form-status" data-auth-status data-tone="info" hidden role="status" aria-live="polite"></div>
+      <button class="btn" type="submit" data-message="authorize-installer-github">Autorizar máquina</button>
+    </form>
+    <div class="installer-status-line ${status.githubAuthorized ? "ok" : ""}"><b>${status.githubAuthorized ? "✓" : "1"}</b><span><strong>${status.githubAuthorized ? `Autorizado como ${esc(status.githubLogin || "usuário GitHub")}` : "Aguardando autorização"}</strong><small>${esc(status.message || "Informe um token com acesso ao repositório da estação.")}</small></span></div>
+  `);
+}
+
+function folderFtpStep(status) {
+  const folder = status.installDir || state.selectedInstallFolder || "Nenhuma pasta selecionada";
+  return installerCard("Selecionar pasta e verificar FTP", "O seletor abre o explorador do sistema. A pasta escolhida é transmitida somente na rede local.", `
+    <div class="folder-picker-row"><div><small>Pasta compartilhada</small><strong>${esc(folder)}</strong></div><button class="btn ghost" data-message="select-install-folder">Escolher pasta</button></div>
     <div class="install-grid two-cols">
-      <div class="endpoint-card">
-        <strong>Transmissão FTP local</strong>
-        <p>Exponha a pasta escolhida para computadores da mesma rede, sem publicar nada fora da rede interna.</p>
-        <code>ftp://${esc(status.ftpHost || "192.168.0.24")}:${esc(status.ftpPort || "2121")}/macroobras</code>
-        <button class="btn ghost" data-message="save" data-entity="ftp-local" data-value="Transmissão FTP local preparada">Preparar transmissão</button>
-      </div>
-      <div class="visual-guide">
-        <span>1</span><p>Escolha a pasta</p>
-        <span>2</span><p>Ative a transmissão local</p>
-        <span>3</span><p>Compartilhe o endereço FTP na rede interna</p>
-      </div>
+      <div class="endpoint-card"><strong>Transmissão FTP</strong><code>${esc(status.ftpEndpoint || "Aguardando pasta")}</code><p>O servidor FTP publica exatamente a pasta selecionada.</p><button class="btn" data-message="start-ftp-share" ${status.pathReady ? "" : "disabled"}>Iniciar e verificar FTP</button></div>
+      <div class="ftp-check-list"><span class="${status.pathReady ? "ok" : ""}"><b>${status.pathReady ? "✓" : "1"}</b>Pasta acessível</span><span class="${status.ftpReady ? "ok" : ""}"><b>${status.ftpReady ? "✓" : "2"}</b>Servidor iniciado</span><span class="${status.ftpVerified ? "ok" : ""}"><b>${status.ftpVerified ? "✓" : "3"}</b>Conexão FTP verificada</span></div>
     </div>
-    <div class="installer-note">A interface registra a configuração e apresenta o endpoint local; o backend da estação executa a transmissão.</div>
   `);
 }
 
-function collaboratorEndpointStep(status) {
-  return installerCard("Endpoint de colaboradores", "Esta etapa apresenta o endereço que o mestre de obras usará para acessar o aplicativo de campo.", `
-    <div class="endpoint-card wide">
-      <strong>Endpoint de colaboradores</strong>
-      <code>${esc(status.collaboratorEndpoint || "https://colaboradores.macroobras.local/twa")}</code>
-      <p>Use o print desta tela para orientar o usuário: esse endereço abre o app de medição, bloqueia fluxos sem obra e respeita os logins autorizados pela administração.</p>
-    </div>
-    <div class="installer-note">Esta tela só mostra o endpoint e aponta a funcionalidade para o usuário.</div>
-  `);
-}
-
-function archiveOkfStep(status, okf) {
-  return installerCard("Archive e OKF", "O Archive preserva evidências e o OKF organiza o conhecimento operacional que nasce das obras.", `
-    <div class="install-grid two-cols">
-      <div class="endpoint-card">
-        <strong>Archive</strong>
-        <code>${esc(status.archiveEndpoint || "file:///opt/macroobras/archive")}</code>
-        <p>Guarda prints, anexos, tabelas importadas, diários e medições para auditoria local.</p>
-      </div>
-      <div class="endpoint-card">
-        <strong>OKF</strong>
-        <code>macroobras/knowledge</code>
-        <p>Conecta cadastros, elementos de obra, dependências e rotinas para reaproveitar conhecimento nas próximas operações.</p>
-      </div>
-    </div>
-    <div class="endpoint-card wide">
-      <strong>Servidor Llama local</strong>
-      <code>llama://127.0.0.1:11434/gemma4eb</code>
-      <p>O modelo gemma4eb roda na estação para apoiar leitura do Archive, busca no OKF e sugestões operacionais sem enviar dados da obra para fora.</p>
-    </div>
-    <div class="installer-note">Status OKF: ${esc(okf.mensagem || "Aguardando introdução")}</div>
-    <button class="btn ghost" data-message="prepare-okf">Introduzir Archive/OKF</button>
-  `);
-}
-
-function adminIntroStep(okf) {
-  return installerCard("Introdução administrativa", "A administração começa cadastrando obras, importando tabelas de medição e compondo elementos de obra reutilizáveis.", `
-    <div class="install-grid">
-      <div class="install-step"><header><span>1</span><h2>Obras</h2></header><p>Cadastre nomes de obras e importe tabelas de medição quando existirem.</p></div>
-      <div class="install-step"><header><span>2</span><h2>Elementos</h2></header><p>Registre atividades predispostas, materiais, requisitos e dependências.</p></div>
-      <div class="install-step"><header><span>3</span><h2>Equipe</h2></header><p>Autorize colaboradores por email/CPF e aloque cada login a obras específicas.</p></div>
-    </div>
-    <div class="installer-note">${esc(okf.mensagem || "OKF aguardando introdução visual")}</div>
-  `);
-}
-
-function mobileIntroStep(status) {
-  return installerCard("Introdução do app de medição", "Antes de distribuir o acesso do app de medição, cadastre email e CPF de cada colaborador e vincule cada login a uma obra.", `
-    <div class="install-grid">
-      <div class="install-step"><header><span>1</span><h2>Cadastrar login</h2></header><p>Informe email, CPF e nome do colaborador autorizado.</p></div>
-      <div class="install-step"><header><span>2</span><h2>Vincular obra</h2></header><p>Escolha a obra que aquele login pode acessar no campo.</p></div>
-      <div class="install-step"><header><span>3</span><h2>Usar endpoint</h2></header><p>O colaborador entra pelo endpoint apresentado e só vê os fluxos liberados para a obra.</p></div>
-    </div>
-    <dl>
-      <dt>Admin</dt><dd>?surface=admin</dd>
-      <dt>App de medição</dt><dd>?surface=twa</dd>
-      <dt>Mensagem</dt><dd>${esc(status.message || "Introdução concluída")}</dd>
-    </dl>
+function finishStep(status) {
+  return installerCard("Criar o primeiro administrador", "A instalação será marcada como concluída. Nos próximos acessos a estação abrirá a página de login.", `
+    <label class="installer-field"><span>Nome do administrador</span><input data-installer-admin-name value="${esc(status.githubLogin || "Administrador")}"></label>
+    <label class="installer-field"><span>Email administrativo</span><input type="email" autocomplete="email" data-installer-admin-email placeholder="admin@empresa.com"></label>
+    <label class="installer-field"><span>Telefone administrativo</span><input type="tel" autocomplete="tel" inputmode="tel" data-installer-admin-phone placeholder="(77) 99999-9999"></label>
+    <div class="endpoint-card wide"><strong>OKF operacional</strong><p>O OKF será produzido pelo gráfico de elementos de cada obra. Itens, materiais, observações, campos e relações do Cronograma formam a memória operacional.</p></div>
   `);
 }
 
 function installerCard(title, subtitle, body) {
   return `<article class="installer-card"><h1>${esc(title)}</h1><p>${esc(subtitle)}</p>${body}</article>`;
-}
-
-function inputRow(label, name, value) {
-  return `<label class="installer-field"><span>${esc(label)}</span><input data-installer-field="${esc(name)}" value="${esc(value)}" /></label>`;
 }

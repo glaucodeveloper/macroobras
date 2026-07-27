@@ -1,0 +1,17 @@
+{
+  "name": "macroobras-frontend",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "../scripts/iniciar_macroobras_mobile.sh",
+    "build": "sh build.sh",
+    "preview": "../scripts/iniciar_macroobras_preview.sh",
+    "test:ui": "playwright test",
+    "test:ui:headed": "playwright test --headed",
+    "test:ui:report": "playwright test && node tests/ui/report.js"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.55.0"
+  }
+}

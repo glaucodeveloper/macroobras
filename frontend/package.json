@@ -4,9 +4,9 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "python3 -m http.server 5173 --directory dist",
+    "dev": "../scripts/iniciar_macroobras_estacao.sh",
     "build": "sh build.sh",
-    "preview": "python3 -m http.server 4173 --directory dist",
+    "preview": "../scripts/iniciar_macroobras_estacao.sh",
     "test:ui": "playwright test",
     "test:ui:headed": "playwright test --headed",
     "test:ui:report": "playwright test && node tests/ui/report.js"

@@ -1,0 +1,39 @@
+/* MacroObras v24 — acesso do encarregado vinculado à obra */
+.quick-actions.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.collab-badge.passive { cursor: default; user-select: none; }
+.collab-badge.passive:hover { transform: none; }
+.work-access-layout { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(260px, .75fr); gap: 16px; align-items: start; }
+.locked-work-field { display: grid; gap: 4px; padding: 13px 14px; background: #f4f8fd; border: 1px solid var(--mo-border); border-radius: 7px; }
+.locked-work-field small { color: var(--mo-muted); font-size: 10px; text-transform: uppercase; letter-spacing: .06em; }
+.locked-work-field strong { color: var(--mo-text); font-size: 13px; }
+.locked-work-field span { color: var(--mo-blue); font-size: 10px; font-weight: 700; }
+.work-access-origin { display: grid; gap: 8px; }
+.work-access-origin small { color: var(--mo-blue); font-weight: 800; text-transform: uppercase; letter-spacing: .06em; }
+.work-access-origin strong { overflow-wrap: anywhere; color: var(--mo-text); font-size: 13px; }
+.work-access-origin p { margin: 0; color: var(--mo-muted); line-height: 1.55; }
+.encarregado-access-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 16px; }
+.encarregado-access-card { display: grid; gap: 15px; padding: 18px; background: #fff; border: 1px solid var(--mo-border); border-top: 4px solid var(--mo-blue); border-radius: 8px; box-shadow: var(--mo-shadow); }
+.encarregado-access-card header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.encarregado-access-card header small { color: var(--mo-blue); font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; }
+.encarregado-access-card h3 { margin: 4px 0 0; color: var(--mo-text); font-size: 17px; }
+.encarregado-access-card dl { display: grid; gap: 7px; margin: 0; }
+.encarregado-access-card dl div { display: grid; grid-template-columns: 112px 1fr; gap: 10px; padding-bottom: 7px; border-bottom: 1px solid #e4edf8; }
+.encarregado-access-card dt { color: var(--mo-muted); font-size: 10px; }
+.encarregado-access-card dd { margin: 0; color: var(--mo-text); font-size: 11px; font-weight: 700; overflow-wrap: anywhere; }
+.encarregado-access-card > label { color: var(--mo-muted); font-size: 10px; font-weight: 700; }
+.access-url-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; }
+.access-url-row input { min-width: 0; font-size: 10px; }
+.encarregado-access-card footer { display: flex; flex-wrap: wrap; gap: 8px; }
+.btn.danger { color: #a72929; border-color: #efbcbc; background: #fff7f7; }
+.empty-state.wide { grid-column: 1 / -1; }
+.mobile-access-person, .mobile-access-summary { display: grid; gap: 4px; margin-top: 14px; padding-top: 12px; border-top: 1px solid #dbe7f5; }
+.mobile-access-person span, .mobile-access-summary span { color: var(--mo-muted); font-size: 10px; text-transform: uppercase; letter-spacing: .06em; }
+.mobile-access-person b, .mobile-access-summary strong { color: var(--mo-text); }
+.mobile-access-summary small { color: var(--mo-muted); }
+
+@media (max-width: 900px) {
+  .quick-actions.three { grid-template-columns: 1fr; }
+  .work-access-layout { grid-template-columns: 1fr; }
+  .encarregado-access-list { grid-template-columns: 1fr; }
+  .encarregado-access-card dl div { grid-template-columns: 1fr; gap: 3px; }
+}

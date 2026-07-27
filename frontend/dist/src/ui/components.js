@@ -1,11 +1,11 @@
 import { esc } from "../core/utils.js";
 
 export function logo() {
-  return `<img class="logo-mark" src="./brand/logo_macroobras_ref.png" alt="MacroObras" />`;
+  return `<span class="brand-symbol"><img class="logo-mark" src="./brand/logo_macroobras_ref.png" alt="MacroObras" /></span>`;
 }
 
 export function pageHeader(title, subtitle, action = "") {
-  return `<div class="page-header"><div><h1>${esc(title)}</h1><p>${esc(subtitle)}</p></div>${action ? `<div class="page-actions">${action}</div>` : ""}</div>`;
+  return `<div class="page-header"><div class="page-heading"><span class="page-kicker">MacroObras · Controle operacional</span><h1>${esc(title)}</h1><p>${esc(subtitle)}</p></div>${action ? `<div class="page-actions">${action}</div>` : ""}</div>`;
 }
 
 export function card(title, body, extra = "") {
@@ -25,5 +25,5 @@ export function sidePanel(title, rows) {
 }
 
 export function mobileHeader(title, subtitle = "") {
-  return `<header class="mobile-header">${logo()}<div><h1>${esc(title)}</h1>${subtitle ? `<p>${esc(subtitle)}</p>` : ""}</div><b>AF</b></header>`;
+  return `<header class="mobile-header">${logo()}<div><span class="mobile-kicker">Operação em campo</span><h1>${esc(title)}</h1>${subtitle ? `<p>${esc(subtitle)}</p>` : ""}</div><b>AF</b></header>`;
 }

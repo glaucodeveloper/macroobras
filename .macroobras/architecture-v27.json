@@ -1,0 +1,124 @@
+{
+  "version": 27,
+  "backup": "/home/icarogdo/dev/macroobras-jazzy/app/macroobras/.macroobras-v27-backup-20260724-101832",
+  "routes": [
+    {
+      "route": "admin-dashboard",
+      "renderer": "adminDashboard"
+    },
+    {
+      "route": "admin-works",
+      "renderer": "adminWorks"
+    },
+    {
+      "route": "admin-purchases",
+      "renderer": "adminPurchases"
+    },
+    {
+      "route": "admin-add-work",
+      "renderer": "adminAddWork"
+    },
+    {
+      "route": "admin-work-overview",
+      "renderer": "adminWorkOverview"
+    },
+    {
+      "route": "admin-work-access",
+      "renderer": "adminWorkAccess"
+    },
+    {
+      "route": "admin-work-items",
+      "renderer": "adminWorkItems"
+    },
+    {
+      "route": "admin-work-planning",
+      "renderer": "adminWorkPlanning"
+    },
+    {
+      "route": "admin-work-calendar",
+      "renderer": "adminWorkCalendar"
+    },
+    {
+      "route": "admin-work-purchases",
+      "renderer": "adminWorkPurchases"
+    },
+    {
+      "route": "admin-work-diary",
+      "renderer": "adminWorkDiary"
+    },
+    {
+      "route": "admin-work-measurement",
+      "renderer": "adminWorkMeasurement"
+    },
+    {
+      "route": "admin-visits",
+      "renderer": "adminVisits"
+    },
+    {
+      "route": "admin-finance",
+      "renderer": "adminFinance"
+    },
+    {
+      "route": "admin-rh",
+      "renderer": "adminRh"
+    },
+    {
+      "route": "admin-settings",
+      "renderer": "adminSettings"
+    },
+    {
+      "route": "admin-mobile-platform",
+      "renderer": "adminMobilePlatform"
+    },
+    {
+      "route": "admin-access",
+      "renderer": "adminAccess"
+    },
+    {
+      "route": "admin-diagram-library",
+      "renderer": "adminDiagramLibrary"
+    },
+    {
+      "route": "admin-help",
+      "renderer": "adminHelp"
+    },
+    {
+      "route": "admin-data-transfer",
+      "renderer": "adminDataTransfer"
+    },
+    {
+      "route": "admin-access-config",
+      "renderer": "adminAccessConfig"
+    },
+    {
+      "route": "admin-machine-authorization",
+      "renderer": "adminMachineAuthorization"
+    },
+    {
+      "route": "admin-login",
+      "renderer": "adminLogin"
+    },
+    {
+      "route": "mobile-home",
+      "renderer": "mobileHome"
+    },
+    {
+      "route": "mobile-routine",
+      "renderer": "mobileRoutine"
+    },
+    {
+      "route": "mobile-day",
+      "renderer": "mobileDay"
+    },
+    {
+      "route": "mobile-deliveries",
+      "renderer": "mobileDeliveries"
+    },
+    {
+      "route": "mobile-diary",
+      "renderer": "mobileDiary"
+    }
+  ],
+  "pages": 29,
+  "machineState": "/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/core/machine-state.js"
+}

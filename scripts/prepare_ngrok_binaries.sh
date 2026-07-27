@@ -54,5 +54,5 @@ echo "  $VENDOR_DIR/linux/ngrok"
 echo "  $VENDOR_DIR/windows/ngrok.exe"
 
 echo "Compile current platform with embedded ngrok:"
-echo "  nim c -d:macroobrasEmbedNgrok --path:../../obra_macroobras_design_types_tests_bundle/src src/app.nim"
+echo "  nim c -d:ssl -d:macroobrasEmbedNgrok --path:../../obra_macroobras_design_types_tests_bundle/src src/app.nim"
 

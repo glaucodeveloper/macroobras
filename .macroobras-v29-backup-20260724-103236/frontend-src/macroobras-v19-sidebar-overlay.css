@@ -1,0 +1,109 @@
+/* MacroObras v19 — subnavegação em gaveta lateral, sem empurrar a página */
+@media (max-width: 900px) {
+  .desktop-layout.has-sidebar,
+  .desktop-layout.has-sidebar.sidebar-collapsed {
+    position: relative;
+    display: block !important;
+    grid-template-columns: none !important;
+    min-height: calc(100vh - 124px);
+  }
+
+  .desktop-layout.has-sidebar .maximus-workspace {
+    width: 100%;
+    min-width: 0;
+    margin: 0 !important;
+    padding: 17px 14px 28px !important;
+  }
+
+  .desktop-layout.has-sidebar .drill-sidebar {
+    position: fixed !important;
+    z-index: 120;
+    top: 124px;
+    bottom: 0;
+    left: 0;
+    width: 224px !important;
+    min-width: 224px;
+    min-height: 0 !important;
+    display: block !important;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 18px 10px !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    border-right: 1px solid #062d5f !important;
+    box-shadow: 10px 0 28px rgba(4, 35, 75, 0.22);
+  }
+
+  .desktop-layout.has-sidebar .drill-sidebar nav {
+    display: grid !important;
+    gap: 6px;
+  }
+
+  .desktop-layout.has-sidebar .drill-sidebar nav > button {
+    width: 100%;
+    min-width: 0 !important;
+    min-height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 0 13px;
+    color: #dceaff;
+    text-align: left;
+    background: transparent;
+    border: 0;
+    border-radius: 7px;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .desktop-layout.has-sidebar .drill-sidebar nav > button b {
+    color: #7fb2f5;
+  }
+
+  .desktop-layout.has-sidebar .drill-sidebar nav > button:hover {
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .desktop-layout.has-sidebar .drill-sidebar nav > button.active {
+    color: #fff;
+    background: var(--mo-blue);
+    box-shadow: inset 3px 0 0 #fff;
+  }
+
+  .desktop-layout.has-sidebar.sidebar-collapsed .drill-sidebar {
+    width: 58px !important;
+    min-width: 58px;
+    padding: 7px !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    border-right: 1px solid #062d5f !important;
+  }
+
+  .desktop-layout.has-sidebar.sidebar-collapsed .sidebar-subnav-header {
+    grid-template-columns: 1fr;
+    margin: 0;
+    padding: 5px;
+  }
+
+  .desktop-layout.has-sidebar.sidebar-collapsed .sidebar-subnav-header > div,
+  .desktop-layout.has-sidebar.sidebar-collapsed .drill-sidebar nav {
+    display: none !important;
+  }
+
+  .desktop-layout.has-sidebar.sidebar-collapsed .sidebar-collapse-control {
+    margin: auto;
+  }
+}
+
+@media (max-width: 650px) {
+  .desktop-layout.has-sidebar .drill-sidebar {
+    top: 124px;
+    width: min(224px, calc(100vw - 44px)) !important;
+    min-width: 0;
+  }
+
+  .desktop-layout.has-sidebar.sidebar-collapsed .drill-sidebar {
+    width: 52px !important;
+  }
+}
