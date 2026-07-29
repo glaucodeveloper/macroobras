@@ -1,0 +1,104 @@
+ARQUIVOS ANTES DA RETOMADA
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/pages/admin/admin-work-planning.page.js
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/diagram-canvas.js
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css
+
+VALIDAÇÃO FINAL
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/works-map-advanced.js:242:    ".works-selected-hero",
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/works-map-advanced.js:250:      "works-selected-hero work-detail-inline-before-map";
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/works-map-advanced.js:256:    "works-selected-hero",
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/works-map-advanced.js:268:    body.className = "works-selected-hero-dashboard-content";
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/works-map-advanced.js:277:    ".works-purchase-closing",
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/works-map-advanced.js:298:    ".works-purchase-closing",
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/works-map-advanced.js:511:    "[data-works-route-history-legend]",
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/works-map-advanced.js:516:    legend.className = "works-route-history-legend";
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/works-map-advanced.js:587:      class="works-route-history-item"
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/works-map-advanced.js:690:    "[data-works-route-history-controls]",
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/works-map-advanced.js:695:    controls.className = "works-route-history-controls";
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/works-map-advanced.js:708:      class="works-route-history-toggle"
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/works-map-advanced.js:717:      class="works-route-history-panel"
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/works-map-advanced.js:723:        : `<div class="works-route-history-empty">
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/works-map-advanced.js:763:        "[data-works-route-history-legend]",
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/works-map-advanced.js:779:    "macroobras:visit-route-drawing",
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/google-maps.js:500:    new CustomEvent("macroobras:visit-route-drawing", {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/diagram-canvas.js:16:let planningDuplicateKeyActive = false;
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/diagram-canvas.js:34:    planningDuplicateKeyActive = true;
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/diagram-canvas.js:39:      planningDuplicateKeyActive = false;
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/diagram-canvas.js:44:    planningDuplicateKeyActive = false;
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/diagram-canvas.js:620:            planningDuplicateKeyActive
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/pages/admin/admin-work-planning.page.js:282:    ${card("Cronograma gráfico", `<div class="interactive-diagram planning-diagram" data-interactive-diagram="planning-${esc(work.id)}" data-allow-material-drop="true" data-calendar-grid="true" data-calendar-start="${esc(seed.calendar?.startDate || "")}" data-calendar-day-width="${Number(seed.calendar?.dayWidth || 190)}" data-calendar-lane-height="${Number(seed.calendar?.laneHeight || 220)}" data-duplicate-with-d="true"><svg data-diagram-svg></svg><div data-node-layer></div><script type="application/json">${JSON.stringify(seed)}</script></div>`, "interactive-diagram-card")}`;
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:3612:.works-selected-hero {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:3823:  .works-selected-hero {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8355:.works-purchase-closing {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8366:.works-purchase-closing > header {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8377:.works-purchase-closing > header > div:first-child {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8383:.works-purchase-closing > header small {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8392:.works-purchase-closing > header h2 {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8417:.works-purchase-closing-scroll {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8422:.works-purchase-closing table {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8430:.works-purchase-closing th,
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8431:.works-purchase-closing td {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8439:.works-purchase-closing th {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8449:.works-purchase-closing td {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8455:.works-purchase-closing td strong {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8459:.works-purchase-closing-actions {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8465:.works-purchase-closing-actions button,
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8466:.works-purchase-closing td button {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8477:.works-purchase-closing-kpis {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8484:.works-purchase-closing-kpis article {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8491:.works-purchase-closing-kpis strong {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8499:.works-purchase-closing-kpis span {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8504:.works-purchase-closing-kpis .difference strong,
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8505:.works-purchase-closing td.difference {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8509:.works-purchase-closing-status {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8517:.works-purchase-closing-status > span {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8526:.works-purchase-closing-status small {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8530:.works-purchase-closing-status strong {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8534:.works-purchase-closing td small {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8540:.works-purchase-closing > footer {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8558:  .works-purchase-closing-kpis {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8562:  .works-purchase-closing-status {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8569:  .works-purchase-closing > header {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8574:  .works-purchase-closing-kpis,
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8575:  .works-purchase-closing-status {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8579:  .works-purchase-closing-actions {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8747:/* MACROOBRAS WORKS ROUTES PLANNING V1 */
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8749:.works-selected-hero.work-detail-inline-before-map {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8755:.works-selected-hero-dashboard-content {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8759:.works-purchase-closing {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8784:.works-route-history-controls {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8790:.works-route-history-toggle {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8806:.works-route-history-toggle b {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8817:.works-route-history-panel {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8827:.works-route-history-panel[hidden] {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8831:.works-route-history-item {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8851:.works-route-history-item > i {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8858:.works-route-history-item > span {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8864:.works-route-history-item strong,
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8865:.works-route-history-item small {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8871:.works-route-history-item strong {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8875:.works-route-history-item small {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8880:.works-route-history-item.is-muted {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8885:.works-route-history-item.is-selected {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8897:.works-route-history-empty {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8902:.works-route-history-legend {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8918:.works-route-history-legend > header {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8927:.works-route-history-legend > header > i {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8934:.works-route-history-legend > header > div {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8940:.works-route-history-legend small {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8947:.works-route-history-legend strong {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8952:.works-route-history-legend > header > button {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8961:.works-route-history-legend > div {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8968:.works-route-history-legend > div > span {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8975:.works-route-history-legend > footer {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8981:.works-route-history-legend > footer button {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8992:.works-route-history-legend > footer .danger {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8996:.planning-diagram[data-calendar-grid="true"] {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:9031:.planning-diagram[data-calendar-grid="true"]
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:9060:.works-purchase-closing table,
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:9070:.works-purchase-closing th,
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:9081:.works-purchase-closing td,
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:9092:.works-purchase-closing td strong,
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:9100:  .works-route-history-legend {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:9106:  .works-route-history-legend > div {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:9111:/* END MACROOBRAS WORKS ROUTES PLANNING V1 */

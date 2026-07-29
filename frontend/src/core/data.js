@@ -2,14 +2,17 @@ export const topNavigation = [
   { route: "admin-dashboard", label: "Painel", icon: "dashboard" },
   { route: "admin-works", label: "Obras", icon: "works" },
   { route: "admin-purchases", label: "Compras", icon: "purchases" },
-  { route: "admin-visits", label: "Visitas", icon: "visits" },
+  { route: "admin-inventory", label: "Inventário", icon: "inventory" },
+  { route: "admin-tickets", label: "Tickets", icon: "tickets" },
   { route: "admin-rh", label: "RH", icon: "people" },
 ];
 
 export const routes = [
   ...topNavigation.map((item) => ({ ...item, mode: "admin", parent: item.route })),
   { route: "admin-settings", label: "Configurações", mode: "admin", parent: "admin-settings" },
+  { route: "admin-visits", label: "Visitas", mode: "admin", parent: "admin-works" },
   { route: "admin-add-work", label: "Adicionar obra", mode: "admin", parent: "admin-works" },
+  { route: "admin-service-relations", label: "Relações de serviços de obra", mode: "admin", parent: "admin-works" },
   { route: "admin-work-overview", label: "Visão geral", mode: "admin", parent: "admin-works", workRoute: true },
   { route: "admin-work-access", label: "Acessos do encarregado", mode: "admin", parent: "admin-works", workRoute: true },
   { route: "admin-work-items", label: "Itens de execução", mode: "admin", parent: "admin-works", workRoute: true },
@@ -34,6 +37,7 @@ export const subNavigation = {
   "admin-works": [
     { route: "admin-works", label: "Mapa e obras" },
     { route: "admin-add-work", label: "Adicionar obra" },
+    { route: "admin-service-relations", label: "Relações de serviços" },
   ],
   "admin-work": [
     { route: "admin-work-overview", label: "Visão geral" },
@@ -57,6 +61,12 @@ export const subNavigation = {
   "admin-purchases": [
     { route: "admin-purchases", label: "Fluxo de compras" },
   ],
+  "admin-inventory": [
+    { route: "admin-inventory", label: "Materiais por cidade" },
+  ],
+  "admin-tickets": [
+    { route: "admin-tickets", label: "Canvas de tickets" },
+  ],
   "admin-visits": [
     { route: "admin-visits", label: "Rotas e visitas" },
   ],
@@ -71,6 +81,7 @@ export const mobileRoutes = [
   { route: "mobile-day", label: "Cronograma", shortLabel: "Hoje" },
   { route: "mobile-deliveries", label: "Entregas", shortLabel: "Entregas" },
   { route: "mobile-diary", label: "Diário", shortLabel: "Diário" },
+  { route: "mobile-tickets", label: "Tickets", shortLabel: "Tickets" },
 ];
 
 const bueraremaItems = [

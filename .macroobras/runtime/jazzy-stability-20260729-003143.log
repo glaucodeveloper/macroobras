@@ -1,0 +1,232 @@
+=== MacroObras — estação Jazzy estabilizada ===
+Projeto: /home/icarogdo/dev/macroobras-jazzy/app/macroobras
+Endereço: http://127.0.0.1:7654/?surface=admin
+Relatório: /home/icarogdo/dev/macroobras-jazzy/app/macroobras/.macroobras/runtime/jazzy-stability-20260729-003143.log
+
+==> 1/5 Encerrando processos conflitantes
+==> 2/5 Validando os módulos JavaScript
+JavaScript válido: 63 arquivo(s)
+==> 3/5 Gerando o frontend
+Configuração de runtime gerada sem exibir a chave.
+Fonte: /home/icarogdo/.config/macroobras/google-maps.env
+Saída: /home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/dist/runtime-config.local.js
+Frontend built at frontend/dist
+==> 4/5 Compilando servidor Linux em release
+Hint: used config file '/etc/nim/nim.cfg' [Conf]
+Hint: used config file '/etc/nim/config.nims' [Conf]
+...................................................................................................................................................................................................................................................................................................................................
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/src/macroobras/collaborator_service.nim(293, 6) Hint: 'lanAppUrl' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/src/macroobras/collaborator_service.nim(299, 6) Hint: 'lanApiUrl' is declared but not used [XDeclaredButNotUsed]
+....
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+Hint:  [Link]
+Hint: mm: orc; threads: on; opt: speed; options: -d:release
+110484 lines; 2.708s; 334.344MiB peakmem; proj: /home/icarogdo/dev/macroobras-jazzy/app/macroobras/src/app.nim; out: /home/icarogdo/dev/macroobras-jazzy/app/macroobras/src/app-release [SuccessX]
+==> 5/5 Iniciando com supervisão de falha
+
+--- Execução 1/3 ---
+[90m2026-07-29 00:31:48[0m [32m[1m[INFO ][0m 🎷 Jazzy running in release mode on http://127.0.0.1:7654
+Abrindo em uma sessão de navegador existente.
+[90m2026-07-29 00:31:49[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusBootstrap 200 3.9ms [e06f247b]
+[90m2026-07-29 00:31:51[0m [32m[1m[INFO ][0m ← POST /rpc/autenticarAdministradorContato 200 0.1ms [4c53cc20]
+[90m2026-07-29 00:31:51[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusBootstrap 200 3.7ms [8d483044]
+[90m2026-07-29 00:31:52[0m [32m[1m[INFO ][0m ← POST /rpc/autenticarAdministradorContato 200 0.1ms [ab63b8c0]
+[90m2026-07-29 00:31:57[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 5.0ms [5bfa767a]
+[90m2026-07-29 00:31:58[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.3ms [7b552f4a]
+[90m2026-07-29 00:32:04[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.2ms [3240b169]
+[90m2026-07-29 00:32:06[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.8ms [d14880b0]
+[90m2026-07-29 00:32:10[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [97b2f4d8]
+[90m2026-07-29 00:32:11[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.0ms [987b4f64]
+[90m2026-07-29 00:32:12[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [0152cb86]
+[90m2026-07-29 00:32:13[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.6ms [e05760cb]
+[90m2026-07-29 00:32:18[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 6.0ms [bcf29eac]
+[90m2026-07-29 00:32:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [d541685f]
+[90m2026-07-29 00:32:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.9ms [3209131f]
+[90m2026-07-29 00:32:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.6ms [90ad3a1b]
+[90m2026-07-29 00:32:25[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 5.0ms [439f8d96]
+[90m2026-07-29 00:32:27[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.2ms [c0160993]
+[90m2026-07-29 00:32:30[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [2c4ef312]
+[90m2026-07-29 00:32:32[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [c4804e20]
+[90m2026-07-29 00:32:32[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.9ms [a90a96ae]
+[90m2026-07-29 00:32:34[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.9ms [a01b519c]
+[90m2026-07-29 00:32:39[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.8ms [cb6d6685]
+[90m2026-07-29 00:32:41[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.6ms [70d8a9fb]
+[90m2026-07-29 00:32:46[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.7ms [64cf1ac2]
+[90m2026-07-29 00:32:48[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.6ms [e994c1da]
+[90m2026-07-29 00:32:50[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [cc8ae9ee]
+[90m2026-07-29 00:32:52[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [9e3e6aeb]
+[90m2026-07-29 00:32:55[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.4ms [e52b6284]
+[90m2026-07-29 00:33:02[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.7ms [bc5819bc]
+[90m2026-07-29 00:33:10[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [d7899d82]
+[90m2026-07-29 00:33:12[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [1268fd6b]
+[90m2026-07-29 00:33:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [63707492]
+[90m2026-07-29 00:33:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.8ms [9a42683c]
+[90m2026-07-29 00:33:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.2ms [4d1d9893]
+[90m2026-07-29 00:33:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.3ms [d8c558a8]
+[90m2026-07-29 00:33:30[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [8bae2119]
+[90m2026-07-29 00:33:32[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [063b462c]
+[90m2026-07-29 00:33:50[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [20aa95b2]
+[90m2026-07-29 00:33:52[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [ac2cb776]
+[90m2026-07-29 00:34:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [c363da7e]
+[90m2026-07-29 00:34:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [dffb9701]
+[90m2026-07-29 00:34:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [276ce143]
+[90m2026-07-29 00:34:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.6ms [4b7c5266]
+[90m2026-07-29 00:34:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.8ms [18fa0731]
+[90m2026-07-29 00:34:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.6ms [2c0096fe]
+Traceback (most recent call last)
+mummy.nim(538)           workerProc
+mummy.nim(471)           runTask
+mummy_driver.nim(92)     mummyHandler
+app.nim(53)              :anonymous
+app.nim(56)              anonymous (Async)
+app.nim(31)              :anonymous
+app.nim(32)              anonymous (Async)
+SIGSEGV: Illegal storage access. (Attempt to read from nil?)
+Traceback (most recent call last)
+mummy.nim(538)           workerProc
+mummy.nim(471)           runTask
+mummy_driver.nim(92)     mummyHandler
+app.nim(53)              :anonymous
+app.nim(56)              anonymous (Async)
+app.nim(31)              :anonymous
+app.nim(32)              anonymous (Async)
+SIGSEGV: Illegal storage access. (Attempt to read from nil?)
+./reiniciar_macroobras_jazzy_estavel_sem_ngrok.sh, linha 199: 66466 Falha de segmentação     (imagem do núcleo gravada) env APP_ENV=release MACROOBRAS_HOST="$HOST" MACROOBRAS_PORT="$PORT" MACROOBRAS_ENABLE_NGROK=0 MACROOBRAS_ENABLE_FTP=0 MACROOBRAS_ENABLE_LAN_PROXY=0 "$BIN"
+
+Servidor encerrou com código 139.
+Falha nativa detectada; reiniciando em 2s...
+
+--- Execução 2/3 ---
+[90m2026-07-29 00:35:22[0m [32m[1m[INFO ][0m 🎷 Jazzy running in release mode on http://127.0.0.1:7654
+[90m2026-07-29 00:35:23[0m [32m[1m[INFO ][0m ← POST /rpc/obterRotaPublicaColaborador 200 5.2ms [550ae6ee]
+[90m2026-07-29 00:35:23[0m [32m[1m[INFO ][0m ← POST /rpc/obterRotaPublicaColaborador 200 5.2ms [bab54f7b]
+[90m2026-07-29 00:35:23[0m [32m[1m[INFO ][0m ← POST /rpc/obterRotaPublicaColaborador 200 5.2ms [0f68655c]
+Abrindo em uma sessão de navegador existente.
+[90m2026-07-29 00:35:23[0m [32m[1m[INFO ][0m ← GET / 200 0.2ms [98ed1514]
+[90m2026-07-29 00:35:23[0m [32m[1m[INFO ][0m ← GET /src/carbon-shell.css 200 0.3ms [9e6a5656]
+Traceback (most recent call last)
+mummy.nim(538)           workerProc
+mummy.nim(471)           runTask
+mummy_driver.nim(92)     mummyHandler
+app.nim(53)              :anonymous
+app.nim(56)              anonymous (Async)
+app.nim(31)              :anonymous
+app.nim(32)              anonymous (Async)
+SIGSEGV: Illegal storage access. (Attempt to read from nil?)
+./reiniciar_macroobras_jazzy_estavel_sem_ngrok.sh, linha 199: 68910 Falha de segmentação     (imagem do núcleo gravada) env APP_ENV=release MACROOBRAS_HOST="$HOST" MACROOBRAS_PORT="$PORT" MACROOBRAS_ENABLE_NGROK=0 MACROOBRAS_ENABLE_FTP=0 MACROOBRAS_ENABLE_LAN_PROXY=0 "$BIN"
+
+Servidor encerrou com código 139.
+Falha nativa detectada; reiniciando em 2s...
+
+--- Execução 3/3 ---
+[90m2026-07-29 00:35:25[0m [32m[1m[INFO ][0m 🎷 Jazzy running in release mode on http://127.0.0.1:7654
+Abrindo em uma sessão de navegador existente.
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /src/styles.css 200 0.3ms [cdf5b070]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /src/macroobras-v13.css 200 0.5ms [fa05d83f]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /src/macroobras-v24-access-by-work.css 200 0.2ms [d3e28038]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /carbon.css 200 2.3ms [de7a7a6a]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /src/macroobras-v30-professional.css 200 0.9ms [ea427d31]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /runtime-config.local.js 200 0.1ms [bba96361]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /src/module.js 200 0.1ms [854c9a9c]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /src/core/app-controller.js 200 0.8ms [66ae4725]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /src/core/api.js 200 0.1ms [30fa964b]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /src/core/work-metrics.js 200 0.1ms [00e9462d]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /src/core/data.js 200 0.3ms [06f19fbd]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /src/core/router.js 200 0.1ms [e9a35cd0]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /src/ui/branded-print.js 200 0.3ms [dc151a19]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /src/pages/installer/installer.page.js 200 0.2ms [d019da12]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /src/ui/shells.js 200 0.3ms [6e5a1943]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /src/ui/operational-layouts.js 200 0.2ms [11d3692e]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /src/ui/google-maps.js 200 0.4ms [75100896]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /src/core/firebase-auth.js 200 0.1ms [cb776fc1]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /src/ui/visit-route-print.js 200 0.2ms [1a461690]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /src/ui/diagram-canvas.js 200 0.4ms [cf158e87]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /src/core/state.js 200 0.1ms [880fff81]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /src/pages/route-registry.js 200 0.1ms [fb574081]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /src/core/utils.js 200 0.1ms [7b03fe26]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /src/ui/components.js 200 0.1ms [2b9a1121]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /src/core/runtime-config.js 200 0.1ms [fe19fbf6]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /src/ui/print-table-reflow.js 200 0.2ms [ba0d3cdf]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /src/ui/canvas-report-print.js 200 0.3ms [ba60f7da]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /src/ui/component-pdf-print.js 200 0.2ms [935f6929]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /src/ui/canvas-table-print-router.js 200 0.2ms [636d7176]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /src/ui/map-inventory-interactions.js 200 0.2ms [57099b6a]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /src/ui/current-operational-enhancements.js 200 0.3ms [386131ab]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /src/ui/works-map-advanced.js 200 0.3ms [3431db4f]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /src/core/machine-state.js 200 0.3ms [08d58afb]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /src/pages/admin/admin-dashboard.page.js 200 0.3ms [70a17f5f]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /src/pages/admin/admin-works.page.js 200 0.3ms [b9fdd826]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /src/pages/admin/admin-purchases.page.js 200 0.2ms [d99ecb8b]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /src/pages/admin/admin-service-relations.page.js 200 0.2ms [f7de3f61]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /src/pages/admin/admin-inventory.page.js 200 0.4ms [0d3e1f76]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /src/pages/admin/admin-add-work.page.js 200 0.3ms [24b097bc]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /src/pages/admin/admin-work-overview.page.js 200 0.2ms [db913938]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /src/pages/admin/admin-tickets.page.js 200 0.2ms [dd4abdd1]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /src/pages/admin/admin-work-items.page.js 200 0.2ms [9635e3fd]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /src/pages/admin/admin-work-access.page.js 200 0.2ms [02290c55]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /src/pages/admin/admin-work-measurement.page.js 200 0.1ms [2451f585]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /src/pages/admin/admin-work-purchases.page.js 200 0.2ms [8db2b742]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /src/pages/admin/admin-work-planning.page.js 200 0.2ms [52851241]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /src/pages/admin/admin-work-calendar.page.js 200 0.3ms [9b520221]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /src/pages/admin/admin-work-diary.page.js 200 0.3ms [685d3f7d]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /src/pages/admin/admin-visits.page.js 200 0.3ms [459c6ae6]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /src/pages/admin/admin-finance.page.js 200 0.2ms [5fc978d9]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /src/pages/admin/admin-rh.page.js 200 0.3ms [b02b1852]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /src/pages/admin/admin-settings.page.js 200 0.2ms [a34f7fc4]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /src/pages/admin/admin-access.page.js 200 0.1ms [2be521cb]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /src/pages/admin/admin-mobile-platform.page.js 200 0.2ms [018ada91]
+[90m2026-07-29 00:35:26[0m [32m[1m[INFO ][0m ← GET /src/pages/admin/admin-diagram-library.page.js 200 0.2ms [ecc58f4c]
+Traceback (most recent call last)
+mummy.nim(538)           workerProc
+mummy.nim(471)           runTask
+mummy_driver.nim(92)     mummyHandler
+app.nim(53)              :anonymous
+app.nim(56)              anonymous (Async)
+app.nim(31)              :anonymous
+app.nim(32)              anonymous (Async)
+SIGSEGV: Illegal storage access. (Attempt to read from nil?)
+Traceback (most recent call last)
+mummy.nim(538)           workerProc
+mummy.nim(471)           runTask
+mummy_driver.nim(92)     mummyHandler
+app.nim(53)              :anonymous
+app.nim(56)              anonymous (Async)
+app.nim(31)              :anonymous
+app.nim(32)              anonymous (Async)
+SIGSEGV: Illegal storage access. (Attempt to read from nil?)
+./reiniciar_macroobras_jazzy_estavel_sem_ngrok.sh, linha 199: 69251 Falha de segmentação     (imagem do núcleo gravada) env APP_ENV=release MACROOBRAS_HOST="$HOST" MACROOBRAS_PORT="$PORT" MACROOBRAS_ENABLE_NGROK=0 MACROOBRAS_ENABLE_FTP=0 MACROOBRAS_ENABLE_LAN_PROXY=0 "$BIN"
+
+Servidor encerrou com código 139.
+
+ERRO: o processo Jazzy sofreu falha nativa 3 vez(es).
+
+Último coredump disponível:
+TIME                          PID  UID  GID SIG     COREFILE EXE                                                                 SIZE
+Wed 2026-07-29 00:35:27 -03 69251 1000 1000 SIGSEGV present  /home/icarogdo/dev/macroobras-jazzy/app/macroobras/src/app-release  5.5M
+Wed 2026-07-29 00:35:23 -03 68910 1000 1000 SIGSEGV present  /home/icarogdo/dev/macroobras-jazzy/app/macroobras/src/app-release  3.7M
+Wed 2026-07-29 00:35:20 -03 66466 1000 1000 SIGSEGV present  /home/icarogdo/dev/macroobras-jazzy/app/macroobras/src/app-release  5.5M
+
+Relatório completo: /home/icarogdo/dev/macroobras-jazzy/app/macroobras/.macroobras/runtime/jazzy-stability-20260729-003143.log

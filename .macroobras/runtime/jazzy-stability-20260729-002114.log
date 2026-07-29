@@ -1,0 +1,111 @@
+=== MacroObras — estação Jazzy estabilizada ===
+Projeto: /home/icarogdo/dev/macroobras-jazzy/app/macroobras
+Endereço: http://127.0.0.1:7654/?surface=admin
+Relatório: /home/icarogdo/dev/macroobras-jazzy/app/macroobras/.macroobras/runtime/jazzy-stability-20260729-002114.log
+
+==> 1/5 Encerrando processos conflitantes
+==> 2/5 Validando os módulos JavaScript
+JavaScript válido: 62 arquivo(s)
+==> 3/5 Gerando o frontend
+Configuração de runtime gerada sem exibir a chave.
+Fonte: /home/icarogdo/.config/macroobras/google-maps.env
+Saída: /home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/dist/runtime-config.local.js
+Frontend built at frontend/dist
+==> 4/5 Compilando servidor Linux em release
+Hint: used config file '/etc/nim/nim.cfg' [Conf]
+Hint: used config file '/etc/nim/config.nims' [Conf]
+...................................................................................................................................................................................................................................................................................................................................
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/src/macroobras/collaborator_service.nim(293, 6) Hint: 'lanAppUrl' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/src/macroobras/collaborator_service.nim(299, 6) Hint: 'lanApiUrl' is declared but not used [XDeclaredButNotUsed]
+....
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+Hint:  [Link]
+Hint: mm: orc; threads: on; opt: speed; options: -d:release
+110484 lines; 2.690s; 334.344MiB peakmem; proj: /home/icarogdo/dev/macroobras-jazzy/app/macroobras/src/app.nim; out: /home/icarogdo/dev/macroobras-jazzy/app/macroobras/src/app-release [SuccessX]
+==> 5/5 Iniciando com supervisão de falha
+
+--- Execução 1/3 ---
+[90m2026-07-29 00:21:19[0m [32m[1m[INFO ][0m 🎷 Jazzy running in release mode on http://127.0.0.1:7654
+Abrindo em uma sessão de navegador existente.
+[90m2026-07-29 00:21:19[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusBootstrap 200 3.7ms [8d1f0fca]
+[90m2026-07-29 00:21:22[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusBootstrap 200 4.5ms [42fa3055]
+[90m2026-07-29 00:21:22[0m [32m[1m[INFO ][0m ← POST /rpc/autenticarAdministradorContato 200 0.1ms [1d0bf7e8]
+[90m2026-07-29 00:21:29[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.7ms [b234b88f]
+[90m2026-07-29 00:22:14[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [79d670af]
+[90m2026-07-29 00:22:14[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.6ms [2688abb5]
+[90m2026-07-29 00:22:18[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.5ms [8aa7f022]
+[90m2026-07-29 00:22:29[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [cd4447e7]
+[90m2026-07-29 00:22:29[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.5ms [3b15c87f]
+[90m2026-07-29 00:22:33[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.3ms [8c2bb7dd]
+[90m2026-07-29 00:22:40[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.8ms [8c9cc960]
+[90m2026-07-29 00:22:43[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [dcabfee6]
+[90m2026-07-29 00:22:47[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 5.0ms [d5b11e24]
+[90m2026-07-29 00:22:54[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.1ms [720f48b9]
+[90m2026-07-29 00:23:01[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.6ms [4b9ef874]
+[90m2026-07-29 00:23:03[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [5e2ccc88]
+[90m2026-07-29 00:23:08[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 6.1ms [c92d390f]
+[90m2026-07-29 00:23:15[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.4ms [fbd5411a]
+[90m2026-07-29 00:23:22[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.6ms [e9e7184c]
+[90m2026-07-29 00:23:23[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [e2601a00]
+[90m2026-07-29 00:23:29[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.3ms [0e6984fe]
+[90m2026-07-29 00:23:43[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [1082e286]
+[90m2026-07-29 00:24:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [c1fe1406]
+[90m2026-07-29 00:24:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.0ms [65a8e7b9]
+[90m2026-07-29 00:25:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [96165dc4]
+[90m2026-07-29 00:25:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.8ms [51e8bb3b]
+Traceback (most recent call last)
+server.nim(21)           runJazzyServer
+app.nim(88)              serve
+mummy_driver.nim(132)    serve (Async)
+mummy.nim(1466)          serve
+mummy.nim(1370)          loopForever
+mummy.nim(1089)          afterRecv
+mummy.nim(915)           afterRecvHttp
+alloc.nim(1217)          realloc
+alloc.nim(1195)          alloc
+alloc.nim(895)           rawAlloc
+alloc.nim(825)           compensateCounters
+SIGSEGV: Illegal storage access. (Attempt to read from nil?)
+./reiniciar_macroobras_jazzy_estavel_sem_ngrok.sh, linha 199: 56378 Falha de segmentação     (imagem do núcleo gravada) env APP_ENV=release MACROOBRAS_HOST="$HOST" MACROOBRAS_PORT="$PORT" MACROOBRAS_ENABLE_NGROK=0 MACROOBRAS_ENABLE_FTP=0 MACROOBRAS_ENABLE_LAN_PROXY=0 "$BIN"
+
+Servidor encerrou com código 139.
+Falha nativa detectada; reiniciando em 2s...
+
+--- Execução 2/3 ---
+[90m2026-07-29 00:26:22[0m [32m[1m[INFO ][0m 🎷 Jazzy running in release mode on http://127.0.0.1:7654
+[90m2026-07-29 00:26:23[0m [32m[1m[INFO ][0m ← POST /rpc/obterRotaPublicaColaborador 200 4.9ms [ad42da90]
+Abrindo em uma sessão de navegador existente.
+[90m2026-07-29 00:26:23[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusBootstrap 200 3.8ms [99615001]
+[90m2026-07-29 00:27:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [8739df30]
+[90m2026-07-29 00:27:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.0ms [e58b7027]
+[90m2026-07-29 00:28:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [8e2d4f31]
+[90m2026-07-29 00:28:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.6ms [71ea062d]
+Traceback (most recent call last)
+app.nim(217)             app
+core.nim(46)             runDesktopAppInternal
+SIGINT: Interrupted by Ctrl-C.
+
+Estação encerrada pelo usuário.

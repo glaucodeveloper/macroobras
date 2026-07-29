@@ -1,0 +1,32 @@
+LAYOUTS
+130:function hydrateWorksVisitToolbar(root) {
+163:    toolbar.className = "works-visit-crud-toolbar";
+
+CONTROLLER
+593:  if (message.type === "load-works-visit-route") {
+1174:function loadWorksVisitRoute() {
+
+CSS
+6124:.works-visit-crud-toolbar {
+6265:  .works-visit-crud-toolbar {
+6302:  .works-visit-crud-toolbar {
+6332:/* MACROOBRAS WORKS VISIT RIGHT DOCK V2 */
+6349:.works-visit-crud-toolbar {
+6605:  .works-visit-crud-toolbar {
+6645:/* END MACROOBRAS WORKS VISIT RIGHT DOCK V2 */
+
+VALIDAÇÃO FINAL
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/operational-layouts.js:210:          <small>Ponto inicial</small>
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/operational-layouts.js:220:          <small>Ponto de chegada</small>
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/operational-layouts.js:244:  let card = wrap.querySelector("[data-works-visit-routes-card]");
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/operational-layouts.js:248:    card.className = "works-visit-routes-card";
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/core/app-controller.js:594:    loadWorksVisitRoute(message.planId);
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:6647:/* MACROOBRAS WORKS VISIT ROUTE CARD V3 */
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:6669:.works-visit-routes-card {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:6688:.works-visit-routes-card > header {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:6698:.works-visit-routes-card > header > div {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:6704:.works-visit-routes-card > header small {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:6712:.works-visit-routes-card > header strong {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:6717:.works-visit-routes-card > header > span {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:6865:  .works-visit-routes-card {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:6902:/* END MACROOBRAS WORKS VISIT ROUTE CARD V3 */

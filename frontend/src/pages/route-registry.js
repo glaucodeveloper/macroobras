@@ -1,6 +1,9 @@
 import { adminDashboard } from "./admin/admin-dashboard.page.js";
 import { adminWorks } from "./admin/admin-works.page.js";
 import { adminPurchases } from "./admin/admin-purchases.page.js";
+import { adminServiceRelations } from "./admin/admin-service-relations.page.js";
+import { adminInventory } from "./admin/admin-inventory.page.js";
+import { adminTickets } from "./admin/admin-tickets.page.js";
 import { adminAddWork } from "./admin/admin-add-work.page.js";
 import { adminWorkOverview } from "./admin/admin-work-overview.page.js";
 import { adminWorkAccess } from "./admin/admin-work-access.page.js";
@@ -27,11 +30,15 @@ import { mobileRoutine } from "./mobile/mobile-routine.page.js";
 import { mobileDay } from "./mobile/mobile-day.page.js";
 import { mobileDeliveries } from "./mobile/mobile-deliveries.page.js";
 import { mobileDiary } from "./mobile/mobile-diary.page.js";
+import { mobileTickets } from "./mobile/mobile-tickets.page.js";
 
 export const pageRegistry = Object.freeze({
   "admin-dashboard": adminDashboard,
   "admin-works": adminWorks,
   "admin-purchases": adminPurchases,
+  "admin-service-relations": adminServiceRelations,
+  "admin-inventory": adminInventory,
+  "admin-tickets": adminTickets,
   "admin-add-work": adminAddWork,
   "admin-work-overview": adminWorkOverview,
   "admin-work-access": adminWorkAccess,
@@ -58,6 +65,7 @@ export const pageRegistry = Object.freeze({
   "mobile-day": mobileDay,
   "mobile-deliveries": mobileDeliveries,
   "mobile-diary": mobileDiary,
+  "mobile-tickets": mobileTickets,
 });
 
 export function renderRegisteredPage(route, fallbackRoute = "admin-dashboard") {

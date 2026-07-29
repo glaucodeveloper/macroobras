@@ -1,0 +1,255 @@
+=== MacroObras — estação Jazzy estabilizada ===
+Projeto: /home/icarogdo/dev/macroobras-jazzy/app/macroobras
+Endereço: http://127.0.0.1:7654/?surface=admin
+Relatório: /home/icarogdo/dev/macroobras-jazzy/app/macroobras/.macroobras/runtime/jazzy-stability-20260729-021033.log
+
+==> 1/5 Encerrando processos conflitantes
+==> 2/5 Validando os módulos JavaScript
+JavaScript válido: 68 arquivo(s)
+==> 3/5 Gerando o frontend
+Configuração de runtime gerada sem exibir a chave.
+Fonte: /home/icarogdo/.config/macroobras/google-maps.env
+Saída: /home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/dist/runtime-config.local.js
+Frontend built at frontend/dist
+==> 4/5 Compilando servidor Linux em release
+Hint: used config file '/etc/nim/nim.cfg' [Conf]
+Hint: used config file '/etc/nim/config.nims' [Conf]
+...................................................................................................................................................................................................................................................................................................................................
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/src/macroobras/collaborator_service.nim(293, 6) Hint: 'lanAppUrl' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/src/macroobras/collaborator_service.nim(299, 6) Hint: 'lanApiUrl' is declared but not used [XDeclaredButNotUsed]
+....
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+Hint:  [Link]
+Hint: mm: orc; threads: on; opt: speed; options: -d:release
+110484 lines; 2.791s; 334.344MiB peakmem; proj: /home/icarogdo/dev/macroobras-jazzy/app/macroobras/src/app.nim; out: /home/icarogdo/dev/macroobras-jazzy/app/macroobras/src/app-release [SuccessX]
+==> 5/5 Iniciando com supervisão de falha
+
+--- Execução 1/3 ---
+[90m2026-07-29 02:10:38[0m [32m[1m[INFO ][0m 🎷 Jazzy running in release mode on http://127.0.0.1:7654
+Abrindo em uma sessão de navegador existente.
+[90m2026-07-29 02:10:39[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusBootstrap 200 4.2ms [8a3d1cc3]
+[90m2026-07-29 02:10:42[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusBootstrap 200 4.3ms [d9da1176]
+[90m2026-07-29 02:10:42[0m [32m[1m[INFO ][0m ← POST /rpc/autenticarAdministradorContato 200 0.2ms [2e2c5fdd]
+[90m2026-07-29 02:10:49[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 7.8ms [82c72f0f]
+[90m2026-07-29 02:10:57[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 5.7ms [f6dbb4de]
+[90m2026-07-29 02:10:59[0m [32m[1m[INFO ][0m ← GET / 200 0.2ms [cb3e1faf]
+[90m2026-07-29 02:10:59[0m [32m[1m[INFO ][0m ← GET /src/carbon-shell.css 200 0.3ms [c889a6c1]
+[90m2026-07-29 02:10:59[0m [32m[1m[INFO ][0m ← GET /src/macroobras-v24-access-by-work.css 200 0.1ms [5b035bab]
+[90m2026-07-29 02:10:59[0m [32m[1m[INFO ][0m ← GET /src/styles.css 200 0.5ms [808e06ae]
+[90m2026-07-29 02:10:59[0m [32m[1m[INFO ][0m ← GET /src/macroobras-v13.css 200 0.6ms [99ee81c4]
+[90m2026-07-29 02:10:59[0m [32m[1m[INFO ][0m ← GET /src/macroobras-v30-professional.css 200 1.0ms [c50f1895]
+[90m2026-07-29 02:10:59[0m [32m[1m[INFO ][0m ← GET /carbon.css 200 3.3ms [3bb7a9b5]
+[90m2026-07-29 02:10:59[0m [32m[1m[INFO ][0m ← GET /src/module.js 200 0.1ms [040bd816]
+[90m2026-07-29 02:10:59[0m [32m[1m[INFO ][0m ← GET /runtime-config.local.js 200 0.1ms [38e2c81d]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/core/app-controller.js 200 0.6ms [8da7a4fe]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/core/data.js 200 0.3ms [99f1aedd]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/core/api.js 200 0.1ms [658bdda0]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/core/work-metrics.js 200 0.1ms [b382c0eb]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/core/router.js 200 0.1ms [4cb5659b]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/ui/branded-print.js 200 0.2ms [4bc24ded]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/pages/installer/installer.page.js 200 0.2ms [f0cffb9d]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/ui/shells.js 200 0.3ms [44fc13f4]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/ui/operational-layouts.js 200 0.2ms [180336a2]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/ui/google-maps.js 200 0.3ms [f8ccf3be]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/core/firebase-auth.js 200 0.1ms [9964b47a]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/ui/diagram-canvas.js 200 0.4ms [baa6c800]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/ui/visit-route-print.js 200 0.2ms [b1e7d8ed]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/core/state.js 200 0.1ms [a471f937]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/core/utils.js 200 0.1ms [c63adf72]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/pages/route-registry.js 200 0.1ms [dd987e94]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/core/runtime-config.js 200 0.1ms [ba26ff69]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/ui/components.js 200 0.1ms [bb576673]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/ui/print-table-reflow.js 200 0.2ms [4b2b1d82]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/ui/graph-ghost-table-print.js 200 0.3ms [b72e3387]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/ui/purchases-canvas-lanes.js 200 0.3ms [adc367b3]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/ui/canvas-table-print-router.js 200 0.3ms [92ab768f]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/ui/canvas-report-print.js 200 0.3ms [94f6a55e]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/ui/component-pdf-print.js 200 0.3ms [3bedef1f]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/ui/current-operational-enhancements.js 200 0.3ms [eb05a2b1]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/ui/map-inventory-interactions.js 200 0.2ms [fe7ee2dc]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/ui/works-map-advanced.js 200 0.2ms [f315e328]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/core/machine-state.js 200 0.3ms [86197e3d]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/pages/admin/admin-dashboard.page.js 200 0.3ms [737adce7]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/pages/admin/admin-works.page.js 200 0.3ms [9325d5eb]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/pages/admin/admin-service-relations.page.js 200 0.2ms [12664b69]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/pages/admin/admin-purchases.page.js 200 0.3ms [94fa4cc9]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/pages/admin/admin-inventory.page.js 200 0.2ms [f6f8161f]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/pages/admin/admin-tickets.page.js 200 0.2ms [da89d957]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/pages/admin/admin-add-work.page.js 200 0.3ms [43176f04]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/pages/admin/admin-work-overview.page.js 200 0.3ms [7f51a5d9]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/pages/admin/admin-work-items.page.js 200 0.2ms [2fed7842]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/pages/admin/admin-work-access.page.js 200 0.4ms [7d1db452]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/pages/admin/admin-work-planning.page.js 200 0.3ms [0c494e83]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/pages/admin/admin-work-calendar.page.js 200 0.2ms [67556735]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/pages/admin/admin-work-purchases.page.js 200 0.2ms [489583e7]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/pages/admin/admin-work-measurement.page.js 200 0.1ms [339aafee]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/pages/admin/admin-work-diary.page.js 200 0.3ms [bf4bc575]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/pages/admin/admin-visits.page.js 200 0.2ms [0eec92fe]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/pages/admin/admin-finance.page.js 200 0.2ms [715c8810]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/pages/admin/admin-rh.page.js 200 0.2ms [eebb13b1]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/pages/admin/admin-settings.page.js 200 0.2ms [11d2dfe9]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/pages/admin/admin-mobile-platform.page.js 200 0.2ms [b313c661]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/pages/admin/admin-access.page.js 200 0.1ms [60d48c0a]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/pages/admin/admin-access-config.page.js 200 0.1ms [014f23c1]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/pages/admin/admin-data-transfer.page.js 200 0.2ms [546604e9]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/pages/admin/admin-diagram-library.page.js 200 0.3ms [ec32b940]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/pages/admin/admin-help.page.js 200 0.3ms [78152dd4]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/pages/admin/admin-machine-authorization.page.js 200 0.3ms [2c27119a]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/pages/mobile/mobile-day.page.js 200 0.1ms [e0a79edf]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/pages/mobile/mobile-routine.page.js 200 0.1ms [e8e0c552]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/pages/admin/admin-login.page.js 200 0.1ms [a53eb87a]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/pages/mobile/mobile-diary.page.js 200 0.1ms [db40275b]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/pages/mobile/mobile-home.page.js 200 0.3ms [51501b4a]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/pages/mobile/mobile-deliveries.page.js 200 0.2ms [09b5c8bf]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/core/domain-data.js 200 0.1ms [4417a31e]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/pages/mobile/mobile-tickets.page.js 200 0.1ms [242affd9]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /src/pages/admin/letterhead-settings.js 200 0.2ms [3a65c994]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← GET /brand/logo_macroobras_ref.png 200 4.2ms [cd3dc99b]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusBootstrap 200 3.9ms [8c2dc8fa]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← POST /rpc/listarAcessosEncarregado 200 0.1ms [c050e848]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [9e6ea402]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.9ms [11e7d936]
+[90m2026-07-29 02:11:00[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 5.0ms [2712f8cf]
+[90m2026-07-29 02:11:07[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.8ms [ef867dc8]
+Traceback (most recent call last)
+mummy.nim(538)           workerProc
+mummy.nim(471)           runTask
+mummy_driver.nim(92)     mummyHandler
+app.nim(53)              :anonymous
+app.nim(56)              anonymous (Async)
+SIGSEGV: Illegal storage access. (Attempt to read from nil?)
+./reiniciar_macroobras_jazzy_estavel_sem_ngrok.sh, linha 199: 162186 Falha de segmentação     (imagem do núcleo gravada) env APP_ENV=release MACROOBRAS_HOST="$HOST" MACROOBRAS_PORT="$PORT" MACROOBRAS_ENABLE_NGROK=0 MACROOBRAS_ENABLE_FTP=0 MACROOBRAS_ENABLE_LAN_PROXY=0 "$BIN"
+
+Servidor encerrou com código 139.
+Falha nativa detectada; reiniciando em 2s...
+
+--- Execução 2/3 ---
+[90m2026-07-29 02:11:16[0m [32m[1m[INFO ][0m 🎷 Jazzy running in release mode on http://127.0.0.1:7654
+Abrindo em uma sessão de navegador existente.
+[90m2026-07-29 02:11:17[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusBootstrap 200 4.1ms [74cf1710]
+[90m2026-07-29 02:11:18[0m [32m[1m[INFO ][0m ← POST /rpc/obterRotaPublicaColaborador 200 4.7ms [02ce1260]
+[90m2026-07-29 02:11:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [ec8b6e25]
+[90m2026-07-29 02:11:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [27616775]
+[90m2026-07-29 02:11:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [c1b5a1d5]
+[90m2026-07-29 02:11:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.6ms [e87200e7]
+[90m2026-07-29 02:11:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.7ms [dd86eeef]
+[90m2026-07-29 02:11:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 6.9ms [0e1c1e21]
+[90m2026-07-29 02:11:21[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [eb6a15dd]
+[90m2026-07-29 02:11:22[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.3ms [9ebca07b]
+[90m2026-07-29 02:11:29[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.8ms [1dd389fe]
+[90m2026-07-29 02:11:36[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.8ms [06e74992]
+[90m2026-07-29 02:11:41[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [8d1ee7c3]
+[90m2026-07-29 02:11:43[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.9ms [80e37538]
+[90m2026-07-29 02:11:50[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.9ms [3897add6]
+[90m2026-07-29 02:11:57[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.0ms [286f865d]
+[90m2026-07-29 02:12:01[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [bbed5253]
+[90m2026-07-29 02:12:04[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.1ms [823240cc]
+[90m2026-07-29 02:12:11[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.1ms [d4dba46d]
+[90m2026-07-29 02:12:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [b3d9c492]
+[90m2026-07-29 02:12:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [d2027d85]
+[90m2026-07-29 02:12:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [41dbb0c0]
+[90m2026-07-29 02:12:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.5ms [e02f6796]
+[90m2026-07-29 02:12:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.2ms [e136ebff]
+[90m2026-07-29 02:12:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.3ms [24527ff4]
+[90m2026-07-29 02:12:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 5.8ms [43f30ee2]
+[90m2026-07-29 02:12:21[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [2f419bd6]
+[90m2026-07-29 02:12:41[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [5463d085]
+[90m2026-07-29 02:13:01[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [a06e23f3]
+[90m2026-07-29 02:13:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [227fe182]
+[90m2026-07-29 02:13:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [0d74955d]
+[90m2026-07-29 02:13:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [5c187609]
+[90m2026-07-29 02:13:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.9ms [76186ea6]
+[90m2026-07-29 02:13:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 5.1ms [a4c53bf6]
+[90m2026-07-29 02:13:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 5.9ms [d298e377]
+[90m2026-07-29 02:13:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 7.3ms [13e87cf1]
+Traceback (most recent call last)
+server.nim(21)           runJazzyServer
+app.nim(88)              serve
+mummy_driver.nim(132)    serve (Async)
+mummy.nim(1466)          serve
+mummy.nim(1370)          loopForever
+mummy.nim(1089)          afterRecv
+mummy.nim(915)           afterRecvHttp
+alloc.nim(1217)          realloc
+alloc.nim(1195)          alloc
+alloc.nim(895)           rawAlloc
+alloc.nim(825)           compensateCounters
+SIGSEGV: Illegal storage access. (Attempt to read from nil?)
+./reiniciar_macroobras_jazzy_estavel_sem_ngrok.sh, linha 199: 163927 Falha de segmentação     (imagem do núcleo gravada) env APP_ENV=release MACROOBRAS_HOST="$HOST" MACROOBRAS_PORT="$PORT" MACROOBRAS_ENABLE_NGROK=0 MACROOBRAS_ENABLE_FTP=0 MACROOBRAS_ENABLE_LAN_PROXY=0 "$BIN"
+
+Servidor encerrou com código 139.
+Falha nativa detectada; reiniciando em 2s...
+
+--- Execução 3/3 ---
+[90m2026-07-29 02:14:22[0m [32m[1m[INFO ][0m 🎷 Jazzy running in release mode on http://127.0.0.1:7654
+[90m2026-07-29 02:14:23[0m [32m[1m[INFO ][0m ← POST /rpc/obterRotaPublicaColaborador 200 5.1ms [4c469bf8]
+[90m2026-07-29 02:14:23[0m [32m[1m[INFO ][0m ← POST /rpc/obterRotaPublicaColaborador 200 5.2ms [0bb4e79e]
+[90m2026-07-29 02:14:23[0m [32m[1m[INFO ][0m ← POST /rpc/obterRotaPublicaColaborador 200 5.2ms [623877f9]
+[90m2026-07-29 02:14:23[0m [32m[1m[INFO ][0m ← POST /rpc/obterRotaPublicaColaborador 200 5.6ms [551b643c]
+Abrindo em uma sessão de navegador existente.
+[90m2026-07-29 02:14:23[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusBootstrap 200 4.6ms [d095ad8c]
+[90m2026-07-29 02:15:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [b3fc1200]
+[90m2026-07-29 02:15:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [165abb43]
+[90m2026-07-29 02:15:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [b3d1b641]
+[90m2026-07-29 02:15:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 5.0ms [6e85855f]
+[90m2026-07-29 02:15:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 5.1ms [913fc01b]
+[90m2026-07-29 02:15:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 6.7ms [847a65b6]
+[90m2026-07-29 02:16:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [3274279e]
+[90m2026-07-29 02:16:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [d634368e]
+[90m2026-07-29 02:16:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [d921c6fc]
+[90m2026-07-29 02:16:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.2ms [10182c52]
+[90m2026-07-29 02:16:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.3ms [d8a21d9f]
+[90m2026-07-29 02:16:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 6.4ms [b722bc3d]
+[90m2026-07-29 02:17:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [3f40c73e]
+[90m2026-07-29 02:17:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [55133e66]
+[90m2026-07-29 02:17:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [e8b429cc]
+[90m2026-07-29 02:17:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.5ms [67c12d92]
+[90m2026-07-29 02:17:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.4ms [79b99f2e]
+[90m2026-07-29 02:17:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 6.1ms [b8b44991]
+[90m2026-07-29 02:18:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [e702f1e4]
+[90m2026-07-29 02:18:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [bd6a306c]
+[90m2026-07-29 02:18:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [4525fdff]
+[90m2026-07-29 02:18:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.2ms [2a8e2947]
+[90m2026-07-29 02:18:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.0ms [6d6eda48]
+[90m2026-07-29 02:18:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 5.6ms [ca95aa7c]
+[90m2026-07-29 02:19:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [5395bf95]
+[90m2026-07-29 02:19:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [f442f7b3]
+[90m2026-07-29 02:19:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [38f37acb]
+[90m2026-07-29 02:19:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.2ms [fef54683]
+[90m2026-07-29 02:19:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.1ms [9a6d94e2]
+[90m2026-07-29 02:19:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.3ms [9ecec724]
+[90m2026-07-29 02:20:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [8c2d24a1]
+[90m2026-07-29 02:20:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [2a1d777e]
+[90m2026-07-29 02:20:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [e33bba17]
+[90m2026-07-29 02:20:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.4ms [811002da]
+[90m2026-07-29 02:20:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 6.3ms [3d5eb320]
+[90m2026-07-29 02:20:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 6.4ms [c4b0d580]
+Traceback (most recent call last)
+app.nim(217)             app
+core.nim(46)             runDesktopAppInternal
+SIGINT: Interrupted by Ctrl-C.
+
+Estação encerrada pelo usuário.

@@ -1,0 +1,34 @@
+DASHBOARD ATUAL
+94:export function adminDashboard() {
+109:    <section class="dashboard-module-grid">
+111:        <header><div><small>Medições</small><h2>Balanço das medições</h2></div><span>›</span></header>
+119:        <header><div><small>Agenda</small><h2>Visitas programadas</h2></div><span>›</span></header>
+
+ESTADO DISPONÍVEL
+284:  collaboratorStatus: null,
+312:  encarregadoAccesses: initialEncarregadoAccesses(),
+315:  purchaseFlows: initialPurchaseFlows(),
+332:  visitPlans: initialVisitPlans(),
+333:  printRecords: initialPrintRecords(),
+337:  diaryNotes: initialDiaryNotes(),
+
+ROTAS DISPONÍVEIS
+13:  { route: "admin-visits", label: "Visitas", mode: "admin", parent: "admin-works" },
+22:  { route: "admin-work-diary", label: "Diário de obras", mode: "admin", parent: "admin-works", workRoute: true },
+23:  { route: "admin-work-measurement", label: "Medição", mode: "admin", parent: "admin-works", workRoute: true },
+24:  { route: "admin-mobile-platform", label: "Plataforma mobile", mode: "admin", parent: "admin-settings" },
+49:    { route: "admin-work-diary", label: "Diário de obras" },
+50:    { route: "admin-work-measurement", label: "Medição" },
+54:    { route: "admin-mobile-platform", label: "Plataforma mobile" },
+70:  "admin-visits": [
+71:    { route: "admin-visits", label: "Rotas e visitas" },
+
+VALIDAÇÃO FINAL
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/pages/admin/admin-dashboard.page.js:552:      "Painel de produção",
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/pages/admin/admin-dashboard.page.js:560:          <small>Controle imediato</small>
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/pages/admin/admin-dashboard.page.js:635:            <small>Fila de decisão</small>
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/pages/admin/admin-dashboard.page.js:649:            <small>Produção por obra</small>
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/pages/admin/admin-dashboard.page.js:671:            <h2>Pipeline imediato</h2>
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/pages/admin/admin-dashboard.page.js:697:            <h2>Rotas e capacidade operacional</h2>
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:7175:/* MACROOBRAS DASHBOARD PRODUCTION CENTER V1 */
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:7755:/* END MACROOBRAS DASHBOARD PRODUCTION CENTER V1 */

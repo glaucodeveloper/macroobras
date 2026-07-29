@@ -1,0 +1,53 @@
+OBRAS / HIDRATADORES
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/operational-layouts.js:247:  let card = wrap.querySelector("[data-works-visit-routes-card]");
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/operational-layouts.js:251:    card.className = "works-visit-routes-card";
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/operational-layouts.js:415:  let card = wrap.querySelector("[data-works-visit-routes-card]");
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/operational-layouts.js:419:    card.className = "works-visit-routes-card";
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/operational-layouts.js:446:export function hydrateOperationalLayouts(root = document) {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/current-operational-enhancements.js:651:    "[data-works-purchase-closing]",
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/current-operational-enhancements.js:656:    panel.className = "works-purchase-closing";
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/current-operational-enhancements.js:712:      <div class="works-purchase-closing-actions">
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/current-operational-enhancements.js:726:    <div class="works-purchase-closing-kpis">
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/current-operational-enhancements.js:734:    <div class="works-purchase-closing-status">
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/current-operational-enhancements.js:741:    <div class="works-purchase-closing-scroll">
+
+GOOGLE MAPS
+488:function dispatchRouteChange(route, toast = "") {
+647:      dispatchRouteChange({ ...route, pendingStopId: "" }, "Editor de parada fechado.");
+654:    dispatchRouteChange({ ...route, pendingStopId: "" }, "Editor de parada fechado.");
+699:  const cancelDrawing = (message = "Traçado cancelado.") => {
+768:      dispatchRouteChange(route, "Parada removida.");
+793:    dispatchRouteChange(route, "Parada removida da agenda de visitas.");
+811:        dispatchRouteChange(route, "Tempo da parada atualizado.");
+820:        dispatchRouteChange(route, "Parada adicionada. Segure o último ponto para continuar o traçado.");
+841:  const activateDrawingHold = () => {
+849:  const beginDrawing = (stop, content, event) => {
+876:    drawing.holdTimer = window.setTimeout(activateDrawingHold, routeHoldDurationMs);
+893:    content.addEventListener("pointerdown", (event) => beginDrawing(stop, content, event));
+927:      cancelDrawing("A parada selecionada já pertence à rota.");
+969:      dispatchRouteChange(route, `Trecho fixado pelas estradas até ${destination.name}. Informe o tempo de parada.`);
+971:      cancelDrawing("Não foi possível concluir o trecho viário.");
+1000:      cancelDrawing("Clique reconhecido. Use o cartão para as ações do ponto.");
+1006:      cancelDrawing("Gesto curto cancelado. A rota não foi alterada.");
+1012:      cancelDrawing("Solte dentro do mapa para criar a parada.");
+1028:  const pointerCancel = () => drawing && cancelDrawing();
+1030:    if (event.key === "Escape" && drawing) cancelDrawing("Traçado cancelado com Esc.");
+1046:        dispatchRouteChange(route, "Traçado de visitas limpo. Segure qualquer obra para iniciar.");
+1061:        dispatchRouteChange(route, "Último trecho removido.");
+
+CRONOGRAMA
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/pages/admin/admin-work-planning.page.js:73:function diagramSeed(work) {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/pages/admin/admin-work-planning.page.js:96:  const seed = diagramSeed(work);
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/pages/admin/admin-work-planning.page.js:99:    ${card("Cronograma gráfico", `<div class="interactive-diagram planning-diagram" data-interactive-diagram="planning-${esc(work.id)}" data-allow-material-drop="true"><svg data-diagram-svg></svg><div data-node-layer></div><script type="application/json">${JSON.stringify(seed)}</script></div>`, "interactive-diagram-card")}`;
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/diagram-canvas.js:59:  renderDiagram(canvas, model);
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/diagram-canvas.js:71:  renderDiagram(canvas, model);
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/diagram-canvas.js:206:  renderDiagram(canvas, model);
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/diagram-canvas.js:214:  renderDiagram(canvas, model);
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/diagram-canvas.js:274:  renderDiagram(canvas, model);
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/diagram-canvas.js:288:  renderDiagram(canvas, model);
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/diagram-canvas.js:301:  renderDiagram(canvas, model);
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/diagram-canvas.js:327:function bindNodeDrag(canvas, model) {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/diagram-canvas.js:538:    renderDiagram(canvas, model);
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/diagram-canvas.js:617:function renderDiagram(canvas, model) {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/diagram-canvas.js:663:  bindNodeDrag(canvas, model);
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/diagram-canvas.js:680:    renderDiagram(canvas, model);

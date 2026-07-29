@@ -1,0 +1,24 @@
+VALIDAÇÃO FINAL
+3661:.works-selected-stat-grid {
+3669:.works-selected-stat-grid > article {
+3677:.works-selected-stat-grid > article.wide {
+3682:.works-selected-stat-grid span {
+3688:.works-selected-stat-grid strong {
+3700:.works-item-grid {
+3787:  .works-item-grid {
+3810:  .works-selected-stat-grid {
+3832:  .works-item-grid {
+10806:/* MACROOBRAS WORKS COMMAND CENTER SIDEBAR COMPACT V4 */
+10810:  --works-selected-width: clamp(330px, 28vw, 390px);
+10818:    var(--works-selected-width) !important;
+10988:  .works-selected-stat-grid {
+11000:  .works-selected-stat-grid
+11016:  .works-selected-stat-grid
+11024:  .works-selected-stat-grid
+11034:  .works-selected-stat-grid
+11081:  .works-item-grid {
+11090:  .works-item-grid
+11103:  .works-item-grid
+11114:  .works-item-grid
+11135:    --works-selected-width: 330px;
+11190:/* END MACROOBRAS WORKS COMMAND CENTER SIDEBAR COMPACT V4 */

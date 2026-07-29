@@ -1,0 +1,10 @@
+ANTES DO PATCH
+
+[admin-works.page.js]
+273:    <header class="works-selected-hero">
+421:    <section class="works-command-center">
+
+[works-map-advanced.js]
+236:function consolidateSelectedWork(scope, map) {
+328:    commandCenter.insertBefore(
+372:  section.parentNode.insertBefore(closing, section);

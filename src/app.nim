@@ -1,9 +1,7 @@
-import std/[json, os]
+import std/[json, os, asyncdispatch]
 
 when not defined(jazzyWeb):
-  const webviewImpl = currentSourcePath().parentDir().parentDir().parentDir().parentDir() /
-    "jazzy-desktop" / "src" / "jazzy_desktop" / "webview_impl.cpp"
-  {.compile: webviewImpl.}
+  {.compile: "../vendor/jazzy_desktop-cross/webview_impl.cpp".}
 
 import jazzy_desktop
 import macroobras/[access_service, admin_service, collaborator_service, config, installer_service, okf_service, operations_service, response_utils, graph_service]
@@ -90,12 +88,6 @@ proc obterStatusBootstrap(): string {.expose.} =
 proc autorizarInstalacaoGithub(payloadJson: string): string {.expose.} =
   ok(authorizeInstallerGithubPayload(parseJson(payloadJson)))
 
-proc selecionarPastaInstalacao(): string {.expose.} =
-  ok(selectInstallFolderPayload())
-
-proc iniciarEVerificarFtp(payloadJson: string): string {.expose.} =
-  ok(startAndVerifyFtpPayload(parseJson(payloadJson)))
-
 proc autenticarAdministradorToken(payloadJson: string): string {.expose.} =
   ok(authenticateAdminTokenPayload(parseJson(payloadJson)))
 
@@ -154,6 +146,7 @@ Route.post("/api/colaboradores/compras/solicitar", colaboradorOk)
 Route.post("/api/colaboradores/compras/anexar-recibo", colaboradorOk)
 Route.post("/api/colaboradores/compras/comprovar-entrega", colaboradorOk)
 
+
 proc carregarConfiguracaoMobileLocal() =
   let envPath = appRootDir() / "config" / "mobile-platform.env"
   let values = readSimpleEnvFile(envPath)
@@ -165,17 +158,76 @@ carregarConfiguracaoMobileLocal()
 configureLinuxWebviewEnvironment()
 if envEnabled("MACROOBRAS_ENABLE_NGROK", true):
   startCollaboratorNgrok()
-if envEnabled("MACROOBRAS_ENABLE_FTP", true):
-  restoreConfiguredFtp()
 if envEnabled("MACROOBRAS_ENABLE_LAN_PROXY", true):
   restoreRequestedCollaboratorLan()
 
-startDesktopApp(
-  title = "ERP da construção Maximus Empreendimentos",
+# BEGIN MACROOBRAS RUNTIME STATIC FRONTEND
+proc servirIndiceMacroObras(
+  ctx: Context
+) {.async, gcsafe.} =
+  {.cast(gcsafe).}:
+    let indexPath =
+      getAppDir() /
+      ".." /
+      "frontend" /
+      "dist" /
+      "index.html"
+
+    if fileExists(indexPath):
+      ctx.status(200)
+      ctx.header(
+        "Content-Type",
+        "text/html; charset=utf-8"
+      )
+      ctx.response.body = readFile(indexPath)
+    else:
+      ctx.status(500)
+      ctx.header(
+        "Content-Type",
+        "text/plain; charset=utf-8"
+      )
+      ctx.response.body =
+        "Frontend MacroObras ausente: " &
+        indexPath
+
+Route.get("/", servirIndiceMacroObras)
+
+let macroObrasFrontendDir =
+  getAppDir() /
+  ".." /
+  "frontend" /
+  "dist"
+
+if not dirExists(macroObrasFrontendDir):
+  quit(
+    "Frontend MacroObras ausente: " &
+    macroObrasFrontendDir
+  )
+
+Jazzy.static(
+  macroObrasFrontendDir,
+  "/"
+)
+
+putEnv(
+  "MAX_UPLOAD_SIZE",
+  "10"
+)
+
+runDesktopAppInternal(
+  title =
+    "ERP da construção Maximus Empreendimentos",
   width = 1448,
   height = 1086,
-  prodDir = "../frontend/dist",
-  corsOrigins = "*",
+  targetUrl =
+    "http://" &
+    AppHost &
+    ":" &
+    $AppPort,
   port = AppPort,
-  address = AppHost
+  address = AppHost,
+  frameless = false,
+  resizable = true,
+  corsOrigins = "*"
 )
+# END MACROOBRAS RUNTIME STATIC FRONTEND

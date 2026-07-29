@@ -1,0 +1,16 @@
+ESTADO ANTERIOR
+236:function consolidateSelectedWork(scope, map) {
+281:    section.parentNode.insertBefore(
+289:    section.parentNode.insertBefore(
+307:  section.parentNode.insertBefore(closing, section);
+811:/* MACROOBRAS SELECTED HERO HARD MOUNT V6 */
+964:      center.insertBefore(
+1077:/* END MACROOBRAS SELECTED HERO HARD MOUNT V6 */
+
+ESTADO FINAL
+236:function consolidateSelectedWork(scope, map) {
+309:    "works-command-center--selected-v7",
+328:    commandCenter.insertBefore(
+330:      mapStage.nextSibling,
+
+DIST: /home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/dist/src/ui/works-map-advanced.js

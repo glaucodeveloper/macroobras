@@ -3,7 +3,7 @@ import std/[exitprocs, httpclient, json, net, os, osproc, strutils, times]
 import ./config
 var ftpProcess {.threadvar.}: Process
 
-proc configDir(): string = appRootDir() / "config"
+proc configDir(): string = userConfigDir()
 proc installationStatePath(): string = configDir() / "installation-state.json"
 proc usersPath(): string = configDir() / "users.json"
 proc machineAccessPath(): string = configDir() / "machine-access.env"
@@ -36,8 +36,17 @@ proc installationCompleted*(): bool =
 proc machineAuthorized(): bool =
   machineAccess(){"GITHUB_MACHINE_TOKEN"}.getStr("").len > 0
 
+
 proc githubRepositorySlug(): string =
-  getEnv("MACROOBRAS_GITHUB_REPOSITORY", "glaucodeveloper/erp-da-construcao-maximus-empreendimentos")
+  let configured = getEnv(
+    "MACROOBRAS_GITHUB_REPOSITORY",
+    "glaucodeveloper/macroobras"
+  ).strip()
+
+  if configured.len == 0 or configured == "glaucodeveloper/macroobras":
+    return "glaucodeveloper/macroobras"
+
+  result = configured
 
 proc selectedInstallDir(): string =
   let state = jsonOr(installationStatePath(), %*{})
@@ -174,7 +183,12 @@ proc verifyGithubToken(token: string): JsonNode =
     chmodPrivate(machineAccessPath())
     %*{"autorizado": true, "githubAuthorized": true, "githubLogin": login, "login": login, "mensagem": "Máquina autorizada pelo GitHub."}
   except CatchableError as error:
-    %*{"autorizado": false, "mensagem": "Falha na autorização GitHub: " & error.msg}
+    %*{
+      "autorizado": false,
+      "mensagem":
+        "Falha na autorização GitHub para o repositório " &
+        githubRepositorySlug() & ": " & error.msg
+    }
 
 proc chooseFolder(): string =
   when defined(windows):
@@ -276,6 +290,62 @@ proc somenteDigitos(value: string): string =
   for character in value:
     if character in {'0'..'9'}:
       result.add(character)
+
+proc emailInstaladorValido(value: string): bool =
+  let normalized = value.strip().toLowerAscii()
+  let atIndex = normalized.find('@')
+
+  if atIndex <= 0 or atIndex >= normalized.high:
+    return false
+
+  let dotIndex = normalized.find('.', atIndex + 2)
+  result = dotIndex > atIndex + 1 and dotIndex < normalized.high
+
+proc cpfInstaladorValido(value: string): bool =
+  let digits = somenteDigitos(value)
+
+  if digits.len != 11:
+    return false
+
+  var allEqual = true
+
+  for index in 1 ..< digits.len:
+    if digits[index] != digits[0]:
+      allEqual = false
+      break
+
+  if allEqual:
+    return false
+
+  var firstSum = 0
+
+  for index in 0 ..< 9:
+    firstSum += (
+      ord(digits[index]) - ord('0')
+    ) * (10 - index)
+
+  var firstDigit = (firstSum * 10) mod 11
+
+  if firstDigit == 10:
+    firstDigit = 0
+
+  if firstDigit != ord(digits[9]) - ord('0'):
+    return false
+
+  var secondSum = 0
+
+  for index in 0 ..< 10:
+    secondSum += (
+      ord(digits[index]) - ord('0')
+    ) * (11 - index)
+
+  var secondDigit = (secondSum * 10) mod 11
+
+  if secondDigit == 10:
+    secondDigit = 0
+
+  result =
+    secondDigit == ord(digits[10]) - ord('0')
 
 proc authenticateAdminContactPayload*(payload: JsonNode): JsonNode =
   let email = payload{"email"}.getStr("").strip().toLowerAscii()
@@ -382,35 +452,82 @@ proc startAndVerifyFtpPayload*(payload: JsonNode): JsonNode =
 proc installerStatusPayload*(): JsonNode {.gcsafe.} =
   installerStatusBasePayload()
 
+
+
 proc executeInstallerPayload*(payload: JsonNode): JsonNode =
   if installationCompleted():
-    return %*{"instalado": true, "status": installerStatusPayload(), "mensagem": "A estação já possui um administrador e não executará o instalador novamente."}
+    return %*{
+      "instalado": true,
+      "status": installerStatusPayload(),
+      "mensagem": "A estação já possui um administrador e não executará o instalador novamente."
+    }
+
   if not machineAuthorized():
-    return %*{"instalado": false, "status": installerStatusPayload(), "mensagem": "Autorize a máquina pelo GitHub antes de concluir."}
-  let folder = selectedInstallDir()
-  let ftp = ftpStatus()
-  if not dirExists(folder) or not ftp{"ftpVerified"}.getBool(false):
-    return %*{"instalado": false, "status": installerStatusPayload(), "mensagem": "Selecione a pasta e verifique a transmissão FTP."}
-  if not fileExists(lanFlagPath()):
-    return %*{"instalado": false, "status": installerStatusPayload(), "mensagem": "Disponibilize o endpoint do encarregado na rede local."}
+    return %*{
+      "instalado": false,
+      "status": installerStatusPayload(),
+      "mensagem": "Autorize a máquina pelo GitHub antes de concluir."
+    }
+
+  let access = machineAccess()
+  let adminName = payload{"adminName"}.getStr(
+    access{"GITHUB_MACHINE_LOGIN"}.getStr("Administrador")
+  ).strip()
+  let adminEmail = payload{"adminEmail"}.getStr("").strip().toLowerAscii()
+  let adminCpf = payload{"adminCpf"}.getStr("").strip()
+
+  if adminName.len < 2:
+    return %*{
+      "instalado": false,
+      "status": installerStatusPayload(),
+      "mensagem": "Informe o nome do primeiro administrador."
+    }
+
+  if not emailInstaladorValido(adminEmail):
+    return %*{
+      "instalado": false,
+      "status": installerStatusPayload(),
+      "mensagem": "Informe um email administrativo válido."
+    }
+
+  if not cpfInstaladorValido(adminCpf):
+    return %*{
+      "instalado": false,
+      "status": installerStatusPayload(),
+      "mensagem": "Informe um CPF administrativo válido."
+    }
+
+  let folder = getEnv(
+    "MACROOBRAS_INSTALL_DIR",
+    appRootDir()
+  )
 
   createDir(folder)
   createDir(folder / "archive")
-  let access = machineAccess()
+
   let user = %*{
     "id": "admin-1",
-    "nome": payload{"adminName"}.getStr(access{"GITHUB_MACHINE_LOGIN"}.getStr("Administrador")),
-    "email": payload{"adminEmail"}.getStr(""),
-    "cpf": payload{"adminCpf"}.getStr(""),
-    "telefone": payload{"adminPhone"}.getStr(""),
+    "nome": adminName,
+    "email": adminEmail,
+    "cpf": adminCpf,
+    "telefone": "",
     "githubLogin": access{"GITHUB_MACHINE_LOGIN"}.getStr(""),
     "papel": "administrador",
     "criadoEm": now().format("yyyy-MM-dd'T'HH:mm:sszzz")
   }
+
   writeJson(usersPath(), %*[user])
-  writeJson(installationStatePath(), %*{
-    "completed": true,
-    "installDir": folder,
-    "completedAt": now().format("yyyy-MM-dd'T'HH:mm:sszzz")
-  })
-  %*{"instalado": true, "status": installerStatusPayload(), "mensagem": "Primeiro administrador criado. A instalação não será exibida nos próximos acessos."}
+  writeJson(
+    installationStatePath(),
+    %*{
+      "completed": true,
+      "installDir": folder,
+      "completedAt": now().format("yyyy-MM-dd'T'HH:mm:sszzz")
+    }
+  )
+
+  %*{
+    "instalado": true,
+    "status": installerStatusPayload(),
+    "mensagem": "Primeiro administrador criado. A instalação não será exibida nos próximos acessos."
+  }

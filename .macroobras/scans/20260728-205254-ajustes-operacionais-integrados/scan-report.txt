@@ -1,0 +1,41 @@
+HIDRATADOR ATUAL
+444:export function hydrateOperationalLayouts(root = document) {
+
+ESTRUTURAS LOCALIZADAS
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/styles.css:2530:.work-selection-float {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/styles.css:2544:.work-selection-float .work-overview-hero {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/styles.css:2551:.work-selection-float .work-overview-hero small {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/styles.css:2560:.work-selection-float .work-overview-hero h2 {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/styles.css:2567:.work-selection-float .work-overview-hero p {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/styles.css:2632:  .work-selection-float {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/operational-layouts.js:152:    ":scope > .work-selection-float",
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/operational-layouts.js:298:    ":scope > .work-selection-float",
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/pages/admin/admin-dashboard.page.js:476:            <h2>O que precisa ser resolvido</h2>
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/pages/admin/admin-dashboard.page.js:488:          <h2>Ferramentas imediatas</h2>
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/pages/admin/admin-dashboard.page.js:600:              <h2>Cobertura operacional</h2>
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/pages/admin/admin-inventory.page.js:104:      <div class="inventory-ledger-brand"><span>ME</span><div><small>Maximus Empreendimentos</small><strong>Folha de inventário</strong></div></div>
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/pages/admin/admin-tickets.page.js:76:      <aside class="ticket-side-column">${card("Novo ticket", ticketForm())}${card("Tickets registrados", ticketList())}</aside>
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:2339:  .work-selection-float,
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:2366:  .work-selection-float strong,
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:6562:.works-visit-map-wrap .work-selection-float,
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:6586:  .works-visit-map-wrap .work-selection-float,
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:6616:  .works-visit-map-wrap .work-selection-float,
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:6832:.works-visit-map-wrap .work-selection-float,
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:6875:  .works-visit-map-wrap .work-selection-float,
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:7102:.works-visit-map-wrap .work-selection-float,
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:7142:  .works-visit-map-wrap .work-selection-float,
+
+VALIDAÇÃO FINAL
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/operational-layouts.js:5:import { hydrateCurrentOperationalEnhancements } from "./current-operational-enhancements.js";
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/operational-layouts.js:449:  hydrateCurrentOperationalEnhancements(root);
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/current-operational-enhancements.js:74:function reorderDashboard(root) {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/current-operational-enhancements.js:332:function hydrateTicketInventoryTable(root) {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/current-operational-enhancements.js:538:function hydrateWorksSelectionLayout(root) {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/current-operational-enhancements.js:611:function hydrateWorksPurchaseClosing(root) {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/current-operational-enhancements.js:769:export function hydrateCurrentOperationalEnhancements(root = document) {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/current-operational-enhancements.js:771:  reorderDashboard(root);
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/current-operational-enhancements.js:772:  hydrateTicketInventoryTable(root);
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/current-operational-enhancements.js:774:  hydrateWorksSelectionLayout(root);
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/current-operational-enhancements.js:775:  hydrateWorksPurchaseClosing(root);
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8271:/* MACROOBRAS CURRENT OPERATIONAL ENHANCEMENTS V1 */
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8585:/* END MACROOBRAS CURRENT OPERATIONAL ENHANCEMENTS V1 */

@@ -21,3 +21,7 @@ dist/
 
 .playwright-cli/
 .opencode/
+frontend/runtime-config.local.js
+frontend/dist/runtime-config.local.js
+/release/
+/build/windows-cross/

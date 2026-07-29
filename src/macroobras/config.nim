@@ -64,3 +64,31 @@ proc readSimpleEnvFile*(path: string): JsonNode =
       value = value[1 .. ^2]
     if key.len > 0:
       result[key] = %value
+
+proc userConfigDir*(): string =
+  let explicit = getEnv(
+    "MACROOBRAS_USER_CONFIG_DIR",
+    ""
+  ).strip()
+
+  if explicit.len > 0:
+    return explicit
+
+  when defined(windows):
+    let base = getEnv(
+      "APPDATA",
+      getHomeDir() / "AppData" / "Roaming"
+    )
+    result = base / "MacroObras"
+  elif defined(macosx):
+    result = getHomeDir() / "Library" / "Application Support" / "MacroObras"
+  else:
+    let xdg = getEnv(
+      "XDG_CONFIG_HOME",
+      ""
+    ).strip()
+
+    if xdg.len > 0:
+      result = xdg / "macroobras"
+    else:
+      result = getHomeDir() / ".config" / "macroobras"

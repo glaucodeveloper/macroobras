@@ -1,0 +1,7 @@
+VALIDAÇÃO FINAL
+Configuração local: presente
+Permissão local: 600
+Permissão dist: 600
+Map ID: DEMO_MAP_ID
+Chave: configurada e omitida
+Build: concluído

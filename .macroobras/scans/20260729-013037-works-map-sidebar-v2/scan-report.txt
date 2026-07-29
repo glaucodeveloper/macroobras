@@ -1,0 +1,46 @@
+OCORRÊNCIAS DE SCROLL ANTES DO PATCH
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/core/app-controller.js:208:    document.querySelector("[data-encarregado-form]")?.scrollIntoView({ behavior: "smooth", block: "center" });
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/core/app-controller.js:482:    window.setTimeout(() => document.querySelector("[data-notification-center]")?.scrollIntoView({ behavior: "smooth", block: "center" }), 0);
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/core/app-controller.js:771:      window.scrollTo({
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/diagram-canvas.js:302:    canvas.scrollTo({ left: canvas.scrollLeft + deltaX, top: canvas.scrollTop + deltaY, behavior: "smooth" });
+
+VALIDAÇÃO FINAL
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/operational-layouts.js:1:import "./works-map-selected-sidebar-v2.js";
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/works-map-selected-sidebar-v2.js:5:  "works-map-selected-stage-v2";
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/works-map-selected-sidebar-v2.js:18:let preservedScroll = null;
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/works-map-selected-sidebar-v2.js:60:    "works-map-selected-sidebar-v2",
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/works-map-selected-sidebar-v2.js:145:  preservedScroll = {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/works-map-selected-sidebar-v2.js:155:  if (!preservedScroll) return;
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/works-map-selected-sidebar-v2.js:157:  const { x, y } = preservedScroll;
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:10806:/* MACROOBRAS WORKS MAP SELECTED SIDEBAR V2 */
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:10808:.works-map-selected-stage-v2 {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:10827:.works-map-selected-stage-v2
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:10829:.works-map-selected-stage-v2
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:10849:.works-map-selected-stage-v2
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:10850:  > .works-map-selected-sidebar-v2 {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:10854:.works-map-selected-sidebar-v2 {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:10887:.works-map-selected-sidebar-v2
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:10898:.works-map-selected-sidebar-v2
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:10907:.works-map-selected-sidebar-v2
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:10916:.works-map-selected-sidebar-v2
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:10924:.works-map-selected-sidebar-v2
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:10933:.works-map-selected-sidebar-v2
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:10939:.works-map-selected-sidebar-v2
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:10948:.works-map-selected-sidebar-v2
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:10957:.works-map-selected-sidebar-v2
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:10969:.works-map-selected-sidebar-v2
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:10975:.works-map-selected-sidebar-v2
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:10984:.works-map-selected-sidebar-v2
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:10998:.works-map-selected-sidebar-v2
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:11006:.works-map-selected-sidebar-v2
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:11019:body:has(.works-map-selected-stage-v2)
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:11021:    .works-map-selected-sidebar-v2
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:11027:  .works-map-selected-stage-v2 {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:11032:  .works-map-selected-sidebar-v2
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:11041:  .works-map-selected-stage-v2 {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:11050:  .works-map-selected-stage-v2
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:11052:  .works-map-selected-stage-v2
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:11057:  .works-map-selected-sidebar-v2 {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:11071:  .works-map-selected-stage-v2,
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:11072:  .works-map-selected-sidebar-v2 {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:11077:/* END MACROOBRAS WORKS MAP SELECTED SIDEBAR V2 */

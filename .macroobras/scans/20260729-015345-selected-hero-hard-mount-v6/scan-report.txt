@@ -1,0 +1,23 @@
+ANTES DO PATCH
+
+Imports de sidebar em operational-layouts.js:
+1:import "./works-selected-hero-dom-mover-v5.js";
+
+Ocorrências do header em src/ui:
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/works-map-advanced.js:250:      "works-selected-hero work-detail-inline-before-map";
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/works-map-selected-sidebar-v2.js:50:      "works-selected-hero work-detail-inline-before-map",
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/works-selected-hero-dom-mover-v5.js:42:      "works-selected-hero work-detail-inline-before-map",
+
+DEPOIS DO PATCH
+
+Mount no source:
+811:/* MACROOBRAS SELECTED HERO HARD MOUNT V6 */
+964:      center.insertBefore(
+966:        mapStage.nextSibling,
+1077:/* END MACROOBRAS SELECTED HERO HARD MOUNT V6 */
+
+Mount no dist:
+811:/* MACROOBRAS SELECTED HERO HARD MOUNT V6 */
+1077:/* END MACROOBRAS SELECTED HERO HARD MOUNT V6 */
+
+Imports concorrentes restantes:

@@ -1,0 +1,15 @@
+VALIDAÇÃO FINAL
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/operational-layouts.js:1:import "./purchases-canvas-lanes.js";
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/purchases-canvas-lanes.js:1:const PURCHASE_STAGES = [
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/purchases-canvas-lanes.js:11:  "macroobras.purchaseCanvasDraft";
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/purchases-canvas-lanes.js:14:  "[data-purchases-canvas-lanes]";
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/purchases-canvas-lanes.js:104:  const index = PURCHASE_STAGES.findIndex(
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/purchases-canvas-lanes.js:227:        state || PURCHASE_STAGES[0],
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/purchases-canvas-lanes.js:311:  PURCHASE_STAGES.forEach(
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/purchases-canvas-lanes.js:489:  PURCHASE_STAGES.forEach(
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/purchases-canvas-lanes.js:541:  PURCHASE_STAGES.forEach(
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/purchases-canvas-lanes.js:683:    "purchases-canvas-lanes",
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:10348:/* MACROOBRAS PURCHASES CANVAS LANES V1 */
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:10363:.purchases-canvas-lanes {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:10786:  .purchases-canvas-lanes {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:10804:/* END MACROOBRAS PURCHASES CANVAS LANES V1 */

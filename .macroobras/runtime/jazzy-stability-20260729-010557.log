@@ -1,0 +1,261 @@
+=== MacroObras — estação Jazzy estabilizada ===
+Projeto: /home/icarogdo/dev/macroobras-jazzy/app/macroobras
+Endereço: http://127.0.0.1:7654/?surface=admin
+Relatório: /home/icarogdo/dev/macroobras-jazzy/app/macroobras/.macroobras/runtime/jazzy-stability-20260729-010557.log
+
+==> 1/5 Encerrando processos conflitantes
+==> 2/5 Validando os módulos JavaScript
+JavaScript válido: 64 arquivo(s)
+==> 3/5 Gerando o frontend
+Configuração de runtime gerada sem exibir a chave.
+Fonte: /home/icarogdo/.config/macroobras/google-maps.env
+Saída: /home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/dist/runtime-config.local.js
+Frontend built at frontend/dist
+==> 4/5 Compilando servidor Linux em release
+Hint: used config file '/etc/nim/nim.cfg' [Conf]
+Hint: used config file '/etc/nim/config.nims' [Conf]
+...................................................................................................................................................................................................................................................................................................................................
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/src/macroobras/collaborator_service.nim(293, 6) Hint: 'lanAppUrl' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/src/macroobras/collaborator_service.nim(299, 6) Hint: 'lanApiUrl' is declared but not used [XDeclaredButNotUsed]
+....
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+Hint:  [Link]
+Hint: mm: orc; threads: on; opt: speed; options: -d:release
+110484 lines; 2.817s; 334.344MiB peakmem; proj: /home/icarogdo/dev/macroobras-jazzy/app/macroobras/src/app.nim; out: /home/icarogdo/dev/macroobras-jazzy/app/macroobras/src/app-release [SuccessX]
+==> 5/5 Iniciando com supervisão de falha
+
+--- Execução 1/3 ---
+[90m2026-07-29 01:06:03[0m [32m[1m[INFO ][0m 🎷 Jazzy running in release mode on http://127.0.0.1:7654
+Abrindo em uma sessão de navegador existente.
+[90m2026-07-29 01:06:03[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusBootstrap 200 3.9ms [066610dd]
+[90m2026-07-29 01:06:05[0m [32m[1m[INFO ][0m ← POST /rpc/autenticarAdministradorContato 200 0.2ms [1e73ae49]
+[90m2026-07-29 01:06:06[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusBootstrap 200 3.2ms [adfabc6c]
+[90m2026-07-29 01:06:07[0m [32m[1m[INFO ][0m ← POST /rpc/autenticarAdministradorContato 200 0.2ms [dfc5afeb]
+[90m2026-07-29 01:06:11[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 5.3ms [b7df2132]
+[90m2026-07-29 01:06:13[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.9ms [1a8b63cc]
+[90m2026-07-29 01:06:18[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 5.4ms [b38071ae]
+[90m2026-07-29 01:06:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [77aafe86]
+[90m2026-07-29 01:06:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.1ms [13064304]
+[90m2026-07-29 01:06:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 5.8ms [59f25dd9]
+[90m2026-07-29 01:06:21[0m [33m[1m[WARN ][0m ← GET /.well-known/appspecific/com.chrome.devtools.json 404 0.1ms [d8e26f0d]
+[90m2026-07-29 01:06:24[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [805d200e]
+[90m2026-07-29 01:06:25[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.7ms [342e323f]
+[90m2026-07-29 01:06:26[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [00ee7ed8]
+[90m2026-07-29 01:06:27[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 5.2ms [ecfa7faf]
+[90m2026-07-29 01:06:27[0m [33m[1m[WARN ][0m ← GET /.well-known/appspecific/com.chrome.devtools.json 404 0.1ms [0a52bc99]
+[90m2026-07-29 01:06:32[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 5.0ms [f4ddea5c]
+[90m2026-07-29 01:06:35[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.0ms [27e9c4f6]
+[90m2026-07-29 01:06:39[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.6ms [2cd03eb3]
+[90m2026-07-29 01:06:42[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.6ms [61b3f284]
+[90m2026-07-29 01:06:44[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [69afa22e]
+[90m2026-07-29 01:06:46[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.5ms [4c5d376d]
+[90m2026-07-29 01:06:47[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [15062d6a]
+[90m2026-07-29 01:06:49[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.9ms [2eb5ace4]
+[90m2026-07-29 01:06:53[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.4ms [fa56c62c]
+[90m2026-07-29 01:06:56[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.9ms [33c1028a]
+[90m2026-07-29 01:07:00[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.7ms [3551704e]
+[90m2026-07-29 01:07:03[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 6.1ms [b20b3a29]
+[90m2026-07-29 01:07:04[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [ac15d911]
+[90m2026-07-29 01:07:07[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [851ee85d]
+[90m2026-07-29 01:07:10[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.6ms [2f813c2d]
+[90m2026-07-29 01:07:17[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 5.9ms [adea65c3]
+[90m2026-07-29 01:07:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [9240a3fe]
+[90m2026-07-29 01:07:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.2ms [d91a6e1e]
+[90m2026-07-29 01:07:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.3ms [15850107]
+[90m2026-07-29 01:07:24[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [2a33268e]
+[90m2026-07-29 01:07:24[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.8ms [825a0507]
+[90m2026-07-29 01:07:27[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [0b2261bc]
+[90m2026-07-29 01:07:31[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.6ms [d324d96a]
+[90m2026-07-29 01:07:44[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [036d6853]
+[90m2026-07-29 01:07:47[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [b6e63d4e]
+[90m2026-07-29 01:08:04[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [443b0522]
+[90m2026-07-29 01:08:07[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [9ec48449]
+[90m2026-07-29 01:08:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [8cd6beb3]
+[90m2026-07-29 01:08:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.9ms [61ffcb29]
+[90m2026-07-29 01:08:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 5.2ms [1eba98c3]
+[90m2026-07-29 01:08:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 6.0ms [91a666e0]
+[90m2026-07-29 01:09:07[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [2e4068a5]
+[90m2026-07-29 01:09:07[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 5.8ms [c42674e2]
+[90m2026-07-29 01:09:08[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.7ms [3532ae6d]
+[90m2026-07-29 01:09:15[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.6ms [5dbd64e9]
+[90m2026-07-29 01:09:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [a962c393]
+[90m2026-07-29 01:09:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [34374fd8]
+[90m2026-07-29 01:09:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 5.5ms [5609ae90]
+[90m2026-07-29 01:09:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 5.8ms [05bcefc4]
+[90m2026-07-29 01:09:22[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 6.1ms [59e51697]
+[90m2026-07-29 01:09:26[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [31a66495]
+[90m2026-07-29 01:09:29[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.6ms [fdcfcef2]
+[90m2026-07-29 01:09:36[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.0ms [cee1b0b8]
+[90m2026-07-29 01:09:43[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 6.1ms [1a878eef]
+[90m2026-07-29 01:09:47[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [ccf14020]
+[90m2026-07-29 01:09:51[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 6.2ms [af48c05f]
+[90m2026-07-29 01:09:58[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.8ms [dadc7435]
+[90m2026-07-29 01:10:05[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.8ms [a20618b6]
+[90m2026-07-29 01:10:07[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [9391288d]
+[90m2026-07-29 01:10:12[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.8ms [d315045c]
+[90m2026-07-29 01:10:19[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 6.0ms [772bcbba]
+[90m2026-07-29 01:10:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [4f27e019]
+[90m2026-07-29 01:10:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [a19693e3]
+[90m2026-07-29 01:10:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.3ms [c86e814d]
+[90m2026-07-29 01:10:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 6.3ms [0e584908]
+[90m2026-07-29 01:10:26[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.7ms [e6e46152]
+[90m2026-07-29 01:10:27[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [ac3d787b]
+[90m2026-07-29 01:10:33[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.7ms [41c2bce6]
+[90m2026-07-29 01:10:40[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.2ms [86321c73]
+[90m2026-07-29 01:11:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [02b6f840]
+[90m2026-07-29 01:11:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [14f4cfad]
+[90m2026-07-29 01:11:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [a102cdb8]
+[90m2026-07-29 01:11:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.8ms [6a464565]
+[90m2026-07-29 01:11:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.7ms [309684fd]
+[90m2026-07-29 01:11:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 5.9ms [7fdab684]
+[90m2026-07-29 01:12:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [2863e248]
+[90m2026-07-29 01:12:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [d6b9c6d3]
+[90m2026-07-29 01:12:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [93032f03]
+[90m2026-07-29 01:12:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.3ms [1745ffb6]
+[90m2026-07-29 01:12:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.0ms [c3a00f73]
+[90m2026-07-29 01:12:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 5.0ms [d537c104]
+[90m2026-07-29 01:13:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [d44d2d40]
+[90m2026-07-29 01:13:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [4cdcc8fd]
+[90m2026-07-29 01:13:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [a0546781]
+[90m2026-07-29 01:13:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 5.2ms [9e577c6c]
+[90m2026-07-29 01:13:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 5.7ms [52c4d4ad]
+[90m2026-07-29 01:13:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 5.8ms [ee5df13d]
+Traceback (most recent call last)
+server.nim(21)           runJazzyServer
+app.nim(88)              serve
+mummy_driver.nim(132)    serve (Async)
+mummy.nim(1466)          serve
+mummy.nim(1370)          loopForever
+mummy.nim(1089)          afterRecv
+mummy.nim(915)           afterRecvHttp
+alloc.nim(1217)          realloc
+alloc.nim(1195)          alloc
+alloc.nim(895)           rawAlloc
+alloc.nim(825)           compensateCounters
+SIGSEGV: Illegal storage access. (Attempt to read from nil?)
+./reiniciar_macroobras_jazzy_estavel_sem_ngrok.sh, linha 199: 93181 Falha de segmentação     (imagem do núcleo gravada) env APP_ENV=release MACROOBRAS_HOST="$HOST" MACROOBRAS_PORT="$PORT" MACROOBRAS_ENABLE_NGROK=0 MACROOBRAS_ENABLE_FTP=0 MACROOBRAS_ENABLE_LAN_PROXY=0 "$BIN"
+
+Servidor encerrou com código 139.
+Falha nativa detectada; reiniciando em 2s...
+
+--- Execução 2/3 ---
+[90m2026-07-29 01:14:22[0m [32m[1m[INFO ][0m 🎷 Jazzy running in release mode on http://127.0.0.1:7654
+[90m2026-07-29 01:14:23[0m [32m[1m[INFO ][0m ← POST /rpc/obterRotaPublicaColaborador 200 4.7ms [b7ed869a]
+[90m2026-07-29 01:14:23[0m [32m[1m[INFO ][0m ← POST /rpc/obterRotaPublicaColaborador 200 4.6ms [1f7a67a1]
+[90m2026-07-29 01:14:23[0m [32m[1m[INFO ][0m ← POST /rpc/obterRotaPublicaColaborador 200 7.1ms [dd909c76]
+Abrindo em uma sessão de navegador existente.
+[90m2026-07-29 01:14:23[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusBootstrap 200 4.3ms [a51c4ee7]
+[90m2026-07-29 01:14:30[0m [32m[1m[INFO ][0m ← POST /rpc/autenticarAdministradorContato 200 0.2ms [12cf76ae]
+[90m2026-07-29 01:14:30[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.7ms [93e260cf]
+[90m2026-07-29 01:14:37[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.6ms [10500701]
+[90m2026-07-29 01:14:43[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [9dded04c]
+[90m2026-07-29 01:14:45[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.5ms [afbfb003]
+[90m2026-07-29 01:14:52[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.5ms [9e7ed336]
+[90m2026-07-29 01:14:59[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 5.8ms [feef71fa]
+[90m2026-07-29 01:15:04[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [1d5afb18]
+[90m2026-07-29 01:15:06[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 5.1ms [5f8f9ac7]
+[90m2026-07-29 01:15:13[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.7ms [3a555e3f]
+[90m2026-07-29 01:15:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [c95a0909]
+[90m2026-07-29 01:15:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [0cdbf01e]
+[90m2026-07-29 01:15:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [44d0c115]
+[90m2026-07-29 01:15:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.6ms [17d9bf1d]
+[90m2026-07-29 01:15:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 6.0ms [d91dde2c]
+[90m2026-07-29 01:15:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 6.4ms [60084fb1]
+[90m2026-07-29 01:15:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 6.6ms [d4a5c418]
+[90m2026-07-29 01:15:24[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [150ec189]
+[90m2026-07-29 01:15:27[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.5ms [1bbea25f]
+[90m2026-07-29 01:15:34[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.3ms [d49e9a40]
+[90m2026-07-29 01:15:41[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 5.7ms [935483b5]
+[90m2026-07-29 01:15:44[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [e3057116]
+[90m2026-07-29 01:15:56[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [2dc137af]
+[90m2026-07-29 01:15:56[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 5.9ms [14443d5f]
+[90m2026-07-29 01:16:03[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.9ms [ae972550]
+[90m2026-07-29 01:16:04[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [c8e087db]
+[90m2026-07-29 01:16:10[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.4ms [bc90959f]
+[90m2026-07-29 01:16:12[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [747c8a32]
+[90m2026-07-29 01:16:17[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.3ms [d27e3ffa]
+[90m2026-07-29 01:16:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [d324e789]
+[90m2026-07-29 01:16:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [3a6dbf62]
+[90m2026-07-29 01:16:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 6.0ms [566c7036]
+[90m2026-07-29 01:16:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 6.3ms [bbb36aae]
+[90m2026-07-29 01:16:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 6.4ms [5946f42a]
+[90m2026-07-29 01:16:24[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [ea589fc6]
+[90m2026-07-29 01:16:24[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.6ms [7b9f08b8]
+[90m2026-07-29 01:16:31[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.8ms [f9437510]
+[90m2026-07-29 01:16:32[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [8eb9365c]
+[90m2026-07-29 01:16:38[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.0ms [711e9af1]
+[90m2026-07-29 01:16:45[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.8ms [62308fcf]
+[90m2026-07-29 01:16:52[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [164525ed]
+[90m2026-07-29 01:16:52[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.0ms [89612fa7]
+[90m2026-07-29 01:17:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [b562e0bb]
+[90m2026-07-29 01:17:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [ca9e611c]
+[90m2026-07-29 01:17:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [8967a097]
+[90m2026-07-29 01:17:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [490d4b27]
+[90m2026-07-29 01:17:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.2ms [41d9099b]
+[90m2026-07-29 01:17:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.3ms [4174f3ef]
+[90m2026-07-29 01:17:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 5.5ms [bdc68d37]
+[90m2026-07-29 01:17:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 6.4ms [880138bc]
+[90m2026-07-29 01:18:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [1baae449]
+[90m2026-07-29 01:18:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [6a4ce154]
+[90m2026-07-29 01:18:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [cb3c1fc7]
+[90m2026-07-29 01:18:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [20e77db1]
+[90m2026-07-29 01:18:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.6ms [65b931dc]
+[90m2026-07-29 01:18:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.5ms [8fbf4f82]
+[90m2026-07-29 01:18:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 6.8ms [4ce83280]
+[90m2026-07-29 01:18:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.5ms [15c1cd3b]
+Traceback (most recent call last)
+mummy.nim(538)           workerProc
+mummy.nim(471)           runTask
+mummy_driver.nim(92)     mummyHandler
+app.nim(53)              :anonymous
+app.nim(56)              anonymous (Async)
+SIGSEGV: Illegal storage access. (Attempt to read from nil?)
+Traceback (most recent call last)
+mummy.nim(538)           workerProc
+mummy.nim(471)           runTask
+mummy_driver.nim(92)     mummyHandler
+app.nim(53)              :anonymous
+app.nim(56)              anonymous (Async)
+SIGSEGV: Illegal storage access. (Attempt to read from nil?)
+./reiniciar_macroobras_jazzy_estavel_sem_ngrok.sh, linha 199: 100226 Falha de segmentação     (imagem do núcleo gravada) env APP_ENV=release MACROOBRAS_HOST="$HOST" MACROOBRAS_PORT="$PORT" MACROOBRAS_ENABLE_NGROK=0 MACROOBRAS_ENABLE_FTP=0 MACROOBRAS_ENABLE_LAN_PROXY=0 "$BIN"
+
+Servidor encerrou com código 139.
+Falha nativa detectada; reiniciando em 2s...
+
+--- Execução 3/3 ---
+[90m2026-07-29 01:19:22[0m [32m[1m[INFO ][0m 🎷 Jazzy running in release mode on http://127.0.0.1:7654
+[90m2026-07-29 01:19:23[0m [32m[1m[INFO ][0m ← POST /rpc/obterRotaPublicaColaborador 200 5.0ms [98425938]
+[90m2026-07-29 01:19:23[0m [32m[1m[INFO ][0m ← POST /rpc/obterRotaPublicaColaborador 200 4.9ms [914b747a]
+[90m2026-07-29 01:19:23[0m [32m[1m[INFO ][0m ← POST /rpc/obterRotaPublicaColaborador 200 7.0ms [46dfdf90]
+[90m2026-07-29 01:19:23[0m [32m[1m[INFO ][0m ← POST /rpc/obterRotaPublicaColaborador 200 7.0ms [3db2485a]
+Abrindo em uma sessão de navegador existente.
+[90m2026-07-29 01:19:23[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusBootstrap 200 4.4ms [5307e188]
+Traceback (most recent call last)
+app.nim(217)             app
+core.nim(46)             runDesktopAppInternal
+SIGINT: Interrupted by Ctrl-C.
+
+Estação encerrada pelo usuário.

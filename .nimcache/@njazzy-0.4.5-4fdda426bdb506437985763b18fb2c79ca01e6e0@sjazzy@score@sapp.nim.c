@@ -358,15 +358,15 @@ struct tyTuple__VkaA9bzBYmNkyt5Z9b9b9a2K6A {
 struct tySequence__XUcmaxm9b9attK75fbPuUHtw_Content { NI cap; tyTuple__VkaA9bzBYmNkyt5Z9b9b9a2K6A data[SEQ_DECL_SIZE]; };
 N_LIB_PRIVATE N_NIMCALL(tyObject_MummyDrivercolonObjectType___6pqgF6KMimhJ0v9cmdszwtQ*, new__pkgZjazzyZcoreZapp_u16)(void);
 N_LIB_PRIVATE N_NIMCALL(void*, newSeqPayload)(NI cap_p0, NI elemSize_p1, NI elemAlign_p2);
+N_LIB_PRIVATE N_NIMCALL(void, serveStatic__pkgZjazzyZcoreZapp_u53)(tyObject_JazzyStatic__zT85dsNxrtTk0suJUvbG9aQ* app_p0, NimStringV2 path_p1, NimStringV2 urlPrefix_p2);
+static N_INLINE(void, nimZeroMem)(void* p_p0, NI size_p1);
+static N_INLINE(void, nimSetMem__system_u2188)(void* a_p0, int v_p1, NI size_p2);
+N_LIB_PRIVATE N_NIMCALL(void, use__pkgZjazzyZcoreZapp_u30)(tyObject_JazzyStatic__zT85dsNxrtTk0suJUvbG9aQ* app_p0, tyObject_Middleware__gcFIH9b5wYIk9clYE57STTKw* mw_p1);
 N_LIB_PRIVATE N_NIMCALL(void, add__pkgZjazzyZcoreZapp_u33)(tySequence__yhY6qBukoyUY9bE7t1bFnYQ* x_p0, tyObject_Middleware__gcFIH9b5wYIk9clYE57STTKw* y_p1);
 N_LIB_PRIVATE N_NIMCALL(void, eqdup___pkgZjazzyZhttpZstatic95files_u906)(tyObject_Middleware__gcFIH9b5wYIk9clYE57STTKw* src_p0, tyObject_Middleware__gcFIH9b5wYIk9clYE57STTKw* Result);
 static N_INLINE(void, nimFrame)(TFrame* s_p0);
 N_LIB_PRIVATE N_NOINLINE(void, callDepthLimitReached__system_u4511)(void);
 static N_INLINE(void, popFrame)(void);
-N_LIB_PRIVATE N_NIMCALL(void, serveStatic__pkgZjazzyZcoreZapp_u53)(tyObject_JazzyStatic__zT85dsNxrtTk0suJUvbG9aQ* app_p0, NimStringV2 path_p1, NimStringV2 urlPrefix_p2);
-static N_INLINE(void, nimZeroMem)(void* p_p0, NI size_p1);
-static N_INLINE(void, nimSetMem__system_u2188)(void* a_p0, int v_p1, NI size_p2);
-N_LIB_PRIVATE N_NIMCALL(void, use__pkgZjazzyZcoreZapp_u30)(tyObject_JazzyStatic__zT85dsNxrtTk0suJUvbG9aQ* app_p0, tyObject_Middleware__gcFIH9b5wYIk9clYE57STTKw* mw_p1);
 N_LIB_PRIVATE N_NIMCALL(void, serveStatic__pkgZjazzyZhttpZstatic95files_u626)(NimStringV2 rootPath_p0, NimStringV2 urlPrefix_p1, tyObject_Middleware__gcFIH9b5wYIk9clYE57STTKw* Result);
 N_LIB_PRIVATE N_NIMCALL(void, eqdestroy___pkgZjazzyZhttpZstatic95files_u900)(tyObject_Middleware__gcFIH9b5wYIk9clYE57STTKw* dest_p0);
 static N_INLINE(NIM_BOOL*, nimErrorFlag)(void);
@@ -658,6 +658,14 @@ N_LIB_PRIVATE TNimTypeV2 NTIv2__zrcL2nS4tIbDTFE9bajajjA_ = {.destructor = (void*
 static NIM_CONST NU32 TM__QsC9bICi9aMdrmXSxadIKNag_37[2] = {3701606400, 292553984};
 N_LIB_PRIVATE TNimTypeV2 NTIv2__DhFwBRqx4LNPSSOOgWoybg_ = {.destructor = (void*)rttiDestroy__pkgZjazzyZcoreZapp_u1647, .size = sizeof(tyObject_Env_appdotnim_anonymousX20X28AsyncX29___DhFwBRqx4LNPSSOOgWoybg), .align = (NI16) NIM_ALIGNOF(tyObject_Env_appdotnim_anonymousX20X28AsyncX29___DhFwBRqx4LNPSSOOgWoybg), .depth = 1, .display = TM__QsC9bICi9aMdrmXSxadIKNag_37, .traceImpl = (void*)eqtrace___pkgZjazzyZcoreZapp_u996, .flags = 0};
 extern tyObject_JazzyLogger__NHdn9co4K55z1FTTxZROqZQ Log__pkgZjazzyZcoreZlogger_u22;
+static N_INLINE(void, nimSetMem__system_u2188)(void* a_p0, int v_p1, NI size_p2) {
+	void* T1_;
+	T1_ = (void*)0;
+	T1_ = memset(a_p0, v_p1, ((size_t) (size_p2)));
+}
+static N_INLINE(void, nimZeroMem)(void* p_p0, NI size_p1) {
+	nimSetMem__system_u2188(p_p0, ((int)0), size_p1);
+}
 static N_INLINE(void, nimFrame)(TFrame* s_p0) {
 	{
 		if (!(framePtr__system_u2809 == ((TFrame*) NIM_NIL))) goto LA3_;
@@ -686,14 +694,6 @@ N_LIB_PRIVATE N_NIMCALL(void, use__pkgZjazzyZcoreZapp_u30)(tyObject_JazzyStatic_
 	nimlf_(20, "/home/icarogdo/.nimble/pkgs2/jazzy-0.4.5-4fdda426bdb506437985763b18fb2c79ca01e6e0/jazzy/core/app.nim");	nimlf_(83, "/home/icarogdo/.nimble/pkgs2/jazzy-0.4.5-4fdda426bdb506437985763b18fb2c79ca01e6e0/jazzy/http/static_files.nim");	eqdup___pkgZjazzyZhttpZstatic95files_u906(mw_p1, (&colontmpD_));
 	nimlf_(20, "/home/icarogdo/.nimble/pkgs2/jazzy-0.4.5-4fdda426bdb506437985763b18fb2c79ca01e6e0/jazzy/core/app.nim");	add__pkgZjazzyZcoreZapp_u33((&(*app_p0).middlewares), (&colontmpD_));
 	popFrame();
-}
-static N_INLINE(void, nimSetMem__system_u2188)(void* a_p0, int v_p1, NI size_p2) {
-	void* T1_;
-	T1_ = (void*)0;
-	T1_ = memset(a_p0, v_p1, ((size_t) (size_p2)));
-}
-static N_INLINE(void, nimZeroMem)(void* p_p0, NI size_p1) {
-	nimSetMem__system_u2188(p_p0, ((int)0), size_p1);
 }
 static N_INLINE(NIM_BOOL*, nimErrorFlag)(void) {
 	NIM_BOOL* result;

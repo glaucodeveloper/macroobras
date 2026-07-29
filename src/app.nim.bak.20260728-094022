@@ -1,0 +1,172 @@
+import std/[json, os]
+
+when not defined(jazzyWeb):
+  {.compile: "../vendor/jazzy_desktop-cross/webview_impl.cpp".}
+
+import jazzy_desktop
+import macroobras/[access_service, admin_service, collaborator_service, config, installer_service, okf_service, operations_service, response_utils, graph_service]
+
+proc salvarGrafoOperacional(payloadJson: string): string {.expose.} =
+  ok(graph_service.salvarGrafoOperacionalPayload(parseJson(payloadJson)))
+
+proc obterGrafoOperacional(payloadJson: string): string {.expose.} =
+  ok(graph_service.obterGrafoOperacionalPayload(parseJson(payloadJson)))
+
+proc listarGrafosOperacionais(): string {.expose.} =
+  ok(graph_service.listarGrafosOperacionaisPayload())
+
+proc removerGrafoOperacional(payloadJson: string): string {.expose.} =
+  ok(graph_service.removerGrafoOperacionalPayload(parseJson(payloadJson)))
+
+proc salvarRotaVisita(payloadJson: string): string {.expose.} =
+  ok(graph_service.salvarRotaVisitaPayload(parseJson(payloadJson)))
+
+proc obterRotaVisita(payloadJson: string): string {.expose.} =
+  ok(graph_service.obterRotaVisitaPayload(parseJson(payloadJson)))
+
+proc listarRotasVisita(): string {.expose.} =
+  ok(graph_service.listarRotasVisitaPayload())
+
+proc removerRotaVisita(payloadJson: string): string {.expose.} =
+  ok(graph_service.removerRotaVisitaPayload(parseJson(payloadJson)))
+
+proc salvarOrganogramaOperacional(payloadJson: string): string {.expose.} =
+  ok(graph_service.salvarOrganogramaPayload(parseJson(payloadJson)))
+
+proc obterOrganogramaOperacional(payloadJson: string): string {.expose.} =
+  ok(graph_service.obterOrganogramaPayload(parseJson(payloadJson)))
+
+proc listarOrganogramasOperacionais(): string {.expose.} =
+  ok(graph_service.listarOrganogramasPayload())
+
+proc removerOrganogramaOperacional(payloadJson: string): string {.expose.} =
+  ok(graph_service.removerOrganogramaPayload(parseJson(payloadJson)))
+
+
+proc criarServicoAdministrativo(payloadJson: string): string {.expose.} =
+  ok(criarServicoAdministrativoPayload(parseJson(payloadJson)))
+proc adicionarLinhaCronograma(payloadJson: string): string {.expose.} =
+  ok(adicionarLinhaCronogramaPayload(parseJson(payloadJson)))
+proc sobrescreverCronograma(payloadJson: string): string {.expose.} =
+  ok(sobrescreverCronogramaPayload(parseJson(payloadJson)))
+proc alterarPercentualItemMedicao(payloadJson: string): string {.expose.} =
+  ok(alterarPercentualItemMedicaoPayload(parseJson(payloadJson)))
+proc gerarComparacaoPercentuaisMedicao(payloadJson: string): string {.expose.} =
+  ok(gerarComparacaoPercentuaisMedicaoPayload(parseJson(payloadJson)))
+
+proc criarObraPorPlanilha(payloadJson: string): string {.expose.} =
+  ok(criarObraPorPlanilhaPayload(parseJson(payloadJson)))
+proc iniciarFluxoCompra(payloadJson: string): string {.expose.} =
+  ok(iniciarFluxoCompraPayload(parseJson(payloadJson)))
+proc autorizarCompra(payloadJson: string): string {.expose.} =
+  ok(autorizarCompraPayload(parseJson(payloadJson)))
+proc comprovarEntrega(payloadJson: string): string {.expose.} =
+  ok(comprovarEntregaPayload(parseJson(payloadJson)))
+proc salvarPlanejamentoNos(payloadJson: string): string {.expose.} =
+  ok(salvarPlanejamentoNosPayload(parseJson(payloadJson)))
+proc salvarRotaVisitas(payloadJson: string): string {.expose.} =
+  ok(salvarRotaVisitasPayload(parseJson(payloadJson)))
+proc salvarOrganograma(payloadJson: string): string {.expose.} =
+  ok(graph_service.salvarOrganogramaPayload(parseJson(payloadJson)))
+
+proc salvarAcessoEncarregado(payloadJson: string): string {.expose.} =
+  ok(salvarAcessoEncarregadoPayload(parseJson(payloadJson)))
+
+proc listarAcessosEncarregado(payloadJson: string): string {.expose.} =
+  ok(listarAcessosEncarregadoPayload(parseJson(payloadJson)))
+
+proc removerAcessoEncarregado(payloadJson: string): string {.expose.} =
+  ok(removerAcessoEncarregadoPayload(parseJson(payloadJson)))
+
+proc autenticarAcessoEncarregado(payloadJson: string): string {.expose.} =
+  ok(autenticarAcessoEncarregadoPayload(parseJson(payloadJson)))
+
+
+proc obterStatusBootstrap(): string {.expose.} =
+  ok(bootstrapStatusPayload())
+
+proc autorizarInstalacaoGithub(payloadJson: string): string {.expose.} =
+  ok(authorizeInstallerGithubPayload(parseJson(payloadJson)))
+
+proc autenticarAdministradorToken(payloadJson: string): string {.expose.} =
+  ok(authenticateAdminTokenPayload(parseJson(payloadJson)))
+
+proc autenticarAdministradorContato(payloadJson: string): string {.expose.} =
+  ok(authenticateAdminContactPayload(parseJson(payloadJson)))
+
+proc salvarConfiguracaoLogin(payloadJson: string): string {.expose.} =
+  ok(salvarConfiguracaoLoginPayload(parseJson(payloadJson)))
+
+proc atualizarTokenMaquina(payloadJson: string): string {.expose.} =
+  ok(updateMachineTokenPayload(parseJson(payloadJson)))
+
+proc registrarSessaoFirebase(payloadJson: string): string {.expose.} =
+  let payload = parseJson(payloadJson)
+  ok(%*{
+    "autenticado": payload{"uid"}.getStr("").len > 0,
+    "provedor": payload{"providerId"}.getStr("firebase"),
+    "usuario": payload
+  })
+
+proc ativarDistribuicaoLocalColaborador(): string {.expose.} =
+  ok(ativarDistribuicaoLocalPayload())
+
+proc salvarOkfElementosObra(payloadJson: string): string {.expose.} =
+  ok(salvarOkfElementosObraPayload(parseJson(payloadJson)))
+
+proc obterRotaPublicaColaborador(): string {.expose.} =
+  ok(collaboratorPlatformStatusPayload())
+proc obterStatusPlataformaMobile(): string {.expose.} =
+  ok(collaboratorPlatformStatusPayload())
+proc iniciarPlataformaMobile(): string {.expose.} =
+  ok(iniciarPlataformaMobilePayload())
+
+proc pararPlataformaMobile(): string {.expose.} =
+  ok(pararPlataformaMobilePayload())
+
+proc obterStatusOkf(): string {.expose.} = ok(okfStatusPayload())
+proc prepararOkf(): string {.expose.} =
+  ok(%*{
+    "pronto": false,
+    "mensagem": "O OKF é criado ao salvar o Cronograma gráfico de uma obra.",
+    "fonte": "grafico-elementos-obra"
+  })
+proc obterStatusInstalador(): string {.expose.} = ok(installerStatusPayload())
+proc executarInstalador(payloadJson: string): string {.expose.} =
+  ok(executeInstallerPayload(parseJson(payloadJson)))
+
+Route.get("/api/colaboradores", colaboradorStatus)
+Route.post("/api/colaboradores/login", colaboradorLogin)
+Route.post("/api/colaboradores/servicos", colaboradorOk)
+Route.post("/api/colaboradores/rotinas", colaboradorOk)
+Route.post("/api/colaboradores/cronogramas/alocar", colaboradorOk)
+Route.post("/api/colaboradores/diarios/registrar", colaboradorOk)
+Route.post("/api/colaboradores/diarios/completar", colaboradorOk)
+Route.post("/api/colaboradores/compras/solicitar", colaboradorOk)
+Route.post("/api/colaboradores/compras/anexar-recibo", colaboradorOk)
+Route.post("/api/colaboradores/compras/comprovar-entrega", colaboradorOk)
+
+
+proc carregarConfiguracaoMobileLocal() =
+  let envPath = appRootDir() / "config" / "mobile-platform.env"
+  let values = readSimpleEnvFile(envPath)
+  for key, value in values.pairs:
+    if getEnv(key).len == 0:
+      putEnv(key, value.getStr(""))
+
+carregarConfiguracaoMobileLocal()
+configureLinuxWebviewEnvironment()
+if envEnabled("MACROOBRAS_ENABLE_NGROK", true):
+  startCollaboratorNgrok()
+if envEnabled("MACROOBRAS_ENABLE_LAN_PROXY", true):
+  restoreRequestedCollaboratorLan()
+
+startDesktopApp(
+  title = "ERP da construção Maximus Empreendimentos",
+  width = 1448,
+  height = 1086,
+  prodDir = "../frontend/dist",
+  corsOrigins = "*",
+  port = AppPort,
+  address = AppHost
+)

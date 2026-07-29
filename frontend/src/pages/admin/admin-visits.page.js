@@ -107,7 +107,9 @@ export function adminVisits() {
     ? selected.schedule.map((entry, index) => `<article><b>${String(index + 1).padStart(2, "0")}</b><span><strong>${esc(entry.name || workById(entry.workId)?.name || "Parada")}</strong><small>${esc(entry.address || workById(entry.workId)?.address || "")}</small></span><time>${esc(entry.start)} — ${esc(entry.end)}</time></article>`).join("")
     : selectedStops.map((stop, index) => `<article><b>${String(index + 1).padStart(2, "0")}</b><span><strong>${esc(stop.name)}</strong><small>${esc(stop.address || "")}</small></span><time>${8 + index * 2}:00 — ${9 + index * 2}:00</time></article>`).join("");
 
-  return `${pageHeader("Visitas", "Mantenha pressionado um ponto de obra; a melhor rota é recalculada até o cursor e fixada somente ao soltar.", `<button class="btn" data-message="generate-visit-plan">Gerar calendário</button>`)}
+  const actions = `${selected ? `<button class="btn ghost" data-message="print-visit-plan" data-plan-id="${esc(selected.id)}">Imprimir rota selecionada</button>` : ""}<button class="btn" data-message="generate-visit-plan">Registrar no cronograma e imprimir PDF</button>`;
+
+  return `${pageHeader("Visitas", "Trace a rota, registre as paradas nos cronogramas das obras e emita o relatório timbrado.", actions)}
     <div class="visit-layout">
       <section>
         <div class="visit-map-wrap">

@@ -50,6 +50,7 @@ struct NimStringV2 {
 	NI len;
 	NimStrPayload* p;
 };
+typedef NU8 tySet_tyChar__nmiMWKVIe46vacnhAFrQvw[32];
 typedef NU8 tyEnum_JsonNodeKind__AgEdEY3Szs9c2LYpGqyQ2lA;
 struct tySequence__xUV33m0d5HZLvMGUKDBm7Q {
   NI len; tySequence__xUV33m0d5HZLvMGUKDBm7Q_Content* p;
@@ -91,7 +92,6 @@ typedef NU8 tyEnum_FileMode__ykUWlTdrdFfRWwmg78tXCw;
 struct tySequence__sM4lkSb7zS6F7OVMvW9cffQ {
   NI len; tySequence__sM4lkSb7zS6F7OVMvW9cffQ_Content* p;
 };
-typedef NU8 tySet_tyChar__nmiMWKVIe46vacnhAFrQvw[32];
 struct tyObject_HSlice__gNm3PIFaVREVVU9cuqHQIFg {
 	NI a;
 	NI b;
@@ -112,12 +112,17 @@ static N_INLINE(NIM_BOOL*, nimErrorFlag)(void);
 static N_INLINE(void, nimFrame)(TFrame* s_p0);
 N_LIB_PRIVATE N_NOINLINE(void, callDepthLimitReached__system_u4511)(void);
 static N_INLINE(void, popFrame)(void);
+N_LIB_PRIVATE N_NIMCALL(NimStringV2, nsuStrip)(NimStringV2 s_p0, NIM_BOOL leading_p1, NIM_BOOL trailing_p2, tySet_tyChar__nmiMWKVIe46vacnhAFrQvw chars_p3);
+N_LIB_PRIVATE N_NIMCALL(NimStringV2, getEnv__stdZenvvars_u15)(NimStringV2 key_p0, NimStringV2 default_p1);
+N_LIB_PRIVATE N_NIMCALL(void, eqwasMoved___system_u2769)(NimStringV2* dest_p0);
+static N_INLINE(NimStringV2, slash___stdZprivateZospaths2_u88)(NimStringV2 head_p0, NimStringV2 tail_p1);
+N_LIB_PRIVATE N_NIMCALL(NimStringV2, nosjoinPath)(NimStringV2 head_p0, NimStringV2 tail_p1);
+N_LIB_PRIVATE N_NIMCALL(NimStringV2, nosgetHomeDir)(void);
 N_LIB_PRIVATE N_NIMCALL(tyObject_JsonNodeObj__HuNCd9cjVf1RGJ8WXqZvVog*, newJObject__pureZjson_u440)(void);
 N_LIB_PRIVATE N_NIMCALL(NIM_BOOL, nosfileExists)(NimStringV2 filename_p0);
 N_LIB_PRIVATE N_NIMCALL(FILE*, open__stdZsyncio_u487)(NimStringV2 filename_p0, tyEnum_FileMode__ykUWlTdrdFfRWwmg78tXCw mode_p1, NI bufSize_p2);
 N_NIMCALL(NimStringV2, rawNewString)(NI cap_p0);
 N_LIB_PRIVATE N_NIMCALL(NIM_BOOL, readLine__stdZsyncio_u289)(FILE* f_p0, NimStringV2* line_p1);
-N_LIB_PRIVATE N_NIMCALL(NimStringV2, nsuStrip)(NimStringV2 s_p0, NIM_BOOL leading_p1, NIM_BOOL trailing_p2, tySet_tyChar__nmiMWKVIe46vacnhAFrQvw chars_p3);
 N_LIB_PRIVATE N_NIMCALL(NIM_BOOL, nsuStartsWith)(NimStringV2 s_p0, NimStringV2 prefix_p1);
 N_LIB_PRIVATE N_NIMCALL(NIM_BOOL, contains__pureZstrutils_u1900)(NimStringV2 s_p0, NimStringV2 sub_p1);
 N_LIB_PRIVATE N_NIMCALL(void, eqdestroy___system_u5657)(tySequence__sM4lkSb7zS6F7OVMvW9cffQ dest_p0);
@@ -142,113 +147,130 @@ N_LIB_PRIVATE N_NIMCALL(tyObject_JsonNodeObj__HuNCd9cjVf1RGJ8WXqZvVog*, eqdup___
 N_LIB_PRIVATE N_NIMCALL(tyObject_JsonNodeObj__HuNCd9cjVf1RGJ8WXqZvVog*, percent___pureZjson_u2166)(NimStringV2 s_p0);
 N_LIB_PRIVATE N_NIMCALL(void, eqdestroy___pureZjson_u321)(tyObject_JsonNodeObj__HuNCd9cjVf1RGJ8WXqZvVog* dest_p0);
 N_LIB_PRIVATE N_NIMCALL(void, close__stdZsyncio_u268)(FILE* f_p0);
+static N_INLINE(void, appendString)(NimStringV2* dest_p0, NimStringV2 src_p1);
+static N_INLINE(void, copyMem__system_u1755)(void* dest_p0, void* source_p1, NI size_p2);
+static N_INLINE(void, nimCopyMem)(void* dest_p0, void* source_p1, NI size_p2);
+N_LIB_PRIVATE N_NIMCALL(void*, newSeqPayload)(NI cap_p0, NI elemSize_p1, NI elemAlign_p2);
+N_LIB_PRIVATE N_NIMCALL(void, add__stdZenumutils_u70)(tySequence__sM4lkSb7zS6F7OVMvW9cffQ* x_p0, NimStringV2 y_p1);
+N_LIB_PRIVATE N_NIMCALL(NimStringV2, dollar___systemZdollars_u14)(NI xX60gensym0__p0);
 N_LIB_PRIVATE N_NIMCALL(NimStringV2, nsuNormalize)(NimStringV2 s_p0);
-N_LIB_PRIVATE N_NIMCALL(NimStringV2, getEnv__stdZenvvars_u15)(NimStringV2 key_p0, NimStringV2 default_p1);
 static N_INLINE(NIM_BOOL, contains__stdZenumutils_u50)(NimStringV2* a_p0, NI a_p0Len_0, NimStringV2 item_p1);
 static N_INLINE(NI, find__stdZenumutils_u55)(NimStringV2* a_p0, NI a_p0Len_0, NimStringV2 item_p1);
 static N_INLINE(NIM_BOOL, eqStrings)(NimStringV2 a_p0, NimStringV2 b_p1);
 static N_INLINE(NIM_BOOL, equalMem__system_u1763)(void* a_p0, void* b_p1, NI size_p2);
 static N_INLINE(int, nimCmpMem)(void* a_p0, void* b_p1, NI size_p2);
-static N_INLINE(void, appendString)(NimStringV2* dest_p0, NimStringV2 src_p1);
-static N_INLINE(void, copyMem__system_u1755)(void* dest_p0, void* source_p1, NI size_p2);
-static N_INLINE(void, nimCopyMem)(void* dest_p0, void* source_p1, NI size_p2);
-N_LIB_PRIVATE N_NIMCALL(void*, newSeqPayload)(NI cap_p0, NI elemSize_p1, NI elemAlign_p2);
-N_LIB_PRIVATE N_NIMCALL(void, eqwasMoved___system_u2769)(NimStringV2* dest_p0);
-N_LIB_PRIVATE N_NIMCALL(void, add__stdZenumutils_u70)(tySequence__sM4lkSb7zS6F7OVMvW9cffQ* x_p0, NimStringV2 y_p1);
-N_LIB_PRIVATE N_NIMCALL(NimStringV2, dollar___systemZdollars_u14)(NI xX60gensym0__p0);
 static const struct {
   NI cap; NIM_CHAR data[76+1];
 } TM__NCuq4gjk0LNcLCvecYzmEw_2 = { 76 | NIM_STRLIT_FLAG, "/home/icarogdo/dev/macroobras-jazzy/app/macroobras/src/macroobras/config.nim" };
 static const NimStringV2 TM__NCuq4gjk0LNcLCvecYzmEw_3 = {76, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_2};
-static NIM_CONST tySet_tyChar__nmiMWKVIe46vacnhAFrQvw TM__NCuq4gjk0LNcLCvecYzmEw_4 = {
+static const struct {
+  NI cap; NIM_CHAR data[26+1];
+} TM__NCuq4gjk0LNcLCvecYzmEw_4 = { 26 | NIM_STRLIT_FLAG, "MACROOBRAS_USER_CONFIG_DIR" };
+static const NimStringV2 TM__NCuq4gjk0LNcLCvecYzmEw_5 = {26, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_4};
+static const struct {
+  NI cap; NIM_CHAR data[0+1];
+} TM__NCuq4gjk0LNcLCvecYzmEw_6 = { 0 | NIM_STRLIT_FLAG, "" };
+static const NimStringV2 TM__NCuq4gjk0LNcLCvecYzmEw_7 = {0, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_6};
+static NIM_CONST tySet_tyChar__nmiMWKVIe46vacnhAFrQvw TM__NCuq4gjk0LNcLCvecYzmEw_8 = {
 0x00, 0x3e, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00,
 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}
 ;
 static const struct {
-  NI cap; NIM_CHAR data[1+1];
-} TM__NCuq4gjk0LNcLCvecYzmEw_5 = { 1 | NIM_STRLIT_FLAG, "#" };
-static const NimStringV2 TM__NCuq4gjk0LNcLCvecYzmEw_6 = {1, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_5};
+  NI cap; NIM_CHAR data[15+1];
+} TM__NCuq4gjk0LNcLCvecYzmEw_9 = { 15 | NIM_STRLIT_FLAG, "XDG_CONFIG_HOME" };
+static const NimStringV2 TM__NCuq4gjk0LNcLCvecYzmEw_10 = {15, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_9};
+static const NimStringV2 TM__NCuq4gjk0LNcLCvecYzmEw_11 = {0, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_6};
 static const struct {
-  NI cap; NIM_CHAR data[1+1];
-} TM__NCuq4gjk0LNcLCvecYzmEw_7 = { 1 | NIM_STRLIT_FLAG, "=" };
-static const NimStringV2 TM__NCuq4gjk0LNcLCvecYzmEw_8 = {1, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_7};
-static const NimStringV2 TM__NCuq4gjk0LNcLCvecYzmEw_9 = {1, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_7};
-static const struct {
-  NI cap; NIM_CHAR data[96+1];
-} TM__NCuq4gjk0LNcLCvecYzmEw_16 = { 96 | NIM_STRLIT_FLAG, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/pure/json.nim(396, 9) `obj.kind == JObject` " };
-static const NimStringV2 TM__NCuq4gjk0LNcLCvecYzmEw_17 = {96, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_16};
-static const struct {
-  NI cap; NIM_CHAR data[70+1];
-} TM__NCuq4gjk0LNcLCvecYzmEw_18 = { 70 | NIM_STRLIT_FLAG, "field \'fields\' is not accessible for type \'JsonNodeObj\' using \'kind = " };
-static const NimStringV2 TM__NCuq4gjk0LNcLCvecYzmEw_19 = {70, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_18};
-static const struct {
-  NI cap; NIM_CHAR data[1+1];
-} TM__NCuq4gjk0LNcLCvecYzmEw_20 = { 1 | NIM_STRLIT_FLAG, "1" };
-static const NimStringV2 TM__NCuq4gjk0LNcLCvecYzmEw_21 = {1, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_20};
-static const struct {
-  NI cap; NIM_CHAR data[1+1];
-} TM__NCuq4gjk0LNcLCvecYzmEw_22 = { 1 | NIM_STRLIT_FLAG, "0" };
-static const NimStringV2 TM__NCuq4gjk0LNcLCvecYzmEw_23 = {1, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_22};
-static const struct {
-  NI cap; NIM_CHAR data[5+1];
-} TM__NCuq4gjk0LNcLCvecYzmEw_26 = { 5 | NIM_STRLIT_FLAG, "false" };
-static const struct {
-  NI cap; NIM_CHAR data[2+1];
-} TM__NCuq4gjk0LNcLCvecYzmEw_27 = { 2 | NIM_STRLIT_FLAG, "no" };
-static const struct {
-  NI cap; NIM_CHAR data[3+1];
-} TM__NCuq4gjk0LNcLCvecYzmEw_28 = { 3 | NIM_STRLIT_FLAG, "off" };
-static const struct {
-  NI cap; NIM_CHAR data[8+1];
-} TM__NCuq4gjk0LNcLCvecYzmEw_29 = { 8 | NIM_STRLIT_FLAG, "disabled" };
+  NI cap; NIM_CHAR data[10+1];
+} TM__NCuq4gjk0LNcLCvecYzmEw_12 = { 10 | NIM_STRLIT_FLAG, "macroobras" };
+static const NimStringV2 TM__NCuq4gjk0LNcLCvecYzmEw_13 = {10, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_12};
 static const struct {
   NI cap; NIM_CHAR data[7+1];
-} TM__NCuq4gjk0LNcLCvecYzmEw_30 = { 7 | NIM_STRLIT_FLAG, "http://" };
-static const NimStringV2 TM__NCuq4gjk0LNcLCvecYzmEw_31 = {7, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_30};
-static const struct {
-  NI cap; NIM_CHAR data[15+1];
-} TM__NCuq4gjk0LNcLCvecYzmEw_32 = { 15 | NIM_STRLIT_FLAG, "MACROOBRAS_HOST" };
-static const NimStringV2 TM__NCuq4gjk0LNcLCvecYzmEw_33 = {15, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_32};
-static const struct {
-  NI cap; NIM_CHAR data[9+1];
-} TM__NCuq4gjk0LNcLCvecYzmEw_34 = { 9 | NIM_STRLIT_FLAG, "127.0.0.1" };
-static const NimStringV2 TM__NCuq4gjk0LNcLCvecYzmEw_35 = {9, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_34};
+} TM__NCuq4gjk0LNcLCvecYzmEw_14 = { 7 | NIM_STRLIT_FLAG, ".config" };
+static const NimStringV2 TM__NCuq4gjk0LNcLCvecYzmEw_15 = {7, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_14};
+static const NimStringV2 TM__NCuq4gjk0LNcLCvecYzmEw_16 = {10, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_12};
 static const struct {
   NI cap; NIM_CHAR data[1+1];
-} TM__NCuq4gjk0LNcLCvecYzmEw_36 = { 1 | NIM_STRLIT_FLAG, ":" };
-static const NimStringV2 TM__NCuq4gjk0LNcLCvecYzmEw_37 = {1, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_36};
+} TM__NCuq4gjk0LNcLCvecYzmEw_17 = { 1 | NIM_STRLIT_FLAG, "#" };
+static const NimStringV2 TM__NCuq4gjk0LNcLCvecYzmEw_18 = {1, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_17};
+static const struct {
+  NI cap; NIM_CHAR data[1+1];
+} TM__NCuq4gjk0LNcLCvecYzmEw_19 = { 1 | NIM_STRLIT_FLAG, "=" };
+static const NimStringV2 TM__NCuq4gjk0LNcLCvecYzmEw_20 = {1, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_19};
+static const NimStringV2 TM__NCuq4gjk0LNcLCvecYzmEw_21 = {1, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_19};
+static const struct {
+  NI cap; NIM_CHAR data[96+1];
+} TM__NCuq4gjk0LNcLCvecYzmEw_28 = { 96 | NIM_STRLIT_FLAG, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/pure/json.nim(396, 9) `obj.kind == JObject` " };
+static const NimStringV2 TM__NCuq4gjk0LNcLCvecYzmEw_29 = {96, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_28};
+static const struct {
+  NI cap; NIM_CHAR data[70+1];
+} TM__NCuq4gjk0LNcLCvecYzmEw_30 = { 70 | NIM_STRLIT_FLAG, "field \'fields\' is not accessible for type \'JsonNodeObj\' using \'kind = " };
+static const NimStringV2 TM__NCuq4gjk0LNcLCvecYzmEw_31 = {70, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_30};
+static const struct {
+  NI cap; NIM_CHAR data[7+1];
+} TM__NCuq4gjk0LNcLCvecYzmEw_32 = { 7 | NIM_STRLIT_FLAG, "http://" };
+static const NimStringV2 TM__NCuq4gjk0LNcLCvecYzmEw_33 = {7, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_32};
 static const struct {
   NI cap; NIM_CHAR data[15+1];
-} TM__NCuq4gjk0LNcLCvecYzmEw_38 = { 15 | NIM_STRLIT_FLAG, "MACROOBRAS_PORT" };
-static const NimStringV2 TM__NCuq4gjk0LNcLCvecYzmEw_39 = {15, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_38};
+} TM__NCuq4gjk0LNcLCvecYzmEw_34 = { 15 | NIM_STRLIT_FLAG, "MACROOBRAS_HOST" };
+static const NimStringV2 TM__NCuq4gjk0LNcLCvecYzmEw_35 = {15, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_34};
+static const struct {
+  NI cap; NIM_CHAR data[9+1];
+} TM__NCuq4gjk0LNcLCvecYzmEw_36 = { 9 | NIM_STRLIT_FLAG, "127.0.0.1" };
+static const NimStringV2 TM__NCuq4gjk0LNcLCvecYzmEw_37 = {9, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_36};
+static const struct {
+  NI cap; NIM_CHAR data[1+1];
+} TM__NCuq4gjk0LNcLCvecYzmEw_38 = { 1 | NIM_STRLIT_FLAG, ":" };
+static const NimStringV2 TM__NCuq4gjk0LNcLCvecYzmEw_39 = {1, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_38};
+static const struct {
+  NI cap; NIM_CHAR data[15+1];
+} TM__NCuq4gjk0LNcLCvecYzmEw_40 = { 15 | NIM_STRLIT_FLAG, "MACROOBRAS_PORT" };
+static const NimStringV2 TM__NCuq4gjk0LNcLCvecYzmEw_41 = {15, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_40};
 static const struct {
   NI cap; NIM_CHAR data[4+1];
-} TM__NCuq4gjk0LNcLCvecYzmEw_40 = { 4 | NIM_STRLIT_FLAG, "7654" };
-static const NimStringV2 TM__NCuq4gjk0LNcLCvecYzmEw_41 = {4, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_40};
+} TM__NCuq4gjk0LNcLCvecYzmEw_42 = { 4 | NIM_STRLIT_FLAG, "7654" };
+static const NimStringV2 TM__NCuq4gjk0LNcLCvecYzmEw_43 = {4, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_42};
 static const struct {
   NI cap; NIM_CHAR data[24+1];
-} TM__NCuq4gjk0LNcLCvecYzmEw_42 = { 24 | NIM_STRLIT_FLAG, "MACROOBRAS_NGROK_API_URL" };
-static const NimStringV2 TM__NCuq4gjk0LNcLCvecYzmEw_43 = {24, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_42};
-static const struct {
-  NI cap; NIM_CHAR data[0+1];
-} TM__NCuq4gjk0LNcLCvecYzmEw_44 = { 0 | NIM_STRLIT_FLAG, "" };
-static const NimStringV2 TM__NCuq4gjk0LNcLCvecYzmEw_45 = {0, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_44};
+} TM__NCuq4gjk0LNcLCvecYzmEw_44 = { 24 | NIM_STRLIT_FLAG, "MACROOBRAS_NGROK_API_URL" };
+static const NimStringV2 TM__NCuq4gjk0LNcLCvecYzmEw_45 = {24, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_44};
+static const NimStringV2 TM__NCuq4gjk0LNcLCvecYzmEw_46 = {0, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_6};
 static const struct {
   NI cap; NIM_CHAR data[17+1];
-} TM__NCuq4gjk0LNcLCvecYzmEw_46 = { 17 | NIM_STRLIT_FLAG, "http://127.0.0.1:" };
-static const NimStringV2 TM__NCuq4gjk0LNcLCvecYzmEw_47 = {17, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_46};
+} TM__NCuq4gjk0LNcLCvecYzmEw_47 = { 17 | NIM_STRLIT_FLAG, "http://127.0.0.1:" };
+static const NimStringV2 TM__NCuq4gjk0LNcLCvecYzmEw_48 = {17, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_47};
 static const struct {
   NI cap; NIM_CHAR data[12+1];
-} TM__NCuq4gjk0LNcLCvecYzmEw_48 = { 12 | NIM_STRLIT_FLAG, "/api/tunnels" };
-static const NimStringV2 TM__NCuq4gjk0LNcLCvecYzmEw_49 = {12, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_48};
-static const NimStringV2 TM__NCuq4gjk0LNcLCvecYzmEw_51 = {76, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_2};
-static NIM_CONST tyArray__awn6UrBeChh9cVy9ccoluuYg TM__NCuq4gjk0LNcLCvecYzmEw_25 = {{1, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_22},
-{5, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_26},
-{2, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_27},
-{3, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_28},
-{8, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_29}}
+} TM__NCuq4gjk0LNcLCvecYzmEw_49 = { 12 | NIM_STRLIT_FLAG, "/api/tunnels" };
+static const NimStringV2 TM__NCuq4gjk0LNcLCvecYzmEw_50 = {12, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_49};
+static const struct {
+  NI cap; NIM_CHAR data[1+1];
+} TM__NCuq4gjk0LNcLCvecYzmEw_52 = { 1 | NIM_STRLIT_FLAG, "1" };
+static const NimStringV2 TM__NCuq4gjk0LNcLCvecYzmEw_53 = {1, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_52};
+static const struct {
+  NI cap; NIM_CHAR data[1+1];
+} TM__NCuq4gjk0LNcLCvecYzmEw_54 = { 1 | NIM_STRLIT_FLAG, "0" };
+static const NimStringV2 TM__NCuq4gjk0LNcLCvecYzmEw_55 = {1, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_54};
+static const struct {
+  NI cap; NIM_CHAR data[5+1];
+} TM__NCuq4gjk0LNcLCvecYzmEw_58 = { 5 | NIM_STRLIT_FLAG, "false" };
+static const struct {
+  NI cap; NIM_CHAR data[2+1];
+} TM__NCuq4gjk0LNcLCvecYzmEw_59 = { 2 | NIM_STRLIT_FLAG, "no" };
+static const struct {
+  NI cap; NIM_CHAR data[3+1];
+} TM__NCuq4gjk0LNcLCvecYzmEw_60 = { 3 | NIM_STRLIT_FLAG, "off" };
+static const struct {
+  NI cap; NIM_CHAR data[8+1];
+} TM__NCuq4gjk0LNcLCvecYzmEw_61 = { 8 | NIM_STRLIT_FLAG, "disabled" };
+static const NimStringV2 TM__NCuq4gjk0LNcLCvecYzmEw_62 = {76, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_2};
+static NIM_CONST tyArray__awn6UrBeChh9cVy9ccoluuYg TM__NCuq4gjk0LNcLCvecYzmEw_57 = {{1, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_54},
+{5, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_58},
+{2, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_59},
+{3, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_60},
+{8, (NimStrPayload*)&TM__NCuq4gjk0LNcLCvecYzmEw_61}}
 ;
 extern NIM_THREADVAR NIM_BOOL nimInErrorMode__system_u4293;
 extern NIM_THREADVAR TFrame* framePtr__system_u2809;
@@ -305,6 +327,107 @@ NIM_BOOL* nimErr_;
 	popFrame();
 	return result;
 }
+static N_INLINE(NimStringV2, slash___stdZprivateZospaths2_u88)(NimStringV2 head_p0, NimStringV2 tail_p1) {
+	NimStringV2 result;
+NIM_BOOL* nimErr_;
+	nimfr_("/", "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/std/private/ospaths2.nim");
+{nimErr_ = nimErrorFlag();
+	result.len = 0; result.p = NIM_NIL;
+	nimlf_(178, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/std/private/ospaths2.nim");	result = nosjoinPath(head_p0, tail_p1);
+	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
+	}BeforeRet_: ;
+	popFrame();
+	return result;
+}
+N_LIB_PRIVATE N_NIMCALL(NimStringV2, userConfigDir__macroobrasZconfig_u117)(void) {
+	NimStringV2 result;
+	NimStringV2 explicit_1;
+	NimStringV2 colontmpD_;
+	NimStringV2 xdg_1;
+	NimStringV2 colontmpD__2;
+NIM_BOOL* nimErr_;
+	nimfr_("userConfigDir", "/home/icarogdo/dev/macroobras-jazzy/app/macroobras/src/macroobras/config.nim");
+{nimErr_ = nimErrorFlag();
+	result.len = 0; result.p = NIM_NIL;
+	explicit_1.len = 0; explicit_1.p = NIM_NIL;
+	colontmpD_.len = 0; colontmpD_.p = NIM_NIL;
+	xdg_1.len = 0; xdg_1.p = NIM_NIL;
+	colontmpD__2.len = 0; colontmpD__2.p = NIM_NIL;
+	nimlf_(69, "/home/icarogdo/dev/macroobras-jazzy/app/macroobras/src/macroobras/config.nim");	nimln_(72);	nimln_(69);	colontmpD_ = getEnv__stdZenvvars_u15(TM__NCuq4gjk0LNcLCvecYzmEw_5, TM__NCuq4gjk0LNcLCvecYzmEw_7);
+	if (NIM_UNLIKELY(*nimErr_)) goto LA1_;
+	nimln_(72);	explicit_1 = nsuStrip(colontmpD_, NIM_TRUE, NIM_TRUE, TM__NCuq4gjk0LNcLCvecYzmEw_8);
+	if (NIM_UNLIKELY(*nimErr_)) goto LA1_;
+	nimln_(74);	{
+		if (!(((NI)0) < explicit_1.len)) goto LA4_;
+		nimln_(75);		nimln_(68);		nimln_(75);		result = explicit_1;
+		nimlf_(1715, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/system.nim");		eqwasMoved___system_u2769((&explicit_1));
+		nimln_(394);		if (colontmpD__2.p && !(colontmpD__2.p->cap & NIM_STRLIT_FLAG)) {
+ deallocShared(colontmpD__2.p);
+}
+		if (xdg_1.p && !(xdg_1.p->cap & NIM_STRLIT_FLAG)) {
+ deallocShared(xdg_1.p);
+}
+		if (colontmpD_.p && !(colontmpD_.p->cap & NIM_STRLIT_FLAG)) {
+ deallocShared(colontmpD_.p);
+}
+		if (explicit_1.p && !(explicit_1.p->cap & NIM_STRLIT_FLAG)) {
+ deallocShared(explicit_1.p);
+}
+		goto BeforeRet_;
+	}
+LA4_: ;
+	nimlf_(86, "/home/icarogdo/dev/macroobras-jazzy/app/macroobras/src/macroobras/config.nim");	nimln_(89);	nimln_(86);	colontmpD__2 = getEnv__stdZenvvars_u15(TM__NCuq4gjk0LNcLCvecYzmEw_10, TM__NCuq4gjk0LNcLCvecYzmEw_11);
+	if (NIM_UNLIKELY(*nimErr_)) goto LA1_;
+	nimln_(89);	xdg_1 = nsuStrip(colontmpD__2, NIM_TRUE, NIM_TRUE, TM__NCuq4gjk0LNcLCvecYzmEw_8);
+	if (NIM_UNLIKELY(*nimErr_)) goto LA1_;
+	nimln_(91);	{
+		if (!(((NI)0) < xdg_1.len)) goto LA8_;
+		nimln_(92);		result = slash___stdZprivateZospaths2_u88(xdg_1, TM__NCuq4gjk0LNcLCvecYzmEw_13);
+		if (NIM_UNLIKELY(*nimErr_)) goto LA1_;
+	}
+	goto LA6_;
+LA8_: ;
+	{
+		NimStringV2 colontmpD__3;
+		NimStringV2 colontmpD__4;
+		colontmpD__3.len = 0; colontmpD__3.p = NIM_NIL;
+		colontmpD__4.len = 0; colontmpD__4.p = NIM_NIL;
+		nimln_(94);		colontmpD__3 = nosgetHomeDir();
+		if (NIM_UNLIKELY(*nimErr_)) goto LA1_;
+		colontmpD__4 = slash___stdZprivateZospaths2_u88(colontmpD__3, TM__NCuq4gjk0LNcLCvecYzmEw_15);
+		if (NIM_UNLIKELY(*nimErr_)) goto LA1_;
+		result = slash___stdZprivateZospaths2_u88(colontmpD__4, TM__NCuq4gjk0LNcLCvecYzmEw_16);
+		if (NIM_UNLIKELY(*nimErr_)) goto LA1_;
+		nimlf_(394, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/system.nim");		if (colontmpD__4.p && !(colontmpD__4.p->cap & NIM_STRLIT_FLAG)) {
+ deallocShared(colontmpD__4.p);
+}
+		if (colontmpD__3.p && !(colontmpD__3.p->cap & NIM_STRLIT_FLAG)) {
+ deallocShared(colontmpD__3.p);
+}
+	}
+LA6_: ;
+	{
+		LA1_:;
+	}
+	{
+		if (colontmpD__2.p && !(colontmpD__2.p->cap & NIM_STRLIT_FLAG)) {
+ deallocShared(colontmpD__2.p);
+}
+		if (xdg_1.p && !(xdg_1.p->cap & NIM_STRLIT_FLAG)) {
+ deallocShared(xdg_1.p);
+}
+		if (colontmpD_.p && !(colontmpD_.p->cap & NIM_STRLIT_FLAG)) {
+ deallocShared(colontmpD_.p);
+}
+		if (explicit_1.p && !(explicit_1.p->cap & NIM_STRLIT_FLAG)) {
+ deallocShared(explicit_1.p);
+}
+	}
+	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
+	}BeforeRet_: ;
+	popFrame();
+	return result;
+}
 static N_INLINE(void, nimPrepareStrMutationV2)(NimStringV2* s_p0) {
 	{
 		NIM_BOOL T3_;
@@ -320,15 +443,15 @@ LA5_: ;
 }
 static N_INLINE(NIM_CHAR*, X5BX5D___system_u8656)(NimStringV2* s_p0, NI i_p1) {
 	NIM_CHAR* result;
-	NI TM__NCuq4gjk0LNcLCvecYzmEw_10;
+	NI TM__NCuq4gjk0LNcLCvecYzmEw_22;
 	nimfr_("[]", "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/system/indices.nim");
 {	result = (NIM_CHAR*)0;
 	nimPrepareStrMutationV2((&(*s_p0)));
-	if (nimSubInt((*s_p0).len, i_p1, &TM__NCuq4gjk0LNcLCvecYzmEw_10)) { raiseOverflow(); goto BeforeRet_;
+	if (nimSubInt((*s_p0).len, i_p1, &TM__NCuq4gjk0LNcLCvecYzmEw_22)) { raiseOverflow(); goto BeforeRet_;
 	};
-	if ((NI)(TM__NCuq4gjk0LNcLCvecYzmEw_10) < 0 || (NI)(TM__NCuq4gjk0LNcLCvecYzmEw_10) >= (*s_p0).len){ raiseIndexError2((NI)(TM__NCuq4gjk0LNcLCvecYzmEw_10),(*s_p0).len-1); goto BeforeRet_;
+	if ((NI)(TM__NCuq4gjk0LNcLCvecYzmEw_22) < 0 || (NI)(TM__NCuq4gjk0LNcLCvecYzmEw_22) >= (*s_p0).len){ raiseIndexError2((NI)(TM__NCuq4gjk0LNcLCvecYzmEw_22),(*s_p0).len-1); goto BeforeRet_;
 	}
-	result = (&(*s_p0).p->data[(NI)(TM__NCuq4gjk0LNcLCvecYzmEw_10)]);
+	result = (&(*s_p0).p->data[(NI)(TM__NCuq4gjk0LNcLCvecYzmEw_22)]);
 	}BeforeRet_: ;
 	popFrame();
 	return result;
@@ -337,19 +460,19 @@ static N_INLINE(NimStringV2, X5BX5D___pureZstrutils_u1319)(NimStringV2 s_p0, tyO
 	NimStringV2 result;
 	NI a_1;
 	NI L_1;
-	NI TM__NCuq4gjk0LNcLCvecYzmEw_11;
-	NI TM__NCuq4gjk0LNcLCvecYzmEw_12;
-	NI TM__NCuq4gjk0LNcLCvecYzmEw_13;
+	NI TM__NCuq4gjk0LNcLCvecYzmEw_23;
+	NI TM__NCuq4gjk0LNcLCvecYzmEw_24;
+	NI TM__NCuq4gjk0LNcLCvecYzmEw_25;
 	nimfr_("[]", "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/system/indices.nim");
 {	result.len = 0; result.p = NIM_NIL;
 	nimlf_(83, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/system/indices.nim");	a_1 = x_p1.a;
-	nimln_(84);	nimln_(59);	if (nimSubInt(s_p0.len, x_p1.b, &TM__NCuq4gjk0LNcLCvecYzmEw_11)) { raiseOverflow(); goto BeforeRet_;
+	nimln_(84);	nimln_(59);	if (nimSubInt(s_p0.len, x_p1.b, &TM__NCuq4gjk0LNcLCvecYzmEw_23)) { raiseOverflow(); goto BeforeRet_;
 	};
-	if (nimSubInt((NI)(TM__NCuq4gjk0LNcLCvecYzmEw_11), a_1, &TM__NCuq4gjk0LNcLCvecYzmEw_12)) { raiseOverflow(); goto BeforeRet_;
+	if (nimSubInt((NI)(TM__NCuq4gjk0LNcLCvecYzmEw_23), a_1, &TM__NCuq4gjk0LNcLCvecYzmEw_24)) { raiseOverflow(); goto BeforeRet_;
 	};
-	if (nimAddInt((NI)(TM__NCuq4gjk0LNcLCvecYzmEw_12), ((NI)1), &TM__NCuq4gjk0LNcLCvecYzmEw_13)) { raiseOverflow(); goto BeforeRet_;
+	if (nimAddInt((NI)(TM__NCuq4gjk0LNcLCvecYzmEw_24), ((NI)1), &TM__NCuq4gjk0LNcLCvecYzmEw_25)) { raiseOverflow(); goto BeforeRet_;
 	};
-	L_1 = (NI)(TM__NCuq4gjk0LNcLCvecYzmEw_13);
+	L_1 = (NI)(TM__NCuq4gjk0LNcLCvecYzmEw_25);
 	nimln_(85);	if ((L_1) < ((NI)0) || (L_1) > ((NI)IL64(9223372036854775807))){ raiseRangeErrorI(L_1, ((NI)0), ((NI)IL64(9223372036854775807))); goto BeforeRet_;
 	}
 	result = mnewString((L_1));
@@ -360,21 +483,21 @@ static N_INLINE(NimStringV2, X5BX5D___pureZstrutils_u1319)(NimStringV2 s_p0, tyO
 		nimlf_(128, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/system/iterators_1.nim");		i_2 = ((NI)0);
 		{
 			nimln_(129);			while (1) {
-				NI TM__NCuq4gjk0LNcLCvecYzmEw_14;
-				NI TM__NCuq4gjk0LNcLCvecYzmEw_15;
+				NI TM__NCuq4gjk0LNcLCvecYzmEw_26;
+				NI TM__NCuq4gjk0LNcLCvecYzmEw_27;
 				if (!(i_2 < L_1)) goto LA3;
 				nimlf_(86, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/system/indices.nim");				i_1 = i_2;
 				if (i_1 < 0 || i_1 >= result.len){ raiseIndexError2(i_1,result.len-1); goto BeforeRet_;
 				}
 				nimPrepareStrMutationV2((&result));
-				if (nimAddInt(i_1, a_1, &TM__NCuq4gjk0LNcLCvecYzmEw_14)) { raiseOverflow(); goto BeforeRet_;
+				if (nimAddInt(i_1, a_1, &TM__NCuq4gjk0LNcLCvecYzmEw_26)) { raiseOverflow(); goto BeforeRet_;
 				};
-				if ((NI)(TM__NCuq4gjk0LNcLCvecYzmEw_14) < 0 || (NI)(TM__NCuq4gjk0LNcLCvecYzmEw_14) >= s_p0.len){ raiseIndexError2((NI)(TM__NCuq4gjk0LNcLCvecYzmEw_14),s_p0.len-1); goto BeforeRet_;
+				if ((NI)(TM__NCuq4gjk0LNcLCvecYzmEw_26) < 0 || (NI)(TM__NCuq4gjk0LNcLCvecYzmEw_26) >= s_p0.len){ raiseIndexError2((NI)(TM__NCuq4gjk0LNcLCvecYzmEw_26),s_p0.len-1); goto BeforeRet_;
 				}
-				result.p->data[i_1] = s_p0.p->data[(NI)(TM__NCuq4gjk0LNcLCvecYzmEw_14)];
-				nimlf_(131, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/system/iterators_1.nim");				if (nimAddInt(i_2, ((NI)1), &TM__NCuq4gjk0LNcLCvecYzmEw_15)) { raiseOverflow(); goto BeforeRet_;
+				result.p->data[i_1] = s_p0.p->data[(NI)(TM__NCuq4gjk0LNcLCvecYzmEw_26)];
+				nimlf_(131, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/system/iterators_1.nim");				if (nimAddInt(i_2, ((NI)1), &TM__NCuq4gjk0LNcLCvecYzmEw_27)) { raiseOverflow(); goto BeforeRet_;
 				};
-				i_2 = (NI)(TM__NCuq4gjk0LNcLCvecYzmEw_15);
+				i_2 = (NI)(TM__NCuq4gjk0LNcLCvecYzmEw_27);
 			} LA3: ;
 		}
 	}
@@ -401,11 +524,11 @@ NIM_BOOL* nimErr_;
 {nimErr_ = nimErrorFlag();
 	nimlf_(396, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/pure/json.nim");	{
 		if (!!(((*obj_p0).kind == ((tyEnum_JsonNodeKind__AgEdEY3Szs9c2LYpGqyQ2lA)5)))) goto LA3_;
-		failedAssertImpl__stdZassertions_u95(TM__NCuq4gjk0LNcLCvecYzmEw_17);
+		failedAssertImpl__stdZassertions_u95(TM__NCuq4gjk0LNcLCvecYzmEw_29);
 		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 LA3_: ;
-	nimln_(397);	if (!(((32 &((NU8)1<<((NU)(((*obj_p0).kind))&7U)))!=0))) 	{ raiseFieldErrorStr(TM__NCuq4gjk0LNcLCvecYzmEw_19, dollar___pureZjson_u20((*obj_p0).kind)); goto BeforeRet_;
+	nimln_(397);	if (!(((32 &((NU8)1<<((NU)(((*obj_p0).kind))&7U)))!=0))) 	{ raiseFieldErrorStr(TM__NCuq4gjk0LNcLCvecYzmEw_31, dollar___pureZjson_u20((*obj_p0).kind)); goto BeforeRet_;
 	}
 	nimlf_(934, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/system.nim");	colontmpD_ = eqdup___pureZjson_u327(val_p2);
 	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
@@ -458,7 +581,7 @@ LA4_: ;
 					parts_1.len = 0; parts_1.p = NIM_NIL;
 					key_1.len = 0; key_1.p = NIM_NIL;
 					value_1.len = 0; value_1.p = NIM_NIL;
-					nimln_(57);					line_1 = nsuStrip(rawLine_1, NIM_TRUE, NIM_TRUE, TM__NCuq4gjk0LNcLCvecYzmEw_4);
+					nimln_(57);					line_1 = nsuStrip(rawLine_1, NIM_TRUE, NIM_TRUE, TM__NCuq4gjk0LNcLCvecYzmEw_8);
 					if (NIM_UNLIKELY(*nimErr_)) goto LA13_;
 					nimln_(58);					{
 						NIM_BOOL T16_;
@@ -468,13 +591,13 @@ LA4_: ;
 						T17_ = (NIM_BOOL)0;
 						T17_ = (line_1.len == ((NI)0));
 						if (T17_) goto LA18_;
-						T17_ = nsuStartsWith(line_1, TM__NCuq4gjk0LNcLCvecYzmEw_6);
+						T17_ = nsuStartsWith(line_1, TM__NCuq4gjk0LNcLCvecYzmEw_18);
 						if (NIM_UNLIKELY(*nimErr_)) goto LA13_;
 LA18_: ;
 						T16_ = T17_;
 						if (T16_) goto LA19_;
 						T20_ = (NIM_BOOL)0;
-						T20_ = contains__pureZstrutils_u1900(line_1, TM__NCuq4gjk0LNcLCvecYzmEw_8);
+						T20_ = contains__pureZstrutils_u1900(line_1, TM__NCuq4gjk0LNcLCvecYzmEw_20);
 						if (NIM_UNLIKELY(*nimErr_)) goto LA13_;
 						T16_ = !(T20_);
 LA19_: ;
@@ -492,15 +615,15 @@ LA19_: ;
 						nimlf_(59, "/home/icarogdo/dev/macroobras-jazzy/app/macroobras/src/macroobras/config.nim");						goto LA12;
 					}
 LA21_: ;
-					nimln_(60);					parts_1 = nsuSplitString(line_1, TM__NCuq4gjk0LNcLCvecYzmEw_9, ((NI)1));
+					nimln_(60);					parts_1 = nsuSplitString(line_1, TM__NCuq4gjk0LNcLCvecYzmEw_21, ((NI)1));
 					if (NIM_UNLIKELY(*nimErr_)) goto LA13_;
 					nimln_(61);					if (((NI)0) < 0 || ((NI)0) >= parts_1.len){ raiseIndexError2(((NI)0),parts_1.len-1); goto LA13_;
 					}
-					key_1 = nsuStrip(parts_1.p->data[((NI)0)], NIM_TRUE, NIM_TRUE, TM__NCuq4gjk0LNcLCvecYzmEw_4);
+					key_1 = nsuStrip(parts_1.p->data[((NI)0)], NIM_TRUE, NIM_TRUE, TM__NCuq4gjk0LNcLCvecYzmEw_8);
 					if (NIM_UNLIKELY(*nimErr_)) goto LA13_;
 					nimln_(62);					if (((NI)1) < 0 || ((NI)1) >= parts_1.len){ raiseIndexError2(((NI)1),parts_1.len-1); goto LA13_;
 					}
-					value_1 = nsuStrip(parts_1.p->data[((NI)1)], NIM_TRUE, NIM_TRUE, TM__NCuq4gjk0LNcLCvecYzmEw_4);
+					value_1 = nsuStrip(parts_1.p->data[((NI)1)], NIM_TRUE, NIM_TRUE, TM__NCuq4gjk0LNcLCvecYzmEw_8);
 					if (NIM_UNLIKELY(*nimErr_)) goto LA13_;
 					nimln_(63);					{
 						NIM_BOOL T25_;
@@ -604,6 +727,122 @@ LA41_: ;
 	popFrame();
 	return result;
 }
+static N_INLINE(void, nimCopyMem)(void* dest_p0, void* source_p1, NI size_p2) {
+	void* T1_;
+	T1_ = (void*)0;
+	T1_ = memcpy(dest_p0, source_p1, ((size_t) (size_p2)));
+}
+static N_INLINE(void, copyMem__system_u1755)(void* dest_p0, void* source_p1, NI size_p2) {
+	nimCopyMem(dest_p0, source_p1, size_p2);
+}
+static N_INLINE(void, appendString)(NimStringV2* dest_p0, NimStringV2 src_p1) {
+	{
+		if (!(((NI)0) < src_p1.len)) goto LA3_;
+		copyMem__system_u1755(((void*) ((&(*(*dest_p0).p).data[(*dest_p0).len]))), ((void*) ((&(*src_p1.p).data[((NI)0)]))), (src_p1.len));
+		(*dest_p0).len += src_p1.len;
+		(*(*dest_p0).p).data[(*dest_p0).len] = 0;
+	}
+LA3_: ;
+}
+N_LIB_PRIVATE N_NIMCALL(NimStringV2, collaboratorTarget__macroobrasZconfig_u85)(void) {
+	NimStringV2 result;
+	NimStringV2 colontmpD_;
+	NimStringV2 colontmpD__2;
+	NimStringV2 T1_;
+NIM_BOOL* nimErr_;
+	nimfr_("collaboratorTarget", "/home/icarogdo/dev/macroobras-jazzy/app/macroobras/src/macroobras/config.nim");
+{nimErr_ = nimErrorFlag();
+	result.len = 0; result.p = NIM_NIL;
+	colontmpD_.len = 0; colontmpD_.p = NIM_NIL;
+	colontmpD__2.len = 0; colontmpD__2.p = NIM_NIL;
+	nimlf_(40, "/home/icarogdo/dev/macroobras-jazzy/app/macroobras/src/macroobras/config.nim");	T1_.len = 0; T1_.p = NIM_NIL;
+	colontmpD_ = getEnv__stdZenvvars_u15(TM__NCuq4gjk0LNcLCvecYzmEw_35, TM__NCuq4gjk0LNcLCvecYzmEw_37);
+	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
+	colontmpD__2 = getEnv__stdZenvvars_u15(TM__NCuq4gjk0LNcLCvecYzmEw_41, TM__NCuq4gjk0LNcLCvecYzmEw_43);
+	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
+	T1_ = rawNewString(colontmpD_.len + colontmpD__2.len + 8);
+appendString((&T1_), TM__NCuq4gjk0LNcLCvecYzmEw_33);
+appendString((&T1_), colontmpD_);
+appendString((&T1_), TM__NCuq4gjk0LNcLCvecYzmEw_39);
+appendString((&T1_), colontmpD__2);
+	result = T1_;
+	nimlf_(394, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/system.nim");	if (colontmpD__2.p && !(colontmpD__2.p->cap & NIM_STRLIT_FLAG)) {
+ deallocShared(colontmpD__2.p);
+}
+	if (colontmpD_.p && !(colontmpD_.p->cap & NIM_STRLIT_FLAG)) {
+ deallocShared(colontmpD_.p);
+}
+	}BeforeRet_: ;
+	popFrame();
+	return result;
+}
+N_LIB_PRIVATE N_NIMCALL(tySequence__sM4lkSb7zS6F7OVMvW9cffQ, ngrokApiUrls__macroobrasZconfig_u65)(void) {
+	tySequence__sM4lkSb7zS6F7OVMvW9cffQ result;
+	NimStringV2 explicit_1;
+NIM_BOOL* nimErr_;
+	nimfr_("ngrokApiUrls", "/home/icarogdo/dev/macroobras-jazzy/app/macroobras/src/macroobras/config.nim");
+{nimErr_ = nimErrorFlag();
+	result.len = 0; result.p = NIM_NIL;
+	explicit_1.len = 0; explicit_1.p = NIM_NIL;
+	nimlf_(31, "/home/icarogdo/dev/macroobras-jazzy/app/macroobras/src/macroobras/config.nim");	explicit_1 = getEnv__stdZenvvars_u15(TM__NCuq4gjk0LNcLCvecYzmEw_45, TM__NCuq4gjk0LNcLCvecYzmEw_46);
+	if (NIM_UNLIKELY(*nimErr_)) goto LA1_;
+	nimln_(32);	{
+		NimStringV2 blitTmp_1;
+		if (!(((NI)0) < explicit_1.len)) goto LA4_;
+		nimln_(33);		nimln_(30);		nimln_(33);		result.len = 1; result.p = (tySequence__sM4lkSb7zS6F7OVMvW9cffQ_Content*) newSeqPayload(1, sizeof(NimStringV2), NIM_ALIGNOF(NimStringV2));
+		blitTmp_1 = explicit_1;
+		nimlf_(1715, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/system.nim");		eqwasMoved___system_u2769((&explicit_1));
+		result.p->data[0] = blitTmp_1;
+		nimln_(394);		if (explicit_1.p && !(explicit_1.p->cap & NIM_STRLIT_FLAG)) {
+ deallocShared(explicit_1.p);
+}
+		goto BeforeRet_;
+	}
+LA4_: ;
+	nimlf_(35, "/home/icarogdo/dev/macroobras-jazzy/app/macroobras/src/macroobras/config.nim");	result.len = 0; result.p = (tySequence__sM4lkSb7zS6F7OVMvW9cffQ_Content*) newSeqPayload(0, sizeof(NimStringV2), NIM_ALIGNOF(NimStringV2));
+	{
+		NI port_1;
+		NI res_1;
+		port_1 = (NI)0;
+		nimlf_(96, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/system/iterators_1.nim");		res_1 = ((NI)4040);
+		{
+			nimln_(97);			while (1) {
+				NimStringV2 colontmpD_;
+				NimStringV2 T9_;
+				NI TM__NCuq4gjk0LNcLCvecYzmEw_51;
+				if (!(res_1 <= ((NI)4050))) goto LA8;
+				colontmpD_.len = 0; colontmpD_.p = NIM_NIL;
+				nimlf_(36, "/home/icarogdo/dev/macroobras-jazzy/app/macroobras/src/macroobras/config.nim");				port_1 = ((NI) (res_1));
+				nimln_(37);				T9_.len = 0; T9_.p = NIM_NIL;
+				colontmpD_ = dollar___systemZdollars_u14(port_1);
+				if (NIM_UNLIKELY(*nimErr_)) goto LA1_;
+				T9_ = rawNewString(colontmpD_.len + 29);
+appendString((&T9_), TM__NCuq4gjk0LNcLCvecYzmEw_48);
+appendString((&T9_), colontmpD_);
+appendString((&T9_), TM__NCuq4gjk0LNcLCvecYzmEw_50);
+				add__stdZenumutils_u70((&result), T9_);
+				nimlf_(102, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/system/iterators_1.nim");				if (nimAddInt(res_1, ((NI)1), &TM__NCuq4gjk0LNcLCvecYzmEw_51)) { raiseOverflow(); goto LA1_;
+				};
+				res_1 = (NI)(TM__NCuq4gjk0LNcLCvecYzmEw_51);
+				nimlf_(394, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/system.nim");				if (colontmpD_.p && !(colontmpD_.p->cap & NIM_STRLIT_FLAG)) {
+ deallocShared(colontmpD_.p);
+}
+			} LA8: ;
+		}
+	}
+	{
+		LA1_:;
+	}
+	{
+		if (explicit_1.p && !(explicit_1.p->cap & NIM_STRLIT_FLAG)) {
+ deallocShared(explicit_1.p);
+}
+	}
+	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
+	}BeforeRet_: ;
+	popFrame();
+	return result;
+}
 static N_INLINE(int, nimCmpMem)(void* a_p0, void* b_p1, NI size_p2) {
 	int result;
 	result = memcmp(a_p0, b_p1, ((size_t) (size_p2)));
@@ -652,7 +891,7 @@ static N_INLINE(NI, find__stdZenumutils_u55)(NimStringV2* a_p0, NI a_p0Len_0, Ni
 		nimlf_(18, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/system/iterators.nim");		i_2 = ((NI)0);
 		{
 			nimln_(19);			while (1) {
-				NI TM__NCuq4gjk0LNcLCvecYzmEw_24;
+				NI TM__NCuq4gjk0LNcLCvecYzmEw_56;
 				if (!(i_2 < a_p0Len_0)) goto LA3;
 				nimlf_(1919, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/system.nim");				if (i_2 < 0 || i_2 >= a_p0Len_0){ raiseIndexError2(i_2,a_p0Len_0-1); goto BeforeRet_;
 				}
@@ -662,9 +901,9 @@ static N_INLINE(NI, find__stdZenumutils_u55)(NimStringV2* a_p0, NI a_p0Len_0, Ni
 					goto BeforeRet_;
 				}
 LA6_: ;
-				nimln_(1921);				if (nimAddInt(result, ((NI)1), &TM__NCuq4gjk0LNcLCvecYzmEw_24)) { raiseOverflow(); goto BeforeRet_;
+				nimln_(1921);				if (nimAddInt(result, ((NI)1), &TM__NCuq4gjk0LNcLCvecYzmEw_56)) { raiseOverflow(); goto BeforeRet_;
 				};
-				result = (NI)(TM__NCuq4gjk0LNcLCvecYzmEw_24);
+				result = (NI)(TM__NCuq4gjk0LNcLCvecYzmEw_56);
 				nimlf_(13, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/system/iterators.nim");				i_2 += ((NI)1);
 			} LA3: ;
 		}
@@ -705,13 +944,13 @@ NIM_BOOL* nimErr_;
 	nimlf_(14, "/home/icarogdo/dev/macroobras-jazzy/app/macroobras/src/macroobras/config.nim");	T1_.len = 0; T1_.p = NIM_NIL;
 	{
 		if (!default_p1) goto LA4_;
-		colontmpD_ = TM__NCuq4gjk0LNcLCvecYzmEw_21;
+		colontmpD_ = TM__NCuq4gjk0LNcLCvecYzmEw_53;
 		T1_ = colontmpD_;
 	}
 	goto LA2_;
 LA4_: ;
 	{
-		colontmpD__2 = TM__NCuq4gjk0LNcLCvecYzmEw_23;
+		colontmpD__2 = TM__NCuq4gjk0LNcLCvecYzmEw_55;
 		T1_ = colontmpD__2;
 	}
 LA2_: ;
@@ -720,7 +959,7 @@ LA2_: ;
 	value_1 = nsuNormalize(colontmpD__3);
 	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	nimln_(13);	nimln_(15);	T7_ = (NIM_BOOL)0;
-	T7_ = contains__stdZenumutils_u50(TM__NCuq4gjk0LNcLCvecYzmEw_25, 5, value_1);
+	T7_ = contains__stdZenumutils_u50(TM__NCuq4gjk0LNcLCvecYzmEw_57, 5, value_1);
 	result = !(T7_);
 	nimlf_(394, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/system.nim");	if (colontmpD__3.p && !(colontmpD__3.p->cap & NIM_STRLIT_FLAG)) {
  deallocShared(colontmpD__3.p);
@@ -738,122 +977,6 @@ LA2_: ;
 	popFrame();
 	return result;
 }
-static N_INLINE(void, nimCopyMem)(void* dest_p0, void* source_p1, NI size_p2) {
-	void* T1_;
-	T1_ = (void*)0;
-	T1_ = memcpy(dest_p0, source_p1, ((size_t) (size_p2)));
-}
-static N_INLINE(void, copyMem__system_u1755)(void* dest_p0, void* source_p1, NI size_p2) {
-	nimCopyMem(dest_p0, source_p1, size_p2);
-}
-static N_INLINE(void, appendString)(NimStringV2* dest_p0, NimStringV2 src_p1) {
-	{
-		if (!(((NI)0) < src_p1.len)) goto LA3_;
-		copyMem__system_u1755(((void*) ((&(*(*dest_p0).p).data[(*dest_p0).len]))), ((void*) ((&(*src_p1.p).data[((NI)0)]))), (src_p1.len));
-		(*dest_p0).len += src_p1.len;
-		(*(*dest_p0).p).data[(*dest_p0).len] = 0;
-	}
-LA3_: ;
-}
-N_LIB_PRIVATE N_NIMCALL(NimStringV2, collaboratorTarget__macroobrasZconfig_u85)(void) {
-	NimStringV2 result;
-	NimStringV2 colontmpD_;
-	NimStringV2 colontmpD__2;
-	NimStringV2 T1_;
-NIM_BOOL* nimErr_;
-	nimfr_("collaboratorTarget", "/home/icarogdo/dev/macroobras-jazzy/app/macroobras/src/macroobras/config.nim");
-{nimErr_ = nimErrorFlag();
-	result.len = 0; result.p = NIM_NIL;
-	colontmpD_.len = 0; colontmpD_.p = NIM_NIL;
-	colontmpD__2.len = 0; colontmpD__2.p = NIM_NIL;
-	nimlf_(40, "/home/icarogdo/dev/macroobras-jazzy/app/macroobras/src/macroobras/config.nim");	T1_.len = 0; T1_.p = NIM_NIL;
-	colontmpD_ = getEnv__stdZenvvars_u15(TM__NCuq4gjk0LNcLCvecYzmEw_33, TM__NCuq4gjk0LNcLCvecYzmEw_35);
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
-	colontmpD__2 = getEnv__stdZenvvars_u15(TM__NCuq4gjk0LNcLCvecYzmEw_39, TM__NCuq4gjk0LNcLCvecYzmEw_41);
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
-	T1_ = rawNewString(colontmpD_.len + colontmpD__2.len + 8);
-appendString((&T1_), TM__NCuq4gjk0LNcLCvecYzmEw_31);
-appendString((&T1_), colontmpD_);
-appendString((&T1_), TM__NCuq4gjk0LNcLCvecYzmEw_37);
-appendString((&T1_), colontmpD__2);
-	result = T1_;
-	nimlf_(394, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/system.nim");	if (colontmpD__2.p && !(colontmpD__2.p->cap & NIM_STRLIT_FLAG)) {
- deallocShared(colontmpD__2.p);
-}
-	if (colontmpD_.p && !(colontmpD_.p->cap & NIM_STRLIT_FLAG)) {
- deallocShared(colontmpD_.p);
-}
-	}BeforeRet_: ;
-	popFrame();
-	return result;
-}
-N_LIB_PRIVATE N_NIMCALL(tySequence__sM4lkSb7zS6F7OVMvW9cffQ, ngrokApiUrls__macroobrasZconfig_u65)(void) {
-	tySequence__sM4lkSb7zS6F7OVMvW9cffQ result;
-	NimStringV2 explicit_1;
-NIM_BOOL* nimErr_;
-	nimfr_("ngrokApiUrls", "/home/icarogdo/dev/macroobras-jazzy/app/macroobras/src/macroobras/config.nim");
-{nimErr_ = nimErrorFlag();
-	result.len = 0; result.p = NIM_NIL;
-	explicit_1.len = 0; explicit_1.p = NIM_NIL;
-	nimlf_(31, "/home/icarogdo/dev/macroobras-jazzy/app/macroobras/src/macroobras/config.nim");	explicit_1 = getEnv__stdZenvvars_u15(TM__NCuq4gjk0LNcLCvecYzmEw_43, TM__NCuq4gjk0LNcLCvecYzmEw_45);
-	if (NIM_UNLIKELY(*nimErr_)) goto LA1_;
-	nimln_(32);	{
-		NimStringV2 blitTmp_1;
-		if (!(((NI)0) < explicit_1.len)) goto LA4_;
-		nimln_(33);		nimln_(30);		nimln_(33);		result.len = 1; result.p = (tySequence__sM4lkSb7zS6F7OVMvW9cffQ_Content*) newSeqPayload(1, sizeof(NimStringV2), NIM_ALIGNOF(NimStringV2));
-		blitTmp_1 = explicit_1;
-		nimlf_(1715, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/system.nim");		eqwasMoved___system_u2769((&explicit_1));
-		result.p->data[0] = blitTmp_1;
-		nimln_(394);		if (explicit_1.p && !(explicit_1.p->cap & NIM_STRLIT_FLAG)) {
- deallocShared(explicit_1.p);
-}
-		goto BeforeRet_;
-	}
-LA4_: ;
-	nimlf_(35, "/home/icarogdo/dev/macroobras-jazzy/app/macroobras/src/macroobras/config.nim");	result.len = 0; result.p = (tySequence__sM4lkSb7zS6F7OVMvW9cffQ_Content*) newSeqPayload(0, sizeof(NimStringV2), NIM_ALIGNOF(NimStringV2));
-	{
-		NI port_1;
-		NI res_1;
-		port_1 = (NI)0;
-		nimlf_(96, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/system/iterators_1.nim");		res_1 = ((NI)4040);
-		{
-			nimln_(97);			while (1) {
-				NimStringV2 colontmpD_;
-				NimStringV2 T9_;
-				NI TM__NCuq4gjk0LNcLCvecYzmEw_50;
-				if (!(res_1 <= ((NI)4050))) goto LA8;
-				colontmpD_.len = 0; colontmpD_.p = NIM_NIL;
-				nimlf_(36, "/home/icarogdo/dev/macroobras-jazzy/app/macroobras/src/macroobras/config.nim");				port_1 = ((NI) (res_1));
-				nimln_(37);				T9_.len = 0; T9_.p = NIM_NIL;
-				colontmpD_ = dollar___systemZdollars_u14(port_1);
-				if (NIM_UNLIKELY(*nimErr_)) goto LA1_;
-				T9_ = rawNewString(colontmpD_.len + 29);
-appendString((&T9_), TM__NCuq4gjk0LNcLCvecYzmEw_47);
-appendString((&T9_), colontmpD_);
-appendString((&T9_), TM__NCuq4gjk0LNcLCvecYzmEw_49);
-				add__stdZenumutils_u70((&result), T9_);
-				nimlf_(102, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/system/iterators_1.nim");				if (nimAddInt(res_1, ((NI)1), &TM__NCuq4gjk0LNcLCvecYzmEw_50)) { raiseOverflow(); goto LA1_;
-				};
-				res_1 = (NI)(TM__NCuq4gjk0LNcLCvecYzmEw_50);
-				nimlf_(394, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/system.nim");				if (colontmpD_.p && !(colontmpD_.p->cap & NIM_STRLIT_FLAG)) {
- deallocShared(colontmpD_.p);
-}
-			} LA8: ;
-		}
-	}
-	{
-		LA1_:;
-	}
-	{
-		if (explicit_1.p && !(explicit_1.p->cap & NIM_STRLIT_FLAG)) {
- deallocShared(explicit_1.p);
-}
-	}
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
-	}BeforeRet_: ;
-	popFrame();
-	return result;
-}
 N_LIB_PRIVATE N_NIMCALL(NimStringV2, parentProjectRoot__macroobrasZconfig_u89)(void) {
 	NimStringV2 result;
 	NimStringV2 colontmpD_;
@@ -866,7 +989,7 @@ NIM_BOOL* nimErr_;
 	colontmpD_.len = 0; colontmpD_.p = NIM_NIL;
 	colontmpD__2.len = 0; colontmpD__2.p = NIM_NIL;
 	colontmpD__3.len = 0; colontmpD__3.p = NIM_NIL;
-	nimlf_(49, "/home/icarogdo/dev/macroobras-jazzy/app/macroobras/src/macroobras/config.nim");	colontmpD_ = nosparentDir(TM__NCuq4gjk0LNcLCvecYzmEw_51);
+	nimlf_(49, "/home/icarogdo/dev/macroobras-jazzy/app/macroobras/src/macroobras/config.nim");	colontmpD_ = nosparentDir(TM__NCuq4gjk0LNcLCvecYzmEw_62);
 	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	colontmpD__2 = nosparentDir(colontmpD_);
 	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;

@@ -1,0 +1,677 @@
+=== MacroObras — estação Jazzy estabilizada ===
+Projeto: /home/icarogdo/dev/macroobras-jazzy/app/macroobras
+Endereço: http://127.0.0.1:7654/?surface=admin
+Relatório: /home/icarogdo/dev/macroobras-jazzy/app/macroobras/.macroobras/runtime/jazzy-stability-20260728-233819.log
+
+==> 1/5 Encerrando processos conflitantes
+==> 2/5 Validando os módulos JavaScript
+JavaScript válido: 59 arquivo(s)
+==> 3/5 Gerando o frontend
+Configuração de runtime gerada sem exibir a chave.
+Fonte: /home/icarogdo/.config/macroobras/google-maps.env
+Saída: /home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/dist/runtime-config.local.js
+Frontend built at frontend/dist
+==> 4/5 Compilando servidor Linux em release
+Hint: used config file '/etc/nim/nim.cfg' [Conf]
+Hint: used config file '/etc/nim/config.nims' [Conf]
+...................................................................................................................................................................................................................................................................................................................................
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/src/macroobras/collaborator_service.nim(293, 6) Hint: 'lanAppUrl' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/src/macroobras/collaborator_service.nim(299, 6) Hint: 'lanApiUrl' is declared but not used [XDeclaredButNotUsed]
+....
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+/home/icarogdo/.nimble/pkgs2/jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/macros.nim(55, 12) Hint: 'args' is declared but not used [XDeclaredButNotUsed]
+CC: i15_add
+CC: i15_bitlen
+CC: i15_decmod
+CC: i15_decode
+CC: i15_decred
+CC: i15_encode
+CC: i15_fmont
+CC: i15_iszero
+CC: i15_moddiv
+CC: i15_modpow
+CC: i15_modpow2
+CC: i15_montmul
+CC: i15_mulacc
+CC: i15_muladd
+CC: i15_ninv15
+CC: i15_reduce
+CC: i15_rshift
+CC: i15_sub
+CC: i15_tmont
+CC: i31_add
+CC: i31_bitlen
+CC: i31_decmod
+CC: i31_decode
+CC: i31_decred
+CC: i31_encode
+CC: i31_fmont
+CC: i31_iszero
+CC: i31_moddiv
+CC: i31_modpow
+CC: i31_modpow2
+CC: i31_montmul
+CC: i31_mulacc
+CC: i31_muladd
+CC: i31_ninv31
+CC: i31_reduce
+CC: i31_rshift
+CC: i31_sub
+CC: i31_tmont
+CC: i32_add
+CC: i32_bitlen
+CC: i32_decmod
+CC: i32_decode
+CC: i32_decred
+CC: i32_div32
+CC: i32_encode
+CC: i32_fmont
+CC: i32_iszero
+CC: i32_modpow
+CC: i32_montmul
+CC: i32_mulacc
+CC: i32_muladd
+CC: i32_ninv32
+CC: i32_reduce
+CC: i32_sub
+CC: i32_tmont
+CC: i62_modpow2
+CC: aes_big_cbcdec
+CC: aes_big_cbcenc
+CC: aes_big_ctr
+CC: aes_big_ctrcbc
+CC: aes_big_dec
+CC: aes_big_enc
+CC: aes_common
+CC: aes_ct
+CC: aes_ct64
+CC: aes_ct64_cbcdec
+CC: aes_ct64_cbcenc
+CC: aes_ct64_ctr
+CC: aes_ct64_ctrcbc
+CC: aes_ct64_dec
+CC: aes_ct64_enc
+CC: aes_ct_cbcdec
+CC: aes_ct_cbcenc
+CC: aes_ct_ctr
+CC: aes_ct_ctrcbc
+CC: aes_ct_dec
+CC: aes_ct_enc
+CC: aes_pwr8
+CC: aes_pwr8_cbcdec
+CC: aes_pwr8_cbcenc
+CC: aes_pwr8_ctr
+CC: aes_pwr8_ctrcbc
+CC: aes_small_cbcdec
+CC: aes_small_cbcenc
+CC: aes_small_ctr
+CC: aes_small_ctrcbc
+CC: aes_small_dec
+CC: aes_small_enc
+CC: aes_x86ni
+CC: aes_x86ni_cbcdec
+CC: aes_x86ni_cbcenc
+CC: aes_x86ni_ctr
+CC: aes_x86ni_ctrcbc
+CC: chacha20_ct
+CC: chacha20_sse2
+CC: des_ct
+CC: des_ct_cbcdec
+CC: des_ct_cbcenc
+CC: des_support
+CC: des_tab
+CC: des_tab_cbcdec
+CC: des_tab_cbcenc
+CC: poly1305_ctmul
+CC: poly1305_ctmul32
+CC: poly1305_ctmulq
+CC: poly1305_i15
+CC: ccopy
+CC: dec16be
+CC: dec16le
+CC: dec32be
+CC: dec32le
+CC: dec64be
+CC: dec64le
+CC: enc16be
+CC: enc16le
+CC: enc32be
+CC: enc32le
+CC: enc64be
+CC: enc64le
+CC: dig_oid
+CC: dig_size
+CC: ghash_ctmul
+CC: ghash_ctmul32
+CC: ghash_ctmul64
+CC: ghash_pclmul
+CC: ghash_pwr8
+CC: md5
+CC: md5sha1
+CC: mgf1
+CC: multihash
+CC: sha1
+CC: sha2big
+CC: sha2small
+CC: ccm
+CC: eax
+CC: gcm
+CC: pemdec
+CC: pemenc
+CC: pem_compat
+CC: hmac
+CC: hmac_ct
+CC: hmac_drbg
+CC: sysrng
+CC: ecdsa_atr
+CC: ecdsa_default_sign_asn1
+CC: ecdsa_default_sign_raw
+CC: ecdsa_default_vrfy_asn1
+CC: ecdsa_default_vrfy_raw
+CC: ecdsa_i15_bits
+CC: ecdsa_i15_sign_asn1
+CC: ecdsa_i15_sign_raw
+CC: ecdsa_i15_vrfy_asn1
+CC: ecdsa_i15_vrfy_raw
+CC: ecdsa_i31_bits
+CC: ecdsa_i31_sign_asn1
+CC: ecdsa_i31_sign_raw
+CC: ecdsa_i31_vrfy_asn1
+CC: ecdsa_i31_vrfy_raw
+CC: ecdsa_rta
+CC: ec_all_m15
+CC: ec_all_m31
+CC: ec_c25519_i15
+CC: ec_c25519_i31
+CC: ec_c25519_m15
+CC: ec_c25519_m31
+CC: ec_c25519_m62
+CC: ec_c25519_m64
+CC: ec_curve25519
+CC: ec_default
+CC: ec_keygen
+CC: ec_p256_m15
+CC: ec_p256_m31
+CC: ec_p256_m62
+CC: ec_p256_m64
+CC: ec_prime_i15
+CC: ec_prime_i31
+CC: ec_pubkey
+CC: ec_secp256r1
+CC: ec_secp384r1
+CC: ec_secp521r1
+CC: rsa_default_keygen
+CC: rsa_default_modulus
+CC: rsa_default_oaep_decrypt
+CC: rsa_default_oaep_encrypt
+CC: rsa_default_pkcs1_sign
+CC: rsa_default_pkcs1_vrfy
+CC: rsa_default_priv
+CC: rsa_default_privexp
+CC: rsa_default_pss_sign
+CC: rsa_default_pss_vrfy
+CC: rsa_default_pub
+CC: rsa_default_pubexp
+CC: rsa_i15_keygen
+CC: rsa_i15_modulus
+CC: rsa_i15_oaep_decrypt
+CC: rsa_i15_oaep_encrypt
+CC: rsa_i15_pkcs1_sign
+CC: rsa_i15_pkcs1_vrfy
+CC: rsa_i15_priv
+CC: rsa_i15_privexp
+CC: rsa_i15_pss_sign
+CC: rsa_i15_pss_vrfy
+CC: rsa_i15_pub
+CC: rsa_i15_pubexp
+CC: rsa_i31_keygen
+CC: rsa_i31_keygen_inner
+CC: rsa_i31_modulus
+CC: rsa_i31_oaep_decrypt
+CC: rsa_i31_oaep_encrypt
+CC: rsa_i31_pkcs1_sign
+CC: rsa_i31_pkcs1_vrfy
+CC: rsa_i31_priv
+CC: rsa_i31_privexp
+CC: rsa_i31_pss_sign
+CC: rsa_i31_pss_vrfy
+CC: rsa_i31_pub
+CC: rsa_i31_pubexp
+CC: rsa_i32_oaep_decrypt
+CC: rsa_i32_oaep_encrypt
+CC: rsa_i32_pkcs1_sign
+CC: rsa_i32_pkcs1_vrfy
+CC: rsa_i32_priv
+CC: rsa_i32_pss_sign
+CC: rsa_i32_pss_vrfy
+CC: rsa_i32_pub
+CC: rsa_i62_keygen
+CC: rsa_i62_oaep_decrypt
+CC: rsa_i62_oaep_encrypt
+CC: rsa_i62_pkcs1_sign
+CC: rsa_i62_pkcs1_vrfy
+CC: rsa_i62_priv
+CC: rsa_i62_pss_sign
+CC: rsa_i62_pss_vrfy
+CC: rsa_i62_pub
+CC: rsa_oaep_pad
+CC: rsa_oaep_unpad
+CC: rsa_pkcs1_sig_pad
+CC: rsa_pkcs1_sig_unpad
+CC: rsa_pss_sig_pad
+CC: rsa_pss_sig_unpad
+CC: rsa_ssl_decrypt
+CC: asn1enc
+CC: encode_ec_pk8der
+CC: encode_ec_rawder
+CC: encode_rsa_pk8der
+CC: encode_rsa_rawder
+CC: skey_decoder
+CC: x509_decoder
+CC: x509_knownkey
+CC: x509_minimal
+CC: x509_minimal_full
+CC: x509_compat
+CC: vector
+CC: xmem
+CC: names
+CC: certs
+CC: files
+CC: hkdf
+CC: shake
+CC: prf
+CC: prf_md5sha1
+CC: prf_sha256
+CC: prf_sha384
+CC: ssl_ccert_single_ec
+CC: ssl_ccert_single_rsa
+CC: ssl_client
+CC: ssl_client_default_rsapub
+CC: ssl_client_full
+CC: ssl_engine
+CC: ssl_engine_default_aescbc
+CC: ssl_engine_default_aesccm
+CC: ssl_engine_default_aesgcm
+CC: ssl_engine_default_chapol
+CC: ssl_engine_default_descbc
+CC: ssl_engine_default_ec
+CC: ssl_engine_default_ecdsa
+CC: ssl_engine_default_rsavrfy
+CC: ssl_hashes
+CC: ssl_hs_client
+CC: ssl_hs_server
+CC: ssl_io
+CC: ssl_keyexport
+CC: ssl_lru
+CC: ssl_rec_cbc
+CC: ssl_rec_ccm
+CC: ssl_rec_chapol
+CC: ssl_rec_gcm
+CC: ssl_scert_single_ec
+CC: ssl_scert_single_rsa
+CC: ssl_server
+CC: ssl_server_full_ec
+CC: ssl_server_full_rsa
+CC: ssl_server_mine2c
+CC: ssl_server_mine2g
+CC: ssl_server_minf2c
+CC: ssl_server_minf2g
+CC: ssl_server_minr2g
+CC: ssl_server_minu2g
+CC: ssl_server_minv2g
+CC: settings
+CC: bearssl_pkey_decoder
+CC: system/exceptions.nim
+CC: system/ctypes.nim
+CC: std/private/threadtypes.nim
+CC: std/private/digitsutils.nim
+CC: std/assertions.nim
+CC: system/iterators.nim
+CC: std/private/dragonbox.nim
+CC: std/formatfloat.nim
+CC: system/dollars.nim
+CC: std/typedthreads.nim
+CC: std/syncio.nim
+CC: system.nim
+CC: hashes.nim
+CC: bitops.nim
+CC: math.nim
+CC: algorithm.nim
+CC: tables.nim
+CC: parseutils.nim
+CC: std/strbasics.nim
+CC: unicode.nim
+CC: strutils.nim
+CC: streams.nim
+CC: lexbase.nim
+CC: std/private/decode_helpers.nim
+CC: parsejson.nim
+CC: options.nim
+CC: json.nim
+CC: pathnorm.nim
+CC: std/oserrors.nim
+CC: posix.nim
+CC: std/private/oscommon.nim
+CC: std/private/ospaths2.nim
+CC: times.nim
+CC: std/private/osfiles.nim
+CC: std/private/osdirs.nim
+CC: std/envvars.nim
+CC: std/private/osappdirs.nim
+CC: std/cmdline.nim
+CC: os.nim
+CC: heapqueue.nim
+CC: sets.nim
+CC: deques.nim
+CC: asyncfutures.nim
+CC: std/monotimes.nim
+CC: nativesockets.nim
+CC: dynlib.nim
+CC: openssl.nim
+CC: ssl_certs.nim
+CC: net.nim
+CC: selectors.nim
+CC: asyncmacro.nim
+CC: asyncdispatch.nim
+CC: strtabs.nim
+CC: cpuinfo.nim
+CC: osproc.nim
+CC: browsers.nim
+CC: httpcore.nim
+CC: jazzy-0.4.5-4fdda426bdb506437985763b18fb2c79ca01e6e0/jazzy/core/cache.nim
+CC: jazzy-0.4.5-4fdda426bdb506437985763b18fb2c79ca01e6e0/jazzy/http/types.nim
+CC: std/sysrand.nim
+CC: base64.nim
+CC: uri.nim
+CC: cookies.nim
+CC: jazzy-0.4.5-4fdda426bdb506437985763b18fb2c79ca01e6e0/jazzy/core/config.nim
+CC: bearssl_pkey_decoder-0.1.0-78460e0295dd7beff2f243cb68fd1646b4dc82ef/bearssl_pkey_decoder.nim
+CC: jwt-0.3-28a6780b82a38dd66f608ce0f5ac8f1240024cc4/jwt/private/crypto.nim
+CC: jwt-0.3-28a6780b82a38dd66f608ce0f5ac8f1240024cc4/jwt/private/utils.nim
+CC: jwt-0.3-28a6780b82a38dd66f608ce0f5ac8f1240024cc4/jwt/private/claims.nim
+CC: jwt-0.3-28a6780b82a38dd66f608ce0f5ac8f1240024cc4/jwt/private/jose.nim
+CC: jwt-0.3-28a6780b82a38dd66f608ce0f5ac8f1240024cc4/jwt.nim
+CC: jazzy-0.4.5-4fdda426bdb506437985763b18fb2c79ca01e6e0/jazzy/auth/jwt_manager.nim
+CC: jazzy-0.4.5-4fdda426bdb506437985763b18fb2c79ca01e6e0/jazzy/views/cache.nim
+CC: jazzy-0.4.5-4fdda426bdb506437985763b18fb2c79ca01e6e0/jazzy/http/context.nim
+CC: jazzy-0.4.5-4fdda426bdb506437985763b18fb2c79ca01e6e0/jazzy/core/server.nim
+CC: mimetypes.nim
+CC: asyncfile.nim
+CC: jazzy-0.4.5-4fdda426bdb506437985763b18fb2c79ca01e6e0/jazzy/http/static_files.nim
+CC: jazzy-0.4.5-4fdda426bdb506437985763b18fb2c79ca01e6e0/jazzy/core/logger.nim
+CC: jazzy-0.4.5-4fdda426bdb506437985763b18fb2c79ca01e6e0/jazzy/http/router.nim
+CC: mummy-0.4.8-6f5f0ced69db80d3856368488a4ebff3690ecf0b/mummy/common.nim
+CC: webby-0.2.1-1d9978ac16fdb56fad2ee9eaa0fcbb7860229d39/webby/httpheaders.nim
+CC: mummy-0.4.8-6f5f0ced69db80d3856368488a4ebff3690ecf0b/mummy/internal.nim
+CC: random.nim
+CC: nimsimd-1.3.2-5202ce48d46eaf593da54e884774cdb2a884e717/nimsimd/runtimecheck.nim
+CC: crunchy-0.1.11-d34f03fc0f6876dbf53f99601096728ec31f47a3/crunchy/sha256.nim
+CC: crunchy-0.1.11-d34f03fc0f6876dbf53f99601096728ec31f47a3/crunchy/sha1.nim
+CC: webby-0.2.1-1d9978ac16fdb56fad2ee9eaa0fcbb7860229d39/webby/internal.nim
+CC: webby-0.2.1-1d9978ac16fdb56fad2ee9eaa0fcbb7860229d39/webby/queryparams.nim
+CC: webby-0.2.1-1d9978ac16fdb56fad2ee9eaa0fcbb7860229d39/webby/urls.nim
+CC: zippy-0.10.19-706d8c10778f32d28b060dbcc84143ca4bfb9bcd/zippy/common.nim
+CC: zippy-0.10.19-706d8c10778f32d28b060dbcc84143ca4bfb9bcd/zippy/internal.nim
+CC: zippy-0.10.19-706d8c10778f32d28b060dbcc84143ca4bfb9bcd/zippy/adler32_simd.nim
+CC: zippy-0.10.19-706d8c10778f32d28b060dbcc84143ca4bfb9bcd/zippy/adler32.nim
+CC: zippy-0.10.19-706d8c10778f32d28b060dbcc84143ca4bfb9bcd/zippy/crc32_simd.nim
+CC: zippy-0.10.19-706d8c10778f32d28b060dbcc84143ca4bfb9bcd/zippy/crc.nim
+CC: zippy-0.10.19-706d8c10778f32d28b060dbcc84143ca4bfb9bcd/zippy/bitstreams.nim
+CC: zippy-0.10.19-706d8c10778f32d28b060dbcc84143ca4bfb9bcd/zippy/lz77.nim
+CC: zippy-0.10.19-706d8c10778f32d28b060dbcc84143ca4bfb9bcd/zippy/snappy.nim
+CC: zippy-0.10.19-706d8c10778f32d28b060dbcc84143ca4bfb9bcd/zippy/deflate.nim
+CC: zippy-0.10.19-706d8c10778f32d28b060dbcc84143ca4bfb9bcd/zippy.nim
+CC: mummy-0.4.8-6f5f0ced69db80d3856368488a4ebff3690ecf0b/mummy.nim
+CC: jazzy-0.4.5-4fdda426bdb506437985763b18fb2c79ca01e6e0/jazzy/utils/multipart.nim
+CC: jazzy-0.4.5-4fdda426bdb506437985763b18fb2c79ca01e6e0/jazzy/drivers/mummy_driver.nim
+CC: tiny_sqlite-0.2.0-3cf419efc1cef18b103b81bd27f0e17a1500c887/tiny_sqlite/sqlite_wrapper.nim
+CC: lists.nim
+CC: tiny_sqlite-0.2.0-3cf419efc1cef18b103b81bd27f0e17a1500c887/tiny_sqlite/private/stmtcache.nim
+CC: tiny_sqlite-0.2.0-3cf419efc1cef18b103b81bd27f0e17a1500c887/tiny_sqlite.nim
+CC: jazzy-0.4.5-4fdda426bdb506437985763b18fb2c79ca01e6e0/jazzy/db/database.nim
+CC: jazzy-0.4.5-4fdda426bdb506437985763b18fb2c79ca01e6e0/jazzy/db/builder.nim
+CC: jazzy-0.4.5-4fdda426bdb506437985763b18fb2c79ca01e6e0/jazzy/devui/devui.nim
+CC: jazzy-0.4.5-4fdda426bdb506437985763b18fb2c79ca01e6e0/jazzy/core/app.nim
+CC: jazzy-0.4.5-4fdda426bdb506437985763b18fb2c79ca01e6e0/jazzy/core/middlewares.nim
+CC: nimcrypto-0.7.3-f72b90fe3f4da09efa482de4f8729e7ee4abea2f/nimcrypto/sysrand.nim
+CC: nimcrypto-0.7.3-f72b90fe3f4da09efa482de4f8729e7ee4abea2f/nimcrypto/cpufeatures.nim
+CC: nimcrypto-0.7.3-f72b90fe3f4da09efa482de4f8729e7ee4abea2f/nimcrypto/sha2/sha2_common.nim
+CC: nimcrypto-0.7.3-f72b90fe3f4da09efa482de4f8729e7ee4abea2f/nimcrypto/sha2/sha2_ref.nim
+CC: nimcrypto-0.7.3-f72b90fe3f4da09efa482de4f8729e7ee4abea2f/nimcrypto/sha2/sha2_avx.nim
+CC: nimcrypto-0.7.3-f72b90fe3f4da09efa482de4f8729e7ee4abea2f/nimcrypto/sha2/sha2_avx2.nim
+CC: nimcrypto-0.7.3-f72b90fe3f4da09efa482de4f8729e7ee4abea2f/nimcrypto/sha2/sha2_sha.nim
+CC: nimcrypto-0.7.3-f72b90fe3f4da09efa482de4f8729e7ee4abea2f/nimcrypto/sha2/sha2.nim
+CC: jazzy-0.4.5-4fdda426bdb506437985763b18fb2c79ca01e6e0/jazzy/auth/security.nim
+CC: jazzy-0.4.5-4fdda426bdb506437985763b18fb2c79ca01e6e0/jazzy/auth/basic_auth.nim
+CC: jazzy-0.4.5-4fdda426bdb506437985763b18fb2c79ca01e6e0/jazzy/auth/middlewares.nim
+CC: jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/events.nim
+CC: jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/server.nim
+CC: jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/lifecycle/linux_impl.nim
+CC: jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/logger.nim
+CC: jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/store.nim
+CC: jazzy_desktop-0.1.1-58762c3a589cb3c34652eaa3bacdcb691eda8c49/jazzy_desktop/core.nim
+CC: macroobras/config.nim
+CC: macroobras/access_service.nim
+CC: macroobras/obra_core.nim
+CC: macroobras/admin_service.nim
+CC: std/exitprocs.nim
+CC: httpclient.nim
+CC: macroobras/installer_service.nim
+CC: macroobras/collaborator_service.nim
+CC: macroobras/okf_service.nim
+CC: macroobras/operations_service.nim
+CC: macroobras/response_utils.nim
+CC: macroobras/graph_service.nim
+CC: app.nim
+Hint:  [Link]
+Hint: mm: orc; threads: on; opt: speed; options: -d:release
+110484 lines; 13.937s; 334.172MiB peakmem; proj: /home/icarogdo/dev/macroobras-jazzy/app/macroobras/src/app.nim; out: /home/icarogdo/dev/macroobras-jazzy/app/macroobras/src/app-release [SuccessX]
+==> 5/5 Iniciando com supervisão de falha
+
+--- Execução 1/3 ---
+[90m2026-07-28 23:38:36[0m [32m[1m[INFO ][0m 🎷 Jazzy running in release mode on http://127.0.0.1:7654
+Abrindo em uma sessão de navegador existente.
+[90m2026-07-28 23:38:36[0m [32m[1m[INFO ][0m ← GET /brand/logo_macroobras_ref.png 200 3.1ms [f32d2e3f]
+[90m2026-07-28 23:38:36[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusBootstrap 200 4.6ms [66b6a6fc]
+[90m2026-07-28 23:38:38[0m [32m[1m[INFO ][0m ← POST /rpc/autenticarAdministradorContato 200 0.2ms [226403e5]
+[90m2026-07-28 23:38:39[0m [32m[1m[INFO ][0m ← GET / 200 0.1ms [63140e3e]
+[90m2026-07-28 23:38:39[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusBootstrap 200 4.2ms [9c0ea02d]
+[90m2026-07-28 23:38:44[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.9ms [e517364f]
+[90m2026-07-28 23:38:50[0m [32m[1m[INFO ][0m ← POST /rpc/autenticarAdministradorContato 200 0.2ms [79bf4888]
+[90m2026-07-28 23:38:51[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.0ms [8a08cae9]
+[90m2026-07-28 23:38:53[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.6ms [3f37402a]
+[90m2026-07-28 23:38:57[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [30e4f576]
+[90m2026-07-28 23:38:58[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.4ms [5f424c19]
+[90m2026-07-28 23:38:59[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [9c9da247]
+[90m2026-07-28 23:39:00[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 5.3ms [0d615205]
+[90m2026-07-28 23:39:05[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.0ms [c68832ff]
+[90m2026-07-28 23:39:07[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.7ms [69486061]
+[90m2026-07-28 23:39:12[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.8ms [b5a59f85]
+[90m2026-07-28 23:39:14[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.8ms [c149a4b7]
+[90m2026-07-28 23:39:17[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [228e003a]
+[90m2026-07-28 23:39:19[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 6.0ms [b4ed601c]
+[90m2026-07-28 23:39:19[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [4bcd2498]
+[90m2026-07-28 23:39:21[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.2ms [f0db2c0d]
+[90m2026-07-28 23:39:26[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 6.0ms [3a0430e6]
+[90m2026-07-28 23:39:28[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.4ms [47b3ec69]
+[90m2026-07-28 23:39:33[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.3ms [cd9dbf91]
+[90m2026-07-28 23:39:35[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.0ms [98417d6d]
+[90m2026-07-28 23:39:37[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [0014fc35]
+[90m2026-07-28 23:39:39[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [832e924f]
+[90m2026-07-28 23:39:42[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.0ms [cd5e56e5]
+[90m2026-07-28 23:39:49[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 5.9ms [e98b60ac]
+[90m2026-07-28 23:39:54[0m [32m[1m[INFO ][0m ← POST /rpc/autenticarAdministradorContato 200 0.1ms [a8814f1c]
+[90m2026-07-28 23:39:56[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 5.3ms [94d04b66]
+[90m2026-07-28 23:39:57[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [31993733]
+[90m2026-07-28 23:39:59[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [5112e8ce]
+[90m2026-07-28 23:40:03[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.2ms [bff75d05]
+[90m2026-07-28 23:40:10[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.1ms [3f4fb5ea]
+[90m2026-07-28 23:40:17[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [cd6d30cc]
+[90m2026-07-28 23:40:17[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.6ms [0375ecb9]
+[90m2026-07-28 23:40:19[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [dce3ef3e]
+[90m2026-07-28 23:40:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.5ms [93a62c8d]
+[90m2026-07-28 23:40:24[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.1ms [fd0f6941]
+[90m2026-07-28 23:40:31[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.3ms [447e9c96]
+[90m2026-07-28 23:40:37[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [e7a346b5]
+[90m2026-07-28 23:40:38[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.9ms [59022d0b]
+[90m2026-07-28 23:40:39[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [5b6e2fea]
+[90m2026-07-28 23:40:45[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.8ms [01c14989]
+[90m2026-07-28 23:40:57[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.0ms [fa982bc0]
+[90m2026-07-28 23:41:00[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [06a8e59b]
+[90m2026-07-28 23:41:00[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.7ms [241d3d8a]
+[90m2026-07-28 23:41:07[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.8ms [0321f5a3]
+[90m2026-07-28 23:41:14[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.2ms [130b91cc]
+[90m2026-07-28 23:41:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [84d3cbdf]
+Traceback (most recent call last)
+mummy.nim(538)           workerProc
+mummy.nim(471)           runTask
+mummy_driver.nim(92)     mummyHandler
+app.nim(53)              :anonymous
+app.nim(56)              anonymous (Async)
+app.nim(31)              :anonymous
+app.nim(32)              anonymous (Async)
+static_files.nim(77)     :anonymous
+static_files.nim(81)     anonymous (Async)
+app.nim(31)              :anonymous
+app.nim(32)              anonymous (Async)
+SIGSEGV: Illegal storage access. (Attempt to read from nil?)
+./reiniciar_macroobras_jazzy_estavel_sem_ngrok.sh, linha 199: 21266 Falha de segmentação     (imagem do núcleo gravada) env APP_ENV=release MACROOBRAS_HOST="$HOST" MACROOBRAS_PORT="$PORT" MACROOBRAS_ENABLE_NGROK=0 MACROOBRAS_ENABLE_FTP=0 MACROOBRAS_ENABLE_LAN_PROXY=0 "$BIN"
+
+Servidor encerrou com código 139.
+Falha nativa detectada; reiniciando em 2s...
+
+--- Execução 2/3 ---
+[90m2026-07-28 23:41:22[0m [32m[1m[INFO ][0m 🎷 Jazzy running in release mode on http://127.0.0.1:7654
+[90m2026-07-28 23:41:23[0m [32m[1m[INFO ][0m ← POST /rpc/obterRotaPublicaColaborador 200 4.7ms [c8fa8248]
+[90m2026-07-28 23:41:23[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.7ms [46a87bcd]
+Abrindo em uma sessão de navegador existente.
+[90m2026-07-28 23:41:23[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusBootstrap 200 4.5ms [33a0ef21]
+[90m2026-07-28 23:41:27[0m [32m[1m[INFO ][0m ← POST /rpc/autenticarAdministradorContato 200 0.2ms [e11bdf8b]
+[90m2026-07-28 23:41:28[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.6ms [fa965f28]
+[90m2026-07-28 23:41:30[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.6ms [0e53ead2]
+[90m2026-07-28 23:41:35[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 5.2ms [3404a38a]
+[90m2026-07-28 23:41:40[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [f3b4b1cf]
+[90m2026-07-28 23:41:41[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.2ms [0f34395f]
+[90m2026-07-28 23:41:42[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.7ms [3d895918]
+[90m2026-07-28 23:41:44[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [58b1de8b]
+[90m2026-07-28 23:41:45[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.8ms [6ceaa1b9]
+[90m2026-07-28 23:41:49[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 6.1ms [2331961c]
+[90m2026-07-28 23:41:52[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.7ms [e04277fe]
+[90m2026-07-28 23:41:56[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.3ms [2aa3ccb7]
+[90m2026-07-28 23:41:59[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.7ms [c8c0c087]
+[90m2026-07-28 23:42:04[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [181d8312]
+[90m2026-07-28 23:42:06[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 5.8ms [02eb2674]
+[90m2026-07-28 23:42:13[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.5ms [8e148c80]
+[90m2026-07-28 23:42:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [04d12544]
+[90m2026-07-28 23:42:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [156ef14a]
+[90m2026-07-28 23:42:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.1ms [06726a08]
+[90m2026-07-28 23:42:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.4ms [fd66610b]
+[90m2026-07-28 23:42:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.9ms [bb58a897]
+[90m2026-07-28 23:42:24[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [481e2b5b]
+[90m2026-07-28 23:42:27[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.5ms [73263827]
+[90m2026-07-28 23:42:34[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 3.4ms [60a47130]
+[90m2026-07-28 23:42:41[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 6.2ms [6b017320]
+[90m2026-07-28 23:42:44[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [ec5288d0]
+[90m2026-07-28 23:43:04[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.3ms [bda48d37]
+[90m2026-07-28 23:43:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [77747f59]
+[90m2026-07-28 23:43:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.1ms [45fcba09]
+[90m2026-07-28 23:43:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.0ms [bf5da12d]
+[90m2026-07-28 23:43:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.1ms [b8a11e4d]
+[90m2026-07-28 23:43:20[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusPlataformaMobile 200 4.3ms [e172f9b6]
+[90m2026-07-28 23:43:24[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusOkf 200 0.2ms [e0a40ab5]
+Traceback (most recent call last)
+mummy.nim(538)           workerProc
+mummy.nim(471)           runTask
+mummy_driver.nim(92)     mummyHandler
+app.nim(53)              :anonymous
+app.nim(56)              anonymous (Async)
+app.nim(31)              :anonymous
+app.nim(32)              anonymous (Async)
+static_files.nim(77)     :anonymous
+static_files.nim(81)     anonymous (Async)
+app.nim(31)              :anonymous
+app.nim(32)              anonymous (Async)
+SIGSEGV: Illegal storage access. (Attempt to read from nil?)
+Traceback (most recent call last)
+mummy.nim(538)           workerProc
+mummy.nim(471)           runTask
+mummy_driver.nim(92)     mummyHandler
+app.nim(53)              :anonymous
+app.nim(56)              anonymous (Async)
+app.nim(31)              :anonymous
+app.nim(32)              anonymous (Async)
+static_files.nim(77)     :anonymous
+static_files.nim(81)     anonymous (Async)
+app.nim(31)              :anonymous
+app.nim(32)              anonymous (Async)
+SIGSEGV: Illegal storage access. (Attempt to read from nil?)
+Traceback (most recent call last)
+mummy.nim(538)           workerProc
+mummy.nim(471)           runTask
+mummy_driver.nim(92)     mummyHandler
+app.nim(53)              :anonymous
+app.nim(56)              anonymous (Async)
+app.nim(31)              :anonymous
+app.nim(32)              anonymous (Async)
+static_files.nim(77)     :anonymous
+static_files.nim(81)     anonymous (Async)
+app.nim(31)              :anonymous
+app.nim(32)              anonymous (Async)
+SIGSEGV: Illegal storage access. (Attempt to read from nil?)
+./reiniciar_macroobras_jazzy_estavel_sem_ngrok.sh, linha 199: 23308 Falha de segmentação     (imagem do núcleo gravada) env APP_ENV=release MACROOBRAS_HOST="$HOST" MACROOBRAS_PORT="$PORT" MACROOBRAS_ENABLE_NGROK=0 MACROOBRAS_ENABLE_FTP=0 MACROOBRAS_ENABLE_LAN_PROXY=0 "$BIN"
+
+Servidor encerrou com código 139.
+Falha nativa detectada; reiniciando em 2s...
+
+--- Execução 3/3 ---
+[90m2026-07-28 23:44:22[0m [32m[1m[INFO ][0m 🎷 Jazzy running in release mode on http://127.0.0.1:7654
+[90m2026-07-28 23:44:23[0m [32m[1m[INFO ][0m ← POST /rpc/obterRotaPublicaColaborador 200 4.7ms [c2caab74]
+[90m2026-07-28 23:44:23[0m [32m[1m[INFO ][0m ← POST /rpc/obterRotaPublicaColaborador 200 4.6ms [86dbc716]
+[90m2026-07-28 23:44:23[0m [32m[1m[INFO ][0m ← POST /rpc/obterRotaPublicaColaborador 200 6.8ms [dcd447e9]
+Abrindo em uma sessão de navegador existente.
+[90m2026-07-28 23:44:23[0m [32m[1m[INFO ][0m ← POST /rpc/obterStatusBootstrap 200 4.3ms [8db13b64]
+[90m2026-07-28 23:44:36[0m [32m[1m[INFO ][0m ← POST /rpc/autenticarAdministradorContato 200 0.1ms [927cbb0b]
+Traceback (most recent call last)
+mummy.nim(538)           workerProc
+mummy.nim(471)           runTask
+mummy_driver.nim(92)     mummyHandler
+app.nim(53)              :anonymous
+app.nim(56)              anonymous (Async)
+app.nim(31)              :anonymous
+app.nim(32)              anonymous (Async)
+SIGSEGV: Illegal storage access. (Attempt to read from nil?)
+./reiniciar_macroobras_jazzy_estavel_sem_ngrok.sh, linha 199: 25311 Falha de segmentação     (imagem do núcleo gravada) env APP_ENV=release MACROOBRAS_HOST="$HOST" MACROOBRAS_PORT="$PORT" MACROOBRAS_ENABLE_NGROK=0 MACROOBRAS_ENABLE_FTP=0 MACROOBRAS_ENABLE_LAN_PROXY=0 "$BIN"
+
+Servidor encerrou com código 139.
+
+ERRO: o processo Jazzy sofreu falha nativa 3 vez(es).
+
+Último coredump disponível:
+TIME                          PID  UID  GID SIG     COREFILE EXE                                                                 SIZE
+Tue 2026-07-28 23:44:37 -03 25311 1000 1000 SIGSEGV present  /home/icarogdo/dev/macroobras-jazzy/app/macroobras/src/app-release  3.6M
+Tue 2026-07-28 23:44:20 -03 23308 1000 1000 SIGSEGV present  /home/icarogdo/dev/macroobras-jazzy/app/macroobras/src/app-release  5.2M
+Tue 2026-07-28 23:41:20 -03 21266 1000 1000 SIGSEGV present  /home/icarogdo/dev/macroobras-jazzy/app/macroobras/src/app-release 10.8M
+
+Relatório completo: /home/icarogdo/dev/macroobras-jazzy/app/macroobras/.macroobras/runtime/jazzy-stability-20260728-233819.log

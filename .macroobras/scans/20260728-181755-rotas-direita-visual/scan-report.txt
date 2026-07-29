@@ -1,0 +1,29 @@
+ARQUIVOS
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/operational-layouts.js
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/core/app-controller.js
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css
+
+MARCADORES ENCONTRADOS
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/operational-layouts.js:130:function hydrateWorksVisitToolbar(root) {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/operational-layouts.js:153:    toolbar.className = "works-visit-crud-toolbar";
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/operational-layouts.js:192:        <button type="button" class="btn" data-message="save-works-visit-route">
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/operational-layouts.js:195:        <button type="button" class="btn ghost danger" data-message="delete-works-visit-route">
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/core/app-controller.js:593:  if (message.type === "save-works-visit-route") {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/core/app-controller.js:598:  if (message.type === "delete-works-visit-route") {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:6078:/* MACROOBRAS INVENTORY 4-6 + WORKS VISIT CRUD V1 */
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:6124:.works-visit-crud-toolbar {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:6265:  .works-visit-crud-toolbar {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:6302:  .works-visit-crud-toolbar {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:6330:/* END MACROOBRAS INVENTORY 4-6 + WORKS VISIT CRUD V1 */
+
+VALIDAÇÃO FINAL
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/operational-layouts.js:155:    selectionFloat.classList.add("works-route-selection-float");
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/operational-layouts.js:201:        data-message="new-works-visit-route"
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/core/app-controller.js:588:  if (message.type === "new-works-visit-route") {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/core/app-controller.js:589:    startNewWorksVisitRoute();
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/core/app-controller.js:1160:function startNewWorksVisitRoute() {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:6332:/* MACROOBRAS WORKS VISIT RIGHT DOCK V2 */
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:6563:.works-visit-map-wrap .works-route-selection-float {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:6587:  .works-visit-map-wrap .works-route-selection-float {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:6617:  .works-visit-map-wrap .works-route-selection-float {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:6645:/* END MACROOBRAS WORKS VISIT RIGHT DOCK V2 */

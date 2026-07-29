@@ -1,0 +1,19 @@
+ESTADO ANTERIOR
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:5810:.macroobras-print-document {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:5820:  html.macroobras-printing body > *:not(.macroobras-print-document) {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:5836:  html.macroobras-printing .macroobras-print-document {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:5840:  .macroobras-print-document {
+
+VALIDAÇÃO FINAL
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/operational-layouts.js:1:import "./canvas-report-print.js";
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/canvas-report-print.js:437:    "macroobras-canvas-report-printing",
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/canvas-report-print.js:472:    <header class="print-letterhead canvas-report-letterhead">
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/canvas-report-print.js:562:              <th>Identificador externo</th>
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/canvas-report-print.js:596:    "macroobras-canvas-report-printing",
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:5844:  .print-letterhead {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:9113:/* MACROOBRAS CANVAS TABLE REPORT V1 */
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:9136:  html.macroobras-canvas-report-printing,
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:9137:  html.macroobras-canvas-report-printing body {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:9151:  html.macroobras-canvas-report-printing
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:9157:  html.macroobras-canvas-report-printing
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:9412:/* END MACROOBRAS CANVAS TABLE REPORT V1 */

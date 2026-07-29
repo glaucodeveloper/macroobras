@@ -209,21 +209,3 @@ LA8_: ;
 	popFrame();
 	return result;
 }
-N_LIB_PRIVATE N_NIMCALL(NIM_BOOL, nossymlinkExists)(NimStringV2 link_p0) {
-	NIM_BOOL result;
-	struct stat res_1;
-	NIM_BOOL T1_;
-	int T2_;
-	nimfr_("symlinkExists", "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/std/private/oscommon.nim");
-	nimZeroMem((void*)(&res_1), sizeof(struct stat));
-	nimln_(163);	T1_ = (NIM_BOOL)0;
-	T2_ = (int)0;
-	T2_ = lstat(nimToCStringConv(link_p0), (&res_1));
-	T1_ = (((NI32)0) <= T2_);
-	if (!(T1_)) goto LA3_;
-	T1_ = S_ISLNK(res_1.st_mode);
-LA3_: ;
-	result = T1_;
-	popFrame();
-	return result;
-}

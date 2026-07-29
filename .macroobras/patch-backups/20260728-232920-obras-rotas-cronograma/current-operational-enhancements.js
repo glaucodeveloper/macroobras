@@ -1,0 +1,776 @@
+import * as data from "../core/data.js";
+import { state } from "../core/state.js";
+import { esc } from "../core/utils.js";
+
+const works = () => Array.isArray(data.availableWorks)
+  ? data.availableWorks
+  : [];
+
+const money = (value) => Number(value || 0).toLocaleString("pt-BR", {
+  style: "currency",
+  currency: "BRL",
+});
+
+const number = (value) => Number(value || 0).toLocaleString("pt-BR");
+
+const normalize = (value) => String(value || "")
+  .normalize("NFD")
+  .replace(/[\u0300-\u036f]/g, "")
+  .trim()
+  .toLowerCase();
+
+function pageTitle(root = document) {
+  return normalize(
+    root.querySelector(
+      ".page-header h1, .page-heading h1, main h1, [data-page-title], h1",
+    )?.textContent || "",
+  );
+}
+
+function pageScope(root = document) {
+  const heading = root.querySelector(
+    ".page-header h1, .page-heading h1, main h1, h1",
+  );
+
+  return heading?.closest(
+    "main, .page-content, .content-area, [data-page-content]",
+  ) || root;
+}
+
+function findPanelByHeading(root, pattern) {
+  const headings = root.querySelectorAll(
+    "h2, h3, .card-title, [data-panel-title], header strong",
+  );
+
+  for (const heading of headings) {
+    if (!pattern.test(String(heading.textContent || "").trim())) {
+      continue;
+    }
+
+    return heading.closest(
+      ".balance-section, .balance-tools-panel, .balance-differences-panel, article, aside, .card, section",
+    );
+  }
+
+  return null;
+}
+
+function insertAfter(reference, node) {
+  reference.parentNode.insertBefore(node, reference.nextSibling);
+}
+
+function removeEmptyLayoutWrappers(root) {
+  root.querySelectorAll(
+    ".balance-attention, .balance-side, .balance-lower, .dashboard-secondary-column, .dashboard-primary-column",
+  ).forEach((element) => {
+    const meaningful = Array.from(element.children).some((child) =>
+      !child.matches("[data-dashboard-priority-stack]"),
+    );
+
+    if (!meaningful) element.remove();
+  });
+}
+
+function reorderDashboard(root) {
+  if (pageTitle(root) !== "painel de balancos"
+      && pageTitle(root) !== "painel de producao"
+      && pageTitle(root) !== "painel") {
+    return;
+  }
+
+  const scope = pageScope(root);
+  const header = scope.querySelector(".page-header, .page-heading");
+
+  const coverage = findPanelByHeading(
+    scope,
+    /^Cobertura operacional$/i,
+  );
+  const tools = findPanelByHeading(
+    scope,
+    /^Ferramentas imediatas$/i,
+  );
+  const differences = findPanelByHeading(
+    scope,
+    /^O que precisa ser resolvido$/i,
+  );
+  const visits = findPanelByHeading(
+    scope,
+    /^(Cobertura, distância e tempo|Balanço de visitas|Visitas programadas)$/i,
+  );
+
+  const ordered = [coverage, tools, differences, visits]
+    .filter(Boolean);
+
+  if (!ordered.length) return;
+
+  let stack = scope.querySelector(
+    "[data-dashboard-priority-stack]",
+  );
+
+  if (!stack) {
+    stack = document.createElement("section");
+    stack.className = "dashboard-priority-stack";
+    stack.dataset.dashboardPriorityStack = "true";
+
+    if (header) {
+      insertAfter(header, stack);
+    } else {
+      scope.prepend(stack);
+    }
+  }
+
+  ordered.forEach((panel, index) => {
+    panel.dataset.dashboardPriorityIndex = String(index + 1);
+    stack.appendChild(panel);
+  });
+
+  removeEmptyLayoutWrappers(scope);
+}
+
+function collectInventoryRecords() {
+  const records = [];
+  const seen = new Set();
+  const sources = [state, data];
+
+  const addRecord = (item, parent = {}, sourceKey = "") => {
+    if (!item || typeof item !== "object") return;
+
+    const material = item.material
+      || item.product
+      || item.itemName
+      || item.name
+      || item.title
+      || item.description
+      || item.item
+      || "Item de inventário";
+
+    const locationId = item.locationId
+      || item.placeId
+      || item.depotId
+      || item.inventoryId
+      || parent.locationId
+      || parent.placeId
+      || parent.depotId
+      || parent.inventoryId
+      || parent.id
+      || "";
+
+    const workId = item.workId
+      || item.obraId
+      || parent.workId
+      || parent.obraId
+      || "";
+
+    const locationName = item.locationName
+      || item.placeName
+      || item.depotName
+      || item.local
+      || parent.locationName
+      || parent.placeName
+      || parent.depotName
+      || parent.name
+      || parent.title
+      || "";
+
+    const quantity = Number(
+      item.quantity
+      ?? item.qty
+      ?? item.stock
+      ?? item.total
+      ?? item.amount
+      ?? 0,
+    );
+
+    const reserved = Number(
+      item.reserved
+      ?? item.allocated
+      ?? item.committed
+      ?? 0,
+    );
+
+    const free = Number(
+      item.free
+      ?? item.available
+      ?? item.balance
+      ?? Math.max(0, quantity - reserved),
+    );
+
+    const unitValue = Number(
+      item.unitValue
+      ?? item.price
+      ?? item.unitPrice
+      ?? 0,
+    );
+
+    const value = Number(
+      item.value
+      ?? item.totalValue
+      ?? item.inventoryValue
+      ?? (quantity * unitValue)
+      ?? 0,
+    );
+
+    const id = item.id
+      || item.itemId
+      || `${sourceKey}-${locationId}-${workId}-${material}-${quantity}`;
+
+    const key = String(id);
+    if (seen.has(key)) return;
+    seen.add(key);
+
+    records.push({
+      id: key,
+      material: String(material),
+      locationId: String(locationId || ""),
+      workId: String(workId || ""),
+      locationName: String(locationName || ""),
+      city: String(item.city || parent.city || ""),
+      quantity,
+      reserved,
+      free,
+      unit: String(item.unit || item.uom || "un"),
+      value,
+    });
+  };
+
+  for (const source of sources) {
+    for (const [key, value] of Object.entries(source || {})) {
+      if (!/(invent|inventory|stock|estoq|deposit)/i.test(key)) {
+        continue;
+      }
+
+      if (!Array.isArray(value)) continue;
+
+      value.forEach((entry) => {
+        if (Array.isArray(entry?.items)) {
+          entry.items.forEach((item) =>
+            addRecord(item, entry, key),
+          );
+        } else if (Array.isArray(entry?.inventory)) {
+          entry.inventory.forEach((item) =>
+            addRecord(item, entry, key),
+          );
+        } else {
+          addRecord(entry, {}, key);
+        }
+      });
+    }
+  }
+
+  works().forEach((work) => {
+    for (const key of [
+      "inventory",
+      "inventoryItems",
+      "stock",
+      "stocks",
+      "warehouseItems",
+    ]) {
+      const values = work?.[key];
+      if (!Array.isArray(values)) continue;
+
+      values.forEach((item) => addRecord(
+        item,
+        {
+          workId: work.id,
+          locationId: work.id,
+          locationName: work.name,
+          city: work.city || work.address,
+        },
+        `work-${key}`,
+      ));
+    }
+  });
+
+  return records;
+}
+
+function currentTicketContext(root) {
+  const ticketArrays = [
+    state.tickets,
+    state.ticketRecords,
+    data.tickets,
+    data.ticketRecords,
+  ].filter(Array.isArray);
+
+  const ticketId = state.selectedTicketId
+    || state.activeTicketId
+    || state.ticketId
+    || "";
+
+  let ticket = null;
+  for (const array of ticketArrays) {
+    ticket = array.find((item) => item.id === ticketId) || ticket;
+  }
+
+  const workSelect = root.querySelector(
+    '[data-ticket-field="workId"], [data-ticket-field="obra"], select[name*="work" i], select[name*="obra" i]',
+  );
+
+  const placeId = ticket?.locationId
+    || ticket?.placeId
+    || ticket?.inventoryLocationId
+    || ticket?.workId
+    || workSelect?.value
+    || state.selectedWorkId
+    || "";
+
+  const selectedOption = workSelect?.selectedOptions?.[0];
+  const work = works().find((item) => item.id === placeId);
+
+  const placeName = ticket?.locationName
+    || ticket?.placeName
+    || work?.name
+    || selectedOption?.textContent
+    || "Local atual";
+
+  return {
+    placeId: String(placeId || ""),
+    placeName: String(placeName || "Local atual").trim(),
+  };
+}
+
+function hydrateTicketInventoryTable(root) {
+  if (pageTitle(root) !== "tickets") return;
+
+  const scope = pageScope(root);
+  const allRecords = collectInventoryRecords();
+  const context = currentTicketContext(root);
+  const normalizedName = normalize(context.placeName);
+
+  let records = context.placeId
+    ? allRecords.filter((item) =>
+        item.workId === context.placeId
+        || item.locationId === context.placeId
+        || normalize(item.locationName).includes(normalizedName),
+      )
+    : allRecords;
+
+  let fallback = false;
+  if (!records.length && allRecords.length) {
+    records = allRecords;
+    fallback = true;
+  }
+
+  let panel = scope.querySelector(
+    "[data-ticket-location-inventory]",
+  );
+
+  if (!panel) {
+    panel = document.createElement("section");
+    panel.className = "ticket-location-inventory";
+    panel.dataset.ticketLocationInventory = "true";
+    scope.appendChild(panel);
+  }
+
+  const totalValue = records.reduce(
+    (sum, item) => sum + item.value,
+    0,
+  );
+
+  panel.innerHTML = `
+    <header>
+      <div>
+        <small>Inventário associado</small>
+        <h2>Inventários do local</h2>
+        <span>${esc(context.placeName)}</span>
+      </div>
+      <div>
+        <strong>${number(records.length)}</strong>
+        <span>${money(totalValue)}</span>
+      </div>
+    </header>
+
+    ${fallback
+      ? `<p class="ticket-location-inventory-note">Não foi encontrada uma associação exata com o local do ticket; a tabela exibe os registros de inventário disponíveis.</p>`
+      : ""}
+
+    <div class="ticket-location-inventory-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>Material</th>
+            <th>Local</th>
+            <th>Quantidade</th>
+            <th>Reservado</th>
+            <th>Livre</th>
+            <th>Valor</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${records.length
+            ? records.map((item) => `
+                <tr>
+                  <td><strong>${esc(item.material)}</strong></td>
+                  <td>${esc(item.locationName || context.placeName)}</td>
+                  <td>${number(item.quantity)} ${esc(item.unit)}</td>
+                  <td>${number(item.reserved)} ${esc(item.unit)}</td>
+                  <td>${number(item.free)} ${esc(item.unit)}</td>
+                  <td>${money(item.value)}</td>
+                </tr>
+              `).join("")
+            : `<tr><td colspan="6"><div class="operational-empty">Nenhum item de inventário disponível para o local selecionado.</div></td></tr>`}
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
+function findInventorySheet(root) {
+  const heading = Array.from(root.querySelectorAll(
+    "h2, h3, .card-title, header strong",
+  )).find((element) =>
+    /Folha de inventário|Inventário natural|Inventário do local/i.test(
+      String(element.textContent || ""),
+    ),
+  );
+
+  return heading?.closest(
+    "section, article, .card, [data-inventory-sheet]",
+  ) || null;
+}
+
+let inventoryTransitionInstalled = false;
+let inventoryTransitionPending = false;
+
+function animateInventorySheetIn(root) {
+  const sheet = findInventorySheet(root);
+  if (!sheet) return;
+
+  sheet.classList.remove("inventory-sheet-exit");
+  sheet.classList.add("inventory-sheet-enter");
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      sheet.classList.remove("inventory-sheet-enter");
+    });
+  });
+}
+
+function installInventoryTransition() {
+  if (inventoryTransitionInstalled) return;
+  inventoryTransitionInstalled = true;
+
+  document.addEventListener("pointerdown", (event) => {
+    if (pageTitle(document) !== "inventario") return;
+
+    const trigger = event.target.closest(
+      [
+        "[data-inventory-location]",
+        "[data-location-id]",
+        ".inventory-location",
+        ".inventory-place",
+        ".inventory-location-row",
+        ".inventory-location-card",
+        '[data-google-map="inventory"]',
+        '[data-google-map="inventories"]',
+        ".inventory-map",
+      ].join(","),
+    );
+
+    if (!trigger) return;
+
+    const sheet = findInventorySheet(document);
+    if (sheet) sheet.classList.add("inventory-sheet-exit");
+
+    inventoryTransitionPending = true;
+
+    window.setTimeout(() => {
+      if (pageTitle(document) !== "inventario") return;
+      animateInventorySheetIn(document);
+      inventoryTransitionPending = false;
+    }, 170);
+  }, true);
+}
+
+function hydrateInventoryTransition(root) {
+  if (pageTitle(root) !== "inventario") return;
+  if (inventoryTransitionPending) animateInventorySheetIn(root);
+}
+
+function findSelectedWorkDetail(scope, map) {
+  const selectedWork = works().find(
+    (item) => item.id === state.selectedWorkId,
+  );
+
+  const headings = Array.from(scope.querySelectorAll("h2, h3"));
+
+  const preferred = headings.filter((heading) => {
+    const text = normalize(heading.textContent);
+    return selectedWork
+      ? text === normalize(selectedWork.name)
+      : true;
+  });
+
+  const candidates = preferred.length ? preferred : headings;
+
+  for (const heading of candidates) {
+    let element = heading.parentElement;
+
+    for (let depth = 0; element && depth < 7; depth += 1) {
+      if (element.contains(map)) break;
+
+      const routes = Array.from(element.querySelectorAll("[data-route]"))
+        .map((node) => node.dataset.route || "");
+
+      const hasOverview = routes.some((route) =>
+        /admin-work-overview/.test(route),
+      );
+      const hasDiary = routes.some((route) =>
+        /admin-work-diary/.test(route),
+      );
+      const hasPlanning = routes.some((route) =>
+        /admin-work-(planning|calendar)|cronograma/.test(route),
+      );
+
+      if (hasOverview && hasDiary && hasPlanning) {
+        return element;
+      }
+
+      element = element.parentElement;
+    }
+  }
+
+  return scope.querySelector(
+    "[data-selected-work-detail], .selected-work-detail, .work-operation-detail",
+  );
+}
+
+function hydrateWorksSelectionLayout(root) {
+  if (pageTitle(root) !== "obras") return;
+
+  const scope = pageScope(root);
+  const map = scope.querySelector(
+    '[data-google-map="works"], [data-google-map="works-visits"]',
+  );
+
+  if (!map) return;
+
+  scope.querySelectorAll(
+    ".work-selection-float, .works-route-selection-float",
+  ).forEach((element) => element.remove());
+
+  const mapSection = map.closest(
+    ".works-filter-card, .works-layout-grid, .card, section, article",
+  );
+
+  if (!mapSection) return;
+
+  const detail = findSelectedWorkDetail(scope, map);
+  if (!detail || detail === mapSection || detail.contains(mapSection)) {
+    return;
+  }
+
+  const mapBefore = map.getBoundingClientRect();
+  const mapIsVisible = mapBefore.bottom > 0
+    && mapBefore.top < window.innerHeight;
+
+  const detailIsAfterMap = Boolean(
+    mapSection.compareDocumentPosition(detail)
+    & Node.DOCUMENT_POSITION_FOLLOWING,
+  );
+
+  if (!detailIsAfterMap) {
+    detail.classList.add("work-detail-inline-before-map");
+    return;
+  }
+
+  mapSection.parentNode.insertBefore(detail, mapSection);
+  detail.classList.add("work-detail-inline-before-map");
+  map.classList.add("works-map-stable-anchor");
+
+  if (!mapIsVisible) return;
+
+  requestAnimationFrame(() => {
+    const mapAfter = map.getBoundingClientRect();
+    const delta = mapAfter.top - mapBefore.top;
+
+    if (Math.abs(delta) > 1) {
+      window.scrollBy({
+        top: delta,
+        left: 0,
+        behavior: "instant",
+      });
+    }
+  });
+}
+
+function purchaseFlows() {
+  if (Array.isArray(state.purchaseFlows)) return state.purchaseFlows;
+  if (Array.isArray(data.purchaseFlows)) return data.purchaseFlows;
+  return [];
+}
+
+function purchaseStage(flow) {
+  if (flow.delivered) return "Entregue";
+  if (flow.ordered) return "Aguardando entrega";
+  if (flow.authorized) return "Pedido pendente";
+  if (Number(flow.quoted || 0) > 0) return "Aguardando autorização";
+  return "Solicitação";
+}
+
+function hydrateWorksPurchaseClosing(root) {
+  if (pageTitle(root) !== "obras") return;
+
+  const scope = pageScope(root);
+  const flows = purchaseFlows();
+  const currentWorks = works();
+
+  const estimated = flows.reduce(
+    (sum, flow) => sum + Number(flow.estimated || 0),
+    0,
+  );
+  const quoted = flows.reduce(
+    (sum, flow) => sum + Number(flow.quoted || flow.estimated || 0),
+    0,
+  );
+  const paid = flows.reduce(
+    (sum, flow) => sum + Number(flow.paid || 0),
+    0,
+  );
+  const balance = Math.max(0, quoted - paid);
+
+  const authorization = flows.filter(
+    (flow) => !flow.authorized && !flow.delivered,
+  ).length;
+  const ordered = flows.filter(
+    (flow) => flow.ordered,
+  ).length;
+  const awaitingDelivery = flows.filter(
+    (flow) => flow.ordered && !flow.delivered,
+  ).length;
+  const delivered = flows.filter(
+    (flow) => flow.delivered,
+  ).length;
+
+  const date = new Intl.DateTimeFormat("pt-BR", {
+    dateStyle: "full",
+    timeStyle: "short",
+  }).format(new Date());
+
+  let panel = scope.querySelector(
+    "[data-works-purchase-closing]",
+  );
+
+  if (!panel) {
+    panel = document.createElement("section");
+    panel.className = "works-purchase-closing";
+    panel.dataset.worksPurchaseClosing = "true";
+    scope.appendChild(panel);
+  }
+
+  const rows = currentWorks.map((work) => {
+    const workFlows = flows.filter((flow) => flow.workId === work.id);
+    const workEstimated = workFlows.reduce(
+      (sum, flow) => sum + Number(flow.estimated || 0),
+      0,
+    );
+    const workQuoted = workFlows.reduce(
+      (sum, flow) => sum + Number(flow.quoted || flow.estimated || 0),
+      0,
+    );
+    const workPaid = workFlows.reduce(
+      (sum, flow) => sum + Number(flow.paid || 0),
+      0,
+    );
+
+    const open = workFlows.filter((flow) => !flow.delivered).length;
+
+    return `
+      <tr>
+        <td>
+          <strong>${esc(work.name)}</strong>
+          <small>${esc(work.code || work.id)}</small>
+        </td>
+        <td>${number(workFlows.length)}</td>
+        <td>${money(workEstimated)}</td>
+        <td>${money(workQuoted)}</td>
+        <td>${money(workPaid)}</td>
+        <td class="difference">${money(Math.max(0, workQuoted - workPaid))}</td>
+        <td>${open ? `${open} pendente(s)` : "Fechado"}</td>
+        <td>
+          <button
+            type="button"
+            data-message="open-work-section"
+            data-route="admin-work-purchases"
+            data-work-id="${esc(work.id)}"
+          >
+            Resolver
+          </button>
+        </td>
+      </tr>
+    `;
+  }).join("");
+
+  panel.innerHTML = `
+    <header>
+      <div>
+        <small>Fechamento atualizado de compras</small>
+        <h2>Balanço de compras por obra</h2>
+        <span>Atualizado em ${esc(date)}</span>
+      </div>
+
+      <div class="works-purchase-closing-actions">
+        <button
+          type="button"
+          data-message="navigate"
+          data-route="admin-purchases"
+        >
+          Abrir compras
+        </button>
+        <button type="button" onclick="window.print()">
+          Exportar / imprimir PDF
+        </button>
+      </div>
+    </header>
+
+    <div class="works-purchase-closing-kpis">
+      <article><small>Solicitações</small><strong>${number(flows.length)}</strong><span>fluxos registrados</span></article>
+      <article><small>Estimado</small><strong>${money(estimated)}</strong><span>valor de referência</span></article>
+      <article><small>Cotado</small><strong>${money(quoted)}</strong><span>valor atualizado</span></article>
+      <article><small>Pago</small><strong>${money(paid)}</strong><span>pagamentos confirmados</span></article>
+      <article class="difference"><small>Saldo</small><strong>${money(balance)}</strong><span>cotado e não pago</span></article>
+    </div>
+
+    <div class="works-purchase-closing-status">
+      <span><small>Autorizações</small><strong>${authorization}</strong></span>
+      <span><small>Pedidos emitidos</small><strong>${ordered}</strong></span>
+      <span><small>Aguardando entrega</small><strong>${awaitingDelivery}</strong></span>
+      <span><small>Entregues</small><strong>${delivered}</strong></span>
+    </div>
+
+    <div class="works-purchase-closing-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>Obra</th>
+            <th>Fluxos</th>
+            <th>Estimado</th>
+            <th>Cotado</th>
+            <th>Pago</th>
+            <th>Diferença</th>
+            <th>Situação</th>
+            <th>Ação</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${rows || `<tr><td colspan="8"><div class="operational-empty">Nenhum fluxo de compra registrado.</div></td></tr>`}
+        </tbody>
+      </table>
+    </div>
+
+    <footer>
+      <span>${authorization} aguardando autorização</span>
+      <span>${awaitingDelivery} aguardando entrega</span>
+      <span>${flows.map(purchaseStage).filter((value) => value === "Entregue").length} encerrado(s)</span>
+    </footer>
+  `;
+}
+
+export function hydrateCurrentOperationalEnhancements(root = document) {
+  installInventoryTransition();
+  reorderDashboard(root);
+  hydrateTicketInventoryTable(root);
+  hydrateInventoryTransition(root);
+  hydrateWorksSelectionLayout(root);
+  hydrateWorksPurchaseClosing(root);
+}

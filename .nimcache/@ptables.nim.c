@@ -829,14 +829,7 @@ N_LIB_PRIVATE N_NIMCALL(void, reset__system_u5615)(NimStringV2* obj_p0);
 N_LIB_PRIVATE N_NIMCALL(void, reset__pureZhttpcore_u2935)(tySequence__sM4lkSb7zS6F7OVMvW9cffQ* obj_p0);
 N_LIB_PRIVATE N_NIMCALL(void, eqsink___pureZhttpcore_u264)(tyTuple__g1w83cyyBYiVU9c8WEJWnjQ* dest_p0, tyTuple__g1w83cyyBYiVU9c8WEJWnjQ* src_p1);
 N_LIB_PRIVATE N_NIMCALL(void, eqwasMoved___pureZhttpcore_u252)(tyTuple__g1w83cyyBYiVU9c8WEJWnjQ* dest_p0);
-N_LIB_PRIVATE N_NIMCALL(void, eqdestroy___app_u11012)(tyObject_Table__NZJ29bKsNkpKOymJNw10EvA* dest_p0);
-N_LIB_PRIVATE N_NIMCALL(void, eqdestroy___pkgZjazzyZcoreZconfig_u167)(tyObject_Table__NZJ29bKsNkpKOymJNw10EvA* dest_p0);
-N_LIB_PRIVATE N_NIMCALL(void, eqsink___pkgZjazzyZcoreZconfig_u176)(tyObject_Table__NZJ29bKsNkpKOymJNw10EvA* dest_p0, tyObject_Table__NZJ29bKsNkpKOymJNw10EvA src_p1);
-N_LIB_PRIVATE N_NIMCALL(tyObject_Table__NZJ29bKsNkpKOymJNw10EvA, initTable__pkgZjazzyZcoreZconfig_u28)(NI initialSize_p0);
-N_LIB_PRIVATE N_NIMCALL(void, X5BX5Deq___pkgZjazzyZcoreZconfig_u271)(tyObject_Table__NZJ29bKsNkpKOymJNw10EvA* t_p0, NimStringV2 key_p1, NimStringV2 val_p2);
-N_LIB_PRIVATE N_NIMCALL(NIM_BOOL, hasKey__pkgZjazzyZcoreZconfig_u1500)(tyObject_Table__NZJ29bKsNkpKOymJNw10EvA t_p0, NimStringV2 key_p1);
 static N_INLINE(NI, rawGet__pureZmimetypes_u1858)(tyObject_OrderedTable__ThtDAxTEsfu6bhRA59bvZYg* t_p0, NimStringV2 key_p1, NI* hc_p2);
-N_LIB_PRIVATE N_NIMCALL(NimStringV2*, X5BX5D___pkgZjazzyZcoreZconfig_u1562)(tyObject_Table__NZJ29bKsNkpKOymJNw10EvA* t_p0, NimStringV2 key_p1);
 N_LIB_PRIVATE N_NIMCALL(void, eqcopy___pkgZjazzyZcoreZconfig_u188)(tySequence__SFipDZIkFtPcrLs0AGBBjQ* dest_p0, tySequence__SFipDZIkFtPcrLs0AGBBjQ src_p1);
 N_LIB_PRIVATE N_NIMCALL(void, setLen__pkgZjazzyZcoreZconfig_u50)(tySequence__SFipDZIkFtPcrLs0AGBBjQ* s_p0, NI newlen_p1);
 N_LIB_PRIVATE N_NIMCALL(void, reset__pkgZjazzyZcoreZcache_u1946)(tyObject_CacheItem__5TBSJD5vIvN0N78v9cjaBnQ* obj_p0);
@@ -6662,73 +6655,6 @@ NIM_BOOL* nimErr_;
 	}BeforeRet_: ;
 	popFrame();
 }
-N_LIB_PRIVATE N_NIMCALL(void, eqdestroy___app_u11012)(tyObject_Table__NZJ29bKsNkpKOymJNw10EvA* dest_p0) {
-	{
-		NIM_BOOL T3_;
-		T3_ = (NIM_BOOL)0;
-		T3_ = nimDecRefIsLast(dest_p0);
-		if (!T3_) goto LA4_;
-		eqdestroy___pkgZjazzyZcoreZconfig_u167((&(*dest_p0)));
-		nimRawDispose(dest_p0, ((NI)8));
-	}
-LA4_: ;
-}
-N_LIB_PRIVATE N_NIMCALL(tyObject_Table__NZJ29bKsNkpKOymJNw10EvA*, newTable__app_u10949)(NI initialSize_p0) {
-	tyObject_Table__NZJ29bKsNkpKOymJNw10EvA* result;
-	tyObject_Table__NZJ29bKsNkpKOymJNw10EvA T1_;
-NIM_BOOL* nimErr_;
-	nimfr_("newTable", "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/pure/collections/tables.nim");
-{nimErr_ = nimErrorFlag();
-	result = NIM_NIL;
-	nimln_(900);	eqdestroy___app_u11012(result);
-	result = (tyObject_Table__NZJ29bKsNkpKOymJNw10EvA*) nimNewObj(sizeof(tyObject_Table__NZJ29bKsNkpKOymJNw10EvA), NIM_ALIGNOF(tyObject_Table__NZJ29bKsNkpKOymJNw10EvA));
-	nimln_(281);	nimln_(902);	T1_ = initTable__pkgZjazzyZcoreZconfig_u28(initialSize_p0);
-	if (NIM_UNLIKELY(*nimErr_)) {eqdestroy___pkgZjazzyZcoreZconfig_u167(&T1_); goto BeforeRet_;}
-	nimln_(281);	eqsink___pkgZjazzyZcoreZconfig_u176((&(*result)), T1_);
-	}BeforeRet_: ;
-	popFrame();
-	return result;
-}
-N_LIB_PRIVATE N_NIMCALL(void, X5BX5Deq___app_u11071)(tyObject_Table__NZJ29bKsNkpKOymJNw10EvA* t_p0, NimStringV2 key_p1, NimStringV2 val_p2) {
-	NimStringV2 blitTmp_1;
-NIM_BOOL* nimErr_;
-	nimfr_("[]=", "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/pure/collections/tables.nim");
-{nimErr_ = nimErrorFlag();
-	nimln_(967);	blitTmp_1 = val_p2;
-	X5BX5Deq___pkgZjazzyZcoreZconfig_u271(t_p0, key_p1, blitTmp_1);
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
-	}BeforeRet_: ;
-	popFrame();
-}
-N_LIB_PRIVATE N_NIMCALL(void, eqcopy___app_u11015)(tyObject_Table__NZJ29bKsNkpKOymJNw10EvA** dest_p0, tyObject_Table__NZJ29bKsNkpKOymJNw10EvA* src_p1) {
-	{
-		if (!src_p1) goto LA3_;
-		nimIncRef(src_p1);
-	}
-LA3_: ;
-	{
-		NIM_BOOL T7_;
-		T7_ = (NIM_BOOL)0;
-		T7_ = nimDecRefIsLast((*dest_p0));
-		if (!T7_) goto LA8_;
-		eqdestroy___pkgZjazzyZcoreZconfig_u167((&(*(*dest_p0))));
-		nimRawDispose((*dest_p0), ((NI)8));
-	}
-LA8_: ;
-	(*dest_p0) = src_p1;
-}
-N_LIB_PRIVATE N_NIMCALL(NIM_BOOL, hasKey__app_u13955)(tyObject_Table__NZJ29bKsNkpKOymJNw10EvA* t_p0, NimStringV2 key_p1) {
-	NIM_BOOL result;
-NIM_BOOL* nimErr_;
-	nimfr_("hasKey", "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/pure/collections/tables.nim");
-{nimErr_ = nimErrorFlag();
-	result = (NIM_BOOL)0;
-	nimln_(985);	result = hasKey__pkgZjazzyZcoreZconfig_u1500((*t_p0), key_p1);
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
-	}BeforeRet_: ;
-	popFrame();
-	return result;
-}
 static N_INLINE(NI, rawGet__pureZmimetypes_u1858)(tyObject_OrderedTable__ThtDAxTEsfu6bhRA59bvZYg* t_p0, NimStringV2 key_p1, NI* hc_p2) {
 	NI result;
 	NI T1_;
@@ -6818,18 +6744,6 @@ LA3_: ;
 	popFrame();
 	return result;
 }
-N_LIB_PRIVATE N_NIMCALL(NimStringV2*, X5BX5D___app_u14102)(tyObject_Table__NZJ29bKsNkpKOymJNw10EvA* t_p0, NimStringV2 key_p1) {
-	NimStringV2* result;
-NIM_BOOL* nimErr_;
-	nimfr_("[]", "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/pure/collections/tables.nim");
-{nimErr_ = nimErrorFlag();
-	result = (NimStringV2*)0;
-	nimlf_(951, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/pure/collections/tables.nim");	result = X5BX5D___pkgZjazzyZcoreZconfig_u1562(t_p0, key_p1);
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
-	}BeforeRet_: ;
-	popFrame();
-	return result;
-}
 N_LIB_PRIVATE N_NIMCALL(void, eqcopy___pkgZjazzyZcoreZconfig_u188)(tySequence__SFipDZIkFtPcrLs0AGBBjQ* dest_p0, tySequence__SFipDZIkFtPcrLs0AGBBjQ src_p1) {
 	NI T6_;
 	NI colontmp_;
@@ -6864,7 +6778,7 @@ N_LIB_PRIVATE N_NIMCALL(void, eqcopy___pkgZjazzyZcoreZconfig_u170)(tyObject_Tabl
 N_LIB_PRIVATE N_NIMCALL(NI, len__pkgZjazzyZdevuiZdevui_u1181)(tyObject_Table__NZJ29bKsNkpKOymJNw10EvA t_p0) {
 	NI result;
 	nimfr_("len", "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/pure/collections/tables.nim");
-	nimln_(495);	result = t_p0.counter;
+	nimlf_(495, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/pure/collections/tables.nim");	result = t_p0.counter;
 	popFrame();
 	return result;
 }

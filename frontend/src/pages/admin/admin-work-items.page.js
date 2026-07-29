@@ -1,99 +1,188 @@
-import {
-  availableWorks,
-  budgetImportPreview,
-  mobileUsers,
-} from "../../core/data.js";
-import {
-  selectedPurchaseFlow,
-  selectedVisitPlan,
-  selectedWork,
-  state,
-} from "../../core/state.js";
+import { availableWorks } from "../../core/data.js";
+import { selectedWork, state } from "../../core/state.js";
 import { esc } from "../../core/utils.js";
-import { card, formStep, pageHeader } from "../../ui/components.js";
+import {
+  formatPercent,
+  itemOfficialPercentage,
+  itemPricedPercentage,
+  workOfficialPercentage,
+} from "../../core/work-metrics.js";
+import { card, pageHeader } from "../../ui/components.js";
 
-const money = (value) => Number(value || 0).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
-const percent = (value) => `${Math.round(Number(value || 0))}%`;
-const workById = (id) => availableWorks.find((work) => work.id === id);
-const activeWork = () => selectedWork() || availableWorks[0];
-const flowWork = (flow) => workById(flow?.workId);
-const flowItem = (flow) => flowWork(flow)?.items.find((item) => item.id === flow?.itemId);
-const accessesForWork = (workId) => (state.encarregadoAccesses || []).filter((access) => access.workId === workId);
+const money = (value) => Number(value || 0).toLocaleString("pt-BR", {
+  style: "currency",
+  currency: "BRL",
+});
 
-function encarregadoAccessUrl(access) {
-  const base = state.collaboratorStatus?.publicAppUrl
-    || state.collaboratorStatus?.lanAppUrl
-    || state.collaboratorStatus?.localAppUrl
-    || `${window.location.origin}/?surface=twa`;
-  const url = new URL(base, window.location.origin);
-  url.searchParams.set("surface", "twa");
-  url.searchParams.set("access", access.id);
-  url.searchParams.set("work", access.workId);
-  return url.toString();
+function defaultDate(index) {
+  const date = new Date();
+  date.setDate(date.getDate() + index * 2);
+  return date.toISOString().slice(0, 10);
 }
 
-
-function authStatusMarkup() {
-  const message = String(state.toast || "").trim();
-  return `<div class="auth-form-status" data-auth-status data-tone="info" ${message ? "" : "hidden"} role="status" aria-live="polite">${esc(message)}</div>`;
-}
-
-function status(value) {
-  const css = String(value || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-");
-  return `<span class="status-pill ${css}">${esc(value)}</span>`;
-}
-
-function progress(value) {
-  const safe = Math.max(0, Math.min(100, Number(value || 0)));
-  return `<div class="progress-track"><span style="width:${safe}%"></span></div>`;
-}
-
-function map(type = "works", options = {}) {
-  const attributes = [
-    `data-google-map="${esc(type)}"`,
-    options.workId ? `data-work-id="${esc(options.workId)}"` : "",
-    options.address ? `data-address="${esc(options.address)}"` : "",
-    options.compact ? `data-compact="true"` : "",
-  ].filter(Boolean).join(" ");
-  return `<div class="google-map ${options.compact ? "compact" : ""}" ${attributes}><div class="map-loading"><span></span><strong>Carregando Google Maps</strong><small>Mapa, marcadores e rotas</small></div></div>`;
-}
-
-function kpi(label, value, detail, tone = "blue") {
-  return `<article class="metric-card ${tone}"><small>${esc(label)}</small><strong>${esc(value)}</strong><span>${esc(detail)}</span></article>`;
-}
-
-function workContext(work) {
-  return `<div class="work-context"><div><small>Obra ativa</small><strong>${esc(work.name)}</strong><span>${esc(work.address)}</span></div><div>${status(work.status)}<strong>${percent(work.progress)}</strong></div></div>`;
-}
-
-function workHeader(work, title, subtitle, actions = "") {
-  return `${pageHeader(title, subtitle, actions)}${workContext(work)}`;
-}
-
-function diagramSeed(work) {
+function modelFor(work) {
+  const id = `work-services-${work.id}`;
   const columns = work.items.length > 8 ? 4 : 3;
-  const nodes = work.items.map((item, index) => ({
-    id: item.id,
-    kind: "Item da obra",
+  const generated = work.items.map((item, index) => ({
+    id: `work-service-${work.id}-${item.id}`,
+    itemId: item.id,
+    workId: work.id,
+    kind: "Serviço da obra",
     title: item.description,
-    description: money(item.budget),
+    description: `Orçamento alocado: ${money(item.budget)}`,
     observations: "",
-    fields: [{ name: "Data", value: `2026-${String(8 + Math.floor(index / 6)).padStart(2, "0")}-${String(3 + (index * 3) % 25).padStart(2, "0")}` }],
-    x: 54 + (index % columns) * 315,
-    y: 54 + Math.floor(index / columns) * 225,
+    editableTitle: true,
+    fields: [
+      { name: "Data inicial", value: defaultDate(index) },
+      { name: "Duração", value: `${Math.max(1, Math.round(Number(item.budget || 0) / 160000))} dias` },
+      { name: "Porcentagem apreçada", value: formatPercent(itemPricedPercentage(work, item), 2) },
+      { name: "Anexos", value: String(state.diaryAttachmentCounts?.[`${work.id}:${item.id}`] || 0) },
+    ],
+    budget: item.budget,
+    x: 55 + (index % columns) * 330,
+    y: 55 + Math.floor(index / columns) * 250,
   }));
-  const edges = nodes.slice(0, -1).filter((_, index) => index < 4).map((node, index) => ({
-    id: `seed-${index}`,
-    from: node.id,
-    to: nodes[index + 1].id,
-    label: index % 2 ? "libera atividade" : "precede",
-  }));
-  return { nodes, edges };
+  const saved = state.diagramModels?.[id];
+  if (!saved?.nodes?.length) return { nodes: generated, edges: [] };
+
+  const savedById = new Map(saved.nodes.map((node) => [node.id, node]));
+  const generatedIds = new Set(generated.map((node) => node.id));
+  return {
+    nodes: [
+      ...generated.map((node) => ({ ...node, ...(savedById.get(node.id) || {}), itemId: node.itemId, workId: node.workId })),
+      ...saved.nodes.filter((node) => !generatedIds.has(node.id)),
+    ],
+    edges: Array.isArray(saved.edges) ? saved.edges : [],
+  };
+}
+
+function selectedNode(model, diagramId) {
+  if (state.selectedDiagramNode?.diagramId !== diagramId) return null;
+  return model.nodes.find((node) => node.id === state.selectedDiagramNode.nodeId) || null;
+}
+
+function editor(work, diagramId, node) {
+  if (!node) {
+    return `<div class="diagram-details-empty">
+      <b>Selecione um serviço ou material</b>
+      <p>O “+” lateral cria material ou inicia uma relação. Nenhuma relação é presumida.</p>
+    </div>`;
+  }
+
+  const item = work.items.find((candidate) => candidate.id === node.itemId);
+  return `<div class="diagram-details-hero">
+      <small>${esc(node.kind || "Registro")}</small>
+      <strong>${esc(node.title || "")}</strong>
+      <span>${esc(work.name)}</span>
+    </div>
+
+    <form
+      class="diagram-record-form"
+      data-diagram-record-form
+      data-diagram-id="${esc(diagramId)}"
+      data-diagram-node-id="${esc(node.id)}"
+    >
+      <label><span>Nome</span><input data-diagram-record-field="title" value="${esc(node.title || "")}"></label>
+      <label><span>Descrição</span><textarea data-diagram-record-field="description">${esc(node.description || "")}</textarea></label>
+      <label><span>Observação</span><textarea data-diagram-record-field="observations">${esc(node.observations || "")}</textarea></label>
+
+      <fieldset>
+        <legend>${item ? "Planejamento do serviço" : "Material ou requisito"}</legend>
+        ${(node.fields || []).map((field) => `
+          <label>
+            <span>${esc(field.name || "Campo")}</span>
+            <input
+              data-diagram-field-value="${esc(field.name || "Campo")}"
+              value="${esc(field.value || "")}"
+              ${field.name === "Porcentagem apreçada" ? "readonly" : ""}
+            >
+          </label>
+        `).join("")}
+      </fieldset>
+
+      ${item ? `
+        <div class="service-percentage-summary">
+          <span>Porcentagem apreçada<strong>${formatPercent(itemPricedPercentage(work, item), 2)}</strong></span>
+          <span>Medição oficial<strong>${formatPercent(itemOfficialPercentage(state, work.id, item.id), 2)}</strong></span>
+        </div>
+      ` : ""}
+
+      <button class="btn full" type="button" data-message="save-diagram-record">Salvar alterações</button>
+    </form>
+
+    <div class="diagram-details-actions">
+      ${item ? `
+        <button
+          class="btn"
+          data-message="open-item-diary"
+          data-work-id="${esc(work.id)}"
+          data-item-id="${esc(item.id)}"
+        >
+          Abrir dia e serviço no diário
+        </button>
+      ` : ""}
+      <button
+        class="btn ghost"
+        data-message="create-purchase-from-diagram"
+        data-diagram-id="${esc(diagramId)}"
+        data-node-id="${esc(node.id)}"
+      >
+        Enviar ordem de compra
+      </button>
+    </div>`;
 }
 
 export function adminWorkItems() {
-  const work = activeWork();
-  return `${workHeader(work, "Itens de execução", "Cada item veio da planilha com descrição e orçamento alocado.")}
-    ${card("Itens importados", `<div class="table-scroll"><table class="items-table"><thead><tr><th>Descrição</th><th>Orçamento alocado</th><th>Comprometido</th><th>Saldo</th><th>Execução</th><th>Ação</th></tr></thead><tbody>${work.items.map((item) => `<tr><td><strong>${esc(item.description)}</strong></td><td>${money(item.budget)}</td><td>${money(item.committed)}</td><td>${money(item.budget - item.committed)}</td><td>${progress(item.progress)}<small>${percent(item.progress)}</small></td><td><button class="btn small" data-message="start-purchase" data-item-id="${esc(item.id)}">Iniciar compra</button></td></tr>`).join("")}</tbody></table></div>`)} `;
-}
+  const work = selectedWork() || availableWorks[0];
+  const diagramId = `work-services-${work.id}`;
+  const model = modelFor(work);
+  const node = selectedNode(model, diagramId);
 
+  return `${pageHeader(
+    "Itens de execução",
+    "Canvas dos serviços. O peso financeiro e a medição são percentuais distintos.",
+    `<button class="btn ghost" data-message="print-current-report">Exportar / imprimir PDF</button>`,
+  )}
+    <div class="work-context">
+      <div>
+        <small>Obra ativa</small>
+        <strong>${esc(work.name)}</strong>
+        <span>${esc(work.address)}</span>
+      </div>
+      <div>
+        <span class="status-pill em-execucao">${esc(work.status)}</span>
+        <strong>${formatPercent(workOfficialPercentage(state, work), 2)}</strong>
+      </div>
+    </div>
+
+    <section
+      class="diagram-library-layout work-service-layout"
+      data-print-report
+      data-print-title="Itens de execução - ${esc(work.code)}"
+    >
+      ${card("Canvas dos serviços", `
+        <div class="diagram-help">
+          <span><b>1</b> Arraste os cards</span>
+          <span><b>2</b> Clique no “+” lateral para material</span>
+          <span><b>3</b> Arraste o “+” para relacionar</span>
+          <span><b>4</b> Duplo clique na linha para remover</span>
+        </div>
+        <div
+          class="interactive-diagram work-services-diagram"
+          data-interactive-diagram="${esc(diagramId)}"
+          data-selected-node-id="${esc(node?.id || "")}"
+          data-empty-drop-kind="Material"
+          data-default-edge-label="requer"
+          data-fit-on-load="true"
+          data-wheel-zoom="true"
+          data-print-title="Relações dos serviços - ${esc(work.code)}"
+        >
+          <svg data-diagram-svg></svg>
+          <div data-node-layer></div>
+          <script type="application/json">${JSON.stringify(model)}</script>
+        </div>
+      `, "interactive-diagram-card")}
+
+      ${card("Dados do card", editor(work, diagramId, node), "diagram-details-card")}
+    </section>`;
+}

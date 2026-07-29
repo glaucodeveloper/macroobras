@@ -1,0 +1,37 @@
+LAYOUTS
+130:function hydrateWorksVisitToolbar(root) {
+244:  let card = wrap.querySelector("[data-works-visit-routes-card]");
+248:    card.className = "works-visit-routes-card";
+277:  hydrateWorksVisitToolbar(root);
+
+CONTROLLER
+593:  if (message.type === "load-works-visit-route") {
+594:    loadWorksVisitRoute(message.planId);
+1174:function loadWorksVisitRoute(planId = "") {
+
+CSS
+6124:.works-visit-crud-toolbar {
+6265:  .works-visit-crud-toolbar {
+6302:  .works-visit-crud-toolbar {
+6349:.works-visit-crud-toolbar {
+6605:  .works-visit-crud-toolbar {
+6663:.works-visit-map-wrap .works-visit-crud-toolbar,
+6669:.works-visit-routes-card {
+6688:.works-visit-routes-card > header {
+6698:.works-visit-routes-card > header > div {
+6704:.works-visit-routes-card > header small {
+6712:.works-visit-routes-card > header strong {
+6717:.works-visit-routes-card > header > span {
+6865:  .works-visit-routes-card {
+
+VALIDAÇÃO FINAL
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/operational-layouts.js:211:          <small>Ponto inicial</small>
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/operational-layouts.js:221:          <small>Ponto de chegada</small>
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/operational-layouts.js:276:/* MACROOBRAS WORKS VISIT CARD ONLY V4 */
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/operational-layouts.js:277:function hydrateWorksVisitRouteCard(root) {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/operational-layouts.js:396:          <small>Ponto inicial</small>
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/operational-layouts.js:406:          <small>Ponto de chegada</small>
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/operational-layouts.js:447:  hydrateWorksVisitRouteCard(root);
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/core/app-controller.js:594:    loadWorksVisitRoute(message.planId || "");
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:6904:/* MACROOBRAS WORKS VISIT CARD ONLY V4 */
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:7173:/* END MACROOBRAS WORKS VISIT CARD ONLY V4 */

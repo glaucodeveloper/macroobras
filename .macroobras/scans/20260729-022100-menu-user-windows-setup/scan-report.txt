@@ -1,0 +1,13 @@
+VALIDAÇÃO FINAL
+Versão: 0.1.0
+CSS corrigido: /home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css
+Executável Windows: /home/icarogdo/dev/macroobras-jazzy/app/macroobras/build/windows-cross/MacroObras/bin/MacroObras.exe
+Setup: /home/icarogdo/dev/macroobras-jazzy/app/macroobras/build/windows-cross/MacroObras-Setup-Windows-x64-0.1.0.exe
+Setup bytes: 41002083
+Release ZIP: /home/icarogdo/dev/macroobras-jazzy/app/macroobras/release/MacroObras-0.1.0-Windows-x64-release.zip
+ZIP bytes: 93259272
+Checksums: /home/icarogdo/dev/macroobras-jazzy/app/macroobras/release/SHA256SUMS-Windows-x64.txt
+
+SHA-256
+16585b393563b0cbb38358a1989f466d8da953627a0ed312cae92fc6a6b8dea1  ../build/windows-cross/MacroObras-Setup-Windows-x64-0.1.0.exe
+d9de68f8b09967dbcf3e80cefd56e067da440b16224654f53784480a8585f49d  MacroObras-0.1.0-Windows-x64-release.zip

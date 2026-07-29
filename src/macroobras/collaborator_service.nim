@@ -244,15 +244,21 @@ proc startCollaboratorNgrok*() {.gcsafe.} =
     let ngrokBin =
       ngrokExecutable()
 
+    # MACROOBRAS NGROK SILENT WINDOWS
+    var ngrokProcessOptions: set[ProcessOption] =
+      {poParentStreams}
+
+    if ngrokBin == "ngrok":
+      ngrokProcessOptions.incl(poUsePath)
+
+    when defined(windows):
+      ngrokProcessOptions.incl(poDaemon)
+
     collaboratorNgrokProcess =
       startProcess(
         ngrokBin,
         args = args,
-        options =
-          if ngrokBin == "ngrok":
-            {poUsePath, poParentStreams}
-          else:
-            {poParentStreams}
+        options = ngrokProcessOptions
       )
 
     echo "MacroObras iniciou o ngrok para " &

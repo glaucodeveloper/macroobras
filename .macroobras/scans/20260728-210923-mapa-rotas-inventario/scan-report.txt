@@ -1,0 +1,44 @@
+OPERATIONAL LAYOUTS
+246:  let card = wrap.querySelector("[data-works-visit-routes-card]");
+250:    card.className = "works-visit-routes-card";
+414:  let card = wrap.querySelector("[data-works-visit-routes-card]");
+418:    card.className = "works-visit-routes-card";
+445:export function hydrateOperationalLayouts(root = document) {
+
+CSS
+3478:.works-map-selection-wrap {
+6669:.works-visit-routes-card {
+6688:.works-visit-routes-card > header {
+6698:.works-visit-routes-card > header > div {
+6704:.works-visit-routes-card > header small {
+6712:.works-visit-routes-card > header strong {
+6717:.works-visit-routes-card > header > span {
+6865:  .works-visit-routes-card {
+6933:.works-visit-routes-card {
+6952:.works-visit-routes-card > header {
+6962:.works-visit-routes-card > header > div {
+6968:.works-visit-routes-card > header small {
+6976:.works-visit-routes-card > header strong {
+6981:.works-visit-routes-card > header > span {
+7132:  .works-visit-routes-card {
+8332:.inventory-sheet-exit {
+8340:.inventory-sheet-enter {
+8345:[data-inventory-sheet],
+8346:.inventory-sheet,
+
+VALIDAÇÃO FINAL
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/operational-layouts.js:6:import { hydrateMapInventoryInteractions } from "./map-inventory-interactions.js";
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/operational-layouts.js:451:  hydrateMapInventoryInteractions(root);
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/map-inventory-interactions.js:25:function unwrapWorksMapSelection(root) {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/map-inventory-interactions.js:49:    "[data-works-visit-routes-toggle]",
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/map-inventory-interactions.js:92:    "[data-works-visit-routes-toggle]",
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/map-inventory-interactions.js:98:    button.className = "works-visit-routes-toggle";
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/map-inventory-interactions.js:329:export function hydrateMapInventoryInteractions(
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/map-inventory-interactions.js:333:  unwrapWorksMapSelection(root);
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8597:.works-visit-routes-toggle {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8613:.works-visit-routes-toggle:hover {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8650:  .works-visit-routes-toggle {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8669:    inventory-location-sheet-bounce-out
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8677:    inventory-location-sheet-bounce-in
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8689:@keyframes inventory-location-sheet-bounce-out {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:8709:@keyframes inventory-location-sheet-bounce-in {

@@ -1,0 +1,8 @@
+VALIDAÇÃO FINAL
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/operational-layouts.js:1:import "./canvas-table-print-router.js";
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/canvas-table-print-router.js:645:            <th>Identificadores externos</th>
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/canvas-table-print-router.js:728:window.MacroObrasPrintCanvasTableReport =
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/component-pdf-print.js:589:    && typeof window.MacroObrasPrintCanvasTableReport
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/component-pdf-print.js:596:    window.MacroObrasPrintCanvasTableReport(canvas);
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:9682:/* MACROOBRAS CANVAS TABLE ROUTER V2 */
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:9908:/* END MACROOBRAS CANVAS TABLE ROUTER V2 */

@@ -1,3 +1,5 @@
+import { printBrandedElement } from "./branded-print.js";
+
 const diagramModels = new Map();
 const diagramCanvases = new Map();
 
@@ -8,6 +10,261 @@ function htmlEscape(value = "") {
 function clone(value) {
   return JSON.parse(JSON.stringify(value));
 }
+
+/* MACROOBRAS PLANNING CALENDAR V1 */
+
+let planningDuplicateKeyActive = false;
+let planningKeyboardInstalled = false;
+
+function installPlanningKeyboard() {
+  if (planningKeyboardInstalled) return;
+
+  planningKeyboardInstalled = true;
+
+  window.addEventListener("keydown", (event) => {
+    if (
+      event.key?.toLowerCase() !== "d"
+      || event.target?.matches?.(
+        "input, textarea, select, [contenteditable]",
+      )
+    ) {
+      return;
+    }
+
+    planningDuplicateKeyActive = true;
+  });
+
+  window.addEventListener("keyup", (event) => {
+    if (event.key?.toLowerCase() === "d") {
+      planningDuplicateKeyActive = false;
+    }
+  });
+
+  window.addEventListener("blur", () => {
+    planningDuplicateKeyActive = false;
+  });
+}
+
+function planningFieldIndex(node, fieldName) {
+  const wanted = String(fieldName || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .trim()
+    .toLowerCase();
+
+  return (node.fields || []).findIndex((field) =>
+    String(field.name || "")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .trim()
+      .toLowerCase() === wanted,
+  );
+}
+
+function planningField(node, fieldName, fallback = "") {
+  const index = planningFieldIndex(node, fieldName);
+
+  return index >= 0
+    ? node.fields[index].value
+    : fallback;
+}
+
+function setPlanningField(node, fieldName, value) {
+  node.fields = Array.isArray(node.fields)
+    ? node.fields
+    : [];
+
+  const index = planningFieldIndex(node, fieldName);
+
+  if (index >= 0) {
+    node.fields[index] = {
+      ...node.fields[index],
+      value: String(value ?? ""),
+    };
+    return;
+  }
+
+  node.fields.push({
+    name: fieldName,
+    value: String(value ?? ""),
+  });
+}
+
+function planningNumber(value) {
+  const normalized = String(value ?? "")
+    .replace(/\./g, "")
+    .replace(",", ".")
+    .replace(/[^\d.-]/g, "");
+
+  const number = Number(normalized);
+
+  return Number.isFinite(number)
+    ? number
+    : null;
+}
+
+function planningNumberText(value) {
+  return Number(value || 0).toLocaleString("pt-BR", {
+    maximumFractionDigits: 4,
+  });
+}
+
+function splitPlanningValue(source, duplicate, fieldName) {
+  const value = planningNumber(
+    planningField(source, fieldName, ""),
+  );
+
+  if (value == null) return;
+
+  const half = value / 2;
+
+  setPlanningField(
+    source,
+    fieldName,
+    planningNumberText(half),
+  );
+
+  setPlanningField(
+    duplicate,
+    fieldName,
+    planningNumberText(half),
+  );
+}
+
+function duplicatePlanningNode(source) {
+  const duplicate = clone(source);
+
+  duplicate.id =
+    `${source.id}-div-${Date.now().toString(36)}-`
+    + Math.random().toString(36).slice(2, 6);
+
+  duplicate.title =
+    `${source.title || "Item"} — divisão`;
+
+  duplicate.x = Number(source.x || 0);
+  duplicate.y = Number(source.y || 0);
+
+  duplicate.fields = clone(source.fields || []);
+
+  [
+    ["Requerente", planningField(source, "Requerente", "")],
+    ["Requisitos", planningField(source, "Requisitos", "")],
+    ["Quantidade", planningField(source, "Quantidade", "1")],
+    ["Percentual", planningField(source, "Percentual", "0")],
+  ].forEach(([name, value]) => {
+    setPlanningField(source, name, value);
+    setPlanningField(duplicate, name, value);
+  });
+
+  splitPlanningValue(
+    source,
+    duplicate,
+    "Quantidade",
+  );
+
+  splitPlanningValue(
+    source,
+    duplicate,
+    "Percentual",
+  );
+
+  return duplicate;
+}
+
+function planningCalendarSettings(canvas) {
+  if (canvas.dataset.calendarGrid !== "true") {
+    return null;
+  }
+
+  const dayWidth = Math.max(
+    80,
+    Number(canvas.dataset.calendarDayWidth || 190),
+  );
+
+  const laneHeight = Math.max(
+    120,
+    Number(canvas.dataset.calendarLaneHeight || 220),
+  );
+
+  const startDate =
+    canvas.dataset.calendarStart
+    || new Date().toISOString().slice(0, 8) + "01";
+
+  return {
+    originX: 70,
+    originY: 110,
+    dayWidth,
+    laneHeight,
+    startDate,
+  };
+}
+
+function dateForPlanningColumn(startDate, column) {
+  const date = new Date(`${startDate}T12:00:00`);
+
+  date.setDate(
+    date.getDate() + Math.max(0, column),
+  );
+
+  return date.toISOString().slice(0, 10);
+}
+
+function snapPlanningNode(canvas, node) {
+  const settings = planningCalendarSettings(canvas);
+
+  if (!settings) return;
+
+  const column = Math.max(
+    0,
+    Math.round(
+      (Number(node.x || 0) - settings.originX)
+      / settings.dayWidth,
+    ),
+  );
+
+  const lane = Math.max(
+    0,
+    Math.round(
+      (Number(node.y || 0) - settings.originY)
+      / settings.laneHeight,
+    ),
+  );
+
+  node.x =
+    settings.originX
+    + column * settings.dayWidth;
+
+  node.y =
+    settings.originY
+    + lane * settings.laneHeight;
+
+  setPlanningField(
+    node,
+    "Data",
+    dateForPlanningColumn(
+      settings.startDate,
+      column,
+    ),
+  );
+}
+
+function applyPlanningCalendarVariables(canvas) {
+  const settings = planningCalendarSettings(canvas);
+
+  if (!settings) return;
+
+  canvas.style.setProperty(
+    "--planning-day-width",
+    `${settings.dayWidth}px`,
+  );
+
+  canvas.style.setProperty(
+    "--planning-lane-height",
+    `${settings.laneHeight}px`,
+  );
+}
+
+/* END MACROOBRAS PLANNING CALENDAR V1 */
 
 function normalizeNode(node) {
   return {
@@ -131,24 +388,44 @@ function pathD(source, target) {
 }
 
 function nodePoint(canvas, modelNode, side) {
-  const element = canvas.querySelector(`[data-node-id="${CSS.escape(modelNode.id)}"]`);
+  const element = canvas.querySelector(
+    `[data-node-id="${CSS.escape(modelNode.id)}"]`
+  );
   const width = element?.offsetWidth || 260;
   const height = element?.offsetHeight || 180;
+  const leftSource = canvas.dataset.portSide === "left";
   return {
-    x: Number(modelNode.x || 0) + (side === "source" ? width : 0),
+    x: Number(modelNode.x || 0)
+      + (
+        side === "source"
+          ? leftSource ? 0 : width
+          : leftSource ? width : 0
+      ),
     y: Number(modelNode.y || 0) + height / 2,
   };
 }
 
 function updateEdges(canvas, model) {
+  const elements = new Map([...canvas.querySelectorAll("[data-diagram-node]")].map((element) => [element.dataset.nodeId, element]));
+  const points = new Map();
+  const point = (node, side) => {
+    const key = `${node.id}:${side}`;
+    if (points.has(key)) return points.get(key);
+    const element = elements.get(node.id);
+    const width = element?.offsetWidth || 260;
+    const height = element?.offsetHeight || 180;
+    const value = { x: Number(node.x || 0) + (side === "source" ? width : 0), y: Number(node.y || 0) + height / 2 };
+    points.set(key, value);
+    return value;
+  };
   model.edges.forEach((edge) => {
     const sourceNode = model.nodes.find((node) => node.id === edge.from);
     const targetNode = model.nodes.find((node) => node.id === edge.to);
     const path = canvas.querySelector(`[data-edge-path="${CSS.escape(edge.id)}"]`);
     const label = canvas.querySelector(`[data-edge-label="${CSS.escape(edge.id)}"]`);
     if (!sourceNode || !targetNode || !path) return;
-    const source = nodePoint(canvas, sourceNode, "source");
-    const target = nodePoint(canvas, targetNode, "target");
+    const source = point(sourceNode, "source");
+    const target = point(targetNode, "target");
     path.setAttribute("d", pathD(source, target));
     if (label) {
       label.style.left = `${(source.x + target.x) / 2}px`;
@@ -205,24 +482,33 @@ function createNodeFromSource(node, model, canvas = null, point = null) {
   const position = point
     ? { x: Math.max(18, point.x - 42), y: Math.max(18, point.y - 82) }
     : nextNodePosition(node, siblingIndex);
-  const configuredKind = canvas?.dataset.emptyDropKind || "";
-  const kind = configuredKind || node.kind || "Quadro";
-  const requirement = kind.toLowerCase() === "requisito";
+  const kind = canvas?.dataset.emptyDropKind || node.kind || "Quadro";
+  const normalizedKind = kind.toLowerCase();
+  const material = normalizedKind === "material";
+  const requirement = normalizedKind === "requisito";
+  const fields = material || requirement
+    ? [
+        { name: "Tipo", value: material ? "Material" : "Requisito" },
+        { name: "Quantidade", value: "" },
+        { name: "Unidade", value: "" },
+        { name: "Valor estimado", value: "" },
+        { name: "Ordem de compra", value: "Opcional" },
+      ]
+    : [];
+
   return normalizeNode({
     id: `node-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
     kind,
-    title: requirement ? "Novo requisito" : `Novo ${String(kind).toLowerCase()}`,
-    description: requirement ? "Material, serviço ou dependência necessária." : "",
+    title: requirement ? "Novo requisito" : material ? "Novo material" : `Novo ${String(kind).toLowerCase()}`,
+    description: requirement
+      ? "Serviço, condição ou dependência necessária."
+      : material
+        ? "Material interno vinculado ao serviço."
+        : "",
     observations: "",
-    fields: requirement
-      ? [
-        { name: "Tipo", value: "Material" },
-        { name: "Quantidade", value: "" },
-        { name: "Unidade", value: "" },
-      ]
-      : [],
+    fields,
     editableTitle: true,
-    material: requirement || Boolean(node.material),
+    material: material || requirement || Boolean(node.material),
     summaryOnly: canvas?.dataset.summaryNodes === "true",
     x: position.x,
     y: position.y,
@@ -294,48 +580,177 @@ function positionNodeGhost(ghost, point) {
 }
 
 function bindNodeDrag(canvas, model) {
-  canvas.querySelectorAll("[data-diagram-node]").forEach((node) => {
-    node.addEventListener("pointerdown", (event) => {
-      if (event.button !== 0 || event.target.closest("input,textarea,button,[data-edge-handle]")) return;
-      event.preventDefault();
-      const data = model.nodes.find((item) => item.id === node.dataset.nodeId);
-      if (!data) return;
-      const start = clientToWorld(canvas, event.clientX, event.clientY);
-      const offsetX = start.x - Number(data.x || 0);
-      const offsetY = start.y - Number(data.y || 0);
-      let dragged = false;
-      node.dataset.diagramDragSuppressed = "true";
-      canvas.dataset.diagramClickBlockUntil = "0";
-      node.classList.add("dragging");
-      const move = (moveEvent) => {
-        const point = clientToWorld(canvas, moveEvent.clientX, moveEvent.clientY);
-        const x = Math.max(8, point.x - offsetX);
-        const y = Math.max(8, point.y - offsetY);
-        dragged = dragged || Math.abs(x - Number(data.x || 0)) > 1 || Math.abs(y - Number(data.y || 0)) > 1;
-        data.x = x;
-        data.y = y;
-        node.style.left = `${x}px`;
-        node.style.top = `${y}px`;
-        updateEdges(canvas, model);
-      };
-      const up = () => {
-        node.classList.remove("dragging");
-        window.removeEventListener("pointermove", move);
-        window.removeEventListener("pointerup", up);
-        window.removeEventListener("pointercancel", up);
-        if (dragged) {
-          canvas.dataset.diagramClickBlockUntil = String(Date.now() + 350);
-          window.setTimeout(() => { delete node.dataset.diagramDragSuppressed; }, 0);
-        } else {
-          delete node.dataset.diagramDragSuppressed;
-        }
-        dispatchChange(canvas, model);
-      };
-      window.addEventListener("pointermove", move);
-      window.addEventListener("pointerup", up);
-      window.addEventListener("pointercancel", up);
-    });
-  });
+  canvas.querySelectorAll("[data-diagram-node]").forEach(
+    (initialElement) => {
+      initialElement.addEventListener(
+        "pointerdown",
+        (event) => {
+          if (
+            event.button !== 0
+            || event.target.closest(
+              "input,textarea,button,[data-edge-handle]",
+            )
+          ) {
+            return;
+          }
+
+          event.preventDefault();
+
+          let element = initialElement;
+          let data = model.nodes.find(
+            (item) =>
+              item.id === initialElement.dataset.nodeId,
+          );
+
+          if (!data) return;
+
+          const start = clientToWorld(
+            canvas,
+            event.clientX,
+            event.clientY,
+          );
+
+          const offsetX =
+            start.x - Number(data.x || 0);
+
+          const offsetY =
+            start.y - Number(data.y || 0);
+
+          const duplicateRequested =
+            planningDuplicateKeyActive
+            && canvas.dataset.duplicateWithD === "true";
+
+          let duplicated = false;
+          let dragged = false;
+
+          element.dataset.diagramDragSuppressed = "true";
+          canvas.dataset.diagramClickBlockUntil = "0";
+          element.classList.add("dragging");
+
+          const ensureDuplicate = () => {
+            if (!duplicateRequested || duplicated) return;
+
+            const duplicate = duplicatePlanningNode(data);
+            model.nodes.push(duplicate);
+            data = duplicate;
+            duplicated = true;
+
+            renderDiagram(canvas, model);
+
+            element = canvas.querySelector(
+              `[data-node-id="${CSS.escape(data.id)}"]`,
+            ) || element;
+
+            element.dataset.diagramDragSuppressed = "true";
+            element.classList.add(
+              "dragging",
+              "planning-duplicate-drag",
+            );
+
+            dispatchChange(canvas, model);
+          };
+
+          const move = (moveEvent) => {
+            const point = clientToWorld(
+              canvas,
+              moveEvent.clientX,
+              moveEvent.clientY,
+            );
+
+            const proposedX = Math.max(
+              8,
+              point.x - offsetX,
+            );
+
+            const proposedY = Math.max(
+              8,
+              point.y - offsetY,
+            );
+
+            const distance = Math.hypot(
+              proposedX - Number(data.x || 0),
+              proposedY - Number(data.y || 0),
+            );
+
+            if (distance > 2) {
+              ensureDuplicate();
+              dragged = true;
+            }
+
+            if (!dragged) return;
+
+            data.x = proposedX;
+            data.y = proposedY;
+
+            element.style.left = `${proposedX}px`;
+            element.style.top = `${proposedY}px`;
+
+            updateEdges(canvas, model);
+          };
+
+          const up = () => {
+            element.classList.remove(
+              "dragging",
+              "planning-duplicate-drag",
+            );
+
+            window.removeEventListener(
+              "pointermove",
+              move,
+            );
+
+            window.removeEventListener(
+              "pointerup",
+              up,
+            );
+
+            window.removeEventListener(
+              "pointercancel",
+              up,
+            );
+
+            if (dragged) {
+              snapPlanningNode(canvas, data);
+
+              canvas.dataset.diagramClickBlockUntil =
+                String(Date.now() + 350);
+
+              renderDiagram(canvas, model);
+
+              window.setTimeout(() => {
+                const current = canvas.querySelector(
+                  `[data-node-id="${CSS.escape(data.id)}"]`,
+                );
+
+                if (current) {
+                  delete current.dataset.diagramDragSuppressed;
+                }
+              }, 0);
+            } else {
+              delete element.dataset.diagramDragSuppressed;
+            }
+
+            dispatchChange(canvas, model);
+          };
+
+          window.addEventListener(
+            "pointermove",
+            move,
+          );
+
+          window.addEventListener(
+            "pointerup",
+            up,
+          );
+
+          window.addEventListener(
+            "pointercancel",
+            up,
+          );
+        },
+      );
+    },
+  );
 }
 
 function bindEdgeDrag(canvas, model) {
@@ -543,6 +958,35 @@ function nodeHtml(node, selectedNodeId = "") {
   </article>`;
 }
 
+function printDiagramCanvas(canvas) {
+  printBrandedElement(canvas, {
+    title: canvas.dataset.printTitle || canvas.dataset.interactiveDiagram || "Canvas operacional",
+    orientation: "landscape",
+  });
+}
+
+function installDiagramToolbar(canvas) {
+  if (canvas.previousElementSibling?.classList.contains("diagram-export-toolbar")) return;
+  const toolbar = document.createElement("div");
+  toolbar.className = "diagram-export-toolbar";
+  const button = document.createElement("button");
+  button.type = "button";
+  button.textContent = "Exportar / imprimir PDF";
+  button.addEventListener("click", () => printDiagramCanvas(canvas));
+  toolbar.appendChild(button);
+  canvas.before(toolbar);
+}
+
+function bindEdgeDoubleClick(canvas, model) {
+  canvas.querySelectorAll("[data-edge-path]").forEach((path) => {
+    path.addEventListener("dblclick", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      removeEdge(canvas, model, path.dataset.edgePath);
+    });
+  });
+}
+
 function renderDiagram(canvas, model) {
   const svg = canvas.querySelector("[data-diagram-svg]");
   const nodeLayer = canvas.querySelector("[data-node-layer]");
@@ -593,16 +1037,20 @@ function renderDiagram(canvas, model) {
   if (!fixedEdges) bindEdgeDrag(canvas, model);
   bindInputs(canvas, model);
   bindNodeSelection(canvas, model);
+  bindEdgeDoubleClick(canvas, model);
   updateEdges(canvas, model);
 }
 
 export function hydrateDiagramCanvases(root = document) {
+  installPlanningKeyboard();
   root.querySelectorAll("[data-interactive-diagram]").forEach((canvas) => {
     if (canvas.dataset.hydrated) return;
     canvas.dataset.hydrated = "true";
+    installDiagramToolbar(canvas);
     const id = canvas.dataset.interactiveDiagram;
     const seed = JSON.parse(canvas.querySelector("script[type='application/json']")?.textContent || '{"nodes":[],"edges":[]}');
     const model = createModel(id, seed);
+    applyPlanningCalendarVariables(canvas);
     diagramCanvases.set(id, canvas);
     renderDiagram(canvas, model);
     if (canvas.dataset.fitOnLoad === "true" && canvas.dataset.diagramFitted !== "true") {

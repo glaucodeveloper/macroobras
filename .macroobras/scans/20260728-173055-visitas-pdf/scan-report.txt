@@ -1,0 +1,185 @@
+==============================================================================
+SCAN MACROOBRAS — ANTES DA RETOMADA
+==============================================================================
+
+[STATE] /home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/core/machine-state.js
+  tamanho: 16330 bytes
+  linhas: 455
+  sha256: e51c3c315dc3b3f869cb3cfa06bb9314a4796d3663eadf5c3ddc61ec835105da
+  [OK     ] estado local de visitas: function initialVisitPlans
+  [OK     ] estado local de impressões: function initialPrintRecords
+  [OK     ] visitPlans no state: visitPlans: initialVisitPlans()
+  [OK     ] printRecords no state: printRecords: initialPrintRecords()
+  [OK     ] persistência de visitas: localStorage.setItem("macroobras.visitPlans"
+  [OK     ] persistência de impressões: localStorage.setItem("macroobras.printRecords"
+
+[CONTROLLER] /home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/core/app-controller.js
+  tamanho: 91957 bytes
+  linhas: 2934
+  sha256: 0a56ceff0fcdb6c9e5855f4c7c2023bf2e08bc3ce7638e660f97f00065a46b82
+  [OK     ] import do relatório: visit-route-print.js
+  [OK     ] handler imprimir rota: message.type === "print-visit-plan"
+  [OK     ] numeração da impressão: function nextPrintRecordNumber
+  [OK     ] registro local da impressão: function createPrintRecord
+  [OK     ] impressão de plano: function printPlanWithRecord
+  [OK     ] gerador atualizado: Visitas registradas nos cronogramas
+
+[VISITS] /home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/pages/admin/admin-visits.page.js
+  tamanho: 8619 bytes
+  linhas: 130
+  sha256: fc07c424be8f5081255831d3c918c911e6c4682f9f43b1735545792953a3ca5e
+  [OK     ] ação principal cronograma/PDF: Registrar no cronograma e imprimir PDF
+  [OK     ] ação de reimpressão: data-message="print-visit-plan"
+
+[CALENDAR] /home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/pages/admin/admin-work-calendar.page.js
+  tamanho: 6620 bytes
+  linhas: 141
+  sha256: 41d309a4cf382812b95c0d58ef40ac78a9ad9ecc93558d69dfec9ea65d6d991b
+  [OK     ] visitas da obra: function visitsForWork
+  [OK     ] lista das visitas: function visitCalendarMarkup
+  [OK     ] card no cronograma: Visitas registradas no cronograma
+
+[SETTINGS] /home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/pages/admin/admin-settings.page.js
+  tamanho: 8352 bytes
+  linhas: 69
+  sha256: 795e96d6cce5c61d42df2ba6257f6aaa7ffc8edf9e47faaabfcf4ff3bb52caf8
+  [AUSENTE] leitura de printRecords: const printRecords
+  [AUSENTE] helper do histórico: function printHistoryCard
+  [AUSENTE] card do histórico: printHistoryCard(printRecords)
+  [AUSENTE] classe do histórico: settings-print-history
+
+[CSS] /home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css
+  tamanho: 121006 bytes
+  linhas: 5746
+  sha256: 1045d3d7194764f6ac58dc5de0313454e0e5ead7c1d91c0ec8888ea7601d3c0e
+  [AUSENTE] estilo rota/PDF: MACROOBRAS VISIT ROUTE PDF + LOCAL PRINT LOG V1
+  [AUSENTE] estilo histórico: .settings-print-history
+  [OK     ] impressão A4: @media print
+
+[PRINT_MODULE] /home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/visit-route-print.js
+  tamanho: 7030 bytes
+  linhas: 201
+  sha256: cd231e7f31af6963ae7e76be5ece4cef3e10fb331d0462df5a2366bd8a43a2ef
+  [OK     ] função exportada: export function printVisitRouteReport
+  [OK     ] cabeçalho: print-letterhead
+  [OK     ] cronograma: Cronograma das visitas
+  [OK     ] trechos: Trechos calculados
+
+[SETTINGS — pontos estruturais encontrados]
+  [OK] função adminSettings: linha(s) 14
+  [OK] declaração customization: linha(s) 19
+  [OK] settings-main-grid: linha(s) 48
+  [OK] settings-admin-tools: linha(s) 58
+  [AUSENTE] settings-technical-grid
+  [OK] fechamento settings-hub: linha(s) 67
+
+[SETTINGS — linhas relevantes]
+  00014: export function adminSettings() {
+  00019:   const customization = state.customization || {};
+  00021:   const savedAt = customization.savedAt ? new Date(customization.savedAt) : null;
+  00023:   const adminName = customization.adminName || auth.name || "Administrador";
+  00024:   const adminEmail = customization.adminLoginEmail || auth.email || "";
+  00025:   const adminCpf = customization.adminLoginCpf || auth.cpf || "";
+  00035:           <label><span>Nome da estação</span><input data-setting-field="stationName" value="${esc(customization.stationName || "ERP da construção Maximus Empreendimentos")}" ${disabled(editing)}></label>
+  00036:           <label class="wide"><span>Descrição operacional</span><input data-setting-field="stationSubtitle" value="${esc(customization.stationSubtitle || "Gestão operacional da construção")}" ${disabled(editing)}></label>
+  00048:       <section class="settings-main-grid">
+  00050:           <label class="settings-field"><span>Cor principal</span><div class="settings-color-input"><input data-setting-field="primaryColor" type="color" value="${esc(customization.primaryColor || "#0a61d8")}" ${disabled(editing)}><code>${e
+  00051:           <label class="settings-field"><span>Tema</span><select data-setting-field="theme" ${disabled(editing)}>${option("system", customization.theme || "system", "Seguir o sistema")}${option("light", customization.theme, "Claro")}${optio
+  00052:           <label class="settings-field"><span>Densidade</span><select data-setting-field="density" ${disabled(editing)}>${option("comfortable", customization.density || "comfortable", "Confortável")}${option("compact", customization.density
+  00053:           <label class="settings-field"><span>Subnavegação</span><select data-setting-field="sidebarBehavior" ${disabled(editing)}>${option("hover", customization.sidebarBehavior || "hover", "Abrir ao passar o mouse")}${option("pinned", cus
+  00058:       <section class="settings-admin-tools"><header><div><small>Administração do computador</small><h2>Serviços e manutenção</h2></div><p>Atalhos administrativos sem exigir terminal.</p></header><div class="settings-tool-grid">
+  00066:       ${letterheadSettings(customization, editing, auth)}
+==============================================================================
+SCAN MACROOBRAS — DEPOIS DA RETOMADA
+==============================================================================
+
+[STATE] /home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/core/machine-state.js
+  tamanho: 16330 bytes
+  linhas: 455
+  sha256: e51c3c315dc3b3f869cb3cfa06bb9314a4796d3663eadf5c3ddc61ec835105da
+  [OK     ] estado local de visitas: function initialVisitPlans
+  [OK     ] estado local de impressões: function initialPrintRecords
+  [OK     ] visitPlans no state: visitPlans: initialVisitPlans()
+  [OK     ] printRecords no state: printRecords: initialPrintRecords()
+  [OK     ] persistência de visitas: localStorage.setItem("macroobras.visitPlans"
+  [OK     ] persistência de impressões: localStorage.setItem("macroobras.printRecords"
+
+[CONTROLLER] /home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/core/app-controller.js
+  tamanho: 91957 bytes
+  linhas: 2934
+  sha256: 0a56ceff0fcdb6c9e5855f4c7c2023bf2e08bc3ce7638e660f97f00065a46b82
+  [OK     ] import do relatório: visit-route-print.js
+  [OK     ] handler imprimir rota: message.type === "print-visit-plan"
+  [OK     ] numeração da impressão: function nextPrintRecordNumber
+  [OK     ] registro local da impressão: function createPrintRecord
+  [OK     ] impressão de plano: function printPlanWithRecord
+  [OK     ] gerador atualizado: Visitas registradas nos cronogramas
+
+[VISITS] /home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/pages/admin/admin-visits.page.js
+  tamanho: 8619 bytes
+  linhas: 130
+  sha256: fc07c424be8f5081255831d3c918c911e6c4682f9f43b1735545792953a3ca5e
+  [OK     ] ação principal cronograma/PDF: Registrar no cronograma e imprimir PDF
+  [OK     ] ação de reimpressão: data-message="print-visit-plan"
+
+[CALENDAR] /home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/pages/admin/admin-work-calendar.page.js
+  tamanho: 6620 bytes
+  linhas: 141
+  sha256: 41d309a4cf382812b95c0d58ef40ac78a9ad9ecc93558d69dfec9ea65d6d991b
+  [OK     ] visitas da obra: function visitsForWork
+  [OK     ] lista das visitas: function visitCalendarMarkup
+  [OK     ] card no cronograma: Visitas registradas no cronograma
+
+[SETTINGS] /home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/pages/admin/admin-settings.page.js
+  tamanho: 9718 bytes
+  linhas: 113
+  sha256: 24b47e48ed97a4556ae912833ca9318f24736af9af849c148ecaef761e1b97a2
+  [OK     ] leitura de printRecords: const printRecords
+  [OK     ] helper do histórico: function printHistoryCard
+  [OK     ] card do histórico: printHistoryCard(printRecords)
+  [OK     ] classe do histórico: settings-print-history
+
+[CSS] /home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css
+  tamanho: 126856 bytes
+  linhas: 6077
+  sha256: 482864857bcf27d80f9c0748796c439e4f6e95655473c3b823bab52c2512993f
+  [OK     ] estilo rota/PDF: MACROOBRAS VISIT ROUTE PDF + LOCAL PRINT LOG V1
+  [OK     ] estilo histórico: .settings-print-history
+  [OK     ] impressão A4: @media print
+
+[PRINT_MODULE] /home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/visit-route-print.js
+  tamanho: 7030 bytes
+  linhas: 201
+  sha256: cd231e7f31af6963ae7e76be5ece4cef3e10fb331d0462df5a2366bd8a43a2ef
+  [OK     ] função exportada: export function printVisitRouteReport
+  [OK     ] cabeçalho: print-letterhead
+  [OK     ] cronograma: Cronograma das visitas
+  [OK     ] trechos: Trechos calculados
+
+[SETTINGS — pontos estruturais encontrados]
+  [OK] função adminSettings: linha(s) 54
+  [OK] declaração customization: linha(s) 61
+  [OK] settings-main-grid: linha(s) 90
+  [OK] settings-admin-tools: linha(s) 102
+  [AUSENTE] settings-technical-grid
+  [OK] fechamento settings-hub: linha(s) 111
+
+[SETTINGS — linhas relevantes]
+  00015: function printHistoryCard(records) {
+  00054: export function adminSettings() {
+  00055:   const printRecords = Array.isArray(state.printRecords) ? state.printRecords : [];
+  00061:   const customization = state.customization || {};
+  00063:   const savedAt = customization.savedAt ? new Date(customization.savedAt) : null;
+  00065:   const adminName = customization.adminName || auth.name || "Administrador";
+  00066:   const adminEmail = customization.adminLoginEmail || auth.email || "";
+  00067:   const adminCpf = customization.adminLoginCpf || auth.cpf || "";
+  00077:           <label><span>Nome da estação</span><input data-setting-field="stationName" value="${esc(customization.stationName || "ERP da construção Maximus Empreendimentos")}" ${disabled(editing)}></label>
+  00078:           <label class="wide"><span>Descrição operacional</span><input data-setting-field="stationSubtitle" value="${esc(customization.stationSubtitle || "Gestão operacional da construção")}" ${disabled(editing)}></label>
+  00090:       <section class="settings-main-grid">
+  00092:           <label class="settings-field"><span>Cor principal</span><div class="settings-color-input"><input data-setting-field="primaryColor" type="color" value="${esc(customization.primaryColor || "#0a61d8")}" ${disabled(editing)}><code>${e
+  00093:           <label class="settings-field"><span>Tema</span><select data-setting-field="theme" ${disabled(editing)}>${option("system", customization.theme || "system", "Seguir o sistema")}${option("light", customization.theme, "Claro")}${optio
+  00094:           <label class="settings-field"><span>Densidade</span><select data-setting-field="density" ${disabled(editing)}>${option("comfortable", customization.density || "comfortable", "Confortável")}${option("compact", customization.density
+  00095:           <label class="settings-field"><span>Subnavegação</span><select data-setting-field="sidebarBehavior" ${disabled(editing)}>${option("hover", customization.sidebarBehavior || "hover", "Abrir ao passar o mouse")}${option("pinned", cus
+  00100:       ${printHistoryCard(printRecords)}
+  00102:       <section class="settings-admin-tools"><header><div><small>Administração do computador</small><h2>Serviços e manutenção</h2></div><p>Atalhos administrativos sem exigir terminal.</p></header><div class="settings-tool-grid">
+  00110:       ${letterheadSettings(customization, editing, auth)}

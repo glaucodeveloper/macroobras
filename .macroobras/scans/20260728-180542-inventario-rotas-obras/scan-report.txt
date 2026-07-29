@@ -1,0 +1,49 @@
+SCAN DE PÁGINAS
+==============================================================================
+30  /home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/pages/admin/admin-inventory.page.js
+10  /home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/pages/admin/admin-add-work.page.js
+07  /home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/pages/admin/admin-tickets.page.js
+07  /home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/pages/admin/admin-settings.page.js
+07  /home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/pages/admin/admin-purchases.page.js
+07  /home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/pages/admin/admin-help.page.js
+04  /home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/pages/admin/admin-works.page.js
+04  /home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/pages/admin/admin-work-purchases.page.js
+04  /home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/pages/admin/admin-work-planning.page.js
+04  /home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/pages/admin/admin-work-overview.page.js
+04  /home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/pages/admin/admin-work-calendar.page.js
+04  /home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/pages/admin/admin-work-access.page.js
+04  /home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/pages/admin/admin-visits.page.js
+04  /home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/pages/admin/admin-rh.page.js
+04  /home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/pages/admin/admin-mobile-platform.page.js
+04  /home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/pages/admin/admin-machine-authorization.page.js
+04  /home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/pages/admin/admin-finance.page.js
+04  /home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/pages/admin/admin-data-transfer.page.js
+04  /home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/pages/admin/admin-dashboard.page.js
+04  /home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/pages/admin/admin-access.page.js
+01  /home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/pages/admin/letterhead-settings.js
+01  /home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/pages/admin/admin-work-measurement.page.js
+01  /home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/pages/admin/admin-work-items.page.js
+01  /home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/pages/admin/admin-work-diary.page.js
+01  /home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/pages/admin/admin-service-relations.page.js
+01  /home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/pages/admin/admin-login.page.js
+01  /home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/pages/admin/admin-diagram-library.page.js
+01  /home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/pages/admin/admin-access-config.page.js
+
+ARQUIVOS SELECIONADOS
+Inventário: /home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/pages/admin/admin-inventory.page.js
+Obras: /home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/pages/admin/admin-works.page.js
+
+VALIDAÇÃO FINAL
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/core/app-controller.js:20:import { hydrateOperationalLayouts } from "../ui/operational-layouts.js";
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/core/app-controller.js:147:    hydrateOperationalLayouts(root);
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/core/app-controller.js:588:  if (message.type === "load-works-visit-route") {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/core/app-controller.js:593:  if (message.type === "save-works-visit-route") {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/core/app-controller.js:598:  if (message.type === "delete-works-visit-route") {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/google-maps.js:1094:  if (!elements.some((element) => ["visits", "works-visits"].includes(element.dataset.googleMap))) {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/google-maps.js:1111:      else if (type === "visits" || type === "works-visits") await renderVisitsMap(element);
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/operational-layouts.js:134:    '[data-google-map="works"], [data-google-map="works-visits"]',
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/operational-layouts.js:139:  map.dataset.googleMap = "works-visits";
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/operational-layouts.js:189:        <button type="button" class="btn ghost" data-message="load-works-visit-route">
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/operational-layouts.js:192:        <button type="button" class="btn" data-message="save-works-visit-route">
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/operational-layouts.js:195:        <button type="button" class="btn ghost danger" data-message="delete-works-visit-route">
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/operational-layouts.js:232:export function hydrateOperationalLayouts(root = document) {

@@ -1,0 +1,23 @@
+VALIDAÇÃO FINAL
+1:import "./works-selected-hero-dom-mover-v5.js";
+3:const MOUNT_ATTRIBUTE = "data-works-selected-sidebar-v5";
+173:    commandCenter.insertBefore(
+175:      mapStage.nextSibling,
+10806:/* MACROOBRAS WORKS SELECTED HERO DOM V5 */
+10808:.works-command-center.works-command-center--sidebar-v5 {
+10829:.works-command-center--sidebar-v5 > .works-browser {
+10837:.works-command-center--sidebar-v5 > .works-map-stage {
+10848:.works-command-center--sidebar-v5 > .works-map-stage > *,
+10849:.works-command-center--sidebar-v5 > .works-map-stage .google-map,
+10850:.works-command-center--sidebar-v5 > .works-map-stage [data-google-map="works"] {
+10857:.works-command-center--sidebar-v5
+10891:.works-command-center--sidebar-v5
+10899:.works-command-center--sidebar-v5
+10907:.works-command-center--sidebar-v5
+10913:.works-command-center--sidebar-v5
+10921:body:has(.works-command-center--sidebar-v5)
+10929:  .works-command-center.works-command-center--sidebar-v5 {
+10936:  .works-command-center.works-command-center--sidebar-v5 {
+10944:  .works-command-center--sidebar-v5
+10955:  .works-command-center--sidebar-v5 > .works-selected-hero {
+10960:/* END MACROOBRAS WORKS SELECTED HERO DOM V5 */

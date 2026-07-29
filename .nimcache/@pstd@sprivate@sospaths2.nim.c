@@ -136,14 +136,11 @@ N_LIB_PRIVATE N_NIMCALL(NimStringV2, substr__system_u9194)(NimStringV2 s_p0, NI 
 N_LIB_PRIVATE N_NIMCALL(void, eqcopy___system_u2772)(NimStringV2* dest_p0, NimStringV2 src_p1);
 N_LIB_PRIVATE N_NIMCALL(void, eqwasMoved___system_u2769)(NimStringV2* dest_p0);
 N_LIB_PRIVATE N_NIMCALL(void, eqdestroy___stdZprivateZospaths2_u303)(tyTuple__UV3llMMYFckfui8YMBuUZA* dest_p0);
-N_LIB_PRIVATE N_NIMCALL(NI, searchExtPos__stdZprivateZospaths2_u242)(NimStringV2 path_p0);
+N_LIB_PRIVATE N_NIMCALL(NIM_BOOL, nosisAbsolute)(NimStringV2 path_p0);
+N_LIB_PRIVATE N_NIMCALL(void*, nimNewObj)(NI size_p0, NI alignment_p1);
 static N_INLINE(void, appendString)(NimStringV2* dest_p0, NimStringV2 src_p1);
 static N_INLINE(void, copyMem__system_u1755)(void* dest_p0, void* source_p1, NI size_p2);
 static N_INLINE(void, nimCopyMem)(void* dest_p0, void* source_p1, NI size_p2);
-N_LIB_PRIVATE N_NIMCALL(NimStringV2, normExt__stdZprivateZospaths2_u239)(NimStringV2 ext_p0);
-static N_INLINE(void, appendChar)(NimStringV2* dest_p0, NIM_CHAR c_p1);
-N_LIB_PRIVATE N_NIMCALL(NIM_BOOL, nosisAbsolute)(NimStringV2 path_p0);
-N_LIB_PRIVATE N_NIMCALL(void*, nimNewObj)(NI size_p0, NI alignment_p1);
 N_LIB_PRIVATE N_NIMCALL(void, raiseExceptionEx)(Exception* e_p0, NCSTRING ename_p1, NCSTRING procname_p2, NCSTRING filename_p3, NI line_p4);
 N_LIB_PRIVATE N_NIMCALL(NimStringV2, nosjoinPath)(NimStringV2 head_p0, NimStringV2 tail_p1);
 static const struct {
@@ -173,8 +170,8 @@ static const NimStringV2 TM__O1zDbSYyG8zQytyoZAh0dg_31 = {0, (NimStrPayload*)&TM
 extern TNimTypeV2 NTIv2__NZcE89crkraWmH1VkcjYX9ag_;
 static const struct {
   NI cap; NIM_CHAR data[36+1];
-} TM__O1zDbSYyG8zQytyoZAh0dg_43 = { 36 | NIM_STRLIT_FLAG, "The specified root is not absolute: " };
-static const NimStringV2 TM__O1zDbSYyG8zQytyoZAh0dg_44 = {36, (NimStrPayload*)&TM__O1zDbSYyG8zQytyoZAh0dg_43};
+} TM__O1zDbSYyG8zQytyoZAh0dg_40 = { 36 | NIM_STRLIT_FLAG, "The specified root is not absolute: " };
+static const NimStringV2 TM__O1zDbSYyG8zQytyoZAh0dg_41 = {36, (NimStrPayload*)&TM__O1zDbSYyG8zQytyoZAh0dg_40};
 extern NIM_THREADVAR TFrame* framePtr__system_u2809;
 extern NIM_THREADVAR NIM_BOOL nimInErrorMode__system_u4293;
 N_LIB_PRIVATE N_NIMCALL(void, eqdestroy___stdZprivateZospaths2_u303)(tyTuple__UV3llMMYFckfui8YMBuUZA* dest_p0) {
@@ -871,193 +868,27 @@ NIM_BOOL* nimErr_;
 	popFrame();
 	return result;
 }
-N_LIB_PRIVATE N_NIMCALL(NI, searchExtPos__stdZprivateZospaths2_u242)(NimStringV2 path_p0) {
-	NI result;
-	NI i_1;
-	nimfr_("searchExtPos", "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/std/private/ospaths2.nim");
-{	nimln_(592);	result = ((NI)-1);
-	nimln_(593);	i_1 = (path_p0.len-1);
-	{
-		nimln_(594);		while (1) {
-			NI TM__O1zDbSYyG8zQytyoZAh0dg_32;
-			if (!(((NI)1) <= i_1)) goto LA2;
-			nimln_(595);			{
-				if (i_1 < 0 || i_1 >= path_p0.len){ raiseIndexError2(i_1,path_p0.len-1); goto BeforeRet_;
-				}
-				if (!((NU8)(path_p0.p->data[i_1]) == (NU8)(46))) goto LA5_;
-				nimln_(596);				goto LA1;
-			}
-			goto LA3_;
-LA5_: ;
-			{
-				nimln_(597);				if (i_1 < 0 || i_1 >= path_p0.len){ raiseIndexError2(i_1,path_p0.len-1); goto BeforeRet_;
-				}
-				if (!(((NU8)(path_p0.p->data[i_1])) == ((NU8)(47)) || ((NU8)(path_p0.p->data[i_1])) == ((NU8)(47)))) goto LA8_;
-				nimln_(598);				nimln_(570);				nimln_(598);				result = ((NI)-1);
-				goto BeforeRet_;
-			}
-			goto LA3_;
-LA8_: ;
-LA3_: ;
-			nimln_(599);			if (nimSubInt(i_1, ((NI)1), &TM__O1zDbSYyG8zQytyoZAh0dg_32)) { raiseOverflow(); goto BeforeRet_;
-			};
-			i_1 = (NI)(TM__O1zDbSYyG8zQytyoZAh0dg_32);
-		} LA2: ;
-	} LA1: ;
-	{
-		NI j_1;
-		NI colontmp_;
-		NI TM__O1zDbSYyG8zQytyoZAh0dg_33;
-		NI res_1;
-		j_1 = (NI)0;
-		colontmp_ = (NI)0;
-		nimlf_(6, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/system/iterators_1.nim");		nimlf_(601, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/std/private/ospaths2.nim");		if (nimSubInt(i_1, ((NI)1), &TM__O1zDbSYyG8zQytyoZAh0dg_33)) { raiseOverflow(); goto BeforeRet_;
-		};
-		colontmp_ = (NI)(TM__O1zDbSYyG8zQytyoZAh0dg_33);
-		nimlf_(33, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/system/iterators_1.nim");		res_1 = colontmp_;
-		{
-			nimln_(34);			while (1) {
-				NI TM__O1zDbSYyG8zQytyoZAh0dg_34;
-				if (!(((NI)0) <= res_1)) goto LA12;
-				nimlf_(601, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/std/private/ospaths2.nim");				j_1 = ((NI) (res_1));
-				nimln_(602);				{
-					if (j_1 < 0 || j_1 >= path_p0.len){ raiseIndexError2(j_1,path_p0.len-1); goto BeforeRet_;
-					}
-					if (!(((NU8)(path_p0.p->data[j_1])) == ((NU8)(47)) || ((NU8)(path_p0.p->data[j_1])) == ((NU8)(47)))) goto LA15_;
-					nimln_(603);					nimln_(570);					nimln_(603);					result = ((NI)-1);
-					goto BeforeRet_;
-				}
-				goto LA13_;
-LA15_: ;
-				{
-					nimln_(604);					if (j_1 < 0 || j_1 >= path_p0.len){ raiseIndexError2(j_1,path_p0.len-1); goto BeforeRet_;
-					}
-					if (!!(((NU8)(path_p0.p->data[j_1]) == (NU8)(46)))) goto LA18_;
-					nimln_(605);					result = i_1;
-					nimln_(606);					goto LA10;
-				}
-				goto LA13_;
-LA18_: ;
-LA13_: ;
-				nimlf_(39, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/system/iterators_1.nim");				if (nimSubInt(res_1, ((NI)1), &TM__O1zDbSYyG8zQytyoZAh0dg_34)) { raiseOverflow(); goto BeforeRet_;
-				};
-				res_1 = (NI)(TM__O1zDbSYyG8zQytyoZAh0dg_34);
-			} LA12: ;
-		}
-	} LA10: ;
-	}BeforeRet_: ;
-	popFrame();
-	return result;
-}
-static N_INLINE(void, nimCopyMem)(void* dest_p0, void* source_p1, NI size_p2) {
-	void* T1_;
-	T1_ = (void*)0;
-	T1_ = memcpy(dest_p0, source_p1, ((size_t) (size_p2)));
-}
-static N_INLINE(void, copyMem__system_u1755)(void* dest_p0, void* source_p1, NI size_p2) {
-	nimCopyMem(dest_p0, source_p1, size_p2);
-}
-static N_INLINE(void, appendString)(NimStringV2* dest_p0, NimStringV2 src_p1) {
-	{
-		if (!(((NI)0) < src_p1.len)) goto LA3_;
-		copyMem__system_u1755(((void*) ((&(*(*dest_p0).p).data[(*dest_p0).len]))), ((void*) ((&(*src_p1.p).data[((NI)0)]))), (src_p1.len));
-		(*dest_p0).len += src_p1.len;
-		(*(*dest_p0).p).data[(*dest_p0).len] = 0;
-	}
-LA3_: ;
-}
-static N_INLINE(void, appendChar)(NimStringV2* dest_p0, NIM_CHAR c_p1) {
-	(*(*dest_p0).p).data[(*dest_p0).len] = c_p1;
-	(*dest_p0).len += ((NI)1);
-	(*(*dest_p0).p).data[(*dest_p0).len] = 0;
-}
-N_LIB_PRIVATE N_NIMCALL(NimStringV2, normExt__stdZprivateZospaths2_u239)(NimStringV2 ext_p0) {
-	NimStringV2 result;
-	nimfr_("normExt", "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/std/private/ospaths2.nim");
-{	result.len = 0; result.p = NIM_NIL;
-	nimlf_(567, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/std/private/ospaths2.nim");	{
-		NIM_BOOL T3_;
-		T3_ = (NIM_BOOL)0;
-		T3_ = (ext_p0.len == 0);
-		if (T3_) goto LA4_;
-		if (((NI)0) < 0 || ((NI)0) >= ext_p0.len){ raiseIndexError2(((NI)0),ext_p0.len-1); goto BeforeRet_;
-		}
-		T3_ = ((NU8)(ext_p0.p->data[((NI)0)]) == (NU8)(46));
-LA4_: ;
-		if (!T3_) goto LA5_;
-		nimlf_(1715, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/system.nim");		eqcopy___system_u2772((&result), ext_p0);
-	}
-	goto LA1_;
-LA5_: ;
-	{
-		NimStringV2 T8_;
-		nimlf_(568, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/std/private/ospaths2.nim");		T8_.len = 0; T8_.p = NIM_NIL;
-		T8_ = rawNewString(ext_p0.len + 1);
-appendChar((&T8_), 46);
-appendString((&T8_), ext_p0);
-		result = T8_;
-	}
-LA1_: ;
-	}BeforeRet_: ;
-	popFrame();
-	return result;
-}
-N_LIB_PRIVATE N_NIMCALL(NimStringV2, nosaddFileExt)(NimStringV2 filename_p0, NimStringV2 ext_p1) {
-	NimStringV2 result;
-	NI extPos_1;
-NIM_BOOL* nimErr_;
-	nimfr_("addFileExt", "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/std/private/ospaths2.nim");
-{nimErr_ = nimErrorFlag();
-	result.len = 0; result.p = NIM_NIL;
-	nimln_(753);	extPos_1 = searchExtPos__stdZprivateZospaths2_u242(filename_p0);
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
-	nimln_(754);	{
-		NimStringV2 colontmpD_;
-		NimStringV2 T5_;
-		if (!(extPos_1 < ((NI)0))) goto LA3_;
-		colontmpD_.len = 0; colontmpD_.p = NIM_NIL;
-		T5_.len = 0; T5_.p = NIM_NIL;
-		colontmpD_ = normExt__stdZprivateZospaths2_u239(ext_p1);
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
-		T5_ = rawNewString(filename_p0.len + colontmpD_.len + 0);
-appendString((&T5_), filename_p0);
-appendString((&T5_), colontmpD_);
-		result = T5_;
-		nimlf_(394, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/system.nim");		if (colontmpD_.p && !(colontmpD_.p->cap & NIM_STRLIT_FLAG)) {
- deallocShared(colontmpD_.p);
-}
-	}
-	goto LA1_;
-LA3_: ;
-	{
-		nimln_(1715);		eqcopy___system_u2772((&result), filename_p0);
-	}
-LA1_: ;
-	}BeforeRet_: ;
-	popFrame();
-	return result;
-}
 N_LIB_PRIVATE N_NIMCALL(void, nossplitFile)(NimStringV2 path_p0, tyTuple__7q7q3E6Oj24ZNVJb9aonhAg* Result) {
 	NI namePos_1;
 	NI dotPos_1;
 	nimfr_("splitFile", "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/std/private/ospaths2.nim");
 {	nimZeroMem((void*)Result, sizeof(tyTuple__7q7q3E6Oj24ZNVJb9aonhAg));
-	nimlf_(643, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/std/private/ospaths2.nim");	namePos_1 = ((NI)0);
+	nimln_(643);	namePos_1 = ((NI)0);
 	nimln_(644);	dotPos_1 = ((NI)0);
 	{
 		NI i_1;
 		NI colontmp_;
-		NI TM__O1zDbSYyG8zQytyoZAh0dg_35;
+		NI TM__O1zDbSYyG8zQytyoZAh0dg_32;
 		NI res_1;
 		i_1 = (NI)0;
 		colontmp_ = (NI)0;
-		nimlf_(6, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/system/iterators_1.nim");		nimlf_(651, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/std/private/ospaths2.nim");		if (nimSubInt(path_p0.len, ((NI)1), &TM__O1zDbSYyG8zQytyoZAh0dg_35)) { raiseOverflow(); goto BeforeRet_;
+		nimlf_(6, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/system/iterators_1.nim");		nimlf_(651, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/std/private/ospaths2.nim");		if (nimSubInt(path_p0.len, ((NI)1), &TM__O1zDbSYyG8zQytyoZAh0dg_32)) { raiseOverflow(); goto BeforeRet_;
 		};
-		colontmp_ = (NI)(TM__O1zDbSYyG8zQytyoZAh0dg_35);
+		colontmp_ = (NI)(TM__O1zDbSYyG8zQytyoZAh0dg_32);
 		nimlf_(33, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/system/iterators_1.nim");		res_1 = colontmp_;
 		{
 			nimln_(34);			while (1) {
-				NI TM__O1zDbSYyG8zQytyoZAh0dg_42;
+				NI TM__O1zDbSYyG8zQytyoZAh0dg_39;
 				if (!(((NI)0) <= res_1)) goto LA3;
 				nimlf_(651, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/std/private/ospaths2.nim");				i_1 = ((NI) (res_1));
 				nimln_(652);				{
@@ -1075,7 +906,7 @@ LA7_: ;
 						NI colontmpD__2;
 						NI T14_;
 						NimStringV2 T21_;
-						NI TM__O1zDbSYyG8zQytyoZAh0dg_37;
+						NI TM__O1zDbSYyG8zQytyoZAh0dg_34;
 						if (i_1 < 0 || i_1 >= path_p0.len){ raiseIndexError2(i_1,path_p0.len-1); goto BeforeRet_;
 						}
 						if (!(((NU8)(path_p0.p->data[i_1])) == ((NU8)(47)) || ((NU8)(path_p0.p->data[i_1])) == ((NU8)(47)))) goto LA12_;
@@ -1084,13 +915,13 @@ LA7_: ;
 						nimlf_(1715, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/system.nim");						nimlf_(654, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/std/private/ospaths2.nim");						T14_ = (NI)0;
 						{
 							NIM_BOOL T17_;
-							NI TM__O1zDbSYyG8zQytyoZAh0dg_36;
+							NI TM__O1zDbSYyG8zQytyoZAh0dg_33;
 							nimlf_(2067, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/system.nim");							nimlf_(654, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/std/private/ospaths2.nim");							nimlf_(2067, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/system.nim");							T17_ = (NIM_BOOL)0;
 							T17_ = NIM_LIKELY((((NI)1) <= i_1));
 							if (!T17_) goto LA18_;
-							nimlf_(654, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/std/private/ospaths2.nim");							if (nimSubInt(i_1, ((NI)1), &TM__O1zDbSYyG8zQytyoZAh0dg_36)) { raiseOverflow(); goto BeforeRet_;
+							nimlf_(654, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/std/private/ospaths2.nim");							if (nimSubInt(i_1, ((NI)1), &TM__O1zDbSYyG8zQytyoZAh0dg_33)) { raiseOverflow(); goto BeforeRet_;
 							};
-							colontmpD_ = (NI)(TM__O1zDbSYyG8zQytyoZAh0dg_36);
+							colontmpD_ = (NI)(TM__O1zDbSYyG8zQytyoZAh0dg_33);
 							T14_ = colontmpD_;
 						}
 						goto LA15_;
@@ -1103,20 +934,20 @@ LA15_: ;
 						T21_.len = 0; T21_.p = NIM_NIL;
 						T21_ = substr__system_u9181(path_p0, ((NI)0), T14_);
 						nimlf_(1715, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/system.nim");						eqsink___system_u2778((&(*Result).Field0), T21_);
-						nimlf_(655, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/std/private/ospaths2.nim");						if (nimAddInt(i_1, ((NI)1), &TM__O1zDbSYyG8zQytyoZAh0dg_37)) { raiseOverflow(); goto BeforeRet_;
+						nimlf_(655, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/std/private/ospaths2.nim");						if (nimAddInt(i_1, ((NI)1), &TM__O1zDbSYyG8zQytyoZAh0dg_34)) { raiseOverflow(); goto BeforeRet_;
 						};
-						namePos_1 = (NI)(TM__O1zDbSYyG8zQytyoZAh0dg_37);
+						namePos_1 = (NI)(TM__O1zDbSYyG8zQytyoZAh0dg_34);
 					}
 LA12_: ;
 					nimln_(656);					{
-						NI TM__O1zDbSYyG8zQytyoZAh0dg_38;
+						NI TM__O1zDbSYyG8zQytyoZAh0dg_35;
 						NimStringV2 T26_;
 						NimStringV2 T27_;
 						if (!(i_1 < dotPos_1)) goto LA24_;
-						nimlf_(1715, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/system.nim");						nimlf_(657, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/std/private/ospaths2.nim");						if (nimSubInt(dotPos_1, ((NI)1), &TM__O1zDbSYyG8zQytyoZAh0dg_38)) { raiseOverflow(); goto BeforeRet_;
+						nimlf_(1715, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/system.nim");						nimlf_(657, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/std/private/ospaths2.nim");						if (nimSubInt(dotPos_1, ((NI)1), &TM__O1zDbSYyG8zQytyoZAh0dg_35)) { raiseOverflow(); goto BeforeRet_;
 						};
 						T26_.len = 0; T26_.p = NIM_NIL;
-						T26_ = substr__system_u9181(path_p0, namePos_1, (NI)(TM__O1zDbSYyG8zQytyoZAh0dg_38));
+						T26_ = substr__system_u9181(path_p0, namePos_1, (NI)(TM__O1zDbSYyG8zQytyoZAh0dg_35));
 						nimlf_(1715, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/system.nim");						eqsink___system_u2778((&(*Result).Field1), T26_);
 						nimlf_(658, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/std/private/ospaths2.nim");						T27_.len = 0; T27_.p = NIM_NIL;
 						T27_ = substr__system_u9194(path_p0, dotPos_1);
@@ -1141,9 +972,9 @@ LA8_: ;
 					NIM_BOOL T33_;
 					NIM_BOOL T34_;
 					NIM_BOOL T35_;
-					NI TM__O1zDbSYyG8zQytyoZAh0dg_39;
-					NI TM__O1zDbSYyG8zQytyoZAh0dg_40;
-					NI TM__O1zDbSYyG8zQytyoZAh0dg_41;
+					NI TM__O1zDbSYyG8zQytyoZAh0dg_36;
+					NI TM__O1zDbSYyG8zQytyoZAh0dg_37;
+					NI TM__O1zDbSYyG8zQytyoZAh0dg_38;
 					nimln_(664);					T31_ = (NIM_BOOL)0;
 					nimln_(663);					T32_ = (NIM_BOOL)0;
 					nimln_(662);					T33_ = (NIM_BOOL)0;
@@ -1157,25 +988,25 @@ LA8_: ;
 LA36_: ;
 					T34_ = T35_;
 					if (!(T34_)) goto LA37_;
-					if (nimSubInt(path_p0.len, ((NI)1), &TM__O1zDbSYyG8zQytyoZAh0dg_39)) { raiseOverflow(); goto BeforeRet_;
+					if (nimSubInt(path_p0.len, ((NI)1), &TM__O1zDbSYyG8zQytyoZAh0dg_36)) { raiseOverflow(); goto BeforeRet_;
 					};
-					T34_ = (i_1 < (NI)(TM__O1zDbSYyG8zQytyoZAh0dg_39));
+					T34_ = (i_1 < (NI)(TM__O1zDbSYyG8zQytyoZAh0dg_36));
 LA37_: ;
 					T33_ = T34_;
 					if (!(T33_)) goto LA38_;
-					nimln_(663);					if (nimSubInt(i_1, ((NI)1), &TM__O1zDbSYyG8zQytyoZAh0dg_40)) { raiseOverflow(); goto BeforeRet_;
+					nimln_(663);					if (nimSubInt(i_1, ((NI)1), &TM__O1zDbSYyG8zQytyoZAh0dg_37)) { raiseOverflow(); goto BeforeRet_;
 					};
-					if ((NI)(TM__O1zDbSYyG8zQytyoZAh0dg_40) < 0 || (NI)(TM__O1zDbSYyG8zQytyoZAh0dg_40) >= path_p0.len){ raiseIndexError2((NI)(TM__O1zDbSYyG8zQytyoZAh0dg_40),path_p0.len-1); goto BeforeRet_;
+					if ((NI)(TM__O1zDbSYyG8zQytyoZAh0dg_37) < 0 || (NI)(TM__O1zDbSYyG8zQytyoZAh0dg_37) >= path_p0.len){ raiseIndexError2((NI)(TM__O1zDbSYyG8zQytyoZAh0dg_37),path_p0.len-1); goto BeforeRet_;
 					}
-					T33_ = !((((NU8)(path_p0.p->data[(NI)(TM__O1zDbSYyG8zQytyoZAh0dg_40)])) == ((NU8)(47)) || ((NU8)(path_p0.p->data[(NI)(TM__O1zDbSYyG8zQytyoZAh0dg_40)])) == ((NU8)(47))));
+					T33_ = !((((NU8)(path_p0.p->data[(NI)(TM__O1zDbSYyG8zQytyoZAh0dg_37)])) == ((NU8)(47)) || ((NU8)(path_p0.p->data[(NI)(TM__O1zDbSYyG8zQytyoZAh0dg_37)])) == ((NU8)(47))));
 LA38_: ;
 					T32_ = T33_;
 					if (!(T32_)) goto LA39_;
-					nimln_(664);					if (nimAddInt(i_1, ((NI)1), &TM__O1zDbSYyG8zQytyoZAh0dg_41)) { raiseOverflow(); goto BeforeRet_;
+					nimln_(664);					if (nimAddInt(i_1, ((NI)1), &TM__O1zDbSYyG8zQytyoZAh0dg_38)) { raiseOverflow(); goto BeforeRet_;
 					};
-					if ((NI)(TM__O1zDbSYyG8zQytyoZAh0dg_41) < 0 || (NI)(TM__O1zDbSYyG8zQytyoZAh0dg_41) >= path_p0.len){ raiseIndexError2((NI)(TM__O1zDbSYyG8zQytyoZAh0dg_41),path_p0.len-1); goto BeforeRet_;
+					if ((NI)(TM__O1zDbSYyG8zQytyoZAh0dg_38) < 0 || (NI)(TM__O1zDbSYyG8zQytyoZAh0dg_38) >= path_p0.len){ raiseIndexError2((NI)(TM__O1zDbSYyG8zQytyoZAh0dg_38),path_p0.len-1); goto BeforeRet_;
 					}
-					T32_ = !(((NU8)(path_p0.p->data[(NI)(TM__O1zDbSYyG8zQytyoZAh0dg_41)]) == (NU8)(46)));
+					T32_ = !(((NU8)(path_p0.p->data[(NI)(TM__O1zDbSYyG8zQytyoZAh0dg_38)]) == (NU8)(46)));
 LA39_: ;
 					T31_ = T32_;
 					if (!(T31_)) goto LA40_;
@@ -1187,9 +1018,9 @@ LA40_: ;
 				goto LA4_;
 LA41_: ;
 LA4_: ;
-				nimlf_(39, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/system/iterators_1.nim");				if (nimSubInt(res_1, ((NI)1), &TM__O1zDbSYyG8zQytyoZAh0dg_42)) { raiseOverflow(); goto BeforeRet_;
+				nimlf_(39, "/home/icarogdo/.choosenim/toolchains/nim-2.2.10/lib/system/iterators_1.nim");				if (nimSubInt(res_1, ((NI)1), &TM__O1zDbSYyG8zQytyoZAh0dg_39)) { raiseOverflow(); goto BeforeRet_;
 				};
-				res_1 = (NI)(TM__O1zDbSYyG8zQytyoZAh0dg_42);
+				res_1 = (NI)(TM__O1zDbSYyG8zQytyoZAh0dg_39);
 			} LA3: ;
 		}
 	} LA1: ;
@@ -1218,6 +1049,23 @@ NIM_BOOL* nimErr_;
 	}BeforeRet_: ;
 	popFrame();
 	return result;
+}
+static N_INLINE(void, nimCopyMem)(void* dest_p0, void* source_p1, NI size_p2) {
+	void* T1_;
+	T1_ = (void*)0;
+	T1_ = memcpy(dest_p0, source_p1, ((size_t) (size_p2)));
+}
+static N_INLINE(void, copyMem__system_u1755)(void* dest_p0, void* source_p1, NI size_p2) {
+	nimCopyMem(dest_p0, source_p1, size_p2);
+}
+static N_INLINE(void, appendString)(NimStringV2* dest_p0, NimStringV2 src_p1) {
+	{
+		if (!(((NI)0) < src_p1.len)) goto LA3_;
+		copyMem__system_u1755(((void*) ((&(*(*dest_p0).p).data[(*dest_p0).len]))), ((void*) ((&(*src_p1.p).data[((NI)0)]))), (src_p1.len));
+		(*dest_p0).len += src_p1.len;
+		(*(*dest_p0).p).data[(*dest_p0).len] = 0;
+	}
+LA3_: ;
 }
 N_LIB_PRIVATE N_NIMCALL(NimStringV2, absolutePath__stdZprivateZospaths2_u359)(NimStringV2 path_p0, NimStringV2 root_p1) {
 	NimStringV2 result;
@@ -1252,7 +1100,7 @@ LA5_: ;
 			(*T13_).Sup.Sup.name = "ValueError";
 			nimln_(904);			T14_.len = 0; T14_.p = NIM_NIL;
 			T14_ = rawNewString(root_p1.len + 36);
-appendString((&T14_), TM__O1zDbSYyG8zQytyoZAh0dg_44);
+appendString((&T14_), TM__O1zDbSYyG8zQytyoZAh0dg_41);
 appendString((&T14_), root_p1);
 			(*T13_).Sup.Sup.message = T14_;
 			(*T13_).Sup.Sup.parent = ((Exception*) NIM_NIL);

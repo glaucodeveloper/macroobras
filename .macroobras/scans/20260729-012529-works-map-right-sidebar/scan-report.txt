@@ -1,0 +1,45 @@
+VALIDAÇÃO FINAL
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/operational-layouts.js:1:import "./works-map-right-sidebar.js";
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/works-map-right-sidebar.js:1:const MAP_SELECTOR =
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/works-map-right-sidebar.js:52:    "works-map-right-sidebar",
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/works-map-right-sidebar.js:86:    ".has-works-map-right-sidebar",
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/works-map-right-sidebar.js:90:        "has-works-map-right-sidebar",
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/works-map-right-sidebar.js:96:    ".works-map-right-sidebar",
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/works-map-right-sidebar.js:100:        "works-map-right-sidebar",
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/works-map-right-sidebar.js:111:  const map = document.querySelector(MAP_SELECTOR);
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/works-map-right-sidebar.js:125:    "has-works-map-right-sidebar",
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/ui/works-map-right-sidebar.js:140:    map.insertAdjacentElement(
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:10806:/* MACROOBRAS WORKS MAP RIGHT SIDEBAR V1 */
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:10808:.has-works-map-right-sidebar {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:10823:.has-works-map-right-sidebar
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:10825:.has-works-map-right-sidebar
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:10841:.has-works-map-right-sidebar
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:10842:  > .works-map-right-sidebar {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:10846:.works-map-right-sidebar {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:10880:.works-map-right-sidebar
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:10891:.works-map-right-sidebar
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:10900:.works-map-right-sidebar
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:10909:.works-map-right-sidebar
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:10917:.works-map-right-sidebar
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:10926:.works-map-right-sidebar
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:10932:.works-map-right-sidebar
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:10941:.works-map-right-sidebar
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:10950:.works-map-right-sidebar
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:10962:.works-map-right-sidebar
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:10968:.works-map-right-sidebar
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:10977:.works-map-right-sidebar
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:10991:.works-map-right-sidebar
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:10999:.works-map-right-sidebar
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:11008:.works-map-right-sidebar
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:11017:.works-map-right-sidebar
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:11023:.works-map-right-sidebar
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:11034:.work-detail-inline-before-map.works-map-right-sidebar,
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:11035:.works-selected-hero.works-map-right-sidebar {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:11042:  .has-works-map-right-sidebar {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:11047:  .works-map-right-sidebar
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:11056:  .has-works-map-right-sidebar {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:11066:  .has-works-map-right-sidebar
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:11068:  .has-works-map-right-sidebar
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:11073:  .works-map-right-sidebar {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:11086:  .works-map-right-sidebar {
+/home/icarogdo/dev/macroobras-jazzy/app/macroobras/frontend/src/macroobras-v30-professional.css:11091:/* END MACROOBRAS WORKS MAP RIGHT SIDEBAR V1 */
