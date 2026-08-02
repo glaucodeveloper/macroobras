@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "savedAt": "2026-08-02T22:02:16.211Z",
+  "savedAt": "2026-08-02T22:02:24.897Z",
   "localStorage": {
     "macroobras.workSchedules": "{}",
     "macroobras.encarregadoAccesses": "[{\"id\":\"acesso-buerarema-encarregado\",\"personId\":\"rh-person-1\",\"name\":\"Encarregado da obra\",\"email\":\"encarregado@macroobras.local\",\"cpf\":\"123.456.789-09\",\"workId\":\"obra-buerarema-estadio\",\"status\":\"Ativo\"},{\"id\":\"acesso-sao-felipe-carla\",\"personId\":\"rh-person-2\",\"name\":\"Encarregada Carla\",\"email\":\"carla@macroobras.local\",\"cpf\":\"987.654.321-00\",\"workId\":\"obra-sao-felipe-led\",\"status\":\"Ativo\"}]",
