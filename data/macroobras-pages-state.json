@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "savedAt": "2026-08-02T15:31:05.985Z",
+  "savedAt": "2026-08-02T15:31:15.696Z",
   "localStorage": {
     "macroobras.workSchedules": "{}",
     "macroobras.encarregadoAccesses": "[{\"id\":\"acesso-buerarema-encarregado\",\"personId\":\"rh-person-1\",\"name\":\"Encarregado da obra\",\"email\":\"encarregado@macroobras.local\",\"cpf\":\"123.456.789-09\",\"workId\":\"obra-buerarema-estadio\",\"status\":\"Ativo\"},{\"id\":\"acesso-sao-felipe-carla\",\"personId\":\"rh-person-2\",\"name\":\"Encarregada Carla\",\"email\":\"carla@macroobras.local\",\"cpf\":\"987.654.321-00\",\"workId\":\"obra-sao-felipe-led\",\"status\":\"Ativo\"}]",
@@ -21,7 +21,7 @@
     "macroobras.customization": "{\"stationName\":\"ERP da construção Maximus Empreendimentos\",\"stationSubtitle\":\"Gestão operacional da construção\",\"primaryColor\":\"#0a61d8\",\"theme\":\"system\",\"density\":\"comfortable\",\"sidebarBehavior\":\"hover\",\"adminLoginEmail\":\"icaroglaucooliveira@gmail.com\",\"adminLoginCpf\":\"123.456.789-09\",\"adminName\":\"Administrador\",\"letterheadTradeName\":\"Maximus Empreendimentos\",\"letterheadLegalName\":\"Maximus Empreendimentos\",\"letterheadCnpj\":\"\",\"letterheadAddress\":\"\",\"letterheadPhone\":\"\",\"letterheadEmail\":\"icaroglaucooliveira@gmail.com\",\"letterheadResponsible\":\"Administração\",\"letterheadFooter\":\"Documento emitido pelo MacroObras.\",\"letterheadDocumentCode\":\"MO\",\"letterheadLogoText\":\"ME\",\"letterheadLogoDataUrl\":\"\"}"
   },
   "sessionStorage": {
-    "macroobras.route": "admin-work-overview",
+    "macroobras.route": "admin-rh",
     "macroobras.selectedWorkId": "obra-buerarema-estadio",
     "macroobras.selectedDiaryEntryId": "",
     "macroobras.selectedDiaryDetailId": "",
